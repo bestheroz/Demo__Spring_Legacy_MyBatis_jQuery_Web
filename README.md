@@ -536,8 +536,14 @@ A custom spring framework of lastest version with Maven, DB-MyBatis, Bootstrap.
  
 5. java.util.Date -> org.joda.time.LocalDateTime
 
-## Add in the future
+## Add in the future.. Give feedback. :)
 
-> 향후 추가될..
+> 향후 추가될.. 의견주세요 :)
 
  1. ....
+ 
+ 2. ....
+ 
+ 3. ....
+ 
+ 
