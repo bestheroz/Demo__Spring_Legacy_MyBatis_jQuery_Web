@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.github.bestheroz</groupId>
+	<artifactId>standard</artifactId>
+	<name>My_Spring_Maven_Bootstrap_Web_Project</name>
+	<version>1.0.0-BUILD-SNAPSHOT</version>
+
+	<properties>
+		<!-- maven 빌드 및 ant 배포 관련 -->
+		<maven-assembly-plugin-version>3.1.1</maven-assembly-plugin-version>
+		<maven-antrun-plugin-version>1.8</maven-antrun-plugin-version>
+		<org.apache.ant-version>1.10.5</org.apache.ant-version>
+		<jsch-version>0.1.55</jsch-version>
+		<ant-contrib-version>1.0b3</ant-contrib-version>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>local</id>
+			<properties>
+				<resources>resources-local</resources>
+			</properties>
+		</profile>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<maven.test.skip>true</maven.test.skip>
+				<is.dual.server>false</is.dual.server>
+				<resources>resources-dev</resources>
+				<ftp.serverIp1>111.222.111.222</ftp.serverIp1>
+				<ftp.path>/data1/services/project/docbase</ftp.path>
+				<ftp.id>username</ftp.id>
+				<ftp.passwd>password</ftp.passwd>
+			</properties>
+		</profile>
+		<profile>
+			<id>real</id>
+			<properties>
+				<maven.test.skip>true</maven.test.skip>
+				<is.dual.server>true</is.dual.server>
+				<resources>resources-real</resources>
+				<ftp.serverIp1>111.222.111.222</ftp.serverIp1>
+				<ftp.serverIp2>111.222.111.222</ftp.serverIp2>
+				<ftp.path>/data1/services/project/docbase</ftp.path>
+				<ftp.id>username</ftp.id>
+				<ftp.passwd>password</ftp.passwd>
+			</properties>
+		</profile>
+	</profiles>
+
+	<build>
+		<finalName>ROOT</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${maven-assembly-plugin-version}</version>
+				<configuration>
+					<descriptors>
+						<descriptor>assembly-filter.xml</descriptor>
+					</descriptors>
+					<inherited>false</inherited>
+					<appendAssemblyId>false</appendAssemblyId>
+				</configuration>
+				<executions>
+					<execution>
+						<id>bin</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- 배포 플러그인 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>${maven-antrun-plugin-version}</version>
+				<configuration>
+					<tasks>
+						<taskdef resource="net/sf/antcontrib/antlib.xml" />
+						<echo message="web deploy #1" />
+						<scp file="${project.build.directory}/ROOT.zip" todir="${ftp.id}@${ftp.serverIp1}:${ftp.path}" password="${ftp.passwd}" trust="true" sftp="true" filemode="755" dirmode="755" />
+						<sshexec host="${ftp.serverIp1}" trust="yes" username="${ftp.id}" password="${ftp.passwd}" timeout="20000" failonerror="false"
+							command="chmod 755 ${ftp.path}/ROOT.zip ; rm -rf ${ftp.path}/resources ; unzip -o ${ftp.path}/ROOT.zip -d ${ftp.path}/ ; rm -rf ${ftp.path}/ROOT.zip" />
+						<if>
+							<equals arg1="${is.dual.server}" arg2="true" />
+							<then>
+								<echo message="web deploy #2" />
+								<scp file="${project.build.directory}/ROOT.zip" todir="${ftp.id}@${ftp.serverIp2}:${ftp.path}" password="${ftp.passwd}" trust="true" sftp="true" filemode="755" dirmode="755" />
+								<sshexec host="${ftp.serverIp2}" trust="yes" username="${ftp.id}" password="${ftp.passwd}" timeout="20000" failonerror="false"
+									command="chmod 755 ${ftp.path}/ROOT.zip ; rm -rf ${ftp.path}/resources ; unzip -o ${ftp.path}/ROOT.zip -d ${ftp.path}/ ; rm -rf ${ftp.path}/ROOT.zip" />
+							</then>
+							<else></else>
+						</if>
+					</tasks>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.ant</groupId>
+						<artifactId>ant</artifactId>
+						<version>${org.apache.ant-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.ant</groupId>
+						<artifactId>ant-jsch</artifactId>
+						<version>${org.apache.ant-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>com.jcraft</groupId>
+						<artifactId>jsch</artifactId>
+						<version>${jsch-version}</version>
+					</dependency>
+					<dependency>
+						<groupId>ant-contrib</groupId>
+						<artifactId>ant-contrib</artifactId>
+						<version>${ant-contrib-version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+</project>

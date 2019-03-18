@@ -1,0 +1,21 @@
+package com.github.bestheroz.sample.web.admin.menu;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
+
+import com.github.bestheroz.standard.common.exception.CommonException;
+import com.github.bestheroz.standard.common.valuelabel.ValueLabelVO;
+import com.google.gson.JsonObject;
+
+@Mapper
+public interface AdminMenuDAO {
+	List<AdminMenuVO> getSampleMenuMstVOList(final AdminMenuVO vo) throws CommonException;
+
+	@Select("SELECT SMM.MENU_ID, SMM.MENU_NM FROM SAMPLE_MENU_MST SMM WHERE SMM.MENU_TYP = 'G' ORDER BY SMM.MENU_ID ASC")
+	@Results(value = { @Result(column = "MENU_ID", property = "value"), @Result(column = "MENU_NM", property = "label") })
+	List<ValueLabelVO> getPMenuValueLableVOList(final JsonObject param) throws CommonException;
+}
