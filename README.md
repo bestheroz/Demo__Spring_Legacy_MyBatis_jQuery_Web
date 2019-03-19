@@ -1,11 +1,7 @@
 # My_Spring_Maven_Bootstrap_Web_Project
-A custom spring framework of lastest version with Maven, DB-MyBatis, Bootstrap.
+# A customized Spring framework including the latest versions of Maven, DB-MyBatis, and Bootstrap.
 
-# DemoSpringBasicWithDbMyBatis
-
-## A version of the Spring Framework that includes interworking between Db and MyBatis. It also includes libraries that you use often in your projects.
-
-> Db - MyBatis 간의 연동이 포함된  스프링 프레임워크 버전입니다. 또한 프로젝트에서 자주 사용하는 라이브러리가 포함되었습니다.
+> 최신 버전의 Maven, DB-MyBatis, Bootstrap을 포함하여 사용자 정의 된 스프링 프레임워크입니다.
 
 ## The UI framework uses Bootstrap, mostly expressed in jsp and ajax.
 
