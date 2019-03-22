@@ -14,7 +14,7 @@ public abstract interface SqlForTableDAO {
 	// List<Object> getList(final Object vo, final List<String> whereKey, final String orderByColumns) throws CommonException;
 	//
 	// @SelectProvider(type = SqlForTableVO.class, method = SqlForTableVO.SELECT_ONE)
-	// Object getVO(final Object vo, final List<String> whereKey) throws CommonException;
+	// Object getOne(final Object vo, final List<String> whereKey) throws CommonException;
 
 	@SelectProvider(type = SqlForTableVO.class, method = SqlForTableVO.COUNT)
 	int count(final Object vo, final List<String> whereKey) throws CommonException;

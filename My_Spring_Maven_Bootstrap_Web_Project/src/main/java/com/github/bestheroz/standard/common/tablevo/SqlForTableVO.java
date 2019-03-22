@@ -31,13 +31,13 @@ public class SqlForTableVO {
 	private static final String TABLE_COLUMN_NAME_REG_ID = "REG_ID";
 	private static final String TABLE_COLUMN_NAME_REG_DT = "REG_DT";
 	private static final String TABLE_COLUMN_NAME_UPDT_DT = "UPD_DT";
+	private static final String VARIABLE_NAME_REG_ID = "regId";
 	private static final String VARIABLE_NAME_REG_DT = "regDt";
 	private static final String VARIABLE_NAME_UPDT_DT = "updDt";
-	private static final String VARIABLE_NAME_SERIAL_VERSION_UID = "serialVersionUID";
 	private static final String SYSDATE = "SYSDATE";
 
-	private static final String ENCRYPTED_COLUMN_LIST = "ENCRYPTED_COLUMN_LIST";
-	private static final List<String> EXCLUDE_COLUMN_LIST = Arrays.asList("SERIAL_VERSION_U_I_D", "E_N_C_R_Y_P_T_E_D__C_O_L_U_M_N__L_I_S_T");
+	private static final String ENCRYPTED_FIELD_LIST = "ENCRYPTED_COLUMN_LIST";
+	private static final List<String> EXCLUDE_FIELD_LIST = Arrays.asList("SERIAL_VERSION_U_I_D", "serialVersionUID", "E_N_C_R_Y_P_T_E_D__C_O_L_U_M_N__L_I_S_T");
 	// 참고용: 각VO에 암호화 컬럼 정의 방법
 	// public static transient final Set<String> ENCRYPTED_COLUMN_LIST = Arrays.asList("mbrMobl", "emailId").stream().collect(Collectors.toSet());
 	private static final String SELECT_ENCRYPTED_STRING = "XX1.DEC_VARCHAR2_SEL ({0}, 10, ''SSN'', ''{1}'', ''{0}'') AS {0}";
@@ -62,14 +62,14 @@ public class SqlForTableVO {
 			}
 			final Set<String> encryptedColumnList = this.getEncryptedColumnList(vo);
 			for (final Entry<String, Object> entry : param.entrySet()) {
-				final String camelColumnName = entry.getKey();
-				if (whereKey.contains(camelColumnName)) {
-					final String columnName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelColumnName);
+				final String camelFieldName = entry.getKey();
+				if (whereKey.contains(camelFieldName)) {
+					final String fieldName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelFieldName);
 					final String columnTypeName = entry.getValue().getClass().getSimpleName();
-					if (encryptedColumnList.contains(camelColumnName)) {
-						sql.WHERE(MessageFormat.format(WHERE_BIND_ENCRYPTED_STRING, columnName, camelColumnName, this.getJdbcType(columnTypeName), tableName));
+					if (encryptedColumnList.contains(camelFieldName)) {
+						sql.WHERE(MessageFormat.format(WHERE_BIND_ENCRYPTED_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName), tableName));
 					} else {
-						sql.WHERE(MessageFormat.format(WHERE_BIND_STRING, columnName, camelColumnName, this.getJdbcType(columnTypeName)));
+						sql.WHERE(MessageFormat.format(WHERE_BIND_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName)));
 					}
 				}
 			}
@@ -82,7 +82,7 @@ public class SqlForTableVO {
 	@SuppressWarnings("unchecked")
 	private <T extends Object> Set<String> getEncryptedColumnList(final T vo) {
 		try {
-			return (Set<String>) vo.getClass().getField(ENCRYPTED_COLUMN_LIST).get(new HashSet<>());
+			return (Set<String>) vo.getClass().getField(ENCRYPTED_FIELD_LIST).get(new HashSet<>());
 		} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
 			return new HashSet<>();
 		}
@@ -94,14 +94,14 @@ public class SqlForTableVO {
 		final Field[] fields = vo.getClass().getDeclaredFields();
 		final Set<String> encryptedColumnList = this.getEncryptedColumnList(vo);
 		for (final Field field : fields) {
-			final String camelColumnName = field.getName();
-			final String columnName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelColumnName);
-			if (EXCLUDE_COLUMN_LIST.contains(columnName)) {
+			final String camelFieldName = field.getName();
+			final String fieldName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelFieldName);
+			if (EXCLUDE_FIELD_LIST.contains(fieldName)) {
 				continue;
-			} else if (encryptedColumnList.contains(camelColumnName)) {
-				sql.SELECT(MessageFormat.format(SELECT_ENCRYPTED_STRING, columnName, tableName));
+			} else if (encryptedColumnList.contains(camelFieldName)) {
+				sql.SELECT(MessageFormat.format(SELECT_ENCRYPTED_STRING, fieldName, tableName));
 			} else {
-				sql.SELECT(columnName);
+				sql.SELECT(fieldName);
 			}
 		}
 		sql.FROM(tableName);
@@ -115,14 +115,14 @@ public class SqlForTableVO {
 				}
 			}
 			for (final Entry<String, Object> entry : param.entrySet()) {
-				final String camelColumnName = entry.getKey();
-				if (whereKey.contains(camelColumnName)) {
-					final String columnName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelColumnName);
+				final String camelFieldName = entry.getKey();
+				if (whereKey.contains(camelFieldName)) {
+					final String fieldName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelFieldName);
 					final String columnTypeName = entry.getValue().getClass().getSimpleName();
-					if (encryptedColumnList.contains(camelColumnName)) {
-						sql.WHERE(MessageFormat.format(WHERE_BIND_ENCRYPTED_STRING, columnName, camelColumnName, this.getJdbcType(columnTypeName), tableName));
+					if (encryptedColumnList.contains(camelFieldName)) {
+						sql.WHERE(MessageFormat.format(WHERE_BIND_ENCRYPTED_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName), tableName));
 					} else {
-						sql.WHERE(MessageFormat.format(WHERE_BIND_STRING, columnName, camelColumnName, this.getJdbcType(columnTypeName)));
+						sql.WHERE(MessageFormat.format(WHERE_BIND_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName)));
 					}
 				}
 			}
@@ -153,26 +153,26 @@ public class SqlForTableVO {
 		final Field[] fields = vo.getClass().getDeclaredFields();
 		final Set<String> encryptedColumnList = this.getEncryptedColumnList(vo);
 		for (final Field field : fields) {
-			final String camelColumnName = field.getName();
-			final String columnName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelColumnName);
-			if (EXCLUDE_COLUMN_LIST.contains(columnName)) {
+			final String camelFieldName = field.getName();
+			final String fieldName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelFieldName);
+			if (EXCLUDE_FIELD_LIST.contains(fieldName)) {
 				continue;
-			} else if (encryptedColumnList.contains(camelColumnName)) {
-				sql.SELECT(MessageFormat.format(SELECT_ENCRYPTED_STRING, columnName, tableName));
+			} else if (encryptedColumnList.contains(camelFieldName)) {
+				sql.SELECT(MessageFormat.format(SELECT_ENCRYPTED_STRING, fieldName, tableName));
 			} else {
-				sql.SELECT(columnName);
+				sql.SELECT(fieldName);
 			}
 		}
 		sql.FROM(tableName);
 		for (final Entry<String, Object> entry : param.entrySet()) {
-			final String camelColumnName = entry.getKey();
-			if (whereKey.contains(camelColumnName)) {
-				final String columnName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelColumnName);
+			final String camelFieldName = entry.getKey();
+			if (whereKey.contains(camelFieldName)) {
+				final String fieldName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelFieldName);
 				final String columnTypeName = entry.getValue().getClass().getSimpleName();
-				if (encryptedColumnList.contains(camelColumnName)) {
-					sql.WHERE(MessageFormat.format(WHERE_BIND_ENCRYPTED_STRING, columnName, camelColumnName, this.getJdbcType(columnTypeName), tableName));
+				if (encryptedColumnList.contains(camelFieldName)) {
+					sql.WHERE(MessageFormat.format(WHERE_BIND_ENCRYPTED_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName), tableName));
 				} else {
-					sql.WHERE(MessageFormat.format(WHERE_BIND_STRING, columnName, camelColumnName, this.getJdbcType(columnTypeName)));
+					sql.WHERE(MessageFormat.format(WHERE_BIND_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName)));
 				}
 			}
 		}
@@ -187,28 +187,28 @@ public class SqlForTableVO {
 		sql.INSERT_INTO(tableName);
 		final Set<String> encryptedColumnList = this.getEncryptedColumnList(vo);
 		for (final Entry<String, Object> entry : param.entrySet()) {
-			final String camelColumnName = entry.getKey();
-			final String columnName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelColumnName);
-			if (StringUtils.equalsAny(camelColumnName, VARIABLE_NAME_REG_DT, VARIABLE_NAME_UPDT_DT)) {
-				sql.VALUES(columnName, SYSDATE);
+			final String camelFieldName = entry.getKey();
+			final String fieldName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelFieldName);
+			if (StringUtils.equalsAny(camelFieldName, VARIABLE_NAME_REG_DT, VARIABLE_NAME_UPDT_DT)) {
+				sql.VALUES(fieldName, SYSDATE);
 			} else {
 				final String columnTypeName = entry.getValue().getClass().getSimpleName();
-				if (encryptedColumnList.contains(camelColumnName)) {
-					sql.VALUES(columnName, MessageFormat.format(INSERT_BIND_ENCRYPTED_STRING, columnName, camelColumnName, this.getJdbcType(columnTypeName), tableName));
+				if (encryptedColumnList.contains(camelFieldName)) {
+					sql.VALUES(fieldName, MessageFormat.format(INSERT_BIND_ENCRYPTED_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName), tableName));
 				} else {
-					sql.VALUES(columnName, MessageFormat.format(INSERT_BIND_STRING, camelColumnName, this.getJdbcType(columnTypeName)));
+					sql.VALUES(fieldName, MessageFormat.format(INSERT_BIND_STRING, camelFieldName, this.getJdbcType(columnTypeName)));
 				}
 			}
 		}
 
 		final Class<? extends Object> class1 = vo.getClass();
 		for (final Field field : class1.getDeclaredFields()) {
-			final String camelColumnName = field.getName();
-			if (EXCLUDE_COLUMN_LIST.contains(CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelColumnName))) {
+			final String camelFieldName = field.getName();
+			if (EXCLUDE_FIELD_LIST.contains(CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelFieldName))) {
 				continue;
-			} else if (StringUtils.equals(camelColumnName, VARIABLE_NAME_REG_DT)) {
+			} else if (StringUtils.equals(camelFieldName, VARIABLE_NAME_REG_DT)) {
 				sql.VALUES(TABLE_COLUMN_NAME_REG_DT, SYSDATE);
-			} else if (StringUtils.equals(camelColumnName, VARIABLE_NAME_UPDT_DT)) {
+			} else if (StringUtils.equals(camelFieldName, VARIABLE_NAME_UPDT_DT)) {
 				sql.VALUES(TABLE_COLUMN_NAME_UPDT_DT, SYSDATE);
 			}
 		}
@@ -236,35 +236,35 @@ public class SqlForTableVO {
 		final Field[] fields = vo.getClass().getDeclaredFields();
 		final Set<String> encryptedColumnList = this.getEncryptedColumnList(vo);
 		for (final Field field : fields) {
-			final String camelColumnName = field.getName();
-			final String columnName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelColumnName);
-			if (EXCLUDE_COLUMN_LIST.contains(columnName)) {
+			final String camelFieldName = field.getName();
+			final String fieldName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelFieldName);
+			if (EXCLUDE_FIELD_LIST.contains(fieldName)) {
 				continue;
-			} else if (StringUtils.equalsAny(camelColumnName, VARIABLE_NAME_SERIAL_VERSION_UID, VARIABLE_NAME_REG_DT, VARIABLE_NAME_UPDT_DT)) {
+			} else if (StringUtils.equalsAny(camelFieldName, VARIABLE_NAME_REG_ID, VARIABLE_NAME_REG_DT, VARIABLE_NAME_UPDT_DT)) {
 				continue;
 			}
 			final String columnTypeName = field.getType().getSimpleName();
-			if (forcedUpdateKey != null && !whereKey.contains(camelColumnName) && (forcedUpdateKey.contains("**") || forcedUpdateKey.contains(camelColumnName))
-					&& !StringUtils.equalsAny(camelColumnName, TABLE_COLUMN_NAME_REG_ID, TABLE_COLUMN_NAME_REG_DT)) {
-				if (encryptedColumnList.contains(camelColumnName)) {
-					sql.SET(MessageFormat.format(SET_BIND_ENCRYPTED_STRING, columnName, camelColumnName, this.getJdbcType(columnTypeName), tableName));
+			if (forcedUpdateKey != null && !whereKey.contains(camelFieldName) && (forcedUpdateKey.contains("**") || forcedUpdateKey.contains(camelFieldName))
+					&& !StringUtils.equalsAny(camelFieldName, TABLE_COLUMN_NAME_REG_ID, TABLE_COLUMN_NAME_REG_DT)) {
+				if (encryptedColumnList.contains(camelFieldName)) {
+					sql.SET(MessageFormat.format(SET_BIND_ENCRYPTED_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName), tableName));
 				} else {
-					sql.SET(MessageFormat.format(SET_BIND_STRING, columnName, camelColumnName, this.getJdbcType(columnTypeName)));
+					sql.SET(MessageFormat.format(SET_BIND_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName)));
 				}
-			} else if (param.get(camelColumnName) != null && StringUtils.isNotEmpty(param.get(camelColumnName).toString())) {
-				if (whereKey.contains(camelColumnName)) {
-					if (encryptedColumnList.contains(camelColumnName)) {
-						sql.WHERE(MessageFormat.format(WHERE_BIND_ENCRYPTED_STRING, columnName, camelColumnName, this.getJdbcType(columnTypeName), tableName));
+			} else if (param.get(camelFieldName) != null && StringUtils.isNotEmpty(param.get(camelFieldName).toString())) {
+				if (whereKey.contains(camelFieldName)) {
+					if (encryptedColumnList.contains(camelFieldName)) {
+						sql.WHERE(MessageFormat.format(WHERE_BIND_ENCRYPTED_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName), tableName));
 					} else {
-						sql.WHERE(MessageFormat.format(WHERE_BIND_STRING, columnName, camelColumnName, this.getJdbcType(columnTypeName)));
+						sql.WHERE(MessageFormat.format(WHERE_BIND_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName)));
 					}
-				} else if (StringUtils.equalsAny(camelColumnName, VARIABLE_NAME_REG_DT, VARIABLE_NAME_UPDT_DT)) {
-					sql.SET(columnName + " = " + SYSDATE);
+				} else if (StringUtils.equalsAny(camelFieldName, VARIABLE_NAME_REG_DT, VARIABLE_NAME_UPDT_DT)) {
+					sql.SET(fieldName + " = " + SYSDATE);
 				} else {
-					if (encryptedColumnList.contains(camelColumnName)) {
-						sql.SET(MessageFormat.format(SET_BIND_ENCRYPTED_STRING, columnName, camelColumnName, this.getJdbcType(columnTypeName), tableName));
+					if (encryptedColumnList.contains(camelFieldName)) {
+						sql.SET(MessageFormat.format(SET_BIND_ENCRYPTED_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName), tableName));
 					} else {
-						sql.SET(MessageFormat.format(SET_BIND_STRING, columnName, camelColumnName, this.getJdbcType(columnTypeName)));
+						sql.SET(MessageFormat.format(SET_BIND_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName)));
 					}
 				}
 			}
@@ -272,11 +272,11 @@ public class SqlForTableVO {
 
 		final Class<? extends Object> class1 = vo.getClass();
 		for (final Field field : class1.getDeclaredFields()) {
-			final String camelColumnName = field.getName();
-			final String columnName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelColumnName);
-			if (EXCLUDE_COLUMN_LIST.contains(columnName)) {
+			final String camelFieldName = field.getName();
+			final String fieldName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelFieldName);
+			if (EXCLUDE_FIELD_LIST.contains(fieldName)) {
 				continue;
-			} else if (StringUtils.equals(camelColumnName, VARIABLE_NAME_UPDT_DT)) {
+			} else if (StringUtils.equals(camelFieldName, VARIABLE_NAME_UPDT_DT)) {
 				sql.SET(TABLE_COLUMN_NAME_UPDT_DT + " = " + SYSDATE);
 			}
 		}
@@ -301,14 +301,14 @@ public class SqlForTableVO {
 		sql.DELETE_FROM(tableName);
 		final Set<String> encryptedColumnList = this.getEncryptedColumnList(vo);
 		for (final Entry<String, Object> entry : param.entrySet()) {
-			final String camelColumnName = entry.getKey();
-			if (whereKey.contains(camelColumnName)) {
-				final String columnName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelColumnName);
+			final String camelFieldName = entry.getKey();
+			if (whereKey.contains(camelFieldName)) {
+				final String fieldName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelFieldName);
 				final String columnTypeName = entry.getValue().getClass().getSimpleName();
-				if (encryptedColumnList.contains(camelColumnName)) {
-					sql.WHERE(MessageFormat.format(WHERE_BIND_ENCRYPTED_STRING, columnName, camelColumnName, this.getJdbcType(columnTypeName), tableName));
+				if (encryptedColumnList.contains(camelFieldName)) {
+					sql.WHERE(MessageFormat.format(WHERE_BIND_ENCRYPTED_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName), tableName));
 				} else {
-					sql.WHERE(MessageFormat.format(WHERE_BIND_STRING, columnName, camelColumnName, this.getJdbcType(columnTypeName)));
+					sql.WHERE(MessageFormat.format(WHERE_BIND_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName)));
 				}
 			}
 		}
