@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration>
+<!--suppress XmlWrongRootElement -->
 <config xmlns="http://www.nhncorp.com/lucy-xss">
 
     <elementRule>

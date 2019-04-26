@@ -168,7 +168,7 @@ MyAjax.downloadFile('&#36;{CONTEXT_PATH}/common/file/download/fileDownload.proc'
 						</button>
 					</span>
                     <input type="text" class="form-control" id="resultTry4_2" placeholder="result..." readonly>
-                    <input type="hidden" id="filePath" class="form-control" value="./MyFileDownloadController.java"/>
+                    <input type="hidden" id="filePath2" class="form-control" value="./MyFileDownloadController.java"/>
                 </div>
                 <pre class="prettyprint">
 let dataParam = {

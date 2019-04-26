@@ -103,7 +103,7 @@ MyCommon.goLink('http://google.com', 'L');
                 <pre class="prettyprint">
 &lt;a href="javascript:void(0);" onclick="MyCommon.goLink('http://google.com');" /&gt;
 </pre>
-                <div id="list2"></div>
+                <div id="list3"></div>
             </div>
         </div>
     </div>

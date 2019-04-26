@@ -9,8 +9,8 @@
     </settings>
 
     <typeAliases>
-        <typeAlias alias="JsonObject" type="com.google.gson.JsonObject"></typeAlias>
-        <typeAlias alias="DateTime" type="org.joda.time.DateTime"></typeAlias>
+        <typeAlias alias="JsonObject" type="com.google.gson.JsonObject"/>
+        <typeAlias alias="DateTime" type="org.joda.time.DateTime"/>
     </typeAliases>
 
     <typeHandlers>

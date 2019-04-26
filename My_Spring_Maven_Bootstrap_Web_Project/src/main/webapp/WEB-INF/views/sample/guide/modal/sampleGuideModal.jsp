@@ -104,7 +104,7 @@ MyModal.close($('#try2_1-a')).done(function(){
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="resultTry2_2" class="col-sm-2 control-label">비고</label>
+                    <label for="textarea2" class="col-sm-2 control-label">비고</label>
                     <div class="col-sm-10">
                         <div id="textarea2" data-texteditor="on" data-texteditor-height="400"></div>
                     </div>
