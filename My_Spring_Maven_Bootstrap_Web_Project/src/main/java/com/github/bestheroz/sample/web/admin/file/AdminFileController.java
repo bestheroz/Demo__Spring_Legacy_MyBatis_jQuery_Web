@@ -19,40 +19,40 @@ import com.google.gson.JsonObject;
 
 @Controller
 public class AdminFileController {
-	@Autowired
-	private AdminFileService adminFileService;
-	@Autowired
-	private HttpSession session;
+    @Autowired
+    private AdminFileService adminFileService;
+    @Autowired
+    private HttpSession session;
 
-	@RequestMapping(value = "/sample/admin/file/adminFile.view", method = RequestMethod.GET)
-	public String view() throws Exception {
-		return "/sample/admin/file/AdminFile";
-	}
+    @RequestMapping(value = "/sample/admin/file/adminFile.view", method = RequestMethod.GET)
+    public String view() throws Exception {
+        return "/sample/admin/file/AdminFile";
+    }
 
-	@RequestMapping(value = "/sample/admin/file/getSampleFileMstVOList.json", method = RequestMethod.POST)
-	@ResponseBody
-	public List<AdminFileVO> getSampleFileMstVOList(final AdminFileVO vo) throws CommonException {
-		return this.adminFileService.getSampleFileMstVOList(vo);
-	}
+    @RequestMapping(value = "/sample/admin/file/getSampleFileMstVOList.json", method = RequestMethod.POST)
+    @ResponseBody
+    public List<AdminFileVO> getSampleFileMstVOList(final AdminFileVO vo) throws CommonException {
+        return this.adminFileService.getSampleFileMstVOList(vo);
+    }
 
-	@RequestMapping(value = "/sample/admin/file/insertSampleFileMst.json", method = RequestMethod.POST)
-	@ResponseBody
-	public JsonObject insertSampleFileMst(final TableSampleFileMstVO vo, @RequestParam("file") final MultipartFile multipartFile) throws CommonException {
-		this.adminFileService.insertSampleFileMst(vo, multipartFile, MySessionUtils.getLoginVO(this.session));
-		return CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject();
-	}
+    @RequestMapping(value = "/sample/admin/file/insertSampleFileMst.json", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonObject insertSampleFileMst(final TableSampleFileMstVO vo, @RequestParam("file") final MultipartFile multipartFile) throws CommonException {
+        this.adminFileService.insertSampleFileMst(vo, multipartFile, MySessionUtils.getLoginVO(this.session));
+        return CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject();
+    }
 
-	@RequestMapping(value = "/sample/admin/file/updateSampleFileMst.json", method = RequestMethod.POST)
-	@ResponseBody
-	public JsonObject updateSampleFileMst(final TableSampleFileMstVO vo, @RequestParam("file") final MultipartFile multipartFile) throws CommonException {
-		this.adminFileService.updateSampleFileMst(vo, multipartFile, MySessionUtils.getLoginVO(this.session));
-		return CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject();
-	}
+    @RequestMapping(value = "/sample/admin/file/updateSampleFileMst.json", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonObject updateSampleFileMst(final TableSampleFileMstVO vo, @RequestParam("file") final MultipartFile multipartFile) throws CommonException {
+        this.adminFileService.updateSampleFileMst(vo, multipartFile, MySessionUtils.getLoginVO(this.session));
+        return CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject();
+    }
 
-	@RequestMapping(value = "/sample/admin/file/deleteSampleFileMst.json", method = RequestMethod.POST)
-	@ResponseBody
-	public JsonObject deleteSampleFileMst(final TableSampleFileMstVO vo) throws CommonException {
-		this.adminFileService.deleteSampleFileMst(vo);
-		return CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject();
-	}
+    @RequestMapping(value = "/sample/admin/file/deleteSampleFileMst.json", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonObject deleteSampleFileMst(final TableSampleFileMstVO vo) throws CommonException {
+        this.adminFileService.deleteSampleFileMst(vo);
+        return CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject();
+    }
 }

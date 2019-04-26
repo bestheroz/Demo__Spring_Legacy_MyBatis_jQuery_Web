@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class SampleGuideDatetimepickerController {
-	@RequestMapping(value = "/sample/guide/datetimepicker/sampleGuideDatetimepicker.view", method = RequestMethod.GET)
-	public String view() {
-		return "/sample/guide/datetimepicker/sampleGuideDatetimepicker";
-	}
+    @RequestMapping(value = "/sample/guide/datetimepicker/sampleGuideDatetimepicker.view", method = RequestMethod.GET)
+    public String view() {
+        return "/sample/guide/datetimepicker/sampleGuideDatetimepicker";
+    }
 }

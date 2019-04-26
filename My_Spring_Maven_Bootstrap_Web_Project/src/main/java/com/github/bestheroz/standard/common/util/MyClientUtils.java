@@ -5,26 +5,26 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 
 public class MyClientUtils {
-	protected MyClientUtils() {
-		throw new UnsupportedOperationException();
-	}
+    protected MyClientUtils() {
+        throw new UnsupportedOperationException();
+    }
 
-	public static String getClientIpAddr(final HttpServletRequest request) {
-		final String[] headerValues = { "X-Forwarded-For", "Proxy-Client-IP", "WL-Proxy-Client-IP", "HTTP_CLIENT_IP", "HTTP_X_FORWARDED_FOR" };
+    public static String getClientIpAddr(final HttpServletRequest request) {
+        final String[] headerValues = {"X-Forwarded-For", "Proxy-Client-IP", "WL-Proxy-Client-IP", "HTTP_CLIENT_IP", "HTTP_X_FORWARDED_FOR"};
 
-		String result = null;
-		for (final String headerValue : headerValues) {
-			final String ip = request.getHeader(headerValue);
-			if (StringUtils.isNotEmpty(ip) && !StringUtils.equalsIgnoreCase(ip, "unknown")) {
-				result = ip;
-				break;
-			}
-		}
+        String result = null;
+        for (final String headerValue : headerValues) {
+            final String ip = request.getHeader(headerValue);
+            if (StringUtils.isNotEmpty(ip) && !StringUtils.equalsIgnoreCase(ip, "unknown")) {
+                result = ip;
+                break;
+            }
+        }
 
-		if (StringUtils.isEmpty(result)) {
-			result = request.getRemoteAddr();
-		}
+        if (StringUtils.isEmpty(result)) {
+            result = request.getRemoteAddr();
+        }
 
-		return result;
-	}
+        return result;
+    }
 }

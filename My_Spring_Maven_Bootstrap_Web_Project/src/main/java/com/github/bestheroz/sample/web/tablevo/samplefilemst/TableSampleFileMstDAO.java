@@ -13,14 +13,14 @@ import com.github.bestheroz.standard.common.tablevo.SqlForTableVO;
 
 @Mapper
 public interface TableSampleFileMstDAO extends SqlForTableDAO {
-	@SelectProvider(type = SqlForTableVO.class, method = SqlForTableVO.SELECT)
-	List<TableSampleFileMstVO> getList(final TableSampleFileMstVO vo, final List<String> whereKey, final String orderByColumns) throws CommonException;
+    @SelectProvider(type = SqlForTableVO.class, method = SqlForTableVO.SELECT)
+    List<TableSampleFileMstVO> getList(final TableSampleFileMstVO vo, final List<String> whereKey, final String orderByColumns) throws CommonException;
 
-	@SelectProvider(type = SqlForTableVO.class, method = SqlForTableVO.SELECT_ONE)
-	TableSampleFileMstVO getVO(final TableSampleFileMstVO vo, final List<String> whereKey) throws CommonException;
+    @SelectProvider(type = SqlForTableVO.class, method = SqlForTableVO.SELECT_ONE)
+    TableSampleFileMstVO getVO(final TableSampleFileMstVO vo, final List<String> whereKey) throws CommonException;
 
-	@Override
-	@InsertProvider(type = SqlForTableVO.class, method = SqlForTableVO.INSERT)
-	@SelectKey(statement = "SELECT SEQ_SAMPLE_FILE_MST.NEXTVAL FROM DUAL", keyProperty = "fileSeq", before = true, resultType = Integer.class)
-	<T> void insert(final T vo) throws CommonException;
+    @Override
+    @InsertProvider(type = SqlForTableVO.class, method = SqlForTableVO.INSERT)
+    @SelectKey(statement = "SELECT SEQ_SAMPLE_FILE_MST.NEXTVAL FROM DUAL", keyProperty = "fileSeq", before = true, resultType = Integer.class)
+    <T> void insert(final T vo) throws CommonException;
 }

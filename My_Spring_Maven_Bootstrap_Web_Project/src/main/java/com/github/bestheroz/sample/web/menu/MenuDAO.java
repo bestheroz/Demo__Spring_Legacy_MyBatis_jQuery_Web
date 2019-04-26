@@ -9,5 +9,5 @@ import com.google.gson.JsonObject;
 
 @Mapper
 public interface MenuDAO {
-	List<MenuVO> getMenuVOList(final JsonObject param) throws CommonException;
+    List<MenuVO> getMenuVOList(final JsonObject param) throws CommonException;
 }

@@ -20,31 +20,31 @@ import com.github.bestheroz.standard.common.util.MyAccessBeanUtils;
 import com.github.bestheroz.standard.common.util.MyMapperUtils;
 import com.github.bestheroz.standard.common.util.MyTestUtils;
 
-@SpringJUnitConfig(locations = { "file:src/main/webapp/WEB-INF/spring/root-context.xml", "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" })
+@SpringJUnitConfig(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml", "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
 @WebAppConfiguration
 @Transactional
 public class DefaultTestClass {
-	@Autowired
-	protected WebApplicationContext wac;
+    @Autowired
+    protected WebApplicationContext wac;
 
-	@BeforeEach
-	public void setup() throws Exception {
-		MockitoAnnotations.initMocks(this);
-		MyTestUtils.setMockMvc(MockMvcBuilders.webAppContextSetup(this.wac).build());
-	}
+    @BeforeEach
+    public void setup() throws Exception {
+        MockitoAnnotations.initMocks(this);
+        MyTestUtils.setMockMvc(MockMvcBuilders.webAppContextSetup(this.wac).build());
+    }
 
-	@Test
-	public void login() throws Exception {
-		final TableSampleMemberMstVO tableSampleMemberMstVO = new TableSampleMemberMstVO();
-		tableSampleMemberMstVO.setMemberId("1");
-		MyTestUtils
-				.doLogined(MyMapperUtils.writeObjectAsObject(MyAccessBeanUtils.getBean(TableSampleMemberMstDAO.class).getVO(tableSampleMemberMstVO, Arrays.asList("memberId")), LoginVO.class));
-	}
+    @Test
+    public void login() throws Exception {
+        final TableSampleMemberMstVO tableSampleMemberMstVO = new TableSampleMemberMstVO();
+        tableSampleMemberMstVO.setMemberId("1");
+        MyTestUtils
+                .doLogined(MyMapperUtils.writeObjectAsObject(MyAccessBeanUtils.getBean(TableSampleMemberMstDAO.class).getVO(tableSampleMemberMstVO, Arrays.asList("memberId")), LoginVO.class));
+    }
 
-	@Test
-	public void 초기구동확인() throws Exception {
-		MyTestUtils.performGet("/").andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
-		this.login();
-	}
+    @Test
+    public void 초기구동확인() throws Exception {
+        MyTestUtils.performGet("/").andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+        this.login();
+    }
 
 }

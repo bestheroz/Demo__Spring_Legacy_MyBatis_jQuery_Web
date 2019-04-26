@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class SampleGuideMovepageController {
-	@RequestMapping(value = "/sample/guide/movepage/sampleGuideMovepage.view", method = RequestMethod.GET)
-	public String view() {
-		return "/sample/guide/movepage/sampleGuideMovepage";
-	}
+    @RequestMapping(value = "/sample/guide/movepage/sampleGuideMovepage.view", method = RequestMethod.GET)
+    public String view() {
+        return "/sample/guide/movepage/sampleGuideMovepage";
+    }
 }

@@ -1,70 +1,70 @@
 @CHARSET "UTF-8";
 
 body {
-	background-color: #E5E4E2;
+    background-color: #E5E4E2;
 }
 
-thead>tr, tfoot>tr {
-	background-color: #f5f5f5;
+thead > tr, tfoot > tr {
+    background-color: #f5f5f5;
 }
 
-thead>tr>th, tfoot>tr>th {
-	text-align: center;
+thead > tr > th, tfoot > tr > th {
+    text-align: center;
 }
 
 .panel-default {
-	background-color: #FFFFF0;
+    background-color: #FFFFF0;
 }
 
 .table {
-	background-color: #FFFFF0;
+    background-color: #FFFFF0;
 }
 
 .color-none {
-	background-color: #FFF;
-	border: none;
+    background-color: #FFF;
+    border: none;
 }
 
 div.btn-group-padding button {
-	padding-left: 50px;
-	padding-right: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .color-danger {
-	background-color: #d9534f;
-	color: #FFF;
+    background-color: #d9534f;
+    color: #FFF;
 }
 
 .color-warning {
-	background-color: #f0ad4e;
-	color: #FFF;
+    background-color: #f0ad4e;
+    color: #FFF;
 }
 
 .color-success {
-	background-color: #5cb85c;
-	color: #FFF;
+    background-color: #5cb85c;
+    color: #FFF;
 }
 
 .color-primary {
-	background-color: #337ab7;
-	color: #FFF;
+    background-color: #337ab7;
+    color: #FFF;
 }
 
-.color-danger>li>a:focus, .color-danger>li>a:hover {
-	background-color: #900C3F;
-	color: #FFF;
-	background-image: none;
+.color-danger > li > a:focus, .color-danger > li > a:hover {
+    background-color: #900C3F;
+    color: #FFF;
+    background-image: none;
 }
 
 .selected-row, .selected-row:hover {
-	background-color: #AFAEAC !important;
+    background-color: #AFAEAC !important;
 }
 
 .text-ellipsis {
-	/* 	width: 100px; */
-	/* 	max-width: 100px; */
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
+    /* 	width: 100px; */
+    /* 	max-width: 100px; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }

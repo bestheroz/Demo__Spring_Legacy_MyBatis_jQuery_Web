@@ -10,8 +10,8 @@ import com.github.bestheroz.standard.context.aop.logging.TraceLoggingInAOP;
 @EnableAspectJAutoProxy
 public class AOPContext {
 
-	@Bean(name = "traceLoggingInAOP")
-	public TraceLoggingInAOP getLoggingInAOP() {
-		return new TraceLoggingInAOP();
-	}
+    @Bean(name = "traceLoggingInAOP")
+    public TraceLoggingInAOP getLoggingInAOP() {
+        return new TraceLoggingInAOP();
+    }
 }

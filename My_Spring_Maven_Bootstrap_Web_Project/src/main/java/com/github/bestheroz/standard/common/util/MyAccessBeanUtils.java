@@ -6,18 +6,18 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MyAccessBeanUtils {
-	private static MyAccessBeanUtils instance;
+    private static MyAccessBeanUtils instance;
 
-	@Autowired
-	private ApplicationContext applicationContext;
+    @Autowired
+    private ApplicationContext applicationContext;
 
-	private MyAccessBeanUtils() {
-		if (instance == null) {
-			instance = this;
-		}
-	}
+    private MyAccessBeanUtils() {
+        if (instance == null) {
+            instance = this;
+        }
+    }
 
-	public static <T> T getBean(final Class<T> clazz) {
-		return instance.applicationContext.getBean(clazz);
-	}
+    public static <T> T getBean(final Class<T> clazz) {
+        return instance.applicationContext.getBean(clazz);
+    }
 }

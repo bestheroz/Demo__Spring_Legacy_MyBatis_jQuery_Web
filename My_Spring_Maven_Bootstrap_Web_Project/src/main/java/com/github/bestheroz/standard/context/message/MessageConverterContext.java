@@ -16,22 +16,22 @@ import com.github.bestheroz.standard.common.util.MyMapperUtils;
 
 @Configuration
 public class MessageConverterContext {
-	@Autowired
-	private RequestMappingHandlerAdapter adapter;
+    @Autowired
+    private RequestMappingHandlerAdapter adapter;
 
-	@PostConstruct
-	public void initStuff() {
-		final List<HttpMessageConverter<?>> messageConverters = this.adapter.getMessageConverters();
-		messageConverters.clear();
+    @PostConstruct
+    public void initStuff() {
+        final List<HttpMessageConverter<?>> messageConverters = this.adapter.getMessageConverters();
+        messageConverters.clear();
 
-		final GsonHttpMessageConverter gsonHttpMessageConverter = new GsonHttpMessageConverter();
-		gsonHttpMessageConverter.setGson(MyMapperUtils.getGsonObject());
-		messageConverters.add(gsonHttpMessageConverter);
+        final GsonHttpMessageConverter gsonHttpMessageConverter = new GsonHttpMessageConverter();
+        gsonHttpMessageConverter.setGson(MyMapperUtils.getGsonObject());
+        messageConverters.add(gsonHttpMessageConverter);
 
-		final StringHttpMessageConverter stringHttpMessageConverter = new StringHttpMessageConverter();
-		stringHttpMessageConverter.setDefaultCharset(StandardCharsets.UTF_8);
-		messageConverters.add(stringHttpMessageConverter);
+        final StringHttpMessageConverter stringHttpMessageConverter = new StringHttpMessageConverter();
+        stringHttpMessageConverter.setDefaultCharset(StandardCharsets.UTF_8);
+        messageConverters.add(stringHttpMessageConverter);
 
-		this.adapter.setMessageConverters(messageConverters);
-	}
+        this.adapter.setMessageConverters(messageConverters);
+    }
 }

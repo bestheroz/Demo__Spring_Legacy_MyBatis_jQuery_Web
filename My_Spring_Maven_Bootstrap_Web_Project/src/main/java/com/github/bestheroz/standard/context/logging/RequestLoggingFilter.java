@@ -13,18 +13,18 @@ import com.github.bestheroz.standard.common.util.MyMapperUtils;
 
 @Configuration
 public class RequestLoggingFilter extends CommonsRequestLoggingFilter {
-	private static final Logger LOGGER = LoggerFactory.getLogger(RequestLoggingFilter.class);
-	private static final String REQUEST_PARAMETERS = "<{}>{}, parameters={}";
+    private static final Logger LOGGER = LoggerFactory.getLogger(RequestLoggingFilter.class);
+    private static final String REQUEST_PARAMETERS = "<{}>{}, parameters={}";
 
-	@Override
-	protected void beforeRequest(final HttpServletRequest request, final String message) {
-		if (StringUtils.contains(request.getHeader("accept"), "html") || request.getMethod().equalsIgnoreCase("POST")) {
-			LOGGER.info(REQUEST_PARAMETERS, request.getMethod(), new UrlPathHelper().getPathWithinApplication(request), MyMapperUtils.writeObjectAsJsonObject(request.getParameterMap()));
-		}
-	}
+    @Override
+    protected void beforeRequest(final HttpServletRequest request, final String message) {
+        if (StringUtils.contains(request.getHeader("accept"), "html") || request.getMethod().equalsIgnoreCase("POST")) {
+            LOGGER.info(REQUEST_PARAMETERS, request.getMethod(), new UrlPathHelper().getPathWithinApplication(request), MyMapperUtils.writeObjectAsJsonObject(request.getParameterMap()));
+        }
+    }
 
-	@Override
-	protected void afterRequest(final HttpServletRequest request, final String message) {
-		// super.afterRequest(request, message);
-	}
+    @Override
+    protected void afterRequest(final HttpServletRequest request, final String message) {
+        // super.afterRequest(request, message);
+    }
 }

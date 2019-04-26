@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class SampleGuideHandlebarsjsController {
-	@RequestMapping(value = "/sample/guide/handlebarsjs/sampleGuideHandlebarsjs.view", method = RequestMethod.GET)
-	public String view() {
-		return "/sample/guide/handlebarsjs/sampleGuideHandlebarsjs";
-	}
+    @RequestMapping(value = "/sample/guide/handlebarsjs/sampleGuideHandlebarsjs.view", method = RequestMethod.GET)
+    public String view() {
+        return "/sample/guide/handlebarsjs/sampleGuideHandlebarsjs";
+    }
 }

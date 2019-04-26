@@ -12,21 +12,21 @@ import com.google.gson.JsonObject;
 
 @Controller
 public class FileDeleteController {
-	@RequestMapping(value = "/common/file/delete/fileDelete", method = RequestMethod.POST)
-	@ResponseBody
-	public JsonObject deleteFile(@RequestParam("filePath") final String filePath) throws CommonException {
-		MyFileUtils.deleteFile(filePath);
-		final JsonObject result = CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject();
-		result.addProperty("fileName", filePath);
-		return result;
-	}
+    @RequestMapping(value = "/common/file/delete/fileDelete", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonObject deleteFile(@RequestParam("filePath") final String filePath) throws CommonException {
+        MyFileUtils.deleteFile(filePath);
+        final JsonObject result = CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject();
+        result.addProperty("fileName", filePath);
+        return result;
+    }
 
-	@RequestMapping(value = "/common/file/delete/deleteAllFiles", method = RequestMethod.POST)
-	@ResponseBody
-	public JsonObject deleteAllFiles(@RequestParam("filePath") final String filePath) throws CommonException {
-		MyFileUtils.deleteDirectory(filePath);
-		final JsonObject result = CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject();
-		result.addProperty("fileName", filePath);
-		return result;
-	}
+    @RequestMapping(value = "/common/file/delete/deleteAllFiles", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonObject deleteAllFiles(@RequestParam("filePath") final String filePath) throws CommonException {
+        MyFileUtils.deleteDirectory(filePath);
+        final JsonObject result = CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject();
+        result.addProperty("fileName", filePath);
+        return result;
+    }
 }

@@ -13,18 +13,18 @@ import com.google.gson.JsonObject;
 
 @Service
 public class SampleGuidePagingService {
-	@Autowired
-	private AdminMenuDAO adminMenuDAO;
+    @Autowired
+    private AdminMenuDAO adminMenuDAO;
 
-	public JsonObject getSampleMenuMstVOList() throws CommonException {
-		final int nextPage = 5;
-		final int itemPerPage = 5;
-		final JsonObject result = new JsonObject();
-		result.addProperty("nextPage", nextPage);
-		result.addProperty("itemPerPage", itemPerPage);
-		final List<AdminMenuVO> list = this.adminMenuDAO.getSampleMenuMstVOList(null);
-		result.addProperty("totalItemCount", list.size());
-		result.add("list", MyMapperUtils.writeObjectAsJsonElement(list));
-		return result;
-	}
+    public JsonObject getSampleMenuMstVOList() throws CommonException {
+        final int nextPage = 5;
+        final int itemPerPage = 5;
+        final JsonObject result = new JsonObject();
+        result.addProperty("nextPage", nextPage);
+        result.addProperty("itemPerPage", itemPerPage);
+        final List<AdminMenuVO> list = this.adminMenuDAO.getSampleMenuMstVOList(null);
+        result.addProperty("totalItemCount", list.size());
+        result.add("list", MyMapperUtils.writeObjectAsJsonElement(list));
+        return result;
+    }
 }

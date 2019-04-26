@@ -12,17 +12,17 @@ import com.google.gson.JsonObject;
 @Controller
 public class SampleGuidePagingController {
 
-	@Autowired
-	private SampleGuidePagingService sampleGuidePagingService;
+    @Autowired
+    private SampleGuidePagingService sampleGuidePagingService;
 
-	@RequestMapping(value = "/sample/guide/paging/sampleGuidePaging.view", method = RequestMethod.GET)
-	public String view() {
-		return "/sample/guide/paging/sampleGuidePaging";
-	}
+    @RequestMapping(value = "/sample/guide/paging/sampleGuidePaging.view", method = RequestMethod.GET)
+    public String view() {
+        return "/sample/guide/paging/sampleGuidePaging";
+    }
 
-	@RequestMapping(value = "/sample/guide/paging/sampleGuidePaging.json", method = RequestMethod.POST)
-	@ResponseBody
-	public JsonObject getSampleMenuMstVOList() throws CommonException {
-		return this.sampleGuidePagingService.getSampleMenuMstVOList();
-	}
+    @RequestMapping(value = "/sample/guide/paging/sampleGuidePaging.json", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonObject getSampleMenuMstVOList() throws CommonException {
+        return this.sampleGuidePagingService.getSampleMenuMstVOList();
+    }
 }

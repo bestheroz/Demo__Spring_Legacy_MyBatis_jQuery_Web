@@ -33,112 +33,114 @@ import com.github.bestheroz.standard.context.db.transaction.support.WiredTransac
  * </pre>
  *
  * @author Lee HeeGu <elf_hazard@naver.com>,<elfHazard@gmail.com>
- *
  */
 public class WiredTransactionManager implements PlatformTransactionManager, InitializingBean {
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	protected List<PlatformTransactionManager> transactionManagers;
-	// protected List<PlatformTransactionManager> reversed;
+    protected List<PlatformTransactionManager> transactionManagers;
+    // protected List<PlatformTransactionManager> reversed;
 
-	/**
-	 * TransactionManager 목록을 설정합니다. 이 때 commit이나 rollback을 위해서는 transaction을 시작한 순서와는 반대로 해야 하기 때문에 reverse된 목록이 필요합니다.
-	 *
-	 * @param transactionManagers
-	 *            TransactionManager 목록
-	 */
-	public void setTransactionManagers(final List<PlatformTransactionManager> transactionManagers) {
-		this.transactionManagers = transactionManagers;
-		// this.reversed = new ArrayList<PlatformTransactionManager>(transactionManagers);
-		// Collections.reverse(reversed);
-	}
+    /**
+     * TransactionManager 목록을 설정합니다. 이 때 commit이나 rollback을 위해서는 transaction을 시작한 순서와는 반대로 해야 하기 때문에 reverse된 목록이 필요합니다.
+     *
+     * @param transactionManagers TransactionManager 목록
+     */
+    public void setTransactionManagers(final List<PlatformTransactionManager> transactionManagers) {
+        this.transactionManagers = transactionManagers;
+        // this.reversed = new ArrayList<PlatformTransactionManager>(transactionManagers);
+        // Collections.reverse(reversed);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
-	 */
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		if (this.transactionManagers == null || this.transactionManagers.size() == 0) {
-			this.logger.warn(ExceptionUtils.getStackTrace(new IllegalArgumentException("Property 'transactionManagers' is required")));
-			throw new IllegalArgumentException("Property 'transactionManagers' is required");
-		}
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
+     */
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        if (this.transactionManagers == null || this.transactionManagers.size() == 0) {
+            this.logger.warn(ExceptionUtils.getStackTrace(new IllegalArgumentException("Property 'transactionManagers' is required")));
+            throw new IllegalArgumentException("Property 'transactionManagers' is required");
+        }
+    }
 
-	/**
-	 * 모든 TransactionManager들에게 commit을 시작하라는 명령을 내립니다.
-	 * <p>
-	 * commit을 수행하기 전 rollback이 되는 transaction이 있으면 모든 transaction을 rollback이 수행되도록 합니다.
-	 *
-	 * @see org.springframework.transaction.PlatformTransactionManager#commit(org.springframework.transaction.TransactionStatus)
-	 */
-	@Override
-	public void commit(final TransactionStatus status) throws TransactionException {
-		final WiredTransactionStatus wiredTransactionStatus = (WiredTransactionStatus) status;
+    /**
+     * 모든 TransactionManager들에게 commit을 시작하라는 명령을 내립니다.
+     * <p>
+     * commit을 수행하기 전 rollback이 되는 transaction이 있으면 모든 transaction을 rollback이 수행되도록 합니다.
+     *
+     * @see org.springframework.transaction.PlatformTransactionManager#commit(org.springframework.transaction.TransactionStatus)
+     */
+    @Override
+    public void commit(final TransactionStatus status) throws TransactionException {
+        final WiredTransactionStatus wiredTransactionStatus = (WiredTransactionStatus) status;
 
-		if (wiredTransactionStatus.isRollbackOnly()) {
-			this.rollback(wiredTransactionStatus);
-			return;
-		}
+        if (wiredTransactionStatus.isRollbackOnly()) {
+            this.rollback(wiredTransactionStatus);
+            return;
+        }
 
-		PlatformTransactionManager subTransactionManager = null;
+        PlatformTransactionManager subTransactionManager = null;
 
-		for (int index = 0; index < this.transactionManagers.size(); index = index + 1) {
-			subTransactionManager = this.transactionManagers.get(index);
-			subTransactionManager.commit(wiredTransactionStatus.getTransactionStatus(index));
-		}
-	}
+        for (int index = 0;
+             index < this.transactionManagers.size();
+             index = index + 1) {
+            subTransactionManager = this.transactionManagers.get(index);
+            subTransactionManager.commit(wiredTransactionStatus.getTransactionStatus(index));
+        }
+    }
 
-	/**
-	 * transaction을 시작합니다.
-	 * <p>
-	 * 모든 TransactionManager들에게 transaction을 시작하라는 명령을 내립니다. 각각의 PlatformTransactionManager는 트랜젝션에 대한 상태를 나타내는 객체를 리턴하게 되는데, 이 정보들을 담기 위해 {@link WiredTransactionStatus}를 생성한 후, 각각의
-	 * TransactionManager들이 생성한 transaction status 정보를 담아 {@link TransactionInterceptor}로 넘겨줍니다.
-	 *
-	 * @see org.springframework.transaction.PlatformTransactionManager#getTransaction(org.springframework.transaction.TransactionDefinition)
-	 */
-	@Override
-	public TransactionStatus getTransaction(final TransactionDefinition definition) throws TransactionException {
-		final WiredTransactionStatus status = new WiredTransactionStatus();
+    /**
+     * transaction을 시작합니다.
+     * <p>
+     * 모든 TransactionManager들에게 transaction을 시작하라는 명령을 내립니다. 각각의 PlatformTransactionManager는 트랜젝션에 대한 상태를 나타내는 객체를 리턴하게 되는데, 이 정보들을 담기 위해 {@link WiredTransactionStatus}를 생성한 후, 각각의
+     * TransactionManager들이 생성한 transaction status 정보를 담아 {@link TransactionInterceptor}로 넘겨줍니다.
+     *
+     * @see org.springframework.transaction.PlatformTransactionManager#getTransaction(org.springframework.transaction.TransactionDefinition)
+     */
+    @Override
+    public TransactionStatus getTransaction(final TransactionDefinition definition) throws TransactionException {
+        final WiredTransactionStatus status = new WiredTransactionStatus();
 
-		for (final PlatformTransactionManager transactionManager : this.transactionManagers) {
-			final TransactionStatus subStatus = transactionManager.getTransaction(definition);
-			status.addSubTransactionStatus(subStatus);
-		}
+        for (final PlatformTransactionManager transactionManager : this.transactionManagers) {
+            final TransactionStatus subStatus = transactionManager.getTransaction(definition);
+            status.addSubTransactionStatus(subStatus);
+        }
 
-		return status;
-	}
+        return status;
+    }
 
-	/**
-	 * 모든 TransactionManager들에게 rollback을 시도하라는 명령을 내립니다.
-	 * <p>
-	 * n번째 rollback이 실패해도 나머지 rollback이 무사히 수행될 수 있도록 하위 TransactionManager에서 실행하는 rollback 메소드는 try문으로 보호되어 있습니다.
-	 *
-	 * @see org.springframework.transaction.PlatformTransactionManager#rollback(org.springframework.transaction.TransactionStatus)
-	 */
-	@Override
-	public void rollback(final TransactionStatus status) throws TransactionException {
-		final WiredTransactionStatus wiredTransactionStatus = (WiredTransactionStatus) status;
+    /**
+     * 모든 TransactionManager들에게 rollback을 시도하라는 명령을 내립니다.
+     * <p>
+     * n번째 rollback이 실패해도 나머지 rollback이 무사히 수행될 수 있도록 하위 TransactionManager에서 실행하는 rollback 메소드는 try문으로 보호되어 있습니다.
+     *
+     * @see org.springframework.transaction.PlatformTransactionManager#rollback(org.springframework.transaction.TransactionStatus)
+     */
+    @Override
+    public void rollback(final TransactionStatus status) throws TransactionException {
+        final WiredTransactionStatus wiredTransactionStatus = (WiredTransactionStatus) status;
 
-		PlatformTransactionManager subTransactionManager = null;
-		TransactionException reserved = null;
+        PlatformTransactionManager subTransactionManager = null;
+        TransactionException reserved = null;
 
-		for (int index = 0; index < this.transactionManagers.size(); index = index + 1) {
-			subTransactionManager = this.transactionManagers.get(index);
+        for (int index = 0;
+             index < this.transactionManagers.size();
+             index = index + 1) {
+            subTransactionManager = this.transactionManagers.get(index);
 
-			try {
-				subTransactionManager.rollback(wiredTransactionStatus.getTransactionStatus(index));
-			} catch (final TransactionException e) {
-				this.logger.warn(ExceptionUtils.getStackTrace(e));
-				reserved = e;
-			}
-		}
+            try {
+                subTransactionManager.rollback(wiredTransactionStatus.getTransactionStatus(index));
+            } catch (final TransactionException e) {
+                this.logger.warn(ExceptionUtils.getStackTrace(e));
+                reserved = e;
+            }
+        }
 
-		if (reserved != null) {
-			this.logger.warn(ExceptionUtils.getStackTrace(reserved));
-			throw reserved;
-		}
-	}
+        if (reserved != null) {
+            this.logger.warn(ExceptionUtils.getStackTrace(reserved));
+            throw reserved;
+        }
+    }
 
 }

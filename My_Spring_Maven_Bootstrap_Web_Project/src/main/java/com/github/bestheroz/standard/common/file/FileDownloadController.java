@@ -13,14 +13,14 @@ import com.github.bestheroz.standard.context.abstractview.AbstractDownloadView;
 
 @Controller
 public class FileDownloadController {
-	@RequestMapping(value = "/common/file/download/fileDownload.proc", method = RequestMethod.POST)
-	public String downloadFile(@RequestParam(value = "filePath", required = false) final String filePath, @RequestParam(value = "fileSeq", required = false) final Integer fileSeq,
-			@RequestParam(value = "fileName", required = false) final String fileName, final Model model) throws Exception {
-		if (fileSeq != null) {
-			model.addAttribute(AbstractDownloadView.DOWNLOAD_FILE, MyBlobFileUtils.getFileFromSampleFileMstObject(fileSeq, fileName));
-		} else if (StringUtils.isNotEmpty(filePath)) {
-			model.addAttribute(AbstractDownloadView.DOWNLOAD_FILE, MyFileUtils.getFile(filePath));
-		}
-		return AbstractDownloadView.VIEW_NAME;
-	}
+    @RequestMapping(value = "/common/file/download/fileDownload.proc", method = RequestMethod.POST)
+    public String downloadFile(@RequestParam(value = "filePath", required = false) final String filePath, @RequestParam(value = "fileSeq", required = false) final Integer fileSeq,
+                               @RequestParam(value = "fileName", required = false) final String fileName, final Model model) throws Exception {
+        if (fileSeq != null) {
+            model.addAttribute(AbstractDownloadView.DOWNLOAD_FILE, MyBlobFileUtils.getFileFromSampleFileMstObject(fileSeq, fileName));
+        } else if (StringUtils.isNotEmpty(filePath)) {
+            model.addAttribute(AbstractDownloadView.DOWNLOAD_FILE, MyFileUtils.getFile(filePath));
+        }
+        return AbstractDownloadView.VIEW_NAME;
+    }
 }

@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration>
 <configuration>
-	<property name="LOG_DIR" value="/Mnsapp/tomcat8/logs" />
+    <property name="LOG_DIR" value="/Mnsapp/tomcat8/logs"/>
 
-	<appender name="DEBUG_FILE_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${LOG_DIR}/debuglog.log</file>
-		<append>true</append>
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${LOG_DIR}/debuglog-%d{yyyy-MM-dd}.log</fileNamePattern>
-			<maxHistory>90</maxHistory>
-		</rollingPolicy>
-		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
-			<layout class="com.github.bestheroz.standard.context.aop.logging.encoder.LoggingLayout" />
-		</encoder>
-	</appender>
-	<appender name="ERR_FILE_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-			<level>WARN</level>
-		</filter>
-		<file>${LOG_DIR}/errlog.log</file>
-		<append>true</append>
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${LOG_DIR}/errlog-%d{yyyy-MM-dd}.log</fileNamePattern>
-			<maxHistory>90</maxHistory>
-		</rollingPolicy>
-		<encoder>
-			<pattern>%d{HH:mm:ss.SSS} [%-5level] %logger.%method\(%line\) === %msg%n</pattern>
-		</encoder>
-	</appender>
+    <appender name="DEBUG_FILE_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/debuglog.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/debuglog-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>90</maxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="com.github.bestheroz.standard.context.aop.logging.encoder.LoggingLayout"/>
+        </encoder>
+    </appender>
+    <appender name="ERR_FILE_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+        <file>${LOG_DIR}/errlog.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/errlog-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>90</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%-5level] %logger.%method\(%line\) === %msg%n</pattern>
+        </encoder>
+    </appender>
 
-	<logger name="org.springframework" level="INFO" />
-	<logger name="org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor" level="DEBUG" />
-	<logger name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" level="WARN" />
+    <logger name="org.springframework" level="INFO"/>
+    <logger name="org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor" level="DEBUG"/>
+    <logger name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" level="WARN"/>
 
-	<logger name="org.apache.ibatis" level="INFO" />
-	<logger name="org.apache.commons.beanutils" level="INFO" />
+    <logger name="org.apache.ibatis" level="INFO"/>
+    <logger name="org.apache.commons.beanutils" level="INFO"/>
 
-	<logger name="org.mybatis.spring" level="INFO" />
+    <logger name="org.mybatis.spring" level="INFO"/>
 
-	<logger name="com.zaxxer.hikari.pool" level="INFO" />
-	<logger name="org.jdbcdslog" level="INFO" />
-	<logger name="org.jdbcdslog.StatementLogger" level="INFO" />
-	<logger name="org.jdbcdslog.ResultSetLogger" level="INFO" />
+    <logger name="com.zaxxer.hikari.pool" level="INFO"/>
+    <logger name="org.jdbcdslog" level="INFO"/>
+    <logger name="org.jdbcdslog.StatementLogger" level="INFO"/>
+    <logger name="org.jdbcdslog.ResultSetLogger" level="INFO"/>
 
-	<logger name="com.github.ziplet.filter.compression" level="INFO" />
+    <logger name="com.github.ziplet.filter.compression" level="INFO"/>
 
-	<root level="DEBUG">
-		<appender-ref ref="DEBUG_FILE_LOG" />
-		<appender-ref ref="ERR_FILE_LOG" />
-	</root>
+    <root level="DEBUG">
+        <appender-ref ref="DEBUG_FILE_LOG"/>
+        <appender-ref ref="ERR_FILE_LOG"/>
+    </root>
 </configuration>

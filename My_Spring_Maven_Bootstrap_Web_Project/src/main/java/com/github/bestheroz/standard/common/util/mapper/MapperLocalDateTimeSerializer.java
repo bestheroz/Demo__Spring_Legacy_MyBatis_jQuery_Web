@@ -10,8 +10,8 @@ import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
 public class MapperLocalDateTimeSerializer implements JsonSerializer<LocalDateTime> {
-	@Override
-	public JsonElement serialize(final LocalDateTime date, final Type typeOfSrc, final JsonSerializationContext context) {
-		return new JsonPrimitive(date.toDate().getTime());
-	}
+    @Override
+    public JsonElement serialize(final LocalDateTime date, final Type typeOfSrc, final JsonSerializationContext context) {
+        return new JsonPrimitive(date.toDate().getTime());
+    }
 }

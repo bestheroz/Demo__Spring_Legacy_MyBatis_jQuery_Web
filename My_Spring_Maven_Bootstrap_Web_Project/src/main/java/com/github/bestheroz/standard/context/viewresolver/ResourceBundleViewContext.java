@@ -7,12 +7,12 @@ import org.springframework.web.servlet.view.ResourceBundleViewResolver;
 @Configuration
 public class ResourceBundleViewContext {
 
-	@Bean(name = "resourceBundleViewResolver")
-	public ResourceBundleViewResolver getResourceBundleViewResolver() {
-		final ResourceBundleViewResolver resourceBundleViewResolver = new ResourceBundleViewResolver();
-		resourceBundleViewResolver.setOrder(0);
-		resourceBundleViewResolver.setBasename("properties/views");
+    @Bean(name = "resourceBundleViewResolver")
+    public ResourceBundleViewResolver getResourceBundleViewResolver() {
+        final ResourceBundleViewResolver resourceBundleViewResolver = new ResourceBundleViewResolver();
+        resourceBundleViewResolver.setOrder(0);
+        resourceBundleViewResolver.setBasename("properties/views");
 
-		return resourceBundleViewResolver;
-	}
+        return resourceBundleViewResolver;
+    }
 }

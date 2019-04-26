@@ -15,14 +15,14 @@ import com.github.bestheroz.standard.common.exception.CommonException;
 
 @Controller
 public class ValueLabelController {
-	@Autowired
-	private ValueLabelService valueLabelService;
-	@Autowired
-	private HttpSession session;
+    @Autowired
+    private ValueLabelService valueLabelService;
+    @Autowired
+    private HttpSession session;
 
-	@RequestMapping(value = "/common/valuelabel/getValueLabeVOList.json", method = RequestMethod.POST)
-	@ResponseBody
-	public List<ValueLabelVO> getValueLabeVOList(@RequestParam("grcode") final String grcode) throws CommonException {
-		return this.valueLabelService.getValueLabeVOList(grcode, this.session);
-	}
+    @RequestMapping(value = "/common/valuelabel/getValueLabeVOList.json", method = RequestMethod.POST)
+    @ResponseBody
+    public List<ValueLabelVO> getValueLabeVOList(@RequestParam("grcode") final String grcode) throws CommonException {
+        return this.valueLabelService.getValueLabeVOList(grcode, this.session);
+    }
 }

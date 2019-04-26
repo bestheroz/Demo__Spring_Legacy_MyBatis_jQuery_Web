@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class SampleGuideValidateFieldController {
-	@RequestMapping(value = "/sample/guide/validate/field/sampleGuideValidateField.view", method = RequestMethod.GET)
-	public String view() {
-		return "/sample/guide/validate/field/sampleGuideValidateField";
-	}
+    @RequestMapping(value = "/sample/guide/validate/field/sampleGuideValidateField.view", method = RequestMethod.GET)
+    public String view() {
+        return "/sample/guide/validate/field/sampleGuideValidateField";
+    }
 }

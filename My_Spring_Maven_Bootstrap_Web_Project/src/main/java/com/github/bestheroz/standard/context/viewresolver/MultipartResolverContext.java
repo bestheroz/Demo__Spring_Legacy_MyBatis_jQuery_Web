@@ -7,8 +7,8 @@ import org.springframework.web.multipart.support.StandardServletMultipartResolve
 
 @Configuration
 public class MultipartResolverContext {
-	@Bean(name = "multipartResolver")
-	public MultipartResolver getMultipartResolver() {
-		return new StandardServletMultipartResolver();
-	}
+    @Bean(name = "multipartResolver")
+    public MultipartResolver getMultipartResolver() {
+        return new StandardServletMultipartResolver();
+    }
 }

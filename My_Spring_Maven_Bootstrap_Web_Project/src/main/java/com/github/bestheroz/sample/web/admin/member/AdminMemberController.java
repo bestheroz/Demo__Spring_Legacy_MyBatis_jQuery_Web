@@ -17,40 +17,40 @@ import com.google.gson.JsonObject;
 
 @Controller
 public class AdminMemberController {
-	@Autowired
-	private AdminMemberService adminMemberService;
-	@Autowired
-	private HttpSession session;
+    @Autowired
+    private AdminMemberService adminMemberService;
+    @Autowired
+    private HttpSession session;
 
-	@RequestMapping(value = "/sample/admin/member/adminMember.view", method = RequestMethod.GET)
-	public String view() throws Exception {
-		return "/sample/admin/member/AdminMember";
-	}
+    @RequestMapping(value = "/sample/admin/member/adminMember.view", method = RequestMethod.GET)
+    public String view() throws Exception {
+        return "/sample/admin/member/AdminMember";
+    }
 
-	@RequestMapping(value = "/sample/admin/member/getSampleMemberMstVOList.json", method = RequestMethod.POST)
-	@ResponseBody
-	public List<AdminMemberVO> getSampleMemberMstVOList(final AdminMemberVO vo) throws CommonException {
-		return this.adminMemberService.getSampleMemberMstVOList(vo);
-	}
+    @RequestMapping(value = "/sample/admin/member/getSampleMemberMstVOList.json", method = RequestMethod.POST)
+    @ResponseBody
+    public List<AdminMemberVO> getSampleMemberMstVOList(final AdminMemberVO vo) throws CommonException {
+        return this.adminMemberService.getSampleMemberMstVOList(vo);
+    }
 
-	@RequestMapping(value = "/sample/admin/member/insertSampleMemberMst.json", method = RequestMethod.POST)
-	@ResponseBody
-	public JsonObject insertSampleMemberMst(final TableSampleMemberMstVO vo) throws CommonException {
-		this.adminMemberService.insertSampleMemberMst(vo, MySessionUtils.getLoginVO(this.session));
-		return CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject();
-	}
+    @RequestMapping(value = "/sample/admin/member/insertSampleMemberMst.json", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonObject insertSampleMemberMst(final TableSampleMemberMstVO vo) throws CommonException {
+        this.adminMemberService.insertSampleMemberMst(vo, MySessionUtils.getLoginVO(this.session));
+        return CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject();
+    }
 
-	@RequestMapping(value = "/sample/admin/member/updateSampleMemberMst.json", method = RequestMethod.POST)
-	@ResponseBody
-	public JsonObject updateSampleMemberMst(final TableSampleMemberMstVO vo) throws CommonException {
-		this.adminMemberService.updateSampleMemberMst(vo, MySessionUtils.getLoginVO(this.session));
-		return CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject();
-	}
+    @RequestMapping(value = "/sample/admin/member/updateSampleMemberMst.json", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonObject updateSampleMemberMst(final TableSampleMemberMstVO vo) throws CommonException {
+        this.adminMemberService.updateSampleMemberMst(vo, MySessionUtils.getLoginVO(this.session));
+        return CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject();
+    }
 
-	@RequestMapping(value = "/sample/admin/member/deleteSampleMemberMst.json", method = RequestMethod.POST)
-	@ResponseBody
-	public JsonObject deleteSampleMemberMst(final TableSampleMemberMstVO vo) throws CommonException {
-		this.adminMemberService.deleteSampleMemberMst(vo);
-		return CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject();
-	}
+    @RequestMapping(value = "/sample/admin/member/deleteSampleMemberMst.json", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonObject deleteSampleMemberMst(final TableSampleMemberMstVO vo) throws CommonException {
+        this.adminMemberService.deleteSampleMemberMst(vo);
+        return CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject();
+    }
 }

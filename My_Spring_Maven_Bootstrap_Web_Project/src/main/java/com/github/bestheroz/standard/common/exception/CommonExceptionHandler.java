@@ -24,61 +24,61 @@ import com.google.gson.JsonObject;
 
 @ControllerAdvice
 public class CommonExceptionHandler {
-	private static final Logger LOGGER = LoggerFactory.getLogger(CommonExceptionHandler.class);
-	@Autowired
-	private HttpServletRequest request;
+    private static final Logger LOGGER = LoggerFactory.getLogger(CommonExceptionHandler.class);
+    @Autowired
+    private HttpServletRequest request;
 
-	// 아래서 놓친 예외가 있을때 이곳으로 확인하기 위해 존재한다.
-	// 놓친 예외는 이곳에서 확인하여 추가해주면 된다.
-	@ExceptionHandler({ Throwable.class })
-	@ResponseBody
-	public JsonObject exception(final Throwable e) throws Exception {
-		LOGGER.warn(ExceptionUtils.getStackTrace(e));
-		this.isAcceptHtml();
-		return CommonException.EXCEPTION_ERROR_SYSTEM.getJsonObject();
-	}
+    // 아래서 놓친 예외가 있을때 이곳으로 확인하기 위해 존재한다.
+    // 놓친 예외는 이곳에서 확인하여 추가해주면 된다.
+    @ExceptionHandler({Throwable.class})
+    @ResponseBody
+    public JsonObject exception(final Throwable e) throws Exception {
+        LOGGER.warn(ExceptionUtils.getStackTrace(e));
+        this.isAcceptHtml();
+        return CommonException.EXCEPTION_ERROR_SYSTEM.getJsonObject();
+    }
 
-	@ExceptionHandler({ CommonException.class })
-	@ResponseBody
-	public JsonObject commonResponseException(final CommonException e) throws Exception {
-		LOGGER.warn(e.getJsonObject().toString());
-		this.isAcceptHtml();
-		return e.getJsonObject();
-	}
+    @ExceptionHandler({CommonException.class})
+    @ResponseBody
+    public JsonObject commonResponseException(final CommonException e) throws Exception {
+        LOGGER.warn(e.getJsonObject().toString());
+        this.isAcceptHtml();
+        return e.getJsonObject();
+    }
 
-	@ExceptionHandler({ BindException.class, MethodArgumentTypeMismatchException.class, MissingServletRequestParameterException.class })
-	@ResponseBody
-	public JsonObject bindException(final Throwable e) throws Exception {
-		LOGGER.warn(ExceptionUtils.getStackTrace(e));
-		this.isAcceptHtml();
-		return CommonException.EXCEPTION_ERROR_INVALID_PARAMETER.getJsonObject();
-	}
+    @ExceptionHandler({BindException.class, MethodArgumentTypeMismatchException.class, MissingServletRequestParameterException.class})
+    @ResponseBody
+    public JsonObject bindException(final Throwable e) throws Exception {
+        LOGGER.warn(ExceptionUtils.getStackTrace(e));
+        this.isAcceptHtml();
+        return CommonException.EXCEPTION_ERROR_INVALID_PARAMETER.getJsonObject();
+    }
 
-	@ExceptionHandler({ HttpMediaTypeNotAcceptableException.class, HttpMediaTypeNotSupportedException.class, HttpRequestMethodNotSupportedException.class, HttpClientErrorException.class })
-	@ResponseBody
-	public JsonObject httpMediaTypeNotAcceptableException(final Throwable e) throws Exception {
-		LOGGER.warn(ExceptionUtils.getStackTrace(e));
-		this.isAcceptHtml();
-		return CommonException.EXCEPTION_ERROR_INVALID_REQUEST.getJsonObject();
-	}
+    @ExceptionHandler({HttpMediaTypeNotAcceptableException.class, HttpMediaTypeNotSupportedException.class, HttpRequestMethodNotSupportedException.class, HttpClientErrorException.class})
+    @ResponseBody
+    public JsonObject httpMediaTypeNotAcceptableException(final Throwable e) throws Exception {
+        LOGGER.warn(ExceptionUtils.getStackTrace(e));
+        this.isAcceptHtml();
+        return CommonException.EXCEPTION_ERROR_INVALID_REQUEST.getJsonObject();
+    }
 
-	@ExceptionHandler({ MultipartException.class })
-	@ResponseBody
-	public JsonObject handleMultipartException(final MultipartException e) throws Exception {
-		LOGGER.warn(ExceptionUtils.getStackTrace(e));
-		this.isAcceptHtml();
-		JsonObject result = null;
-		if (ExceptionUtils.getMessage(e).contains(SizeLimitExceededException.class.getSimpleName())) {
-			result = new CommonException(CommonExceptionCode.ERROR_FAIL_FILE_SIZE).getJsonObject();
-		} else {
-			result = CommonException.EXCEPTION_ERROR_SYSTEM.getJsonObject();
-		}
-		return result;
-	}
+    @ExceptionHandler({MultipartException.class})
+    @ResponseBody
+    public JsonObject handleMultipartException(final MultipartException e) throws Exception {
+        LOGGER.warn(ExceptionUtils.getStackTrace(e));
+        this.isAcceptHtml();
+        JsonObject result = null;
+        if (ExceptionUtils.getMessage(e).contains(SizeLimitExceededException.class.getSimpleName())) {
+            result = new CommonException(CommonExceptionCode.ERROR_FAIL_FILE_SIZE).getJsonObject();
+        } else {
+            result = CommonException.EXCEPTION_ERROR_SYSTEM.getJsonObject();
+        }
+        return result;
+    }
 
-	private void isAcceptHtml() throws Exception {
-		if (StringUtils.contains(this.request.getHeader("accept"), "html")) {
-			throw new Exception(CommonExceptionCode.ERROR_SYSTEM_ERROR.getMessage());
-		}
-	}
+    private void isAcceptHtml() throws Exception {
+        if (StringUtils.contains(this.request.getHeader("accept"), "html")) {
+            throw new Exception(CommonExceptionCode.ERROR_SYSTEM_ERROR.getMessage());
+        }
+    }
 }

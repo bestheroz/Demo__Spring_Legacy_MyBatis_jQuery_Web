@@ -12,27 +12,27 @@ import org.apache.ibatis.type.TypeHandler;
 
 import com.github.bestheroz.standard.common.util.MyEscapeUtils;
 
-@MappedTypes(value = { String.class })
-@MappedJdbcTypes(value = { JdbcType.CHAR, JdbcType.NCHAR, JdbcType.VARCHAR, JdbcType.NVARCHAR, JdbcType.LONGVARCHAR, JdbcType.LONGNVARCHAR, JdbcType.CLOB, JdbcType.NCLOB })
+@MappedTypes(value = {String.class})
+@MappedJdbcTypes(value = {JdbcType.CHAR, JdbcType.NCHAR, JdbcType.VARCHAR, JdbcType.NVARCHAR, JdbcType.LONGVARCHAR, JdbcType.LONGNVARCHAR, JdbcType.CLOB, JdbcType.NCLOB})
 public class StringTypeHandler implements TypeHandler<String> {
-	@Override
-	public String getResult(final ResultSet rs, final String columnName) throws SQLException {
-		return rs.getString(columnName);
-	}
+    @Override
+    public String getResult(final ResultSet rs, final String columnName) throws SQLException {
+        return rs.getString(columnName);
+    }
 
-	@Override
-	public String getResult(final ResultSet rs, final int columnIndex) throws SQLException {
-		return rs.getString(columnIndex);
-	}
+    @Override
+    public String getResult(final ResultSet rs, final int columnIndex) throws SQLException {
+        return rs.getString(columnIndex);
+    }
 
-	@Override
-	public String getResult(final CallableStatement cs, final int columnIndex) throws SQLException {
-		return cs.getString(columnIndex);
-	}
+    @Override
+    public String getResult(final CallableStatement cs, final int columnIndex) throws SQLException {
+        return cs.getString(columnIndex);
+    }
 
-	@Override
-	public void setParameter(final PreparedStatement ps, final int i, final String parameter, final JdbcType arg3) throws SQLException {
-		ps.setString(i, MyEscapeUtils.escapeAll(parameter));
-	}
+    @Override
+    public void setParameter(final PreparedStatement ps, final int i, final String parameter, final JdbcType arg3) throws SQLException {
+        ps.setString(i, MyEscapeUtils.escapeAll(parameter));
+    }
 
 }

@@ -23,53 +23,53 @@ import com.github.bestheroz.standard.common.util.MyNullUtils;
 
 @Service
 public class AdminFileService {
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	@Autowired
-	private TableSampleFileMstDAO tableSampleFileMstDAO;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    @Autowired
+    private TableSampleFileMstDAO tableSampleFileMstDAO;
 
-	public List<AdminFileVO> getSampleFileMstVOList(final AdminFileVO vo) throws CommonException {
-		return MyMapperUtils.writeObjectAsArrayList(this.tableSampleFileMstDAO.getList(MyMapperUtils.writeObjectAsObject(vo, TableSampleFileMstVO.class), null, "UPD_DT DESC"),
-				AdminFileVO.class);
-	}
+    public List<AdminFileVO> getSampleFileMstVOList(final AdminFileVO vo) throws CommonException {
+        return MyMapperUtils.writeObjectAsArrayList(this.tableSampleFileMstDAO.getList(MyMapperUtils.writeObjectAsObject(vo, TableSampleFileMstVO.class), null, "UPD_DT DESC"),
+                AdminFileVO.class);
+    }
 
-	public void insertSampleFileMst(final TableSampleFileMstVO vo, final MultipartFile multipartFile, final LoginVO loginVO) throws CommonException {
-		if (!MyNullUtils.isEmpty(multipartFile)) {
-			try {
-				vo.setFileData(ArrayUtils.toObject(multipartFile.getBytes()));
-				vo.setMimeTyp(MyFileUtils.getMimeType(multipartFile));
-				vo.setFileNmExt(MyFileUtils.getExtension(multipartFile.getOriginalFilename()));
-				if (StringUtils.isEmpty(vo.getFileNm())) {
-					vo.setFileNm(multipartFile.getOriginalFilename());
-				}
-			} catch (final IOException e) {
-				this.logger.warn(ExceptionUtils.getStackTrace(e));
-				throw new CommonException(e);
-			}
-		}
-		vo.setRegMemberId(loginVO.getMemberId());
-		vo.setUpdMemberId(loginVO.getMemberId());
-		this.tableSampleFileMstDAO.insert(vo);
-	}
+    public void insertSampleFileMst(final TableSampleFileMstVO vo, final MultipartFile multipartFile, final LoginVO loginVO) throws CommonException {
+        if (!MyNullUtils.isEmpty(multipartFile)) {
+            try {
+                vo.setFileData(ArrayUtils.toObject(multipartFile.getBytes()));
+                vo.setMimeTyp(MyFileUtils.getMimeType(multipartFile));
+                vo.setFileNmExt(MyFileUtils.getExtension(multipartFile.getOriginalFilename()));
+                if (StringUtils.isEmpty(vo.getFileNm())) {
+                    vo.setFileNm(multipartFile.getOriginalFilename());
+                }
+            } catch (final IOException e) {
+                this.logger.warn(ExceptionUtils.getStackTrace(e));
+                throw new CommonException(e);
+            }
+        }
+        vo.setRegMemberId(loginVO.getMemberId());
+        vo.setUpdMemberId(loginVO.getMemberId());
+        this.tableSampleFileMstDAO.insert(vo);
+    }
 
-	public void updateSampleFileMst(final TableSampleFileMstVO vo, final MultipartFile multipartFile, final LoginVO loginVO) throws CommonException {
-		if (!MyNullUtils.isEmpty(multipartFile)) {
-			try {
-				vo.setFileData(ArrayUtils.toObject(multipartFile.getBytes()));
-				vo.setMimeTyp(MyFileUtils.getMimeType(multipartFile));
-				vo.setFileNmExt(MyFileUtils.getExtension(multipartFile.getOriginalFilename()));
-				if (StringUtils.isEmpty(vo.getFileNm())) {
-					vo.setFileNm(multipartFile.getOriginalFilename());
-				}
-			} catch (final IOException e) {
-				this.logger.warn(ExceptionUtils.getStackTrace(e));
-				throw new CommonException(e);
-			}
-		}
-		vo.setUpdMemberId(loginVO.getMemberId());
-		this.tableSampleFileMstDAO.update(vo, Arrays.asList("fileSeq"), null);
-	}
+    public void updateSampleFileMst(final TableSampleFileMstVO vo, final MultipartFile multipartFile, final LoginVO loginVO) throws CommonException {
+        if (!MyNullUtils.isEmpty(multipartFile)) {
+            try {
+                vo.setFileData(ArrayUtils.toObject(multipartFile.getBytes()));
+                vo.setMimeTyp(MyFileUtils.getMimeType(multipartFile));
+                vo.setFileNmExt(MyFileUtils.getExtension(multipartFile.getOriginalFilename()));
+                if (StringUtils.isEmpty(vo.getFileNm())) {
+                    vo.setFileNm(multipartFile.getOriginalFilename());
+                }
+            } catch (final IOException e) {
+                this.logger.warn(ExceptionUtils.getStackTrace(e));
+                throw new CommonException(e);
+            }
+        }
+        vo.setUpdMemberId(loginVO.getMemberId());
+        this.tableSampleFileMstDAO.update(vo, Arrays.asList("fileSeq"), null);
+    }
 
-	public void deleteSampleFileMst(final TableSampleFileMstVO vo) throws CommonException {
-		this.tableSampleFileMstDAO.delete(vo, Arrays.asList("fileSeq"));
-	}
+    public void deleteSampleFileMst(final TableSampleFileMstVO vo) throws CommonException {
+        this.tableSampleFileMstDAO.delete(vo, Arrays.asList("fileSeq"));
+    }
 }

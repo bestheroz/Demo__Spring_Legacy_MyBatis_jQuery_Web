@@ -9,8 +9,8 @@ import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
 public class MapperDateSerializer implements JsonSerializer<Date> {
-	@Override
-	public JsonElement serialize(final Date date, final Type typeOfSrc, final JsonSerializationContext context) {
-		return new JsonPrimitive(date.getTime());
-	}
+    @Override
+    public JsonElement serialize(final Date date, final Type typeOfSrc, final JsonSerializationContext context) {
+        return new JsonPrimitive(date.getTime());
+    }
 }

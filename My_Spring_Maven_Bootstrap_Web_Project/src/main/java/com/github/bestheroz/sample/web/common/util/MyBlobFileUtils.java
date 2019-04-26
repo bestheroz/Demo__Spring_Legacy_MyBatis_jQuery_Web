@@ -24,73 +24,73 @@ import com.github.bestheroz.standard.common.util.MyFileUtils;
 import com.github.bestheroz.standard.common.util.MyNullUtils;
 
 public class MyBlobFileUtils {
-	private static final Logger LOGGER = LoggerFactory.getLogger(MyBlobFileUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MyBlobFileUtils.class);
 
-	public static File getFileFromSampleFileMstObject(final Integer fileSeq, final String fileName) throws CommonException {
-		final TableSampleFileMstVO tableSampleFileMstVO = new TableSampleFileMstVO();
-		tableSampleFileMstVO.setFileSeq(fileSeq);
-		tableSampleFileMstVO.setFileNm(fileName);
-		final List<String> whereKey = new ArrayList<>();
-		whereKey.add("fileSeq");
-		if (StringUtils.isNotEmpty(tableSampleFileMstVO.getFileNm())) {
-			whereKey.add("fileNm");
-		}
-		final TableSampleFileMstVO sampleFileMstVO = MyAccessBeanUtils.getBean(TableSampleFileMstDAO.class).getVO(tableSampleFileMstVO, whereKey);
-		if (sampleFileMstVO == null) {
-			LOGGER.warn("fileSeq: {}, fileName: {} :: {}", fileSeq, fileName, CommonExceptionCode.ERROR_FILE_NOT_FOUND.toString());
-			throw new CommonException(CommonExceptionCode.ERROR_FILE_NOT_FOUND);
-		}
+    public static File getFileFromSampleFileMstObject(final Integer fileSeq, final String fileName) throws CommonException {
+        final TableSampleFileMstVO tableSampleFileMstVO = new TableSampleFileMstVO();
+        tableSampleFileMstVO.setFileSeq(fileSeq);
+        tableSampleFileMstVO.setFileNm(fileName);
+        final List<String> whereKey = new ArrayList<>();
+        whereKey.add("fileSeq");
+        if (StringUtils.isNotEmpty(tableSampleFileMstVO.getFileNm())) {
+            whereKey.add("fileNm");
+        }
+        final TableSampleFileMstVO sampleFileMstVO = MyAccessBeanUtils.getBean(TableSampleFileMstDAO.class).getVO(tableSampleFileMstVO, whereKey);
+        if (sampleFileMstVO == null) {
+            LOGGER.warn("fileSeq: {}, fileName: {} :: {}", fileSeq, fileName, CommonExceptionCode.ERROR_FILE_NOT_FOUND.toString());
+            throw new CommonException(CommonExceptionCode.ERROR_FILE_NOT_FOUND);
+        }
 
-		try {
-			final File file = new File(sampleFileMstVO.getFileNm());
-			FileUtils.writeByteArrayToFile(file, ArrayUtils.toPrimitive(sampleFileMstVO.getFileData()));
-			return file;
-		} catch (final Throwable e) {
-			LOGGER.warn(ExceptionUtils.getStackTrace(e));
-			throw new CommonException(e);
-		}
-	}
+        try {
+            final File file = new File(sampleFileMstVO.getFileNm());
+            FileUtils.writeByteArrayToFile(file, ArrayUtils.toPrimitive(sampleFileMstVO.getFileData()));
+            return file;
+        } catch (final Throwable e) {
+            LOGGER.warn(ExceptionUtils.getStackTrace(e));
+            throw new CommonException(e);
+        }
+    }
 
-	public static TableSampleFileMstVO insert(final MultipartFile multipartFile, final LoginVO loginVO) throws CommonException {
-		final TableSampleFileMstVO tableSampleFileMstVO = new TableSampleFileMstVO();
-		if (!MyNullUtils.isEmpty(multipartFile)) {
-			try {
-				tableSampleFileMstVO.setRegMemberId(loginVO.getMemberId());
-				tableSampleFileMstVO.setUpdMemberId(loginVO.getMemberId());
-				tableSampleFileMstVO.setFileData(ArrayUtils.toObject(multipartFile.getBytes()));
-				tableSampleFileMstVO.setMimeTyp(MyFileUtils.getMimeType(multipartFile));
-				tableSampleFileMstVO.setFileNm(multipartFile.getOriginalFilename());
-				tableSampleFileMstVO.setFileNmExt(MyFileUtils.getExtension(multipartFile));
-				MyAccessBeanUtils.getBean(TableSampleFileMstDAO.class).insert(tableSampleFileMstVO);
-			} catch (final IOException e) {
-				LOGGER.warn(ExceptionUtils.getStackTrace(e));
-				throw new CommonException(e);
-			}
-		}
-		return tableSampleFileMstVO;
-	}
+    public static TableSampleFileMstVO insert(final MultipartFile multipartFile, final LoginVO loginVO) throws CommonException {
+        final TableSampleFileMstVO tableSampleFileMstVO = new TableSampleFileMstVO();
+        if (!MyNullUtils.isEmpty(multipartFile)) {
+            try {
+                tableSampleFileMstVO.setRegMemberId(loginVO.getMemberId());
+                tableSampleFileMstVO.setUpdMemberId(loginVO.getMemberId());
+                tableSampleFileMstVO.setFileData(ArrayUtils.toObject(multipartFile.getBytes()));
+                tableSampleFileMstVO.setMimeTyp(MyFileUtils.getMimeType(multipartFile));
+                tableSampleFileMstVO.setFileNm(multipartFile.getOriginalFilename());
+                tableSampleFileMstVO.setFileNmExt(MyFileUtils.getExtension(multipartFile));
+                MyAccessBeanUtils.getBean(TableSampleFileMstDAO.class).insert(tableSampleFileMstVO);
+            } catch (final IOException e) {
+                LOGGER.warn(ExceptionUtils.getStackTrace(e));
+                throw new CommonException(e);
+            }
+        }
+        return tableSampleFileMstVO;
+    }
 
-	public static TableSampleFileMstVO update(final Integer fileSeq, final MultipartFile multipartFile, final LoginVO loginVO) throws CommonException {
-		final TableSampleFileMstVO tableSampleFileMstVO = new TableSampleFileMstVO();
-		if (fileSeq != null) {
-			if (!MyNullUtils.isEmpty(multipartFile)) {
-				try {
-					tableSampleFileMstVO.setFileSeq(fileSeq);
-					tableSampleFileMstVO.setRegMemberId(loginVO.getMemberId());
-					tableSampleFileMstVO.setUpdMemberId(loginVO.getMemberId());
-					tableSampleFileMstVO.setFileData(ArrayUtils.toObject(multipartFile.getBytes()));
-					tableSampleFileMstVO.setMimeTyp(MyFileUtils.getMimeType(multipartFile));
-					tableSampleFileMstVO.setFileNm(multipartFile.getOriginalFilename());
-					tableSampleFileMstVO.setFileNmExt(MyFileUtils.getExtension(multipartFile));
-					MyAccessBeanUtils.getBean(TableSampleFileMstDAO.class).update(tableSampleFileMstVO, Arrays.asList("fileSeq"), null);
-				} catch (final IOException e) {
-					LOGGER.warn(ExceptionUtils.getStackTrace(e));
-					throw new CommonException(e);
-				}
-			}
-		} else {
-			return insert(multipartFile, loginVO);
-		}
-		return tableSampleFileMstVO;
-	}
+    public static TableSampleFileMstVO update(final Integer fileSeq, final MultipartFile multipartFile, final LoginVO loginVO) throws CommonException {
+        final TableSampleFileMstVO tableSampleFileMstVO = new TableSampleFileMstVO();
+        if (fileSeq != null) {
+            if (!MyNullUtils.isEmpty(multipartFile)) {
+                try {
+                    tableSampleFileMstVO.setFileSeq(fileSeq);
+                    tableSampleFileMstVO.setRegMemberId(loginVO.getMemberId());
+                    tableSampleFileMstVO.setUpdMemberId(loginVO.getMemberId());
+                    tableSampleFileMstVO.setFileData(ArrayUtils.toObject(multipartFile.getBytes()));
+                    tableSampleFileMstVO.setMimeTyp(MyFileUtils.getMimeType(multipartFile));
+                    tableSampleFileMstVO.setFileNm(multipartFile.getOriginalFilename());
+                    tableSampleFileMstVO.setFileNmExt(MyFileUtils.getExtension(multipartFile));
+                    MyAccessBeanUtils.getBean(TableSampleFileMstDAO.class).update(tableSampleFileMstVO, Arrays.asList("fileSeq"), null);
+                } catch (final IOException e) {
+                    LOGGER.warn(ExceptionUtils.getStackTrace(e));
+                    throw new CommonException(e);
+                }
+            }
+        } else {
+            return insert(multipartFile, loginVO);
+        }
+        return tableSampleFileMstVO;
+    }
 }

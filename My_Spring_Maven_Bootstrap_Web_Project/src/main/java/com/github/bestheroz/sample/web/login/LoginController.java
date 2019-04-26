@@ -15,36 +15,36 @@ import com.google.gson.JsonObject;
 
 @Controller
 public class LoginController {
-	// private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	@Autowired
-	private LoginService loginService;
-	@Autowired
-	private HttpSession session;
+    // private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    @Autowired
+    private LoginService loginService;
+    @Autowired
+    private HttpSession session;
 
-	@RequestMapping(value = { "/", "/sample/login/login.view" }, method = RequestMethod.GET)
-	public String view() throws Exception {
-		if (MySessionUtils.getLoginVO(this.session) != null) {
-			final String returnUrl = MySessionUtils.getAttribute(this.session, "returnUrl");
-			this.session.removeAttribute("returnUrl");
-			if (StringUtils.isEmpty(returnUrl) || StringUtils.equals(returnUrl, "null")) {
-				return "redirect:/sample/admin/menu/adminMenu.view";
-			} else {
-				return "redirect:" + returnUrl;
-			}
-		}
-		return "/sample/login/login";
-	}
+    @RequestMapping(value = {"/", "/sample/login/login.view"}, method = RequestMethod.GET)
+    public String view() throws Exception {
+        if (MySessionUtils.getLoginVO(this.session) != null) {
+            final String returnUrl = MySessionUtils.getAttribute(this.session, "returnUrl");
+            this.session.removeAttribute("returnUrl");
+            if (StringUtils.isEmpty(returnUrl) || StringUtils.equals(returnUrl, "null")) {
+                return "redirect:/sample/admin/menu/adminMenu.view";
+            } else {
+                return "redirect:" + returnUrl;
+            }
+        }
+        return "/sample/login/login";
+    }
 
-	@RequestMapping(value = "/sample/login/loginProcess.json", method = RequestMethod.POST)
-	@ResponseBody
-	public JsonObject loginProcess(final LoginVO vo) throws CommonException {
-		this.loginService.loginProcess(vo, this.session);
-		return CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject();
-	}
+    @RequestMapping(value = "/sample/login/loginProcess.json", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonObject loginProcess(final LoginVO vo) throws CommonException {
+        this.loginService.loginProcess(vo, this.session);
+        return CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject();
+    }
 
-	@RequestMapping(value = "/sample/login/logout.view", method = RequestMethod.GET)
-	public String logoutView() throws CommonException {
-		MySessionUtils.logout(this.session);
-		return "redirect:/sample/login/login.view";
-	}
+    @RequestMapping(value = "/sample/login/logout.view", method = RequestMethod.GET)
+    public String logoutView() throws CommonException {
+        MySessionUtils.logout(this.session);
+        return "redirect:/sample/login/login.view";
+    }
 }
