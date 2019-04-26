@@ -67,7 +67,7 @@ public class HtmlTag extends TagSupport {
         this.makeScriptTag("https://cdn.jsdelivr.net/npm/moment@2.24.0/locale/ko.js");
 
         this.sb.append("<script>");
-        this.sb.append(MessageFormat.format("const CONTEXT_PATH = '{}';", CommonCode.CONTEXT_PATH));
+        this.sb.append(MessageFormat.format("const CONTEXT_PATH = ''{0}'';", CommonCode.CONTEXT_PATH));
         this.sb.append("</script>");
 
         this.makeScriptTag(CommonCode.PATH_JS + "/MyCommon.js");
