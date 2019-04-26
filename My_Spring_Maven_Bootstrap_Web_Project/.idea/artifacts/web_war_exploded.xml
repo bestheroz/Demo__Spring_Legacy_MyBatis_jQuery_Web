@@ -14,19 +14,19 @@
           <element id="module-output" name="web" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.1.5.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.1.5.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-context:5.1.5.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-core:5.1.5.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.1.5.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.1.5.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-web:5.1.5.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:5.1.5.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-tx:5.1.5.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.1.5.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-test:5.1.5.RELEASE" />
-          <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.9.2" />
-          <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.9.2" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.1.6.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.1.6.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:5.1.6.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:5.1.6.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.1.6.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.1.6.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:5.1.6.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:5.1.6.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-tx:5.1.6.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.1.6.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-test:5.1.6.RELEASE" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.9.3" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.9.3" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.26" />
           <element id="library" level="project" name="Maven: org.slf4j:jcl-over-slf4j:1.7.26" />
           <element id="library" level="project" name="Maven: ch.qos.logback:logback-core:1.2.3" />
@@ -35,9 +35,9 @@
           <element id="library" level="project" name="Maven: studio.raptor:ddal-sqlparser:3.0.3" />
           <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.5" />
           <element id="library" level="project" name="Maven: joda-time:joda-time:2.10.1" />
-          <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.8.1" />
-          <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.5.0" />
-          <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:2.0.0" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.9" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.5.1" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:2.0.1" />
           <element id="library" level="project" name="Maven: com.zaxxer:HikariCP:3.3.1" />
           <element id="library" level="project" name="Maven: org.apache.tika:tika-core:1.20" />
           <element id="library" level="project" name="Maven: commons-io:commons-io:2.6" />
@@ -49,16 +49,16 @@
           <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
           <element id="library" level="project" name="Maven: com.navercorp.lucy:lucy-xss:1.6.3" />
           <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.0.4" />
-          <element id="library" level="project" name="Maven: org.apache.poi:poi:4.0.1" />
-          <element id="library" level="project" name="Maven: org.apache.commons:commons-collections4:4.2" />
+          <element id="library" level="project" name="Maven: org.apache.poi:poi:4.1.0" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-collections4:4.3" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-math3:3.6.1" />
-          <element id="library" level="project" name="Maven: org.apache.poi:poi-ooxml:4.0.1" />
-          <element id="library" level="project" name="Maven: org.apache.poi:poi-ooxml-schemas:4.0.1" />
-          <element id="library" level="project" name="Maven: org.apache.xmlbeans:xmlbeans:3.0.2" />
+          <element id="library" level="project" name="Maven: org.apache.poi:poi-ooxml:4.1.0" />
+          <element id="library" level="project" name="Maven: org.apache.poi:poi-ooxml-schemas:4.1.0" />
+          <element id="library" level="project" name="Maven: org.apache.xmlbeans:xmlbeans:3.1.0" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-compress:1.18" />
-          <element id="library" level="project" name="Maven: com.github.virtuald:curvesapi:1.05" />
-          <element id="library" level="project" name="Maven: org.apache.pdfbox:pdfbox:2.0.14" />
-          <element id="library" level="project" name="Maven: org.apache.pdfbox:fontbox:2.0.14" />
+          <element id="library" level="project" name="Maven: com.github.virtuald:curvesapi:1.06" />
+          <element id="library" level="project" name="Maven: org.apache.pdfbox:pdfbox:2.0.15" />
+          <element id="library" level="project" name="Maven: org.apache.pdfbox:fontbox:2.0.15" />
           <element id="library" level="project" name="Maven: com.github.dhorions:boxable:1.5" />
           <element id="library" level="project" name="Maven: com.google.guava:guava:18.0" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-csv:1.2" />
