@@ -14,7 +14,6 @@ public class HttpsRequestWrapper extends HttpServletRequestWrapper {
 
     public HttpsRequestWrapper(final HttpServletRequest request) {
         super(request);
-        // TODO Auto-generated constructor stub
     }
 
     public void setResponse(final HttpServletResponse response) {

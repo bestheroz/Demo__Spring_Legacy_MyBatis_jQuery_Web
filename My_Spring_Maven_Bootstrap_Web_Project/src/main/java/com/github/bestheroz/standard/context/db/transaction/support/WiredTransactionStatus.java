@@ -23,7 +23,6 @@ public class WiredTransactionStatus implements TransactionStatus {
      */
     @Override
     public boolean hasSavepoint() {
-        // TODO Auto-generated method stub
         return false;
     }
 
@@ -102,7 +101,6 @@ public class WiredTransactionStatus implements TransactionStatus {
      */
     @Override
     public Object createSavepoint() throws TransactionException {
-        // TODO Auto-generated method stub
         return new Object();
     }
 
@@ -113,7 +111,6 @@ public class WiredTransactionStatus implements TransactionStatus {
      */
     @Override
     public void releaseSavepoint(final Object savepoint) throws TransactionException {
-        // TODO Auto-generated method stub
 
     }
 
@@ -124,7 +121,6 @@ public class WiredTransactionStatus implements TransactionStatus {
      */
     @Override
     public void rollbackToSavepoint(final Object savepoint) throws TransactionException {
-        // TODO Auto-generated method stub
 
     }
 
@@ -149,7 +145,6 @@ public class WiredTransactionStatus implements TransactionStatus {
 
     @Override
     public void flush() {
-        // TODO Auto-generated method stub
     }
 
 }
