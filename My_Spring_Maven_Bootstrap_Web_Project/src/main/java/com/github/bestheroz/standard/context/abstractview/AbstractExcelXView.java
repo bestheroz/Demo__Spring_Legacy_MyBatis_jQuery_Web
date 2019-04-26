@@ -1,17 +1,10 @@
 package com.github.bestheroz.standard.context.abstractview;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.github.bestheroz.standard.common.exception.CommonException;
+import com.github.bestheroz.standard.common.file.excel.ExcelVO;
+import com.github.bestheroz.standard.common.util.MyDateUtils;
+import com.github.bestheroz.standard.common.util.MyNullUtils;
+import com.google.gson.JsonElement;
 import org.apache.commons.lang3.RegExUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -35,300 +28,309 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.AbstractView;
 
-import com.github.bestheroz.standard.common.exception.CommonException;
-import com.github.bestheroz.standard.common.file.excel.ExcelVO;
-import com.github.bestheroz.standard.common.util.MyDateUtils;
-import com.github.bestheroz.standard.common.util.MyNullUtils;
-import com.google.gson.JsonElement;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 @Component("AbstractExcelXView")
 public abstract class AbstractExcelXView extends AbstractView {
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    /**
+     * The extension to look for existing templates
+     */
+    public static final String EXTENSION = ".xlsx";
+    public static final String FILE_NAME = "fileName";
+    public static final String PASSWORD = "password";
+    public static final String EXCEL_VOS = "excelVOs";
+    public static final String SQL = "SQL";
+    public static final String LIST_DATA = "listData";
+    /**
+     * The content type for an Excel response
+     */
+    private static final String CONTENT_TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+    private static final String ROW_NUMBER = "ROW_NUMBER";
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private XSSFCellStyle stringRightStyle;
+    private XSSFCellStyle stringCenterStyle;
+    private XSSFCellStyle numberStyle;
+    private XSSFCellStyle doubleStyle;
+    private XSSFCellStyle dateStyle;
 
-	/** The content type for an Excel response */
-	private static final String CONTENT_TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+    /**
+     * Default Constructor. * Sets the content type of the view to "application/vnd.ms-excel".
+     */
+    public AbstractExcelXView() {
+        this.setContentType(CONTENT_TYPE);
+    }
 
-	/** The extension to look for existing templates */
-	public static final String EXTENSION = ".xlsx";
-	public static final String FILE_NAME = "fileName";
-	public static final String PASSWORD = "password";
-	public static final String EXCEL_VOS = "excelVOs";
-	public static final String SQL = "SQL";
-	public static final String LIST_DATA = "listData";
-	private static final String ROW_NUMBER = "ROW_NUMBER";
+    public static void addHeaderOfRowNo(final List<ExcelVO> excelVOList, final String title) {
+        addHeader(excelVOList, title, ROW_NUMBER, AbstractExcelXView.CellType.STRING_CENTER, null);
+    }
 
-	public enum CellType {
-		STRING,
+    public static void addHeader(final List<ExcelVO> excelVOList, final String title, final String dbColName, final CellType cellType) {
+        addHeader(excelVOList, title, dbColName, cellType, null);
+    }
 
-		STRING_CENTER,
+    public static void addHeader(final List<ExcelVO> excelVOList, final String title, final String dbColName, final CellType cellType, final JsonElement codeObject) {
+        final ExcelVO excelVO = new ExcelVO();
+        excelVO.setTitle(title);
+        excelVO.setDbColName(dbColName);
+        excelVO.setCellType(cellType);
+        excelVO.setCodeObject(codeObject);
+        if (cellType.equals(CellType.STRING)) {
+            excelVO.setCharByte(1.2D);
+        }
+        excelVOList.add(excelVO);
+    }
 
-		STRING_RIGHT,
+    // 엑셀 암호화 때문에 별도 구현
+    // @Override
+    // protected void writeToResponse(final HttpServletResponse response, final ByteArrayOutputStream baos) throws IOException {
+    // // Write content type and also length (determined via byte array).
+    // response.setContentType(this.getContentType());
+    // response.setContentLength(baos.size());
+    //
+    // // Flush byte array to servlet output stream.
+    // ServletOutputStream out = response.getOutputStream();
+    // baos.writeTo(out);
+    // out.flush();
+    // }
 
-		INTEGER,
+    @Override
+    protected boolean generatesDownloadContent() {
+        return true;
+    }
 
-		DOUBLE,
+    /**
+     * Renders the Excel view, given the specified model.
+     */
+    @Override
+    protected final void renderMergedOutputModel(final Map<String, Object> model, final HttpServletRequest request, final HttpServletResponse response) {
+        // java.lang.OutOfMemoryError: Java heap space 발생시...
+        // -XX:PermSize=64M -XX:MaxPermSize=1000M
+        try (ByteArrayOutputStream baos = this.createTemporaryOutputStream(); SXSSFWorkbook workbook = new SXSSFWorkbook(100)) {
+            workbook.setCompressTempFiles(true);
 
-		DATE,
+            this.stringRightStyle = (XSSFCellStyle) workbook.createCellStyle();
+            this.stringRightStyle.setAlignment(HorizontalAlignment.RIGHT);
 
-		DATE_YYYYMMDD,
+            this.stringCenterStyle = (XSSFCellStyle) workbook.createCellStyle();
+            this.stringCenterStyle.setAlignment(HorizontalAlignment.CENTER);
 
-		DATE_YYYYMMDDHHMMSS;
-	}
+            this.numberStyle = (XSSFCellStyle) workbook.createCellStyle();
+            this.numberStyle.setDataFormat(workbook.getCreationHelper().createDataFormat().getFormat("#,##0"));
 
-	private XSSFCellStyle stringRightStyle;
-	private XSSFCellStyle stringCenterStyle;
-	private XSSFCellStyle numberStyle;
-	private XSSFCellStyle doubleStyle;
-	private XSSFCellStyle dateStyle;
+            this.doubleStyle = (XSSFCellStyle) workbook.createCellStyle();
+            this.doubleStyle.setDataFormat(workbook.getCreationHelper().createDataFormat().getFormat("#,##0.00"));
 
-	/** * Default Constructor. * Sets the content type of the view to "application/vnd.ms-excel". */
-	public AbstractExcelXView() {
-		this.setContentType(CONTENT_TYPE);
-	}
+            this.dateStyle = (XSSFCellStyle) workbook.createCellStyle();
+            this.dateStyle.setAlignment(HorizontalAlignment.CENTER);
 
-	@Override
-	protected boolean generatesDownloadContent() {
-		return true;
-	}
+            this.logger.debug("Created Excel Workbook from scratch");
 
-	/**
-	 * Renders the Excel view, given the specified model.
-	 */
-	@Override
-	protected final void renderMergedOutputModel(final Map<String, Object> model, final HttpServletRequest request, final HttpServletResponse response) throws Exception {
-		// java.lang.OutOfMemoryError: Java heap space 발생시...
-		// -XX:PermSize=64M -XX:MaxPermSize=1000M
-		try (ByteArrayOutputStream baos = this.createTemporaryOutputStream(); SXSSFWorkbook workbook = new SXSSFWorkbook(100)) {
-			workbook.setCompressTempFiles(true);
+            this.buildExcelDocument(model, workbook, request, response);
 
-			this.stringRightStyle = (XSSFCellStyle) workbook.createCellStyle();
-			this.stringRightStyle.setAlignment(HorizontalAlignment.RIGHT);
+            this.logger.debug("Excel Password : {}", model.get(PASSWORD));
+            if (StringUtils.isNotEmpty((String) model.get(PASSWORD))) {
+                final POIFSFileSystem fs = new POIFSFileSystem();
+                final EncryptionInfo info = new EncryptionInfo(EncryptionMode.standard);
+                final Encryptor enc = info.getEncryptor();
+                enc.confirmPassword(String.valueOf(model.get(PASSWORD)));
+                final OutputStream os = enc.getDataStream(fs);
+                workbook.write(os);
+                final ServletOutputStream out = response.getOutputStream();
+                fs.writeFilesystem(out);
+                response.setContentType(this.getContentType());
+                // response.setContentLength(baos.size());
+                out.flush();
+            } else {
+                workbook.write(baos);
+                this.writeToResponse(response, baos);
+            }
+        } catch (final Throwable e) {
+            this.logger.warn(ExceptionUtils.getStackTrace(e));
+            response.setContentType("text/html;charset=utf-8");
+            try (PrintWriter pw = response.getWriter()) {
+                pw.println("<script>");
+                pw.println("alert('파일이 없습니다.');");
+                pw.println("history.back();");
+                pw.println("</script>");
+            } catch (final IOException e1) {
+                this.logger.warn(ExceptionUtils.getStackTrace(e1));
+                throw new CommonException(e1);
+            }
+        }
+    }
 
-			this.stringCenterStyle = (XSSFCellStyle) workbook.createCellStyle();
-			this.stringCenterStyle.setAlignment(HorizontalAlignment.CENTER);
+    protected SXSSFWorkbook getTemplateSource(final String url, final HttpServletRequest request) throws Exception {
+        final ApplicationContext applicationContext = this.getApplicationContext();
+        if (applicationContext == null) {
+            this.logger.warn("applicationContext is null");
+            throw CommonException.EXCEPTION_ERROR_SYSTEM;
+        }
+        final LocalizedResourceHelper helper = new LocalizedResourceHelper(applicationContext);
+        final Locale userLocale = RequestContextUtils.getLocale(request);
+        final Resource inputFile = helper.findLocalizedResource(url, EXTENSION, userLocale);
 
-			this.numberStyle = (XSSFCellStyle) workbook.createCellStyle();
-			this.numberStyle.setDataFormat(workbook.getCreationHelper().createDataFormat().getFormat("#,##0"));
+        // Create the Excel document from the source.
+        if (this.logger.isDebugEnabled()) {
+            this.logger.debug("Loading Excel workbook from {}.", inputFile);
+        }
+        // POIFSFileSystem fs = new POIFSFileSystem(inputFile.getInputStream());
+        return new SXSSFWorkbook(new XSSFWorkbook(inputFile.getInputStream()));
+    }
 
-			this.doubleStyle = (XSSFCellStyle) workbook.createCellStyle();
-			this.doubleStyle.setDataFormat(workbook.getCreationHelper().createDataFormat().getFormat("#,##0.00"));
+    protected abstract void buildExcelDocument(Map<String, Object> model, SXSSFWorkbook workbook, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-			this.dateStyle = (XSSFCellStyle) workbook.createCellStyle();
-			this.dateStyle.setAlignment(HorizontalAlignment.CENTER);
+    protected SXSSFCell getCell(final SXSSFSheet sheet, final int row, final int col) {
+        SXSSFRow sheetRow = sheet.getRow(row);
+        if (sheetRow == null) {
+            sheetRow = sheet.createRow(row);
+        }
+        SXSSFCell cell = sheetRow.getCell(col);
+        if (cell == null) {
+            cell = sheetRow.createCell(col);
+        }
+        return cell;
+    }
 
-			this.logger.debug("Created Excel Workbook from scratch");
+    protected void autoSizeColumn(final SXSSFSheet sheet, final List<ExcelVO> excelVOs) {
+        sheet.trackAllColumnsForAutoSizing();
+        for (int j = 0;
+             j < excelVOs.size();
+             j++) {
+            sheet.autoSizeColumn(j);
+            // java.lang.IllegalArgumentException: The maximum column width for an individual cell is 255 characters. max 59999
+            int columWidth = (int) (sheet.getColumnWidth(j) * excelVOs.get(j).getCharByte() + 300);
+            columWidth = columWidth < 3000 ? 3000 : columWidth;
+            columWidth = columWidth > 59999 ? 59999 : columWidth;
+            sheet.setColumnWidth(j, columWidth);
+        }
+        sheet.untrackAllColumnsForAutoSizing();
+    }
 
-			this.buildExcelDocument(model, workbook, request, response);
+    protected void writeColumnData(final List<ExcelVO> excelVOs, final Integer columnIdx, final SXSSFCell cell, final String data) {
+        String strData = data;
+        if (excelVOs.get(columnIdx).getCellType().equals(CellType.INTEGER)) {
+            this.setInteger(cell, strData);
+        } else if (excelVOs.get(columnIdx).getCellType().equals(CellType.DOUBLE)) {
+            this.setDouble(cell, strData);
+        } else if (excelVOs.get(columnIdx).getCellType().equals(CellType.DATE) || excelVOs.get(columnIdx).getCellType().equals(CellType.DATE_YYYYMMDDHHMMSS)) {
+            strData = RegExUtils.removeAll(strData, "\\.0");
+            if (StringUtils.isNumeric(strData)) {
+                strData = MyDateUtils.getString(Long.parseLong(strData), MyDateUtils.YYYY_MM_DD_HH_MM_SS);
+            }
+            this.setDate(cell, strData);
+        } else if (excelVOs.get(columnIdx).getCellType().equals(CellType.DATE_YYYYMMDD)) {
+            strData = RegExUtils.removeAll(strData, "\\.0");
+            if (StringUtils.isNumeric(strData)) {
+                strData = MyDateUtils.getString(Long.parseLong(strData), MyDateUtils.YYYY_MM_DD);
+            }
+            this.setDate(cell, strData);
+        } else {
+            try {
+                if (MyNullUtils.isNotEmpty(excelVOs.get(columnIdx).getCodeObject()) && excelVOs.get(columnIdx).getCodeObject().getAsJsonObject().get(strData) != null) {
+                    if (excelVOs.get(columnIdx).getCellType().equals(CellType.STRING_CENTER)) {
+                        this.setStringCenter(cell, excelVOs.get(columnIdx).getCodeObject().getAsJsonObject().get(strData).getAsString());
+                    } else if (excelVOs.get(columnIdx).getCellType().equals(CellType.STRING_RIGHT)) {
+                        this.setStringRight(cell, excelVOs.get(columnIdx).getCodeObject().getAsJsonObject().get(strData).getAsString());
+                    } else {
+                        this.setString(cell, excelVOs.get(columnIdx).getCodeObject().getAsJsonObject().get(strData).getAsString());
+                    }
+                } else {
+                    if (excelVOs.get(columnIdx).getCellType().equals(CellType.STRING_CENTER)) {
+                        this.setStringCenter(cell, strData);
+                    } else if (excelVOs.get(columnIdx).getCellType().equals(CellType.STRING_RIGHT)) {
+                        this.setStringRight(cell, strData);
+                    } else {
+                        this.setString(cell, strData);
+                    }
+                }
+            } catch (final Throwable e) {
+                this.logger.warn(ExceptionUtils.getStackTrace(e));
+                this.setString(cell, strData);
+            }
+        }
+    }
 
-			this.logger.debug("Excel Password : {}", model.get(PASSWORD));
-			if (StringUtils.isNotEmpty((String) model.get(PASSWORD))) {
-				final POIFSFileSystem fs = new POIFSFileSystem();
-				final EncryptionInfo info = new EncryptionInfo(EncryptionMode.standard);
-				final Encryptor enc = info.getEncryptor();
-				enc.confirmPassword(String.valueOf(model.get(PASSWORD)));
-				final OutputStream os = enc.getDataStream(fs);
-				workbook.write(os);
-				final ServletOutputStream out = response.getOutputStream();
-				fs.writeFilesystem(out);
-				response.setContentType(this.getContentType());
-				// response.setContentLength(baos.size());
-				out.flush();
-			} else {
-				workbook.write(baos);
-				this.writeToResponse(response, baos);
-			}
-		} catch (final Throwable e) {
-			this.logger.warn(ExceptionUtils.getStackTrace(e));
-			response.setContentType("text/html;charset=utf-8");
-			try (PrintWriter pw = response.getWriter()) {
-				pw.println("<script>");
-				pw.println("alert('파일이 없습니다.');");
-				pw.println("history.back();");
-				pw.println("</script>");
-				return;
-			} catch (final IOException e1) {
-				this.logger.warn(ExceptionUtils.getStackTrace(e1));
-				throw new CommonException(e1);
-			}
-		}
-	}
+    protected void setString(final SXSSFCell cell, final String text) {
+        cell.setCellType(org.apache.poi.ss.usermodel.CellType.STRING);
+        cell.setCellValue(this.getSecureCellText(text));
+    }
 
-	// 엑셀 암호화 때문에 별도 구현
-	// @Override
-	// protected void writeToResponse(final HttpServletResponse response, final ByteArrayOutputStream baos) throws IOException {
-	// // Write content type and also length (determined via byte array).
-	// response.setContentType(this.getContentType());
-	// response.setContentLength(baos.size());
-	//
-	// // Flush byte array to servlet output stream.
-	// ServletOutputStream out = response.getOutputStream();
-	// baos.writeTo(out);
-	// out.flush();
-	// }
+    protected void setStringCenter(final SXSSFCell cell, final String text) {
+        cell.setCellType(org.apache.poi.ss.usermodel.CellType.STRING);
+        cell.setCellStyle(this.stringCenterStyle);
+        cell.setCellValue(this.getSecureCellText(text));
+    }
 
-	protected SXSSFWorkbook getTemplateSource(final String url, final HttpServletRequest request) throws Exception {
-		final ApplicationContext applicationContext = this.getApplicationContext();
-		if (applicationContext == null) {
-			this.logger.warn("applicationContext is null");
-			throw CommonException.EXCEPTION_ERROR_SYSTEM;
-		}
-		final LocalizedResourceHelper helper = new LocalizedResourceHelper(applicationContext);
-		final Locale userLocale = RequestContextUtils.getLocale(request);
-		final Resource inputFile = helper.findLocalizedResource(url, EXTENSION, userLocale);
+    protected void setStringRight(final SXSSFCell cell, final String text) {
+        cell.setCellType(org.apache.poi.ss.usermodel.CellType.STRING);
+        cell.setCellStyle(this.stringRightStyle);
+        cell.setCellValue(this.getSecureCellText(text));
+    }
 
-		// Create the Excel document from the source.
-		if (this.logger.isDebugEnabled()) {
-			this.logger.debug("Loading Excel workbook from {}.", inputFile);
-		}
-		// POIFSFileSystem fs = new POIFSFileSystem(inputFile.getInputStream());
-		return new SXSSFWorkbook(new XSSFWorkbook(inputFile.getInputStream()));
-	}
+    protected void setInteger(final SXSSFCell cell, final String text) {
+        cell.setCellType(org.apache.poi.ss.usermodel.CellType.NUMERIC);
+        cell.setCellStyle(this.numberStyle);
+        try {
+            cell.setCellValue((long) Double.parseDouble(this.getSecureCellText(text)));
+        } catch (final Throwable e) {
+            this.logger.warn("Excel setInteger() error\n{}.", ExceptionUtils.getStackTrace(e));
+            cell.setCellValue(this.getSecureCellText(text));
+        }
+    }
 
-	protected abstract void buildExcelDocument(Map<String, Object> model, SXSSFWorkbook workbook, HttpServletRequest request, HttpServletResponse response) throws Exception;
+    protected void setDouble(final SXSSFCell cell, final String text) {
+        cell.setCellType(org.apache.poi.ss.usermodel.CellType.NUMERIC);
+        cell.setCellStyle(this.doubleStyle);
+        try {
+            cell.setCellValue(Double.parseDouble(this.getSecureCellText(text)));
+        } catch (final Throwable e) {
+            this.logger.warn("Excel setDouble() error\n{}.", ExceptionUtils.getStackTrace(e));
+            cell.setCellValue(this.getSecureCellText(text));
+        }
+    }
 
-	protected SXSSFCell getCell(final SXSSFSheet sheet, final int row, final int col) {
-		SXSSFRow sheetRow = sheet.getRow(row);
-		if (sheetRow == null) {
-			sheetRow = sheet.createRow(row);
-		}
-		SXSSFCell cell = sheetRow.getCell(col);
-		if (cell == null) {
-			cell = sheetRow.createCell(col);
-		}
-		return cell;
-	}
+    protected void setDate(final SXSSFCell cell, final String text) {
+        cell.setCellType(org.apache.poi.ss.usermodel.CellType.STRING);
+        cell.setCellStyle(this.dateStyle);
+        try {
+            cell.setCellValue(this.getSecureCellText(text));
+        } catch (final Throwable e) {
+            this.logger.warn("Excel setDate() error\n{}.", ExceptionUtils.getStackTrace(e));
+        }
+    }
 
-	protected void autoSizeColumn(final SXSSFSheet sheet, final List<ExcelVO> excelVOs) {
-		sheet.trackAllColumnsForAutoSizing();
-		for (int j = 0; j < excelVOs.size(); j++) {
-			sheet.autoSizeColumn(j);
-			// java.lang.IllegalArgumentException: The maximum column width for an individual cell is 255 characters. max 59999
-			int columWidth = (int) (sheet.getColumnWidth(j) * excelVOs.get(j).getCharByte() + 300);
-			columWidth = columWidth < 3000 ? 3000 : columWidth;
-			columWidth = columWidth > 59999 ? 59999 : columWidth;
-			sheet.setColumnWidth(j, columWidth);
-		}
-		sheet.untrackAllColumnsForAutoSizing();
-	}
+    protected String getSecureCellText(final String text) {
+        if (StringUtils.isEmpty(text) || StringUtils.equals(text, "null")) {
+            return "";
+        } else {
+            return text;
+        }
+    }
 
-	public static void addHeaderOfRowNo(final List<ExcelVO> excelVOList, final String title) {
-		addHeader(excelVOList, title, ROW_NUMBER, AbstractExcelXView.CellType.STRING_CENTER, null);
-	}
+    public enum CellType {
+        STRING,
 
-	public static void addHeader(final List<ExcelVO> excelVOList, final String title, final String dbColName, final CellType cellType) {
-		addHeader(excelVOList, title, dbColName, cellType, null);
-	}
+        STRING_CENTER,
 
-	public static void addHeader(final List<ExcelVO> excelVOList, final String title, final String dbColName, final CellType cellType, final JsonElement codeObject) {
-		final ExcelVO excelVO = new ExcelVO();
-		excelVO.setTitle(title);
-		excelVO.setDbColName(dbColName);
-		excelVO.setCellType(cellType);
-		excelVO.setCodeObject(codeObject);
-		if (cellType.equals(CellType.STRING)) {
-			excelVO.setCharByte(1.2D);
-		}
-		excelVOList.add(excelVO);
-	}
+        STRING_RIGHT,
 
-	protected void writeColumnData(final List<ExcelVO> excelVOs, final Integer columnIdx, final SXSSFCell cell, final String data) {
-		String strData = data;
-		if (excelVOs.get(columnIdx).getCellType().equals(CellType.INTEGER)) {
-			this.setInteger(cell, strData);
-		} else if (excelVOs.get(columnIdx).getCellType().equals(CellType.DOUBLE)) {
-			this.setDouble(cell, strData);
-		} else if (excelVOs.get(columnIdx).getCellType().equals(CellType.DATE) || excelVOs.get(columnIdx).getCellType().equals(CellType.DATE_YYYYMMDDHHMMSS)) {
-			strData = RegExUtils.removeAll(strData, "\\.0");
-			if (StringUtils.isNumeric(strData)) {
-				strData = MyDateUtils.getString(Long.parseLong(strData), MyDateUtils.YYYY_MM_DD_HH_MM_SS);
-			}
-			this.setDate(cell, strData);
-		} else if (excelVOs.get(columnIdx).getCellType().equals(CellType.DATE_YYYYMMDD)) {
-			strData = RegExUtils.removeAll(strData, "\\.0");
-			if (StringUtils.isNumeric(strData)) {
-				strData = MyDateUtils.getString(Long.parseLong(strData), MyDateUtils.YYYY_MM_DD);
-			}
-			this.setDate(cell, strData);
-		} else {
-			try {
-				if (MyNullUtils.isNotEmpty(excelVOs.get(columnIdx).getCodeObject()) && excelVOs.get(columnIdx).getCodeObject().getAsJsonObject().get(strData) != null) {
-					if (excelVOs.get(columnIdx).getCellType().equals(CellType.STRING_CENTER)) {
-						this.setStringCenter(cell, excelVOs.get(columnIdx).getCodeObject().getAsJsonObject().get(strData).getAsString());
-					} else if (excelVOs.get(columnIdx).getCellType().equals(CellType.STRING_RIGHT)) {
-						this.setStringRight(cell, excelVOs.get(columnIdx).getCodeObject().getAsJsonObject().get(strData).getAsString());
-					} else {
-						this.setString(cell, excelVOs.get(columnIdx).getCodeObject().getAsJsonObject().get(strData).getAsString());
-					}
-				} else {
-					if (excelVOs.get(columnIdx).getCellType().equals(CellType.STRING_CENTER)) {
-						this.setStringCenter(cell, strData);
-					} else if (excelVOs.get(columnIdx).getCellType().equals(CellType.STRING_RIGHT)) {
-						this.setStringRight(cell, strData);
-					} else {
-						this.setString(cell, strData);
-					}
-				}
-			} catch (final Throwable e) {
-				this.logger.warn(ExceptionUtils.getStackTrace(e));
-				this.setString(cell, strData);
-			}
-		}
-	}
+        INTEGER,
 
-	protected void setString(final SXSSFCell cell, final String text) {
-		cell.setCellType(org.apache.poi.ss.usermodel.CellType.STRING);
-		cell.setCellValue(this.getSecureCellText(text));
-	}
+        DOUBLE,
 
-	protected void setStringCenter(final SXSSFCell cell, final String text) {
-		cell.setCellType(org.apache.poi.ss.usermodel.CellType.STRING);
-		cell.setCellStyle(this.stringCenterStyle);
-		cell.setCellValue(this.getSecureCellText(text));
-	}
+        DATE,
 
-	protected void setStringRight(final SXSSFCell cell, final String text) {
-		cell.setCellType(org.apache.poi.ss.usermodel.CellType.STRING);
-		cell.setCellStyle(this.stringRightStyle);
-		cell.setCellValue(this.getSecureCellText(text));
-	}
+        DATE_YYYYMMDD,
 
-	protected void setInteger(final SXSSFCell cell, final String text) {
-		cell.setCellType(org.apache.poi.ss.usermodel.CellType.NUMERIC);
-		cell.setCellStyle(this.numberStyle);
-		try {
-			cell.setCellValue((long) Double.parseDouble(this.getSecureCellText(text)));
-		} catch (final Throwable e) {
-			this.logger.warn("Excel setInteger() error\n{}.", ExceptionUtils.getStackTrace(e));
-			cell.setCellValue(this.getSecureCellText(text));
-		}
-	}
-
-	protected void setDouble(final SXSSFCell cell, final String text) {
-		cell.setCellType(org.apache.poi.ss.usermodel.CellType.NUMERIC);
-		cell.setCellStyle(this.doubleStyle);
-		try {
-			cell.setCellValue(Double.parseDouble(this.getSecureCellText(text)));
-		} catch (final Throwable e) {
-			this.logger.warn("Excel setDouble() error\n{}.", ExceptionUtils.getStackTrace(e));
-			cell.setCellValue(this.getSecureCellText(text));
-		}
-	}
-
-	protected void setDate(final SXSSFCell cell, final String text) {
-		cell.setCellType(org.apache.poi.ss.usermodel.CellType.STRING);
-		cell.setCellStyle(this.dateStyle);
-		try {
-			cell.setCellValue(this.getSecureCellText(text));
-		} catch (final Throwable e) {
-			this.logger.warn("Excel setDate() error\n{}.", ExceptionUtils.getStackTrace(e));
-		}
-	}
-
-	protected String getSecureCellText(final String text) {
-		if (StringUtils.isEmpty(text) || StringUtils.equals(text, "null")) {
-			return "";
-		} else {
-			return text;
-		}
-	}
+        DATE_YYYYMMDDHHMMSS
+    }
 }
