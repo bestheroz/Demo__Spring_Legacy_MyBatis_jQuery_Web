@@ -95,7 +95,7 @@
                                 <sshexec host="${ftp.serverIp2}" trust="yes" username="${ftp.id}" password="${ftp.passwd}" timeout="20000" failonerror="false"
                                          command="chmod 755 ${ftp.path}/ROOT.zip ; rm -rf ${ftp.path}/resources ; unzip -o ${ftp.path}/ROOT.zip -d ${ftp.path}/ ; rm -rf ${ftp.path}/ROOT.zip"/>
                             </then>
-                            <else></else>
+                            <else/>
                         </if>
                     </tasks>
                 </configuration>
