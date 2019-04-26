@@ -75,19 +75,19 @@ public class MyMaskUtils {
         final String dirty = StringUtils.substring(RegExUtils.removeAll(MyEscapeUtils.unescapeAll(mobile), "-"), 0, 11);
 
         if (dirty.length() == 11) {
-            returnValue.append(dirty.substring(0, 3)).append("-****-").append(dirty.substring(7));
+            returnValue.append(dirty, 0, 3).append("-****-").append(dirty.substring(7));
         } else if (dirty.length() == 10) {
             if (StringUtils.startsWith(dirty, "02")) {
-                returnValue.append(dirty.substring(0, 2));
+                returnValue.append(dirty, 0, 2);
                 returnValue.append("-****-");
                 returnValue.append(dirty.substring(6));
             } else {
-                returnValue.append(dirty.substring(0, 3));
+                returnValue.append(dirty, 0, 3);
                 returnValue.append("-***-");
                 returnValue.append(dirty.substring(6));
             }
         } else if (dirty.length() == 9) {
-            returnValue.append(dirty.substring(0, 2));
+            returnValue.append(dirty, 0, 2);
             returnValue.append("-***-");
             returnValue.append(dirty.substring(5));
         } else {

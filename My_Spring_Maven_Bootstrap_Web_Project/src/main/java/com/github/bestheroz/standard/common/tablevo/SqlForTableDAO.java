@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.UpdateProvider;
 
 import java.util.List;
 
-public abstract interface SqlForTableDAO {
+public interface SqlForTableDAO {
     // @SelectProvider(type = SqlForTableVO.class, method = SqlForTableVO.SELECT)
     // List<Object> getList(final Object vo, final List<String> whereKey, final String orderByColumns) throws CommonException;
     //

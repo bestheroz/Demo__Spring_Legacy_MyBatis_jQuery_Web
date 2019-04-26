@@ -313,7 +313,7 @@ MyHandlebars.drawDynamicHtml($('#resultTry4_1'), 'html', 'template04', data);
             let data = {
                 dateValue: 1513745846373,
                 name: "abcdefghijk"
-            }
+            };
             MyHandlebars.drawDynamicHtml($('#resultTry4_1'), 'text', 'template04', data);
         }
     </script>

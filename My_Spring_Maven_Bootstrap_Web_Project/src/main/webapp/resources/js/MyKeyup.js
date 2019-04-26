@@ -6,7 +6,7 @@ const MyKeyup = {
             obj.value = obj.value.replace(/[^0-9]/g, '');
             evt.preventDefault ? evt.preventDefault() : (evt.returnValue = false);
             alert('숫자만 입력해주세요.');
-            return;
+
         }
     }
 };

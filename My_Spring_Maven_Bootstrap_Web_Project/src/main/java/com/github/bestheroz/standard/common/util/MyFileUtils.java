@@ -311,17 +311,11 @@ public class MyFileUtils {
     }
 
     public static boolean isFileType(final MultipartFile multipartFile, final FileType fileType) throws CommonException {
-        if (fileType.extList.contains(getExtension(multipartFile)) && fileType.mimeTypeList.contains(getMimeType(multipartFile))) {
-            return true;
-        }
-        return false;
+        return fileType.extList.contains(getExtension(multipartFile)) && fileType.mimeTypeList.contains(getMimeType(multipartFile));
     }
 
     public static boolean isFileType(final File file, final FileType fileType) throws CommonException {
-        if (fileType.extList.contains(getExtension(file)) && fileType.mimeTypeList.contains(getMimeType(file))) {
-            return true;
-        }
-        return false;
+        return fileType.extList.contains(getExtension(file)) && fileType.mimeTypeList.contains(getMimeType(file));
     }
 
     public static String getMimeType(final MultipartFile multipartFile) throws CommonException {

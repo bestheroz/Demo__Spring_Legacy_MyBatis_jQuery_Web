@@ -77,7 +77,7 @@ public enum CommonExceptionCode {
     private String code;
     private String messsage;
 
-    private CommonExceptionCode(final String code, final String message) {
+    CommonExceptionCode(final String code, final String message) {
         this.code = code;
         this.messsage = message;
     }
