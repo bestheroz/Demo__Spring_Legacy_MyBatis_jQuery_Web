@@ -1,22 +1,5 @@
 package com.github.bestheroz.standard.common.taglibrary;
 
-import java.io.File;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.TagSupport;
-
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.github.bestheroz.sample.web.login.LoginVO;
 import com.github.bestheroz.sample.web.menu.MenuService;
 import com.github.bestheroz.sample.web.menu.MenuVO;
@@ -25,6 +8,21 @@ import com.github.bestheroz.standard.common.exception.CommonException;
 import com.github.bestheroz.standard.common.util.MyAccessBeanUtils;
 import com.github.bestheroz.standard.common.util.MySessionUtils;
 import com.google.gson.JsonObject;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.tagext.TagSupport;
+import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 public class MenuTag extends TagSupport {
     private static final long serialVersionUID = -8260051129668642050L;

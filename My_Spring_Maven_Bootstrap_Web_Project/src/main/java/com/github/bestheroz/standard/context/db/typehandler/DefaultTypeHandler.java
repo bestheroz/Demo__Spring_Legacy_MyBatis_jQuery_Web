@@ -1,15 +1,14 @@
 package com.github.bestheroz.standard.context.db.typehandler;
 
-import java.sql.CallableStatement;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
+import com.github.bestheroz.standard.common.util.MyEscapeUtils;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedTypes;
 import org.apache.ibatis.type.TypeHandler;
 
-import com.github.bestheroz.standard.common.util.MyEscapeUtils;
+import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @MappedTypes(String.class)
 public class DefaultTypeHandler implements TypeHandler<String> {

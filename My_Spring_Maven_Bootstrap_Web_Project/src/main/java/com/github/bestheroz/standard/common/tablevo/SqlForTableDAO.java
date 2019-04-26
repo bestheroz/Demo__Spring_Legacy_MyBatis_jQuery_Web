@@ -1,13 +1,12 @@
 package com.github.bestheroz.standard.common.tablevo;
 
-import java.util.List;
-
+import com.github.bestheroz.standard.common.exception.CommonException;
 import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.UpdateProvider;
 
-import com.github.bestheroz.standard.common.exception.CommonException;
+import java.util.List;
 
 public abstract interface SqlForTableDAO {
     // @SelectProvider(type = SqlForTableVO.class, method = SqlForTableVO.SELECT)

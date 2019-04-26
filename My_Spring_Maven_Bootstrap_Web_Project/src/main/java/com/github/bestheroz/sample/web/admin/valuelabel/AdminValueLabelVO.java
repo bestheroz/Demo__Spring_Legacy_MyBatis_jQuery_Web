@@ -1,8 +1,8 @@
 package com.github.bestheroz.sample.web.admin.valuelabel;
 
-import java.io.Serializable;
-
 import org.joda.time.LocalDateTime;
+
+import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class AdminValueLabelVO implements Serializable {

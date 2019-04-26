@@ -1,17 +1,13 @@
 package com.github.bestheroz.standard.context.db.typehandler;
 
-import java.sql.CallableStatement;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
-
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedJdbcTypes;
 import org.apache.ibatis.type.MappedTypes;
 import org.apache.ibatis.type.TypeHandler;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
+
+import java.sql.*;
 
 @MappedTypes(DateTime.class)
 @MappedJdbcTypes(value = {JdbcType.TIME, JdbcType.TIMESTAMP, JdbcType.DATE})

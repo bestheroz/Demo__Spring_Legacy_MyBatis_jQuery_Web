@@ -1,8 +1,8 @@
 package com.github.bestheroz.sample.web.table.samplecodemst;
 
-import java.io.Serializable;
-
 import org.joda.time.LocalDateTime;
+
+import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class TestTableSampleCodeMstVO implements Serializable {

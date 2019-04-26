@@ -1,7 +1,6 @@
 package com.github.bestheroz.standard.context.logging;
 
-import javax.servlet.http.HttpServletRequest;
-
+import com.github.bestheroz.standard.common.util.MyMapperUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 import org.springframework.web.util.UrlPathHelper;
 
-import com.github.bestheroz.standard.common.util.MyMapperUtils;
+import javax.servlet.http.HttpServletRequest;
 
 @Configuration
 public class RequestLoggingFilter extends CommonsRequestLoggingFilter {

@@ -1,9 +1,9 @@
 package com.github.bestheroz.sample.web.tablevo.samplefilemst;
 
+import org.joda.time.LocalDateTime;
+
 import java.io.Serializable;
 import java.util.Arrays;
-
-import org.joda.time.LocalDateTime;
 
 @SuppressWarnings("serial")
 public class TableSampleFileMstVO implements Serializable {

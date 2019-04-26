@@ -1,6 +1,6 @@
 package com.github.bestheroz.standard.context.filter.https;
 
-import java.io.IOException;
+import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -8,8 +8,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.web.filter.GenericFilterBean;
+import java.io.IOException;
 
 public class HttpsFilter extends GenericFilterBean {
 

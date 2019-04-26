@@ -1,13 +1,12 @@
 package com.github.bestheroz.sample.web.guide.paging;
 
+import com.github.bestheroz.standard.common.exception.CommonException;
+import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.github.bestheroz.standard.common.exception.CommonException;
-import com.google.gson.JsonObject;
 
 @Controller
 public class SampleGuidePagingController {

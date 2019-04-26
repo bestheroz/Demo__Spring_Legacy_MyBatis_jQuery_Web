@@ -1,8 +1,8 @@
 package com.github.bestheroz.sample.web.admin.menu;
 
-import java.io.Serializable;
-
 import org.joda.time.LocalDateTime;
+
+import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class AdminMenuVO implements Serializable {

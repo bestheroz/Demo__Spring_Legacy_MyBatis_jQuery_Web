@@ -1,10 +1,6 @@
 package com.github.bestheroz.standard.context.message;
 
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-
+import com.github.bestheroz.standard.common.util.MyMapperUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -12,7 +8,9 @@ import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
-import com.github.bestheroz.standard.common.util.MyMapperUtils;
+import javax.annotation.PostConstruct;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 @Configuration
 public class MessageConverterContext {

@@ -1,10 +1,9 @@
 package com.github.bestheroz.standard.common.enc;
 
+import com.github.bestheroz.standard.common.util.MyAesUtils;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.github.bestheroz.standard.common.util.MyAesUtils;
 
 class TestAES {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());

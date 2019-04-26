@@ -1,9 +1,8 @@
 package com.github.bestheroz.standard.common.util;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.nhncorp.lucy.security.xss.XssPreventer;
 import com.nhncorp.lucy.security.xss.XssSaxFilter;
+import org.apache.commons.lang3.StringUtils;
 
 public class MyEscapeUtils {
     protected MyEscapeUtils() {

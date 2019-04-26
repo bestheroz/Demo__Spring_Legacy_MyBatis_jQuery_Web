@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration>
-<taglib version="2.1" xmlns="http://java.sun.com/xml/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<taglib version="2.1" xmlns="http://java.sun.com/xml/j2ee"
 >
     <tlib-version>2.1</tlib-version>
     <short-name>my</short-name>

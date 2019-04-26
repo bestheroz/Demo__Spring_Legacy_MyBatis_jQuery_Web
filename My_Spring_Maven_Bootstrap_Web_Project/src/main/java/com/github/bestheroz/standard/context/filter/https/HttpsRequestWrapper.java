@@ -1,12 +1,8 @@
 package com.github.bestheroz.standard.context.filter.https;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.apache.commons.lang3.StringUtils;
+
+import javax.servlet.http.*;
 
 public class HttpsRequestWrapper extends HttpServletRequestWrapper {
 

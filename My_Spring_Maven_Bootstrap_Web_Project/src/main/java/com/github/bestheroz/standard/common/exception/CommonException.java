@@ -1,17 +1,16 @@
 package com.github.bestheroz.standard.common.exception;
 
-import java.util.List;
-
+import com.github.bestheroz.standard.common.util.MyMapperUtils;
+import com.github.bestheroz.standard.common.util.MyNullUtils;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 
-import com.github.bestheroz.standard.common.util.MyMapperUtils;
-import com.github.bestheroz.standard.common.util.MyNullUtils;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class CommonException extends RuntimeException {

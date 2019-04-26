@@ -1,15 +1,14 @@
 package com.github.bestheroz.sample.web.tablevo.samplefilemst;
 
-import java.util.List;
-
+import com.github.bestheroz.standard.common.exception.CommonException;
+import com.github.bestheroz.standard.common.tablevo.SqlForTableDAO;
+import com.github.bestheroz.standard.common.tablevo.SqlForTableVO;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.SelectProvider;
 
-import com.github.bestheroz.standard.common.exception.CommonException;
-import com.github.bestheroz.standard.common.tablevo.SqlForTableDAO;
-import com.github.bestheroz.standard.common.tablevo.SqlForTableVO;
+import java.util.List;
 
 @Mapper
 public interface TableSampleFileMstDAO extends SqlForTableDAO {

@@ -1,12 +1,10 @@
 package com.github.bestheroz.standard.context.aop.logging.encoder;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.github.bestheroz.standard.common.util.MyDateUtils;
-
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.CoreConstants;
 import ch.qos.logback.core.LayoutBase;
+import com.github.bestheroz.standard.common.util.MyDateUtils;
+import org.apache.commons.lang3.StringUtils;
 import studio.raptor.sqlparser.SQLUtils;
 
 public class LoggingLayout extends LayoutBase<ILoggingEvent> {

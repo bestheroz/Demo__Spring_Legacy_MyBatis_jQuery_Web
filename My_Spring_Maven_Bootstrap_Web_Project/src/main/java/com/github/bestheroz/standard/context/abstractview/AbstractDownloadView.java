@@ -1,15 +1,10 @@
 package com.github.bestheroz.standard.context.abstractview;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.github.bestheroz.standard.common.exception.CommonException;
+import com.github.bestheroz.standard.common.exception.CommonExceptionCode;
+import com.github.bestheroz.standard.common.util.MyFileUtils;
+import com.github.bestheroz.standard.common.util.MyFileUtils.FileType;
+import com.github.bestheroz.standard.common.util.MyNullUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
@@ -17,11 +12,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.servlet.view.AbstractView;
 
-import com.github.bestheroz.standard.common.exception.CommonException;
-import com.github.bestheroz.standard.common.exception.CommonExceptionCode;
-import com.github.bestheroz.standard.common.util.MyFileUtils;
-import com.github.bestheroz.standard.common.util.MyNullUtils;
-import com.github.bestheroz.standard.common.util.MyFileUtils.FileType;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.util.Map;
 
 public class AbstractDownloadView extends AbstractView {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());

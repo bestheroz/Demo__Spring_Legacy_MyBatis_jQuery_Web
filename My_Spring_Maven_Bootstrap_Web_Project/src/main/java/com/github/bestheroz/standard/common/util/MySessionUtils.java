@@ -1,15 +1,13 @@
 package com.github.bestheroz.standard.common.util;
 
-import java.util.Enumeration;
-
-import javax.servlet.http.HttpSession;
-
+import com.github.bestheroz.sample.web.login.LoginVO;
+import com.google.gson.JsonObject;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.bestheroz.sample.web.login.LoginVO;
-import com.google.gson.JsonObject;
+import javax.servlet.http.HttpSession;
+import java.util.Enumeration;
 
 public class MySessionUtils {
     private static final Logger LOGGER = LoggerFactory.getLogger(MySessionUtils.class);
