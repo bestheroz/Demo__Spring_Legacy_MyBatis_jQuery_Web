@@ -1,4 +1,4 @@
-<%@ page session="true" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/WEB-INF/include/include.jsp" %>
 <my:html table="YES" modal="YES" validator="YES" fileDownloader="YES">
     <body>

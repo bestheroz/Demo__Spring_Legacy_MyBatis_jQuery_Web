@@ -9,7 +9,8 @@ const MyModal = {
         }));
     },
     close: function (paramObj) {
-        return $.when($(paramObj).find('a[rel="jmodal:close"]').trigger('click'));
+        paramObj = paramObj || $('a[rel="jmodal:close"]:visible');
+        return $(paramObj).trigger('click');
     }
 };
 
@@ -29,11 +30,8 @@ $.jmodal.defaults = {
 // Point during the overlay's fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)
 };
 $(document).ready(function () {
-    $(document).on('click', 'a[rel="jmodal:close"]', function (event) {
-        event.stopPropagation();
-        MyModal.close();
-    }).on('keydown', function (event) {
-        if (event.key === 'Escape' && $('.jquery-modal').length > 0) {
+    $(document).on('keydown', function (event) {
+        if (event.key === 'Escape' && $('.jquery-modal:visible').length > 0) {
             event.stopPropagation();
             MyModal.close();
         }
