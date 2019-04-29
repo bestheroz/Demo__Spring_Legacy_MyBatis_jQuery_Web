@@ -202,9 +202,7 @@ public abstract class AbstractExcelXView extends AbstractView {
 
     protected void autoSizeColumn(final SXSSFSheet sheet, final List<ExcelVO> excelVOs) {
         sheet.trackAllColumnsForAutoSizing();
-        for (int j = 0;
-             j < excelVOs.size();
-             j++) {
+        for (int j = 0; j < excelVOs.size(); j++) {
             sheet.autoSizeColumn(j);
             // java.lang.IllegalArgumentException: The maximum column width for an individual cell is 255 characters. max 59999
             int columWidth = (int) (sheet.getColumnWidth(j) * excelVOs.get(j).getCharByte() + 300);

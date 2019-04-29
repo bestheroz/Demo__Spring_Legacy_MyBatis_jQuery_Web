@@ -12,7 +12,7 @@ const MyKeyup = {
 };
 // 포커스가 text readonly 속성의 input에 있을 경우 백스페이스 불가
 $(document).off('keydown', 'input').on('keydown', 'input', function (e) {
-    if (e.keyCode === 8) {
+    if (e.key === 'Backspace') {
         let doPrevent = true;
         let types = ["text", "password", "file", "search", "email", "number", "date", "color", "datetime", "datetime-local", "month", "range", "search", "tel", "time", "url", "week"];
         let d = $(e.srcElement || e.target);
@@ -29,13 +29,13 @@ $(document).off('keydown', 'input').on('keydown', 'input', function (e) {
             e.preventDefault();
             return false;
         }
-    } else if (e.keyCode === 13) {
-        event.preventDefault();
+    } else if (e.key === 'Enter') {
+        e.preventDefault();
         return false;
     }
 });
 $(document).off('keydown', 'textarea').on('keydown', 'textarea', function (e) {
-    if (e.keyCode === 8) {
+    if (e.key === 'Backspace') {
         let doPrevent = true;
         let d = $(e.srcElement || e.target);
         let disabled = d.prop("readonly") || d.prop("disabled");

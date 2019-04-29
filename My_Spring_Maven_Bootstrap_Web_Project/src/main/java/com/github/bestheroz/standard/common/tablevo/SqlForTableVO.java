@@ -15,6 +15,7 @@ import java.text.MessageFormat;
 import java.util.*;
 import java.util.Map.Entry;
 
+@SuppressWarnings("ALL")
 public class SqlForTableVO {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     public static final String COUNT = "countTableVO";
@@ -106,6 +107,7 @@ public class SqlForTableVO {
         }
     }
 
+    @SuppressWarnings("unused")
     public <T extends Object> String selectTableVO(final T vo, final List<String> whereKey, final String orderByColumns) {
         final SQL sql = new SQL();
         final String tableName = getTableName(vo);

@@ -69,9 +69,7 @@ public class HugeExcelService extends AbstractExcelXView {
         cellStyle.setFont(font);
 
         final SXSSFRow row2 = sheet.createRow(2);
-        for (int i = 0;
-             i < excelVOs.size();
-             i++) {
+        for (int i = 0; i < excelVOs.size(); i++) {
             final SXSSFCell cell = row2.createCell(i);
             cell.setCellValue(excelVOs.get(i).getTitle());
             cell.setCellStyle(cellStyle);
@@ -84,19 +82,15 @@ public class HugeExcelService extends AbstractExcelXView {
              Statement createStatement = connection.createStatement();
              ResultSet executeQuery = createStatement.executeQuery(sql)) {
 
-            for (int i = 0;
-                 executeQuery.next();
-                 i++) {
+            for (int i = 0; executeQuery.next(); i++) {
                 if (i != 0 && i % 200 == 0) {
                     this.logger.debug("[Excel]{} writed {} rows", sheet.getSheetName(), i + 1);
                 }
 
                 final SXSSFRow row = sheet.createRow(3 + i);
-                for (int j = 0;
-                     j < excelVOs.size();
-                     j++) {
+                for (int j = 0; j < excelVOs.size(); j++) {
                     final Object object = executeQuery.getObject(CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, excelVOs.get(j).getDbColName()));
-                    String strData = null;
+                    String strData;
                     if (object != null) {
                         strData = String.valueOf(object);
                     } else {

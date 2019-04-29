@@ -19,9 +19,7 @@ public class MyMaskUtils {
         if (StringUtils.contains(dirty, "@")) {
             final String[] split = StringUtils.split(dirty, "@", 2);
 
-            for (int i = 0;
-                 i < split[0].length();
-                 i++) {
+            for (int i = 0; i < split[0].length(); i++) {
                 if (i % 2 == 0) {
                     returnValue.append(dirty.charAt(i));
                 } else {
@@ -33,9 +31,7 @@ public class MyMaskUtils {
                 returnValue.append(split[1]);
             }
         } else {
-            for (int i = 0;
-                 i < dirty.length();
-                 i++) {
+            for (int i = 0; i < dirty.length(); i++) {
                 if (i % 2 == 0) {
                     returnValue.append(dirty.charAt(i));
                 } else {
@@ -54,9 +50,7 @@ public class MyMaskUtils {
         final String dirty = MyEscapeUtils.unescapeAll(id);
         final StringBuilder returnValue = new StringBuilder();
 
-        for (int i = 0;
-             i < dirty.length();
-             i++) {
+        for (int i = 0; i < dirty.length(); i++) {
             if (i % 2 == 0) {
                 returnValue.append(dirty.charAt(i));
             } else {
@@ -104,16 +98,13 @@ public class MyMaskUtils {
         final String dirty = MyEscapeUtils.unescapeAll(name);
         final StringBuilder returnValue = new StringBuilder();
 
-        for (int i = 0;
-             i < dirty.length();
-             i++) {
+        for (int i = 0; i < dirty.length(); i++) {
             if (i % 2 == 0) {
                 returnValue.append(dirty.charAt(i));
             } else {
                 returnValue.append("*");
             }
         }
-
         return returnValue.toString();
     }
 

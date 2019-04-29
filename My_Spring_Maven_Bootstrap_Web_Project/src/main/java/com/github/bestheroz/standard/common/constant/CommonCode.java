@@ -2,6 +2,7 @@ package com.github.bestheroz.standard.common.constant;
 
 import com.github.bestheroz.standard.context.init.InitWebConstantContext;
 
+@SuppressWarnings("ALL")
 public class CommonCode {
     protected CommonCode() {
         throw new UnsupportedOperationException();
@@ -27,7 +28,7 @@ public class CommonCode {
     public static final String YES = "YES";
     public static final String NO = "NO";
     public static final String Y = "Y";
-    public static final String N = "N";
+    @SuppressWarnings("unused") public static final String N = "N";
 
     // CommonResponseException 에 정의된 필드와 같다.
     public static final String RESPONSE_CODE = "responseCode";

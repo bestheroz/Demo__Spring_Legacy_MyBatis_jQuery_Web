@@ -4,7 +4,7 @@ import org.joda.time.LocalDateTime;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
+@SuppressWarnings("ALL")
 public class TestTableSampleMenuMstVO implements Serializable {
     private Integer menuId;
     private String menuNm;
@@ -48,6 +48,7 @@ public class TestTableSampleMenuMstVO implements Serializable {
         return this.parMenuId;
     }
 
+    @SuppressWarnings("unused")
     public void setParMenuId(final Integer parMenuId) {
         this.parMenuId = parMenuId;
     }
@@ -108,6 +109,7 @@ public class TestTableSampleMenuMstVO implements Serializable {
         this.regDt = regDt;
     }
 
+    @SuppressWarnings("unused")
     public String getUpdMemberId() {
         return this.updMemberId;
     }
@@ -120,6 +122,7 @@ public class TestTableSampleMenuMstVO implements Serializable {
         return this.updDt;
     }
 
+    @SuppressWarnings("unused")
     public void setUpdDt(final LocalDateTime updDt) {
         this.updDt = updDt;
     }

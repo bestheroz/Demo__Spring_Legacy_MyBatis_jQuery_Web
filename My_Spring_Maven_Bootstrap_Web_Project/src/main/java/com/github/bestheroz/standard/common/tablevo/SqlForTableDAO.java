@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.UpdateProvider;
 
 import java.util.List;
 
+@SuppressWarnings("ALL")
 public interface SqlForTableDAO {
     // @SelectProvider(type = SqlForTableVO.class, method = SqlForTableVO.SELECT)
     // List<Object> getList(final Object vo, final List<String> whereKey, final String orderByColumns) throws CommonException;
@@ -18,6 +19,7 @@ public interface SqlForTableDAO {
     @SelectProvider(type = SqlForTableVO.class, method = SqlForTableVO.COUNT)
     int count(final Object vo, final List<String> whereKey) throws CommonException;
 
+    @SuppressWarnings("unused")
     @InsertProvider(type = SqlForTableVO.class, method = SqlForTableVO.INSERT)
         // @SelectKey(statement = "SELECT SEQSEQSEQSEQ.NEXTVAL FROM DUAL", keyProperty = "seq", before = true, resultType = Long.class)
     <T extends Object> void insert(final T vo) throws CommonException;

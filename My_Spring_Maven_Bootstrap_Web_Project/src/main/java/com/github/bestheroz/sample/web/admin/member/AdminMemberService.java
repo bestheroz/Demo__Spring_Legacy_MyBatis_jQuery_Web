@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -35,10 +36,10 @@ public class AdminMemberService {
 
     public void updateSampleMemberMst(final TableSampleMemberMstVO vo, final LoginVO loginVO) throws CommonException {
         vo.setUpdMemberId(loginVO.getMemberId());
-        this.tableMemberMstDAO.update(vo, Arrays.asList("memberId"), null);
+        this.tableMemberMstDAO.update(vo, Collections.singletonList("memberId"), null);
     }
 
     public void deleteSampleMemberMst(final TableSampleMemberMstVO vo) throws CommonException {
-        this.tableMemberMstDAO.delete(vo, Arrays.asList("memberId"));
+        this.tableMemberMstDAO.delete(vo, Collections.singletonList("memberId"));
     }
 }

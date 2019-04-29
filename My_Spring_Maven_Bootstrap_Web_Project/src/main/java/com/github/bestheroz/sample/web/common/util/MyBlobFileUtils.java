@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class MyBlobFileUtils {
@@ -81,7 +82,7 @@ public class MyBlobFileUtils {
                     tableSampleFileMstVO.setMimeTyp(MyFileUtils.getMimeType(multipartFile));
                     tableSampleFileMstVO.setFileNm(multipartFile.getOriginalFilename());
                     tableSampleFileMstVO.setFileNmExt(MyFileUtils.getExtension(multipartFile));
-                    MyAccessBeanUtils.getBean(TableSampleFileMstDAO.class).update(tableSampleFileMstVO, Arrays.asList("fileSeq"), null);
+                    MyAccessBeanUtils.getBean(TableSampleFileMstDAO.class).update(tableSampleFileMstVO, Collections.singletonList("fileSeq"), null);
                 } catch (final IOException e) {
                     LOGGER.warn(ExceptionUtils.getStackTrace(e));
                     throw new CommonException(e);

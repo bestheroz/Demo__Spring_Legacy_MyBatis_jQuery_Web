@@ -21,6 +21,7 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -53,17 +54,17 @@ public class AdminValueLabelService {
 
     public void updateSampleCodeMst(final TableSampleCodeMstVO vo, final LoginVO loginVO) throws CommonException {
         vo.setUpdMemberId(loginVO.getMemberId());
-        this.tableSampleCodeMstDAO.update(vo, Arrays.asList("grcode"), null);
+        this.tableSampleCodeMstDAO.update(vo, Collections.singletonList("grcode"), null);
         this.session.removeAttribute("ValueLabel." + vo.getGrcode());
     }
 
     // @Transactional
     public void deleteCOMM_CODE(final TableSampleCodeMstVO vo) throws CommonException {
-        /**
-         * <pre>
-         * 아래 PlatformTransactionManager 를 이용하면 메소드 내에 특정 부분만을 트랜잭션 처리할 수 있다.
-         * 일반적으로는 상단에 주석되어 있는 @Transactional 을 사용하여 메소드 전체를 트랜잭션 처리한다.
-         * </pre>
+        /*
+          <pre>
+          아래 PlatformTransactionManager 를 이용하면 메소드 내에 특정 부분만을 트랜잭션 처리할 수 있다.
+          일반적으로는 상단에 주석되어 있는 @Transactional 을 사용하여 메소드 전체를 트랜잭션 처리한다.
+          </pre>
          */
         final DefaultTransactionDefinition defaultTransactionDefinition = new DefaultTransactionDefinition();
         defaultTransactionDefinition.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
@@ -72,7 +73,7 @@ public class AdminValueLabelService {
         try {
             final TableSampleCodeDetVO tableSampleCodeDetVO = MyMapperUtils.writeObjectAsObject(vo, TableSampleCodeDetVO.class);
             try {
-                this.tableSampleCodeDetDAO.delete(tableSampleCodeDetVO, Arrays.asList("grcode"));
+                this.tableSampleCodeDetDAO.delete(tableSampleCodeDetVO, Collections.singletonList("grcode"));
             } catch (final CommonException e) {
                 if (!e.isExceptionNoDataSuccesss()) {
                     this.logger.warn(ExceptionUtils.getStackTrace(e));
@@ -80,7 +81,7 @@ public class AdminValueLabelService {
                 }
             }
             final TableSampleCodeMstVO tableSampleCodeMstVO = MyMapperUtils.writeObjectAsObject(vo, TableSampleCodeMstVO.class);
-            this.tableSampleCodeMstDAO.delete(tableSampleCodeMstVO, Arrays.asList("grcode"));
+            this.tableSampleCodeMstDAO.delete(tableSampleCodeMstVO, Collections.singletonList("grcode"));
             this.session.removeAttribute("ValueLabel." + tableSampleCodeMstVO.getGrcode());
             this.platformTransactionManager.commit(status);
         } catch (final CommonException e) {

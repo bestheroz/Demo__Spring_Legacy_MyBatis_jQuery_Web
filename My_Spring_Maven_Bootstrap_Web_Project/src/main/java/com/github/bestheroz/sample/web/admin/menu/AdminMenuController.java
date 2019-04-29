@@ -114,10 +114,8 @@ public class AdminMenuController {
         AbstractExcelXView.addHeader(excelVOList, "작업자", "updMemberId", ExcelService.CellType.STRING);
         model.addAttribute(AbstractExcelXView.EXCEL_VOS, excelVOList);
 
-        final StringBuilder sql = new StringBuilder("SELECT SMM.MENU_ID , SMM.MENU_NM , SMM.MENU_TYP , SMM.PAR_MENU_ID , SMM.USE_YN , SMM.POWER ,");
-        sql.append(" SMM.DISP_SEQ , SMM.URL , SMM.REMARK1 , SMM.UPD_DT , SMM.UPD_MEMBER_ID FROM SAMPLE_MENU_MST SMM WHERE 1=1 ORDER BY SMM.UPD_DT DESC");
-
-        model.addAttribute(AbstractExcelXView.SQL, sql.toString());
+        model.addAttribute(AbstractExcelXView.SQL, "SELECT SMM.MENU_ID , SMM.MENU_NM , SMM.MENU_TYP , SMM.PAR_MENU_ID , SMM.USE_YN , SMM.POWER ," +
+                " SMM.DISP_SEQ , SMM.URL , SMM.REMARK1 , SMM.UPD_DT , SMM.UPD_MEMBER_ID FROM SAMPLE_MENU_MST SMM WHERE 1=1 ORDER BY SMM.UPD_DT DESC");
 
         // model.addAttribute(ExcelService.PASSWORD, "1234");
 

@@ -53,9 +53,7 @@ public class DbTableVOCheckerContext {
                     }
                     if (!isInvalid) {
                         // 2. VO변수 자료형 == 테이블 컬럼 자료형 체크
-                        for (int i = 0;
-                             i < metaInfo.getColumnCount();
-                             i++) {
+                        for (int i = 0; i < metaInfo.getColumnCount(); i++) {
                             final String columnName = metaInfo.getColumnName(i + 1);
                             final String camelColumnName = CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, columnName);
                             if (filedList.contains(camelColumnName)) {
@@ -77,9 +75,7 @@ public class DbTableVOCheckerContext {
                     }
                     if (isInvalid) {
                         final StringBuilder voSb = new StringBuilder(className + ".java를 아래값으로 동기화 해주세요.\n");
-                        for (int i = 0;
-                             i < metaInfo.getColumnCount();
-                             i++) {
+                        for (int i = 0; i < metaInfo.getColumnCount(); i++) {
                             String fieldType;
                             final String columnTypeName = metaInfo.getColumnTypeName(i + 1);
                             final String columnName = metaInfo.getColumnName(i + 1);
@@ -113,7 +109,7 @@ public class DbTableVOCheckerContext {
                                 fieldType = "Unknown";
                                 this.logger.warn("케이스 빠짐 {} : {}", columnName, columnTypeName);
                             }
-                            voSb.append("private " + fieldType + " " + camelColumnName + ";\n");
+                            voSb.append("private ").append(fieldType).append(" ").append(camelColumnName).append(";\n");
                         }
                         this.logger.warn("\n" + voSb.toString() + "\n");
                     }

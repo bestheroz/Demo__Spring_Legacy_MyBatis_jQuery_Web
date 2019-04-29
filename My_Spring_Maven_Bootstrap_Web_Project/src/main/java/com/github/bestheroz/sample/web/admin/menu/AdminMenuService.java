@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -37,12 +38,12 @@ public class AdminMenuService {
     public void updateSampleMenuMst(final TableSampleMenuMstVO vo, final LoginVO loginVO) throws CommonException {
         vo.setUpdMemberId(loginVO.getMemberId());
         this.session.removeAttribute(MenuTag.MENU_TAG);
-        this.tableSampleMenuMstDAO.update(vo, Arrays.asList("menuId"), null);
+        this.tableSampleMenuMstDAO.update(vo, Collections.singletonList("menuId"), null);
     }
 
     public void deleteSampleMenuMst(final TableSampleMenuMstVO vo) throws CommonException {
         this.session.removeAttribute(MenuTag.MENU_TAG);
-        this.tableSampleMenuMstDAO.delete(vo, Arrays.asList("menuId"));
+        this.tableSampleMenuMstDAO.delete(vo, Collections.singletonList("menuId"));
     }
 
     public List<ValueLabelVO> getPMenuValueLableVOList(final JsonObject param) throws CommonException {

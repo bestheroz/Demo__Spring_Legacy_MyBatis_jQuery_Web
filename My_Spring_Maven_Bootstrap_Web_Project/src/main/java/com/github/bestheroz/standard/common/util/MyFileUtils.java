@@ -76,10 +76,8 @@ public class MyFileUtils {
             } else if (StringUtils.contains(header, "Trident")) {
                 encodedFilename = URLEncoder.encode(fileName, StandardCharsets.UTF_8.displayName()).replaceAll("\\+", "%20");
             } else if (StringUtils.contains(header, "Chrome")) {
-                final StringBuffer sb = new StringBuffer();
-                for (int i = 0;
-                     i < fileName.length();
-                     i++) {
+                final StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < fileName.length(); i++) {
                     final char c = fileName.charAt(i);
                     if (c > '~') {
                         sb.append(URLEncoder.encode("" + c, StandardCharsets.UTF_8.displayName()));
@@ -205,7 +203,7 @@ public class MyFileUtils {
         WORD(Arrays.asList("docx", "doc", "dotx"), Arrays.asList("application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                 "application/vnd.openxmlformats-officedocument.wordprocessingml.template")),
 
-        PDF(Arrays.asList("pdf"), Arrays.asList("application/pdf", "application/x-pdf")),
+        PDF(Collections.singletonList("pdf"), Arrays.asList("application/pdf", "application/x-pdf")),
 
         ILLEGAL(Arrays.asList("exe", "sh", "csh", "ai"),
                 Arrays.asList("application/octet-stream", "application/x-sh", "application/x-shar", "text/x-script.sh", "application/x-csh", "text/x-script.csh", "application/postscript"));

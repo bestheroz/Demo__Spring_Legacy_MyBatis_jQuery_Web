@@ -53,7 +53,7 @@ public class MyMapperUtils {
     }
 
     public static JsonElement writeObjectAsJsonElement(final Object content) throws CommonException {
-        if (content != null && content instanceof String) {
+        if (content instanceof String) {
             try {
                 return new JsonParser().parse((String) content);
             } catch (final Throwable e) {

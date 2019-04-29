@@ -4,7 +4,7 @@ import org.joda.time.LocalDateTime;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
+@SuppressWarnings("ALL")
 public class MenuVO implements Serializable {
     private Integer menuId;
     private String menuNm;
@@ -58,6 +58,7 @@ public class MenuVO implements Serializable {
         return this.menuTyp;
     }
 
+    @SuppressWarnings("unused")
     public void setMenuTyp(final String menuTyp) {
         this.menuTyp = menuTyp;
     }

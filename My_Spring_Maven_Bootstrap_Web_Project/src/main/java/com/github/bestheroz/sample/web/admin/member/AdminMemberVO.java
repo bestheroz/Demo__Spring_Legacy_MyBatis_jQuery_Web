@@ -4,7 +4,7 @@ import org.joda.time.LocalDateTime;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
+@SuppressWarnings("ALL")
 public class AdminMemberVO implements Serializable {
     private String memberId;
     private String memberNm;
@@ -80,6 +80,7 @@ public class AdminMemberVO implements Serializable {
         this.updMemberId = updMemberId;
     }
 
+    @SuppressWarnings("unused")
     public LocalDateTime getUpdDt() {
         return this.updDt;
     }

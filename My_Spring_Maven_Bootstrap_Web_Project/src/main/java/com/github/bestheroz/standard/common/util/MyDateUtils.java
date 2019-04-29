@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+@SuppressWarnings("ALL")
 public class MyDateUtils {
     protected MyDateUtils() {
         throw new UnsupportedOperationException();
@@ -26,7 +27,7 @@ public class MyDateUtils {
     public static final String HHMMSS = "HHmmss";
     public static final String YYYYMM = "yyyyMM";
     public static final String YYYYMMDD = "yyyyMMdd";
-    public static final String YYYYMMDDHHMM = "yyyyMMddHHmm";
+    @SuppressWarnings("unused") public static final String YYYYMMDDHHMM = "yyyyMMddHHmm";
     public static final String YYYYMMDDHHMMSS = "yyyyMMddHHmmss";
 
     public static String getStringNow(final String pattern) {
@@ -40,6 +41,7 @@ public class MyDateUtils {
         return new DateTime(timestamp).toString(pattern);
     }
 
+    @SuppressWarnings("unused")
     public static String getString(final Date date, final String pattern) {
         if (date == null) {
             return "";

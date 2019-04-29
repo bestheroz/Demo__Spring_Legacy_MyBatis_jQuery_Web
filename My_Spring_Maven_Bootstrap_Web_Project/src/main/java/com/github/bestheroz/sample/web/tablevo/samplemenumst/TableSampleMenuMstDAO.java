@@ -10,9 +10,11 @@ import org.apache.ibatis.annotations.SelectProvider;
 
 import java.util.List;
 
+@SuppressWarnings("ALL")
 @Mapper
 public interface TableSampleMenuMstDAO extends SqlForTableDAO {
 
+    @SuppressWarnings("unused")
     @SelectProvider(type = SqlForTableVO.class, method = SqlForTableVO.SELECT)
     List<TableSampleMenuMstVO> getList(final TableSampleMenuMstVO vo, final List<String> whereKey, final String orderByColumns) throws CommonException;
 

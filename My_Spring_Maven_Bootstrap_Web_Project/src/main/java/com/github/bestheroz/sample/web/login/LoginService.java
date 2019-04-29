@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
+import java.util.Collections;
 
 @Service
 public class LoginService {
@@ -26,7 +27,7 @@ public class LoginService {
 
     public void loginProcess(final LoginVO vo, final HttpSession session) throws CommonException {
         final TableSampleMemberMstVO tableSampleMemberMstVO = MyMapperUtils.writeObjectAsObject(vo, TableSampleMemberMstVO.class);
-        final TableSampleMemberMstVO sampleMemberMstVO = this.tableSampleMemberMstDAO.getVO(tableSampleMemberMstVO, Arrays.asList("memberId"));
+        final TableSampleMemberMstVO sampleMemberMstVO = this.tableSampleMemberMstDAO.getVO(tableSampleMemberMstVO, Collections.singletonList("memberId"));
 
         // 로그인 관문
         // 1. 유저가 없으면

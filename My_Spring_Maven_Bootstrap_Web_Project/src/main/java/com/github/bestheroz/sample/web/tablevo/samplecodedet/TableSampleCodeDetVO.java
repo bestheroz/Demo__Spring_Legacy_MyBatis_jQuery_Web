@@ -4,7 +4,7 @@ import org.joda.time.LocalDateTime;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
+@SuppressWarnings("ALL")
 public class TableSampleCodeDetVO implements Serializable {
     private String grcode;
     private String code;
@@ -21,6 +21,7 @@ public class TableSampleCodeDetVO implements Serializable {
         return this.grcode;
     }
 
+    @SuppressWarnings("unused")
     public void setGrcode(final String grcode) {
         this.grcode = grcode;
     }

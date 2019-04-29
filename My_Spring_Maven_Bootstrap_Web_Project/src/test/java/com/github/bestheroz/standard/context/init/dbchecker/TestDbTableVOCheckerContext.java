@@ -27,12 +27,14 @@ import java.util.List;
 //@SpringJUnitConfig(locations = { "file:src/main/webapp/WEB-INF/spring/root-context.xml", "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" })
 //@WebAppConfiguration
 //@Transactional
+@SuppressWarnings("ALL")
 public class TestDbTableVOCheckerContext {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private SqlSession sqlSession;
 
     // @Test
+    @SuppressWarnings("unused")
     public void validDbTableVO() {
         try (Statement stmt = this.sqlSession.getConnection().createStatement()) {
             final List<Class<?>> targetClassList = this.findMyTypes("com.github.bestheroz");
@@ -54,9 +56,7 @@ public class TestDbTableVOCheckerContext {
                     }
 
                     // 2. VO변수 자료형 == 테이블 컬럼 자료형 체크
-                    for (int i = 0;
-                         i < metaInfo.getColumnCount();
-                         i++) {
+                    for (int i = 0; i < metaInfo.getColumnCount(); i++) {
                         final String columnName = metaInfo.getColumnName(i + 1);
                         final String camelColumnName = CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, columnName);
                         if (filedList.contains(camelColumnName)) {

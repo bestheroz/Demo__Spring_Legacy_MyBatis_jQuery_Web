@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -65,10 +66,10 @@ public class AdminFileService {
             }
         }
         vo.setUpdMemberId(loginVO.getMemberId());
-        this.tableSampleFileMstDAO.update(vo, Arrays.asList("fileSeq"), null);
+        this.tableSampleFileMstDAO.update(vo, Collections.singletonList("fileSeq"), null);
     }
 
     public void deleteSampleFileMst(final TableSampleFileMstVO vo) throws CommonException {
-        this.tableSampleFileMstDAO.delete(vo, Arrays.asList("fileSeq"));
+        this.tableSampleFileMstDAO.delete(vo, Collections.singletonList("fileSeq"));
     }
 }

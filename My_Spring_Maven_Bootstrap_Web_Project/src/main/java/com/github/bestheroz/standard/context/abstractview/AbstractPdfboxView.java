@@ -94,7 +94,6 @@ public abstract class AbstractPdfboxView extends AbstractView {
                 pw.println("alert('파일이 없습니다.');");
                 pw.println("history.back();");
                 pw.println("</script>");
-                return;
             } catch (final IOException e1) {
                 this.logger.warn(ExceptionUtils.getStackTrace(e1));
                 throw new CommonException(e1);

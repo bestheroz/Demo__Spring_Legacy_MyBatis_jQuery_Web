@@ -307,7 +307,7 @@ public class SqlSessionTemplateOverride extends SqlSessionTemplate {
     }
 
     private Object convertJsonToMap(final Object parameter) {
-        if (parameter != null && parameter instanceof JsonObject) {
+        if (parameter instanceof JsonObject) {
             return MyMapperUtils.writeObjectAsHashMap(parameter);
         } else {
             return parameter;

@@ -46,12 +46,10 @@ public class PdfService extends AbstractPdfboxView {
 
         response.setHeader("Content-Disposition", "attachment; filename=" + fileName + "_" + MyDateUtils.getStringNow(MyDateUtils.YYYYMMDDHHMMSS) + AbstractPdfboxView.EXTENSION + ";");
 
-        final float[] widths = new float[pdfVOs.size()];
-        for (int i = 0;
-             i < pdfVOs.size();
-             i++) {
-            widths[i] = pdfVOs.get(i).getWidth();
-        }
+//        final float[] widths = new float[pdfVOs.size()];
+//        for (int i = 0; i < pdfVOs.size(); i++) {
+//            widths[i] = pdfVOs.get(i).getWidth();
+//        }
 
         final PDPage page = new PDPage();
         page.setMediaBox(new PDRectangle(PDRectangle.A4.getHeight(), PDRectangle.A4.getWidth()));
@@ -74,8 +72,8 @@ public class PdfService extends AbstractPdfboxView {
     private void createColumnLabel(final PDDocument document, final BaseTable table, final List<PdfVO> pdfVOs) throws IOException {
         // Create Header row
         final Row<PDPage> headerRow = table.createRow(15F);
-        for (int j = 0; j < pdfVOs.size(); j++) {
-            final Cell<PDPage> cell = headerRow.createCell(pdfVOs.get(j).getWidth(), pdfVOs.get(j).getTitle());
+        for (PdfVO pdfVO : pdfVOs) {
+            final Cell<PDPage> cell = headerRow.createCell(pdfVO.getWidth(), pdfVO.getTitle());
             cell.setFont(super.font);
             cell.setFillColor(Color.LIGHT_GRAY);
         }
@@ -83,18 +81,14 @@ public class PdfService extends AbstractPdfboxView {
     }
 
     private void addRowData(final PDDocument document, final BaseTable table, final List<PdfVO> pdfVOs, final JsonArray listData) throws IOException {
-        for (int i = 0;
-             i < listData.size();
-             i++) {
+        for (int i = 0; i < listData.size(); i++) {
             if (i != 0 && i % 200 == 0) {
                 this.logger.debug("[PDF] writed {} rows", i + 1);
             }
 
             final Row<PDPage> row = table.createRow(10F);
             final JsonObject rowData = listData.get(i).getAsJsonObject();
-            for (int j = 0;
-                 j < pdfVOs.size();
-                 j++) {
+            for (int j = 0; j < pdfVOs.size(); j++) {
                 final JsonElement jsonElement = rowData.get(pdfVOs.get(j).getDbColName());
                 String strData = "";
                 if (MyNullUtils.isNotEmpty(jsonElement)) {

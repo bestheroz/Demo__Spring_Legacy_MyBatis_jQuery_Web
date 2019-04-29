@@ -67,9 +67,7 @@ public class ExcelService extends AbstractExcelXView {
         cellStyle.setFont(font);
 
         final SXSSFRow row2 = sheet.createRow(2);
-        for (int i = 0;
-             i < excelVOs.size();
-             i++) {
+        for (int i = 0; i < excelVOs.size(); i++) {
             final SXSSFCell cell = row2.createCell(i);
             cell.setCellValue(excelVOs.get(i).getTitle());
             cell.setCellStyle(cellStyle);
@@ -77,17 +75,13 @@ public class ExcelService extends AbstractExcelXView {
     }
 
     private void addRowData(final SXSSFSheet sheet, final List<ExcelVO> excelVOs, final JsonArray listData) throws SQLException, NoSuchFieldException, SecurityException {
-        for (int i = 0;
-             i < listData.size();
-             i++) {
+        for (int i = 0; i < listData.size(); i++) {
             if (i != 0 && i % 100 == 0) {
                 this.logger.debug("[Excel]{} writed {} rows", sheet.getSheetName(), i + 1);
             }
             final SXSSFRow row = sheet.createRow(3 + i);
             final JsonObject jo = listData.get(i).getAsJsonObject();
-            for (int j = 0;
-                 j < excelVOs.size();
-                 j++) {
+            for (int j = 0; j < excelVOs.size(); j++) {
                 final JsonElement jsonElement = jo.get(excelVOs.get(j).getDbColName());
                 if (jsonElement != null && !jsonElement.isJsonNull() && StringUtils.isNotEmpty(jsonElement.getAsString())) {
                     this.writeColumnData(excelVOs, j, row.createCell(j), jsonElement.getAsString());

@@ -57,7 +57,7 @@
     <script data-for="ready">
         $(document).ready(function () {
             $('#memberPw, #memberId').on('keydown', function (event) {
-                if (event.keyCode === 13) {
+                if (event.key === 'Enter') {
                     proc();
                 }
             });
@@ -89,7 +89,7 @@
                 } else {
                     MyCookie.removeCookie("savedLoginId");
                 }
-                window.location.reload(true);
+                window.location.reload();
             });
         }
 

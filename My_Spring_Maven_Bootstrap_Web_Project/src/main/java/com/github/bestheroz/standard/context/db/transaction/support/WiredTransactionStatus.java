@@ -9,10 +9,11 @@ import java.util.List;
 /**
  * @author Lee HeeGu <elf_hazard@naver.com>,<elfHazard@gmail.com>
  */
+@SuppressWarnings("ALL")
 public class WiredTransactionStatus implements TransactionStatus {
     List<TransactionStatus> statusList = new ArrayList<>();
 
-    private boolean newTransaction;
+    @SuppressWarnings("unused") private boolean newTransaction;
 
     private boolean rollbackOnly;
 

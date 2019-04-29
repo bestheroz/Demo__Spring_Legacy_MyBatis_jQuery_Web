@@ -4,7 +4,7 @@ import org.joda.time.LocalDateTime;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
+@SuppressWarnings("ALL")
 public class TestTableSampleMemberMstVO implements Serializable {
     private String memberId;
     private String memberPw;
@@ -34,6 +34,7 @@ public class TestTableSampleMemberMstVO implements Serializable {
         this.memberPw = memberPw;
     }
 
+    @SuppressWarnings("unused")
     public String getMemberNm() {
         return this.memberNm;
     }
@@ -66,6 +67,7 @@ public class TestTableSampleMemberMstVO implements Serializable {
         this.closeYn = closeYn;
     }
 
+    @SuppressWarnings("unused")
     public LocalDateTime getExpireDt() {
         return this.expireDt;
     }

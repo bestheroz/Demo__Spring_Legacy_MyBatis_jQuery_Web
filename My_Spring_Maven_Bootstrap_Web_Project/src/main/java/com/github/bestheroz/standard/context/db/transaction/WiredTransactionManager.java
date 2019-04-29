@@ -79,11 +79,9 @@ public class WiredTransactionManager implements PlatformTransactionManager, Init
             return;
         }
 
-        PlatformTransactionManager subTransactionManager = null;
+        PlatformTransactionManager subTransactionManager;
 
-        for (int index = 0;
-             index < this.transactionManagers.size();
-             index = index + 1) {
+        for (int index = 0; index < this.transactionManagers.size(); index = index + 1) {
             subTransactionManager = this.transactionManagers.get(index);
             subTransactionManager.commit(wiredTransactionStatus.getTransactionStatus(index));
         }
@@ -120,12 +118,10 @@ public class WiredTransactionManager implements PlatformTransactionManager, Init
     public void rollback(final TransactionStatus status) throws TransactionException {
         final WiredTransactionStatus wiredTransactionStatus = (WiredTransactionStatus) status;
 
-        PlatformTransactionManager subTransactionManager = null;
+        PlatformTransactionManager subTransactionManager;
         TransactionException reserved = null;
 
-        for (int index = 0;
-             index < this.transactionManagers.size();
-             index = index + 1) {
+        for (int index = 0; index < this.transactionManagers.size(); index = index + 1) {
             subTransactionManager = this.transactionManagers.get(index);
 
             try {

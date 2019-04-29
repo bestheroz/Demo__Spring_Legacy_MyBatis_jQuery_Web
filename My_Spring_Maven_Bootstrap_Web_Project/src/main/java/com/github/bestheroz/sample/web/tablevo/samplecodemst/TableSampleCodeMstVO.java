@@ -4,7 +4,7 @@ import org.joda.time.LocalDateTime;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
+@SuppressWarnings("ALL")
 public class TableSampleCodeMstVO implements Serializable {
     private String grcode;
     private String grcodeNm;
@@ -38,6 +38,7 @@ public class TableSampleCodeMstVO implements Serializable {
         this.remark1 = remark1;
     }
 
+    @SuppressWarnings("unused")
     public String getRegMemberId() {
         return this.regMemberId;
     }

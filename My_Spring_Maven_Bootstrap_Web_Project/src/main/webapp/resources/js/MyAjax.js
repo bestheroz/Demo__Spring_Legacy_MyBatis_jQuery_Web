@@ -145,7 +145,7 @@ const MyAjax = {
         }
         if (response.responseCode === 'E011') {
             if (confirm("페이지 시간초과\n페이지를 새로고침하여 로그인페이지로 안내합니다.")) {
-                window.location.reload(true);
+                window.location.reload();
             }
             return false;
         }

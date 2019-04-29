@@ -38,9 +38,7 @@ public class TestCreateTableVO {
                 // 1. VO만들기
                 final StringBuilder voSb = new StringBuilder();
 
-                for (int i = 0;
-                     i < metaInfo.getColumnCount();
-                     i++) {
+                for (int i = 0; i < metaInfo.getColumnCount(); i++) {
                     final String columnName = metaInfo.getColumnName(i + 1);
                     final String columnTypeName = metaInfo.getColumnTypeName(i + 1);
                     final String camelColumnName = CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, columnName);
@@ -78,9 +76,6 @@ public class TestCreateTableVO {
 
                 }
                 System.out.println(voSb);
-
-            } catch (final Throwable e) {
-                throw e;
             }
             System.out.println();
         } catch (final Throwable e) {
@@ -93,9 +88,7 @@ public class TestCreateTableVO {
     }
 
     private StringBuilder appendNewline(final StringBuilder sb, final String appendStr, final int indent) {
-        for (int i = 0;
-             i < indent;
-             i++) {
+        for (int i = 0; i < indent; i++) {
             sb.append("    ");
         }
         sb.append(appendStr);

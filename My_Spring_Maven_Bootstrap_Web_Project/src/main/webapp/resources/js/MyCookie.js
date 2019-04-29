@@ -9,14 +9,14 @@ const MyCookie = {
             wcstart = i;
             wcend = (i + wcname.length);
 
-            if (document.cookie.substring(wcstart, wcend) == wcname) {
-                if ((end = document.cookie.indexOf(';', wcend)) == -1) {
+            if (document.cookie.substring(wcstart, wcend) === wcname) {
+                if ((end = document.cookie.indexOf(';', wcend)) === -1) {
                     end = document.cookie.length;
                 }
                 return decodeURI(document.cookie.substring(wcend, end));
             }
             i = document.cookie.indexOf('', i) + 1;
-            if (i == 0) {
+            if (i === 0) {
                 break;
             }
         }
@@ -36,7 +36,7 @@ const MyCookie = {
         todayDate.setDate(todayDate.getDate() + expiredays);
         document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";
         // 00시 쿠키 셋팅에 문제가 있는 브라우저가 간혹 있는 관계로 쿠키가 셋팅이 되지 않는 경우 기존의 24시간 기준으로 쿠키를 셋팅함.
-        if (expiredays > -1 && MyCommon.getCookie(name) != value) {
+        if (expiredays > -1 && MyCommon.getCookie(name) !== value) {
             MyCommon.setCookie(name, value, expiredays);
         }
     },

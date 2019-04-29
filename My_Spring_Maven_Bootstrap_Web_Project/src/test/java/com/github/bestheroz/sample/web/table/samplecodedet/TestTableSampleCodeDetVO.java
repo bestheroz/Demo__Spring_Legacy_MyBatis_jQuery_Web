@@ -4,7 +4,7 @@ import org.joda.time.LocalDateTime;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
+@SuppressWarnings("ALL")
 public class TestTableSampleCodeDetVO implements Serializable {
     private String grcode;
     private String code;
@@ -69,6 +69,7 @@ public class TestTableSampleCodeDetVO implements Serializable {
         return this.regMemberId;
     }
 
+    @SuppressWarnings("unused")
     public void setRegMemberId(final String regMemberId) {
         this.regMemberId = regMemberId;
     }
@@ -77,6 +78,7 @@ public class TestTableSampleCodeDetVO implements Serializable {
         return this.regDt;
     }
 
+    @SuppressWarnings("unused")
     public void setRegDt(final LocalDateTime regDt) {
         this.regDt = regDt;
     }
@@ -85,6 +87,7 @@ public class TestTableSampleCodeDetVO implements Serializable {
         return this.updMemberId;
     }
 
+    @SuppressWarnings("unused")
     public void setUpdMemberId(final String updMemberId) {
         this.updMemberId = updMemberId;
     }

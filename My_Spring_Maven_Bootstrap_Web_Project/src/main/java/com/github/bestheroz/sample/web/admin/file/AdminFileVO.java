@@ -4,7 +4,7 @@ import org.joda.time.LocalDateTime;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
+@SuppressWarnings("ALL")
 public class AdminFileVO implements Serializable {
     private Integer fileSeq;
     private String fileNm;
@@ -13,6 +13,7 @@ public class AdminFileVO implements Serializable {
     private String updMemberId;
     private LocalDateTime updDt;
 
+    @SuppressWarnings("unused")
     public Integer getFileSeq() {
         return this.fileSeq;
     }

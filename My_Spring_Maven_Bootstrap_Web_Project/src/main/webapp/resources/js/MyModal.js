@@ -33,7 +33,7 @@ $(document).ready(function () {
         event.stopPropagation();
         MyModal.close();
     }).on('keydown', function (event) {
-        if (event.keyCode === 27 && $('.jquery-modal').length > 0) {
+        if (event.key === 'Escape' && $('.jquery-modal').length > 0) {
             event.stopPropagation();
             MyModal.close();
         }

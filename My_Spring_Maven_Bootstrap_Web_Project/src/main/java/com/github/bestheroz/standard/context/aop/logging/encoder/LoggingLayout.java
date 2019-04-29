@@ -83,9 +83,9 @@ public class LoggingLayout extends LayoutBase<ILoggingEvent> {
         formattedMessage = StringUtils.remove(formattedMessage, "java.sql.Statement.execute: ");
         formattedMessage = StringUtils.remove(formattedMessage, "java.sql.PreparedStatement.execute: ");
         if (StringUtils.length(formattedMessage) > 20000) {
-            sbuf.append("\n" + StringUtils.abbreviate(formattedMessage, 20000) + "\n");
+            sbuf.append("\n").append(StringUtils.abbreviate(formattedMessage, 20000)).append("\n");
         } else {
-            sbuf.append("\n" + SQLUtils.formatOracle(formattedMessage) + "\n");
+            sbuf.append("\n").append(SQLUtils.formatOracle(formattedMessage)).append("\n");
         }
         sbuf.append(CoreConstants.LINE_SEPARATOR);
     }
