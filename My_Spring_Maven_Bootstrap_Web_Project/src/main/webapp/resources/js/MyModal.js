@@ -9,8 +9,11 @@ const MyModal = {
         }));
     },
     close: function (paramObj) {
-        paramObj = paramObj || $('a[rel="jmodal:close"]:visible');
-        return $(paramObj).trigger('click');
+        let $target = $(paramObj).find('a[rel="jmodal:close"]');
+        if ($target.length === 0) {
+            $target = $('a[rel="jmodal:close"]:visible');
+        }
+        return $target.trigger('click');
     }
 };
 
