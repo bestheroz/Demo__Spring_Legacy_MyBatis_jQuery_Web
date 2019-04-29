@@ -14,7 +14,7 @@ const MyCommon = {
     },
     // 재요청시 XSS가 중복으로 처리되어 &, # 등의 문자가 중복 필터처리 된다. 때문에 값을 원본으로 변환하여 .text(value), .val(value) 로 처리한다.
     unescapeXss: function (input) {
-        return $('<textarea />').html(input).text();
+        return $('<textarea></textarea>').html(input).text();
     },
     defaultLinkOptions: {
         center: 'screen',
@@ -107,7 +107,7 @@ const MyCommon = {
         return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
     },
     submitFormGET: function (url, param, target) {
-        let $form = $('<form method="GET" />');
+        let $form = $('<form method="GET"></form>');
         $form.attr('action', url);
         target && $form.attr('target', target);
         for (let key in param) {
@@ -117,7 +117,7 @@ const MyCommon = {
         $form[0].submit();
     },
     submitFormPOST: function (url, param, target) {
-        let $form = $('<form method="POST" />');
+        let $form = $('<form method="POST"></form>');
         $form.attr('action', url);
         target && $form.attr('target', target);
         for (let key in param) {

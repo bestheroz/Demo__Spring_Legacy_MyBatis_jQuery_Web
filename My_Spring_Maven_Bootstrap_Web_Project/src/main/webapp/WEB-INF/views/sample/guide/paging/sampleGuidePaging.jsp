@@ -77,7 +77,7 @@
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 &lt;nav&gt;

@@ -31,7 +31,7 @@
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly/>
                 </div>
                 <h4>프로토콜별 js 선언</h4>
                 <pre class="prettyprint">

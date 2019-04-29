@@ -49,7 +49,7 @@
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 jQuery.isNumeric(value);
@@ -72,7 +72,7 @@ jQuery.isNumeric(value);
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 validator.isEmail(value);
@@ -95,7 +95,7 @@ validator.isEmail(value);
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry3_1" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry3_1" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 validator.isURL(value);
@@ -118,7 +118,7 @@ validator.isURL(value);
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry4_1" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry4_1" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 validator.isIP(value);
@@ -139,7 +139,7 @@ validator.isIP(value);
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry5_1" placeholder="Demo를 누르시면 검증 plugin URL로 링크됩니다." readonly>
+                    <input type="text" class="form-control" id="resultTry5_1" placeholder="Demo를 누르시면 검증 plugin URL로 링크됩니다." readonly/>
                 </div>
                 <div id="list6"></div>
             </div>

@@ -74,9 +74,7 @@ public class PdfService extends AbstractPdfboxView {
     private void createColumnLabel(final PDDocument document, final BaseTable table, final List<PdfVO> pdfVOs) throws IOException {
         // Create Header row
         final Row<PDPage> headerRow = table.createRow(15F);
-        for (int j = 0;
-             j < pdfVOs.size();
-             j++) {
+        for (int j = 0; j < pdfVOs.size(); j++) {
             final Cell<PDPage> cell = headerRow.createCell(pdfVOs.get(j).getWidth(), pdfVOs.get(j).getTitle());
             cell.setFont(super.font);
             cell.setFillColor(Color.LIGHT_GRAY);

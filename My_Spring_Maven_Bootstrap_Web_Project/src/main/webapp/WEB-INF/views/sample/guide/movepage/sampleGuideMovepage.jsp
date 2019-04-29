@@ -35,7 +35,7 @@
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 MyCommon.goLink('/sample/guide/movepage/sampleGuideMovepage.view');
@@ -48,7 +48,7 @@ MyCommon.goLink('/sample/guide/movepage/sampleGuideMovepage.view');
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry1_2" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry1_2" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 MyCommon.goLink('http://google.com');
@@ -61,7 +61,7 @@ MyCommon.goLink('http://google.com');
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry1_3" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry1_3" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 MyCommon.goWindow('/sample/guide/movepage/sampleGuideMovepage.view');
@@ -76,7 +76,7 @@ MyCommon.goLink('http://google.com', 'W');
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry1_4" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry1_4" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 MyCommon.goLink('http://google.com', 'L');
@@ -98,7 +98,7 @@ MyCommon.goLink('http://google.com', 'L');
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 &lt;a href="javascript:void(0);" onclick="MyCommon.goLink('http://google.com');" /&gt;

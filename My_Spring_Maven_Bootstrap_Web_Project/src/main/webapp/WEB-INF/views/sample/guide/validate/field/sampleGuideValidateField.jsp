@@ -68,7 +68,7 @@
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 &lt;input type="text" title="input1" placeholder="input1" required /&gt;
@@ -112,7 +112,7 @@ if (MyValidator.validate($('#form_try1_1')) !== null) {
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 &lt;form id="form_try2_1"&gt;
@@ -146,7 +146,7 @@ if (MyValidator.validate($('#form_try2_1')) !== null) {
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry3_1" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry3_1" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 &lt;form id="form_try3_1"&gt;
@@ -177,7 +177,7 @@ if (MyValidator.validate($('#form_try3_1')) !== null) {
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry4_1" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry4_1" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 &lt;form id="form_try4_1"&gt;
@@ -208,7 +208,7 @@ if (MyValidator.validate($('#form_try4_1')) !== null) {
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry5_1" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry5_1" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 &lt;form id="form_try5_1"&gt;
@@ -244,7 +244,7 @@ if (MyValidator.validate($('#form_try5_1')) !== null) {
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry6_1" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry6_1" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 &lt;form id="form_try6_1"&gt;
@@ -292,7 +292,7 @@ if (MyValidator.validate($('#form_try6_1')) !== null) {
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry7_1" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry7_1" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 &lt;input type="text" title="input1" placeholder="input1" data-parsley-excluded="true" required /&gt;

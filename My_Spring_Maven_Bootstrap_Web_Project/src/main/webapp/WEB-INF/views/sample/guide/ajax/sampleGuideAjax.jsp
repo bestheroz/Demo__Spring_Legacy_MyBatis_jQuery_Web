@@ -40,7 +40,7 @@
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly />
                 </div>
                 <pre class="prettyprint">
 let params = {};
@@ -56,7 +56,7 @@ MyAjax.excute('&#36;{CONTEXT_PATH}/sample/admin/menu/getSampleMenuMstVOList.json
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry1_2" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry1_2" placeholder="result..." readonly />
                 </div>
                 <pre class="prettyprint">
 let params = {
@@ -86,7 +86,7 @@ MyAjax.excute('&#36;{CONTEXT_PATH}/sample/admin/member/deleteSampleMemberMst.jso
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly />
                 </div>
                 <pre class="prettyprint">
 let params = {};
@@ -114,7 +114,7 @@ MyAjax.excute('&#36;{CONTEXT_PATH}/sample/guide/ajax/sampleHtml.view', params, {
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry3_1" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry3_1" placeholder="result..." readonly />
                 </div>
                 <pre class="prettyprint">
 let formData = new FormData();
@@ -150,7 +150,7 @@ MyAjax.excuteWithFile('&#36;{CONTEXT_PATH}/common/file/upload/fileUpload', formD
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry4_1" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry4_1" placeholder="result..." readonly />
                     <input type="hidden" id="filePath" class="form-control" value="./MyFileDownloadController.java"/>
                 </div>
                 <pre class="prettyprint">
@@ -167,7 +167,7 @@ MyAjax.downloadFile('&#36;{CONTEXT_PATH}/common/file/download/fileDownload.proc'
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry4_2" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry4_2" placeholder="result..." readonly />
                     <input type="hidden" id="filePath2" class="form-control" value="./MyFileDownloadController.java"/>
                 </div>
                 <pre class="prettyprint">

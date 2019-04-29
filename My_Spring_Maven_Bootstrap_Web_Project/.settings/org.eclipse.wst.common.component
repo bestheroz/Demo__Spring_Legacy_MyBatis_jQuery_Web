@@ -37,7 +37,7 @@
         
         
         <property name="component.exclusion.patterns" value="%regex[resources/(?!inc/).*]"/>
-        <property name="context-root" value="/contextRoot"/>
+        <property name="context-root" value="/ROOT"/>
                                 	
     
     

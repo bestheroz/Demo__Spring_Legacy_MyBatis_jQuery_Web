@@ -35,7 +35,7 @@
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 MyCommon.goWindow('http://google.com');
@@ -48,7 +48,7 @@ MyCommon.goWindow('http://google.com');
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry1_2" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry1_2" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 MyCommon.goWindow('http://google.com', {
@@ -73,7 +73,7 @@ MyCommon.goWindow('http://google.com', {
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 MyCommon.goTab('http://google.com');

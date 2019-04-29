@@ -82,7 +82,7 @@ MyTextEditor.instance($('#textarea1_2'), {height : '50px'});
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 MyTextEditor.getCode($('#textarea2'));

@@ -34,7 +34,7 @@
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 moment().format('YYYY-MM-DD HH:mm');
@@ -47,7 +47,7 @@ moment().format('YYYY-MM-DD HH:mm');
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry1_2" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry1_2" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 moment().format('YYYY년MM월DD일 HH시mm분ss초');
@@ -60,7 +60,7 @@ moment().format('YYYY년MM월DD일 HH시mm분ss초');
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry1_3" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry1_3" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 moment('YYYY-MM-DD').format('YYYY년MM월DD일');
@@ -73,7 +73,7 @@ moment('YYYY-MM-DD').format('YYYY년MM월DD일');
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry1_4" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry1_4" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 moment('YYYYMMDD HHmmss').format('YYYY년MM월DD일 HH시mm분ss초');
@@ -88,7 +88,7 @@ moment('YYYYMMDDHHmmss').format('YYYY년MM월DD일 HH시mm분ss초');
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry1_5" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry1_5" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 let longValue = 1497513052362;
@@ -102,7 +102,7 @@ moment(longValue).format('YYYY년MM월DD일 HH시mm분ss초');
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry1_6" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry1_6" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 moment().add(10, 'years').add(3, 'months').subtract(2, 'weeks').add(1, 'days').subtract(5, 'hours').subtract(35, 'minutes').add(20, 'seconds').format('YYYY-MM-DD HH:mm:ss');
@@ -126,7 +126,7 @@ moment().add(10, 'years').add(3, 'months').subtract(2, 'weeks').add(1, 'days').s
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 $.number(123456789000);
@@ -139,7 +139,7 @@ $.number(123456789000);
 							Demo
 						</button>
 					</span>
-                    <input type="text" class="form-control" id="resultTry2_2" placeholder="result..." readonly>
+                    <input type="text" class="form-control" id="resultTry2_2" placeholder="result..." readonly/>
                 </div>
                 <pre class="prettyprint">
 $.number(5020.2364, 2);

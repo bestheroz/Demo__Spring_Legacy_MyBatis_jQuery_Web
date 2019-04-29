@@ -21,7 +21,7 @@ public class MyNullUtils {
     }
 
     // int 도 함께 커버됨
-    public static final boolean equals(final Integer n1, final Integer n2) throws CommonException {
+    public static boolean equals(final Integer n1, final Integer n2) throws CommonException {
         try {
             return n1 != null && n2 != null && n1.intValue() == n2.intValue();
         } catch (final Throwable e) {
@@ -30,7 +30,7 @@ public class MyNullUtils {
         }
     }
 
-    public static final boolean equals(final Long n1, final Long n2) throws CommonException {
+    public static boolean equals(final Long n1, final Long n2) throws CommonException {
         try {
             return n1 != null && n2 != null && n1.longValue() == n2.longValue();
         } catch (final Throwable e) {
@@ -39,7 +39,7 @@ public class MyNullUtils {
         }
     }
 
-    public static final boolean exists(final File file) {
+    public static boolean exists(final File file) {
         try {
             return file != null && file.exists();
         } catch (final Throwable e) {
@@ -48,7 +48,7 @@ public class MyNullUtils {
         }
     }
 
-    public static final boolean hasNext(final Iterator<?> iterator) {
+    public static boolean hasNext(final Iterator<?> iterator) {
         try {
             return iterator != null && iterator.hasNext();
         } catch (final Throwable e) {
@@ -57,7 +57,7 @@ public class MyNullUtils {
         }
     }
 
-    public static final boolean isEmpty(final JsonElement json) {
+    public static boolean isEmpty(final JsonElement json) {
         try {
             if (json == null) {
                 return true;
@@ -93,7 +93,7 @@ public class MyNullUtils {
         }
     }
 
-    public static final boolean isNotEmpty(final JsonElement json) {
+    public static boolean isNotEmpty(final JsonElement json) {
         return !isEmpty(json);
     }
 
@@ -105,7 +105,7 @@ public class MyNullUtils {
         return !isEmpty(list);
     }
 
-    public static final int size(final List<?> list) throws CommonException {
+    public static int size(final List<?> list) throws CommonException {
         try {
             return list == null ? 0 : list.size();
         } catch (final Throwable e) {
@@ -114,7 +114,7 @@ public class MyNullUtils {
         }
     }
 
-    public static final int size(final JsonArray list) throws CommonException {
+    public static int size(final JsonArray list) throws CommonException {
         try {
             return list == null ? 0 : list.size();
         } catch (final Throwable e) {
@@ -123,7 +123,7 @@ public class MyNullUtils {
         }
     }
 
-    public static final int size(final Map<String, ?> map) throws CommonException {
+    public static int size(final Map<String, ?> map) throws CommonException {
         try {
             return map == null ? 0 : map.size();
         } catch (final Throwable e) {

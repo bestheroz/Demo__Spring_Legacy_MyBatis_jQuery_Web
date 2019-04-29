@@ -45,33 +45,56 @@ public class SqlForTableVO {
 
     public <T extends Object> String countTableVO(final T vo, final List<String> whereKey) {
         final SQL sql = new SQL();
-        final String tableName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, StringUtils.substringBetween(vo.getClass().getSimpleName(), "Table", "VO"));
+        final String tableName = getTableName(vo);
         sql.SELECT("COUNT(1) AS CNT").FROM(tableName);
         if (MyNullUtils.isNotEmpty(whereKey)) {
-            final Map<String, Object> param = MyMapperUtils.writeObjectAsHashMap(vo);
-            for (final String key : whereKey) {
-                if (!param.containsKey(key) || param.get(key) == null) {
-                    this.logger.warn(CommonExceptionCode.ERROR_INVALID_PARAMETER.toString());
-                    throw CommonException.EXCEPTION_ERROR_INVALID_PARAMETER;
-                }
-            }
-            final Set<String> encryptedColumnList = this.getEncryptedColumnList(vo);
-            for (final Entry<String, Object> entry : param.entrySet()) {
-                final String camelFieldName = entry.getKey();
-                if (whereKey.contains(camelFieldName)) {
-                    final String fieldName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelFieldName);
-                    final String columnTypeName = entry.getValue().getClass().getSimpleName();
-                    if (encryptedColumnList.contains(camelFieldName)) {
-                        sql.WHERE(MessageFormat.format(WHERE_BIND_ENCRYPTED_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName), tableName));
-                    } else {
-                        sql.WHERE(MessageFormat.format(WHERE_BIND_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName)));
-                    }
-                }
-            }
+            getWhereSql(vo, whereKey, sql, tableName);
         }
 
         this.logger.debug(sql.toString());
         return sql.toString();
+    }
+
+    private <T extends Object> void getSelectSql(final T vo, final SQL sql, final String tableName, final Field[] fields) {
+        final Set<String> encryptedColumnList = this.getEncryptedColumnList(vo);
+        for (final Field field : fields) {
+            final String camelFieldName = field.getName();
+            final String fieldName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelFieldName);
+            if (EXCLUDE_FIELD_LIST.contains(fieldName)) {
+                continue;
+            } else if (encryptedColumnList.contains(camelFieldName)) {
+                sql.SELECT(MessageFormat.format(SELECT_ENCRYPTED_STRING, fieldName, tableName));
+            } else {
+                sql.SELECT(fieldName);
+            }
+        }
+    }
+
+    private void validWhereKey(final List<String> whereKey, final Map<String, Object> param) {
+        for (final String key : whereKey) {
+            if (!param.containsKey(key) || param.get(key) == null) {
+                this.logger.warn(CommonExceptionCode.ERROR_INVALID_PARAMETER.toString());
+                throw CommonException.EXCEPTION_ERROR_INVALID_PARAMETER;
+            }
+        }
+    }
+
+    private <T extends Object> void getWhereSql(final T vo, final List<String> whereKey, final SQL sql, final String tableName) {
+        final Map<String, Object> param = MyMapperUtils.writeObjectAsHashMap(vo);
+        validWhereKey(whereKey, param);
+        final Set<String> encryptedColumnList = this.getEncryptedColumnList(vo);
+        for (final Entry<String, Object> entry : param.entrySet()) {
+            final String camelFieldName = entry.getKey();
+            if (whereKey.contains(camelFieldName)) {
+                final String fieldName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelFieldName);
+                final String columnTypeName = entry.getValue().getClass().getSimpleName();
+                if (encryptedColumnList.contains(camelFieldName)) {
+                    sql.WHERE(MessageFormat.format(WHERE_BIND_ENCRYPTED_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName), tableName));
+                } else {
+                    sql.WHERE(MessageFormat.format(WHERE_BIND_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName)));
+                }
+            }
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -85,42 +108,13 @@ public class SqlForTableVO {
 
     public <T extends Object> String selectTableVO(final T vo, final List<String> whereKey, final String orderByColumns) {
         final SQL sql = new SQL();
-        final String tableName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, StringUtils.substringBetween(vo.getClass().getSimpleName(), "Table", "VO"));
+        final String tableName = getTableName(vo);
         final Field[] fields = vo.getClass().getDeclaredFields();
-        final Set<String> encryptedColumnList = this.getEncryptedColumnList(vo);
-        for (final Field field : fields) {
-            final String camelFieldName = field.getName();
-            final String fieldName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelFieldName);
-            if (EXCLUDE_FIELD_LIST.contains(fieldName)) {
-                continue;
-            } else if (encryptedColumnList.contains(camelFieldName)) {
-                sql.SELECT(MessageFormat.format(SELECT_ENCRYPTED_STRING, fieldName, tableName));
-            } else {
-                sql.SELECT(fieldName);
-            }
-        }
+        getSelectSql(vo, sql, tableName, fields);
         sql.FROM(tableName);
 
         if (MyNullUtils.isNotEmpty(whereKey)) {
-            final Map<String, Object> param = MyMapperUtils.writeObjectAsHashMap(vo);
-            for (final String key : whereKey) {
-                if (!param.containsKey(key) || param.get(key) == null) {
-                    this.logger.warn(CommonExceptionCode.ERROR_INVALID_PARAMETER.toString());
-                    throw CommonException.EXCEPTION_ERROR_INVALID_PARAMETER;
-                }
-            }
-            for (final Entry<String, Object> entry : param.entrySet()) {
-                final String camelFieldName = entry.getKey();
-                if (whereKey.contains(camelFieldName)) {
-                    final String fieldName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelFieldName);
-                    final String columnTypeName = entry.getValue().getClass().getSimpleName();
-                    if (encryptedColumnList.contains(camelFieldName)) {
-                        sql.WHERE(MessageFormat.format(WHERE_BIND_ENCRYPTED_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName), tableName));
-                    } else {
-                        sql.WHERE(MessageFormat.format(WHERE_BIND_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName)));
-                    }
-                }
-            }
+            getWhereSql(vo, whereKey, sql, tableName);
         }
         if (StringUtils.isNotEmpty(orderByColumns)) {
             sql.ORDER_BY(orderByColumns);
@@ -130,47 +124,23 @@ public class SqlForTableVO {
         return sql.toString();
     }
 
+    private <T extends Object> String getTableName(final T vo) {
+        return CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, StringUtils.substringBetween(vo.getClass().getSimpleName(), "Table", "VO"));
+    }
+
     public <T extends Object> String selectOneTableVO(final T vo, final List<String> whereKey) {
         if (MyNullUtils.size(whereKey) < 1) {
             this.logger.warn(CommonExceptionCode.ERROR_INVALID_PARAMETER.toString());
             throw CommonException.EXCEPTION_ERROR_INVALID_PARAMETER;
         }
-        final Map<String, Object> param = MyMapperUtils.writeObjectAsHashMap(vo);
-        for (final String key : whereKey) {
-            if (!param.containsKey(key) || param.get(key) == null) {
-                this.logger.warn(CommonExceptionCode.ERROR_INVALID_PARAMETER.toString());
-                throw CommonException.EXCEPTION_ERROR_INVALID_PARAMETER;
-            }
-        }
+        validWhereKey(whereKey, MyMapperUtils.writeObjectAsHashMap(vo));
 
         final SQL sql = new SQL();
-        final String tableName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, StringUtils.substringBetween(vo.getClass().getSimpleName(), "Table", "VO"));
+        final String tableName = getTableName(vo);
         final Field[] fields = vo.getClass().getDeclaredFields();
-        final Set<String> encryptedColumnList = this.getEncryptedColumnList(vo);
-        for (final Field field : fields) {
-            final String camelFieldName = field.getName();
-            final String fieldName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelFieldName);
-            if (EXCLUDE_FIELD_LIST.contains(fieldName)) {
-                continue;
-            } else if (encryptedColumnList.contains(camelFieldName)) {
-                sql.SELECT(MessageFormat.format(SELECT_ENCRYPTED_STRING, fieldName, tableName));
-            } else {
-                sql.SELECT(fieldName);
-            }
-        }
+        getSelectSql(vo, sql, tableName, fields);
         sql.FROM(tableName);
-        for (final Entry<String, Object> entry : param.entrySet()) {
-            final String camelFieldName = entry.getKey();
-            if (whereKey.contains(camelFieldName)) {
-                final String fieldName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelFieldName);
-                final String columnTypeName = entry.getValue().getClass().getSimpleName();
-                if (encryptedColumnList.contains(camelFieldName)) {
-                    sql.WHERE(MessageFormat.format(WHERE_BIND_ENCRYPTED_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName), tableName));
-                } else {
-                    sql.WHERE(MessageFormat.format(WHERE_BIND_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName)));
-                }
-            }
-        }
+        getWhereSql(vo, whereKey, sql, tableName);
         this.logger.debug(sql.toString());
         return sql.toString();
     }
@@ -178,7 +148,7 @@ public class SqlForTableVO {
     public <T extends Object> String insertTableVO(final T vo) {
         final Map<String, Object> param = MyMapperUtils.writeObjectAsHashMap(vo);
         final SQL sql = new SQL();
-        final String tableName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, StringUtils.substringBetween(vo.getClass().getSimpleName(), "Table", "VO"));
+        final String tableName = getTableName(vo);
         sql.INSERT_INTO(tableName);
         final Set<String> encryptedColumnList = this.getEncryptedColumnList(vo);
         for (final Entry<String, Object> entry : param.entrySet()) {
@@ -218,15 +188,10 @@ public class SqlForTableVO {
             throw CommonException.EXCEPTION_ERROR_NO_DATA_SUCCESS;
         }
         final Map<String, Object> param = MyMapperUtils.writeObjectAsHashMap(vo);
-        for (final String key : whereKey) {
-            if (!param.containsKey(key) || param.get(key) == null) {
-                this.logger.warn(CommonExceptionCode.ERROR_INVALID_PARAMETER.toString());
-                throw CommonException.EXCEPTION_ERROR_INVALID_PARAMETER;
-            }
-        }
+        validWhereKey(whereKey, param);
 
         final SQL sql = new SQL();
-        final String tableName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, StringUtils.substringBetween(vo.getClass().getSimpleName(), "Table", "VO"));
+        final String tableName = getTableName(vo);
         sql.UPDATE(tableName);
         final Field[] fields = vo.getClass().getDeclaredFields();
         final Set<String> encryptedColumnList = this.getEncryptedColumnList(vo);
@@ -292,21 +257,9 @@ public class SqlForTableVO {
             }
         }
         final SQL sql = new SQL();
-        final String tableName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, StringUtils.substringBetween(vo.getClass().getSimpleName(), "Table", "VO"));
+        final String tableName = getTableName(vo);
         sql.DELETE_FROM(tableName);
-        final Set<String> encryptedColumnList = this.getEncryptedColumnList(vo);
-        for (final Entry<String, Object> entry : param.entrySet()) {
-            final String camelFieldName = entry.getKey();
-            if (whereKey.contains(camelFieldName)) {
-                final String fieldName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, camelFieldName);
-                final String columnTypeName = entry.getValue().getClass().getSimpleName();
-                if (encryptedColumnList.contains(camelFieldName)) {
-                    sql.WHERE(MessageFormat.format(WHERE_BIND_ENCRYPTED_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName), tableName));
-                } else {
-                    sql.WHERE(MessageFormat.format(WHERE_BIND_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName)));
-                }
-            }
-        }
+        getWhereSql(vo, whereKey, sql, tableName);
 
         this.logger.debug(sql.toString());
         return sql.toString();

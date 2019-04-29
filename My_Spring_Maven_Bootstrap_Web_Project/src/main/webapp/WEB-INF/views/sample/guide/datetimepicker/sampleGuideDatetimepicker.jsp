@@ -44,7 +44,7 @@
                 <h4>YYYY-MM-DD(기본형)</h4>
                 <div class="row">
 					<span class="col-sm-2">
-						<input type="text" class="form-control datepicker" id="resultTry1_1" placeholder="result..." readonly>
+						<input type="text" class="form-control datepicker" id="resultTry1_1" placeholder="result..." readonly/>
 					</span>
                 </div>
                 <pre class="prettyprint">
@@ -54,7 +54,7 @@
                 <h4>YYYY-MM</h4>
                 <div class="row">
 					<span class="col-sm-2">
-						<input type="text" class="form-control datepicker-yyyymm" id="resultTry1_2" placeholder="result..." readonly>
+						<input type="text" class="form-control datepicker-yyyymm" id="resultTry1_2" placeholder="result..." readonly/>
 					</span>
                 </div>
                 <pre class="prettyprint">
@@ -63,7 +63,7 @@
                 <h4>YYYY</h4>
                 <div class="row">
 					<span class="col-sm-2">
-						<input type="text" class="form-control datepicker-yyyy" id="resultTry1_3" placeholder="result..." readonly>
+						<input type="text" class="form-control datepicker-yyyy" id="resultTry1_3" placeholder="result..." readonly/>
 					</span>
                 </div>
                 <pre class="prettyprint">
@@ -81,10 +81,10 @@
                 <h4>YYYY-MM-DD(기본형)</h4>
                 <div class="row">
 					<span class="col-sm-2">
-						<input type="text" class="form-control datepicker" id="resultTry2_1_1" placeholder="result..." readonly>
+						<input type="text" class="form-control datepicker" id="resultTry2_1_1" placeholder="result..." readonly/>
 					</span>
                     <span class="col-sm-2">
-						<input type="text" class="form-control datepicker" id="resultTry2_1_2" placeholder="result..." readonly>
+						<input type="text" class="form-control datepicker" id="resultTry2_1_2" placeholder="result..." readonly/>
 					</span>
                 </div>
                 <pre class="prettyprint">
@@ -95,10 +95,10 @@ $(document).ready(function() {
                 <h4>YYYY-MM</h4>
                 <div class="row">
 					<span class="col-sm-2">
-						<input type="text" class="form-control datepicker-yyyymm" id="resultTry2_2_1" placeholder="result..." readonly>
+						<input type="text" class="form-control datepicker-yyyymm" id="resultTry2_2_1" placeholder="result..." readonly/>
 					</span>
                     <span class="col-sm-2">
-						<input type="text" class="form-control datepicker-yyyymm" id="resultTry2_2_2" placeholder="result..." readonly>
+						<input type="text" class="form-control datepicker-yyyymm" id="resultTry2_2_2" placeholder="result..." readonly/>
 					</span>
                 </div>
                 <pre class="prettyprint">
@@ -109,10 +109,10 @@ $(document).ready(function() {
                 <h4>YYYY</h4>
                 <div class="row">
 					<span class="col-sm-2">
-						<input type="text" class="form-control datepicker-yyyy" id="resultTry2_3_1" placeholder="result..." readonly>
+						<input type="text" class="form-control datepicker-yyyy" id="resultTry2_3_1" placeholder="result..." readonly/>
 					</span>
                     <span class="col-sm-2">
-						<input type="text" class="form-control datepicker-yyyy" id="resultTry2_3_2" placeholder="result..." readonly>
+						<input type="text" class="form-control datepicker-yyyy" id="resultTry2_3_2" placeholder="result..." readonly/>
 					</span>
                 </div>
                 <pre class="prettyprint">
@@ -132,7 +132,7 @@ $(document).ready(function() {
                 <h4>HH:mm(기본형)</h4>
                 <div class="row">
 					<span class="col-sm-2">
-						<input type="text" class="form-control timepicker" id="resultTry3_2" placeholder="result..." readonly>
+						<input type="text" class="form-control timepicker" id="resultTry3_2" placeholder="result..." readonly/>
 					</span>
                 </div>
                 <pre class="prettyprint">
@@ -142,7 +142,7 @@ $(document).ready(function() {
                 <h4>HH</h4>
                 <div class="row">
 					<span class="col-sm-2">
-						<input type="text" class="form-control timepicker-hh" id="resultTry3_3" placeholder="result..." readonly>
+						<input type="text" class="form-control timepicker-hh" id="resultTry3_3" placeholder="result..." readonly/>
 					</span>
                 </div>
                 <pre class="prettyprint">
@@ -151,7 +151,7 @@ $(document).ready(function() {
                 <h4>HH:mm:ss</h4>
                 <div class="row">
 					<span class="col-sm-2">
-						<input type="text" class="form-control timepicker-hhmmss" id="resultTry3_1" placeholder="result..." readonly>
+						<input type="text" class="form-control timepicker-hhmmss" id="resultTry3_1" placeholder="result..." readonly/>
 					</span>
                 </div>
                 <pre class="prettyprint">
@@ -169,10 +169,10 @@ $(document).ready(function() {
                 <h4>hh:mm(기본형)</h4>
                 <div class="row">
 					<span class="col-sm-2">
-						<input type="text" class="form-control timepicker" id="resultTry4_1_1" placeholder="result..." readonly>
+						<input type="text" class="form-control timepicker" id="resultTry4_1_1" placeholder="result..." readonly/>
 					</span>
                     <span class="col-sm-2">
-						<input type="text" class="form-control timepicker" id="resultTry4_1_2" placeholder="result..." readonly>
+						<input type="text" class="form-control timepicker" id="resultTry4_1_2" placeholder="result..." readonly/>
 					</span>
                 </div>
                 <pre class="prettyprint">
@@ -192,7 +192,7 @@ $(document).ready(function() {
                 <h4>특정일 제외</h4>
                 <div class="row">
 					<span class="col-sm-2">
-						<input type="text" class="form-control datepicker" id="resultTry5_1" placeholder="result..." readonly>
+						<input type="text" class="form-control datepicker" id="resultTry5_1" placeholder="result..." readonly/>
 					</span>
                 </div>
                 <pre class="prettyprint">
@@ -203,7 +203,7 @@ $(document).ready(function() {
                 <h4>공휴일 제외</h4>
                 <div class="row">
 					<span class="col-sm-2">
-						<input type="text" class="form-control datepicker" id="resultTry5_2" placeholder="result..." readonly>
+						<input type="text" class="form-control datepicker" id="resultTry5_2" placeholder="result..." readonly/>
 					</span>
                 </div>
                 <pre class="prettyprint">
@@ -215,7 +215,7 @@ $(document).ready(function() {
                 <h4>토, 일요일 제외</h4>
                 <div class="row">
 					<span class="col-sm-2">
-						<input type="text" class="form-control datepicker" id="resultTry5_3" placeholder="result..." readonly>
+						<input type="text" class="form-control datepicker" id="resultTry5_3" placeholder="result..." readonly/>
 					</span>
                 </div>
                 <pre class="prettyprint">
@@ -236,7 +236,7 @@ $(document).ready(function() {
                 <h4>범위 지정</h4>
                 <div class="row">
 					<span class="col-sm-2">
-						<input type="text" class="form-control datepicker" id="resultTry6_1" placeholder="result..." readonly>
+						<input type="text" class="form-control datepicker" id="resultTry6_1" placeholder="result..." readonly/>
 					</span>
                 </div>
                 <pre class="prettyprint">
@@ -256,7 +256,7 @@ $(document).ready(function() {
                 <h4>YYYY-MM-DD HH:mm(기본형)</h4>
                 <div class="row">
 					<span class="col-sm-3">
-						<input type="text" class="form-control datetimepicker" id="resultTry7_1" placeholder="result..." readonly>
+						<input type="text" class="form-control datetimepicker" id="resultTry7_1" placeholder="result..." readonly/>
 					</span>
                 </div>
                 <pre class="prettyprint">
@@ -266,7 +266,7 @@ $(document).ready(function() {
                 <h4>YYYY-MM-DD HH</h4>
                 <div class="row">
 					<span class="col-sm-3">
-						<input type="text" class="form-control datetimepicker-yyyymmddhh" id="resultTry7_2" placeholder="result..." readonly>
+						<input type="text" class="form-control datetimepicker-yyyymmddhh" id="resultTry7_2" placeholder="result..." readonly/>
 					</span>
                 </div>
                 <pre class="prettyprint">
@@ -275,7 +275,7 @@ $(document).ready(function() {
                 <h4>YYYY-MM-DD HH:mm:ss</h4>
                 <div class="row">
 					<span class="col-sm-3">
-						<input type="text" class="form-control datetimepicker-yyyymmddhhmmss" id="resultTry7_3" placeholder="result..." readonly>
+						<input type="text" class="form-control datetimepicker-yyyymmddhhmmss" id="resultTry7_3" placeholder="result..." readonly/>
 					</span>
                 </div>
                 <pre class="prettyprint">

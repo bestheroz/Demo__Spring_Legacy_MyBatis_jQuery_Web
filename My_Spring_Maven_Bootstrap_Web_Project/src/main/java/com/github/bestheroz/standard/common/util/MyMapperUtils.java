@@ -27,32 +27,32 @@ public class MyMapperUtils {
             .registerTypeAdapter(Map.class, new MapperMapDeserializer()).registerTypeAdapter(HashMap.class, new MapperMapDeserializer())
             .registerTypeAdapter(LinkedTreeMap.class, new MapperMapDeserializer()).disableHtmlEscaping().create();
 
-    public static final <T> T writeObjectAsObject(final Object content, final Class<T> returnType) throws CommonException {
+    public static <T> T writeObjectAsObject(final Object content, final Class<T> returnType) throws CommonException {
         return GSON_INSTANCE.fromJson(writeObjectAsJsonElement(content), returnType);
     }
 
-    public static final <T> T writeObjectAsObject(final Object content, final Type typeOfT) throws CommonException {
+    public static <T> T writeObjectAsObject(final Object content, final Type typeOfT) throws CommonException {
         return GSON_INSTANCE.fromJson(writeObjectAsJsonElement(content), typeOfT);
     }
 
-    public static final JsonArray writeObjectAsJsonArray(final Object content) throws CommonException {
+    public static JsonArray writeObjectAsJsonArray(final Object content) throws CommonException {
         return getCollectionTypeCatchException(content, JsonArray.class);
     }
 
-    public static final JsonObject writeObjectAsJsonObject(final Object content) throws CommonException {
+    public static JsonObject writeObjectAsJsonObject(final Object content) throws CommonException {
         return getCollectionTypeCatchException(content, JsonObject.class);
     }
 
-    public static final Map<String, Object> writeObjectAsHashMap(final Object content) throws CommonException {
+    public static Map<String, Object> writeObjectAsHashMap(final Object content) throws CommonException {
         return writeObjectAsObject(getCollectionTypeCatchException(content, JsonObject.class), new TypeToken<HashMap<String, Object>>() {
         }.getType());
     }
 
-    public static final JsonPrimitive writeObjectAsJsonPrimitive(final Object content) throws CommonException {
+    public static JsonPrimitive writeObjectAsJsonPrimitive(final Object content) throws CommonException {
         return writeObjectAsJsonElement(content).getAsJsonPrimitive();
     }
 
-    public static final JsonElement writeObjectAsJsonElement(final Object content) throws CommonException {
+    public static JsonElement writeObjectAsJsonElement(final Object content) throws CommonException {
         if (content != null && content instanceof String) {
             try {
                 return new JsonParser().parse((String) content);
@@ -65,11 +65,11 @@ public class MyMapperUtils {
         }
     }
 
-    public static final String writeObjectAsString(final Object content) throws CommonException {
+    public static String writeObjectAsString(final Object content) throws CommonException {
         return GSON_INSTANCE.toJson(content);
     }
 
-    public static final <T> List<T> writeObjectAsArrayList(final Object content, final Class<T> returnType) throws CommonException {
+    public static <T> List<T> writeObjectAsArrayList(final Object content, final Class<T> returnType) throws CommonException {
         final JsonArray array = MyMapperUtils.writeObjectAsObject(content, JsonArray.class);
         final List<T> lst = new ArrayList<>();
         for (final JsonElement json : array) {
@@ -80,7 +80,7 @@ public class MyMapperUtils {
         // }.getType());
     }
 
-    public static final Gson getGsonObject() {
+    public static Gson getGsonObject() {
         return GSON_INSTANCE;
     }
 
