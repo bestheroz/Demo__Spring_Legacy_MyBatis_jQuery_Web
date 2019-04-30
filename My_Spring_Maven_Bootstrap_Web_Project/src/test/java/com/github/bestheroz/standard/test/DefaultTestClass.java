@@ -17,7 +17,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.util.Arrays;
 import java.util.Collections;
 
 @SpringJUnitConfig(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml", "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
@@ -38,7 +37,8 @@ public class DefaultTestClass {
         final TableSampleMemberMstVO tableSampleMemberMstVO = new TableSampleMemberMstVO();
         tableSampleMemberMstVO.setMemberId("1");
         MyTestUtils
-                .doLogined(MyMapperUtils.writeObjectAsObject(MyAccessBeanUtils.getBean(TableSampleMemberMstDAO.class).getVO(tableSampleMemberMstVO, Collections.singletonList("memberId")), LoginVO.class));
+                .doLogined(MyMapperUtils
+                        .writeObjectAsObject(MyAccessBeanUtils.getBean(TableSampleMemberMstDAO.class).getVO(tableSampleMemberMstVO, Collections.singletonList("memberId")), LoginVO.class));
     }
 
     @Test
