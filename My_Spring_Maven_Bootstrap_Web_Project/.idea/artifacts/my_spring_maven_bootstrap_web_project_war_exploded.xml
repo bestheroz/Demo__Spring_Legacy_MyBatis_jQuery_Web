@@ -1,17 +1,17 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="web:war exploded">
+  <artifact type="exploded-war" name="my_spring_maven_bootstrap_web_project:war exploded">
     <output-path>$PROJECT_DIR$/target/ROOT</output-path>
     <properties id="maven-jee-properties">
       <options>
         <exploded>true</exploded>
-        <module>web</module>
+        <module>my_spring_maven_bootstrap_web_project</module>
         <packaging>war</packaging>
       </options>
     </properties>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="web" />
+          <element id="module-output" name="my_spring_maven_bootstrap_web_project" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.1.7.RELEASE" />
@@ -67,7 +67,7 @@
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/ROOT/META-INF/MANIFEST.MF" />
       </element>
-      <element id="javaee-facet-resources" facet="web/web/Web" />
+      <element id="javaee-facet-resources" facet="my_spring_maven_bootstrap_web_project/web/Web" />
     </root>
   </artifact>
 </component>
