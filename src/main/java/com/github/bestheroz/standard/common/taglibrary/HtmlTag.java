@@ -80,11 +80,11 @@ public class HtmlTag extends TagSupport {
         // 이놈이 사이즈가 꾀 커서 다른 plugin의 property name을 먹어버린다. 그래서 상단에 선언
         if (StringUtils.equals(this.table, CommonCode.YES)) {
             this.makeLinkTag("https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css");
-            this.makeLinkTag("https://cdn.datatables.net/buttons/1.5.4/css/buttons.bootstrap4.min.css");
+            this.makeLinkTag("https://cdn.datatables.net/buttons/1.5.6/css/buttons.bootstrap4.min.css");
             this.makeLinkTag("https://cdn.datatables.net/responsive/2.2.2/css/responsive.bootstrap4.min.css");
             this.makeLinkTag("https://cdn.datatables.net/fixedcolumns/3.2.5/css/fixedColumns.bootstrap4.min.css");
             this.makeLinkTag("https://cdn.datatables.net/fixedheader/3.1.4/css/fixedHeader.bootstrap4.min.css");
-            this.makeLinkTag("https://cdn.datatables.net/select/1.2.6/css/select.bootstrap4.min.css");
+            this.makeLinkTag("https://cdn.datatables.net/select/1.3.0/css/select.bootstrap4.min.css");
             this.makeLinkTag(CommonCode.PATH_CSS + "/MyDataTables.css");
 
             this.makeScriptTag("https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js");
@@ -92,14 +92,14 @@ public class HtmlTag extends TagSupport {
             this.makeScriptTag("https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js");
             this.makeScriptTag("https://cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.min.js");
             this.makeScriptTag("https://cdn.datatables.net/responsive/2.2.2/js/responsive.bootstrap4.min.js");
-            this.makeScriptTag("https://cdn.datatables.net/buttons/1.5.4/js/dataTables.buttons.min.js");
-            this.makeScriptTag("https://cdn.datatables.net/buttons/1.5.4/js/buttons.bootstrap4.min.js");
-            this.makeScriptTag("https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js");
-            this.makeScriptTag("https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js");
-            this.makeScriptTag("https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js");
+            this.makeScriptTag("https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js");
+            this.makeScriptTag("https://cdn.datatables.net/buttons/1.5.6/js/buttons.bootstrap4.min.js");
+            this.makeScriptTag("https://cdn.datatables.net/buttons/1.5.6/js/buttons.colVis.min.js");
+            this.makeScriptTag("https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js");
+            this.makeScriptTag("https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js");
             this.makeScriptTag("https://cdn.datatables.net/fixedcolumns/3.2.5/js/dataTables.fixedColumns.min.js");
             this.makeScriptTag("https://cdn.datatables.net/fixedheader/3.1.4/js/dataTables.fixedHeader.min.js");
-            this.makeScriptTag("https://cdn.datatables.net/select/1.2.6/js/dataTables.select.min.js");
+            this.makeScriptTag("https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js");
             this.makeScriptTag(CommonCode.PATH_JS + "/MyDataTables.js");
         }
         if (StringUtils.equals(this.cookie, CommonCode.YES)) {
@@ -126,9 +126,7 @@ public class HtmlTag extends TagSupport {
             this.makeScriptTag(CommonCode.PATH_JS + "/MyMaxlength.js");
         }
         if (StringUtils.equals(this.modal, CommonCode.YES)) {
-            this.makeLinkTag(CommonCode.PATH_PLUGIN + "/jquery-modal/jquery.modal.css");
             this.makeLinkTag(CommonCode.PATH_CSS + "/MyModal.css");
-            this.makeScriptTag(CommonCode.PATH_PLUGIN + "/jquery-modal/jquery.modal.js");
             this.makeScriptTag(CommonCode.PATH_JS + "/MyModal.js");
         }
         if (StringUtils.equals(this.numberFormatter, CommonCode.YES)) {
