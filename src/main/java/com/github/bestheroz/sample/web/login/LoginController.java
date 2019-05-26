@@ -4,8 +4,6 @@ import com.github.bestheroz.standard.common.exception.CommonException;
 import com.github.bestheroz.standard.common.util.MySessionUtils;
 import com.google.gson.JsonObject;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    //    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private LoginService loginService;
     @Autowired
@@ -24,7 +22,6 @@ public class LoginController {
 
     @RequestMapping(value = {"/", "/sample/login/login.view"}, method = RequestMethod.GET)
     public String view() throws Exception {
-        logger.info("bestheroz2311111332");
         if (MySessionUtils.getLoginVO(this.session) != null) {
             final String returnUrl = MySessionUtils.getAttribute(this.session, "returnUrl");
             this.session.removeAttribute("returnUrl");
