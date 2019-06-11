@@ -318,6 +318,9 @@
             <properties>
                 <resources>resources-local</resources>
             </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
         </profile>
         <profile>
             <id>dev</id>
