@@ -159,8 +159,8 @@ public class HtmlTag extends TagSupport {
 
         if (StringUtils.equals(this.validator, CommonCode.YES)) {
             this.makeScriptTag("https://cdnjs.cloudflare.com/ajax/libs/validator/11.0.0/validator.min.js");
-            this.makeScriptTag("https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.0/parsley.min.js");
-            this.makeScriptTag("https://cdn.jsdelivr.net/npm/parsleyjs@2.9.0/dist/i18n/ko.js");
+            this.makeScriptTag("https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.1/parsley.min.js");
+            this.makeScriptTag("https://cdn.jsdelivr.net/npm/parsleyjs@2.9.1/dist/i18n/ko.js");
             this.makeScriptTag(CommonCode.PATH_JS + "/MyValidator.js");
         }
 
