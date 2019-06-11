@@ -60,7 +60,7 @@
           <element id="library" level="project" name="Maven: com.github.dhorions:boxable:1.5" />
           <element id="library" level="project" name="Maven: com.google.guava:guava:18.0" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-csv:1.2" />
-          <element id="library" level="project" name="Maven: org.jsoup:jsoup:1.11.3" />
+          <element id="library" level="project" name="Maven: org.jsoup:jsoup:1.9.2" />
           <element id="library" level="project" name="Maven: com.h2database:h2:1.4.199" />
         </element>
       </element>
