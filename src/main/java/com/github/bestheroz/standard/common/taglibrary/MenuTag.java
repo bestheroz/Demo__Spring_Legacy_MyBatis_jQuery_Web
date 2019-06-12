@@ -44,7 +44,7 @@ public class MenuTag extends TagSupport {
                     param.addProperty("power", memberTyp);
 //                        this.drawMenuData(doc, param);
 
-                    bodyHtml.append("<script> const menuData = " + MyMapperUtils.writeObjectAsString(MyAccessBeanUtils.getBean(MenuService.class).getMenuVOObject(param)) + "</script>");
+                    bodyHtml.append("<script> const menuData = " + MyMapperUtils.writeObjectAsString(MyAccessBeanUtils.getBean(MenuService.class).getMenuVOObject(param, session)) + "</script>");
                 }
                 bodyHtml.append(IOUtils.toString(new File(session.getServletContext().getRealPath("/WEB-INF/views/common/menu.html")).toURI(), StandardCharsets.UTF_8));
 //                }

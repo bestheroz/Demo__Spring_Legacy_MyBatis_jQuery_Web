@@ -6,19 +6,9 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="menuList">
+        <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLeft" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownLeft">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
+                <menu-component v-for="item in items" :data="item" :key="item.menuId"></menu-component>
             </ul>
             <ul class="navbar-nav float-right">
                 <li class="nav-item dropdown">
@@ -65,16 +55,33 @@
         </div>
     </div>
 </nav>
+
+
 <script src="https://unpkg.com/vue"></script>
 <script>
-    const vm = new Vue({
-        el: '#menuList',
-        data: {
-            memuData : {}
+    Vue.component('menu-component', {
+        template: `
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLeft" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{data.menuNm}}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownLeft" v-for="item in data.children" :key="item.menuId">
+                <a class="dropdown-item" :href="item.url">{{item.menuNm}}</a>
+            </div>
+        </li>
+        `,
+        props: {
+            data: {
+                type: Object,
+                required: true
+            }
         },
-        mounted: ()=>{
-            this.menuData = menuData
-            console.info(this.menuData)
-        }
+    });
+
+    new Vue({
+        el: '#navbar',
+        data: {
+            items: menuData
+        },
     });
 </script>
