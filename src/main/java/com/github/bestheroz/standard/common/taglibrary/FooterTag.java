@@ -3,8 +3,6 @@ package com.github.bestheroz.standard.common.taglibrary;
 import com.github.bestheroz.standard.common.exception.CommonException;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,9 +23,8 @@ public class FooterTag extends TagSupport {
 
         try {
             if (servletContext.getAttribute(FOOTER_TAG) == null) {
-                final Document doc = Jsoup.parseBodyFragment(
+                servletContext.setAttribute(FOOTER_TAG,
                         IOUtils.toString(new File(this.pageContext.getRequest().getServletContext().getRealPath("/WEB-INF/views/common/footer.html")).toURI(), StandardCharsets.UTF_8));
-                servletContext.setAttribute(FOOTER_TAG, doc.body().html());
             }
             this.pageContext.getOut().print(servletContext.getAttribute(FOOTER_TAG));
         } catch (final Throwable e) {
