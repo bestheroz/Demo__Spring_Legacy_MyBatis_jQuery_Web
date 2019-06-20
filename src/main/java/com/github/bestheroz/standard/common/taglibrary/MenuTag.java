@@ -29,20 +29,20 @@ public class MenuTag extends TagSupport {
         final HttpSession session = ((HttpServletRequest) this.pageContext.getRequest()).getSession();
 
         try {
-//            if (MySessionUtils.getAttribute(session, MENU_TAG) == null) {
-
-            final StringBuilder bodyHtml = new StringBuilder(1024 * 100);
-            final LoginVO loginVO = MySessionUtils.getLoginVO(session);
-            if (loginVO != null) {
-                final JsonObject param = new JsonObject();
-                final Integer memberTyp = Integer.parseInt(loginVO.getMemberTyp());
-                if (memberTyp != null && memberTyp.intValue() >= 800) {
-                    param.addProperty("power", memberTyp);
-                    bodyHtml.append("<script> const menuData = " + MyMapperUtils.writeObjectAsString(MyAccessBeanUtils.getBean(MenuService.class).getMenuVOObject(param, MySessionUtils.isNotLogined(session))) + "</script>");
-                    bodyHtml.append("<script> const menuMemberNm = " + loginVO.getMemberNm() + "</script>");
+            if (MySessionUtils.getAttribute(session, MENU_TAG) == null) {
+                final StringBuilder bodyHtml = new StringBuilder(1024 * 100);
+                final LoginVO loginVO = MySessionUtils.getLoginVO(session);
+                if (loginVO != null) {
+                    final JsonObject param = new JsonObject();
+                    final Integer memberTyp = Integer.parseInt(loginVO.getMemberTyp());
+                    if (memberTyp != null && memberTyp.intValue() >= 800) {
+                        param.addProperty("power", memberTyp);
+                        bodyHtml.append("<script> const menuData = " +
+                                MyMapperUtils.writeObjectAsString(MyAccessBeanUtils.getBean(MenuService.class).getMenuVOObject(param, MySessionUtils.isNotLogined(session))) + "</script>");
+                        bodyHtml.append("<script> const menuMemberNm = " + loginVO.getMemberNm() + "</script>");
+                    }
+                    bodyHtml.append(IOUtils.toString(new File(session.getServletContext().getRealPath("/WEB-INF/views/common/menu.html")).toURI(), StandardCharsets.UTF_8));
                 }
-                bodyHtml.append(IOUtils.toString(new File(session.getServletContext().getRealPath("/WEB-INF/views/common/menu.html")).toURI(), StandardCharsets.UTF_8));
-//                }
                 MySessionUtils.setAttribute(session, MENU_TAG, bodyHtml.toString());
             }
             this.pageContext.getOut().print(session.getAttribute(MENU_TAG));
