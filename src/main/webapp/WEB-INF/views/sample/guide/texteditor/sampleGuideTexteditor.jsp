@@ -47,13 +47,13 @@
                 </div>
                 <p>자동 : div attribute -> data-texteditor="on" 사용</p>
                 <p>data-texteditor-height="50"을 사용하여 높이 조절(기본값 200)</p>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;div id="textarea1_1" data-texteditor="on" data-texteditor-height="50"&gt;&lt;/div&gt;
 </pre>
                 <div id="textarea1_1" data-texteditor="on" data-texteditor-height="50"></div>
 
                 <p>수동 : MyTextEditor.instance($('#textarea1_2')); 사용</p>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;div id="textarea1_2"&gt;&lt;/div&gt;
 MyTextEditor.instance($('#textarea1_2'));
 MyTextEditor.instance($('#textarea1_2'), {height : '50px'});
@@ -84,7 +84,7 @@ MyTextEditor.instance($('#textarea1_2'), {height : '50px'});
 					</span>
                     <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 MyTextEditor.getCode($('#textarea2'));
 </pre>
                 <p>2. 값 입력하기(set)</p>
@@ -97,7 +97,7 @@ MyTextEditor.getCode($('#textarea2'));
 					</span>
                     <input type="text" class="form-control" id="resultTry2_2" placeholder="result..." value="set Value">
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 MyTextEditor.setCode($('#textarea2'), 'set Value');
 </pre>
                 <div id="textarea2" data-texteditor="on" data-texteditor-height="50"></div>
@@ -120,7 +120,7 @@ MyTextEditor.setCode($('#textarea2'), 'set Value');
 						</button>
 					</span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 MyTextEditor.disable($('#textarea3'), true); // 읽기모드로 전환
 MyTextEditor.disable($('#textarea3'), false); // 수정모드로 전환
 </pre>
@@ -132,7 +132,7 @@ MyTextEditor.disable($('#textarea3'), false); // 수정모드로 전환
                 <h3 class="panel-title">4. Air 모드</h3>
             </div>
             <div class="card-body">
-				<pre class="prettyprint">
+				<pre class="prettyprint lang-javascript">
 //자동
 &lt;div id="textarea4" data-texteditor="on" data-texteditor-height="50" data-texteditor-airmode="true"&gt;&lt;/div&gt;
 //수동
@@ -148,7 +148,7 @@ MyTextEditor.instance($('#textarea4'), {
                 <h3 class="panel-title">5. 기타</h3>
             </div>
             <div class="card-body">
-				<pre class="prettyprint">
+				<pre class="prettyprint lang-javascript">
 MyTextEditor.isEmpty($('#textarea4')) // 빈값 검증 시에 사용
 MyTextEditor.focus($('#textarea4')) // 빈값 검증 시후 fucos 이동 시
 MyTextEditor.reset($('#textarea4')) // 새로고침

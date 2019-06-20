@@ -35,7 +35,7 @@
 					</span>
                     <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 MyCommon.goWindow('http://google.com');
 </pre>
                 <h5>새창으로 띄우기(옵션추가)</h5>
@@ -48,7 +48,7 @@ MyCommon.goWindow('http://google.com');
 					</span>
                     <input type="text" class="form-control" id="resultTry1_2" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 MyCommon.goWindow('http://google.com', {
 	height : 800,
 	width : 1200
@@ -73,7 +73,7 @@ MyCommon.goWindow('http://google.com', {
 					</span>
                     <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 MyCommon.goTab('http://google.com');
 </pre>
             </div>

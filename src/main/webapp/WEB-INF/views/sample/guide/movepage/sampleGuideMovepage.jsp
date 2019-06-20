@@ -37,7 +37,7 @@
 					</span>
                     <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 MyCommon.goLink('/sample/guide/movepage/sampleGuideMovepage.view');
 </pre>
                 <h5>외부 링크(외부 링크는 기본적으로 탭으로 뜹니다.)</h5>
@@ -50,7 +50,7 @@ MyCommon.goLink('/sample/guide/movepage/sampleGuideMovepage.view');
 					</span>
                     <input type="text" class="form-control" id="resultTry1_2" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 MyCommon.goLink('http://google.com');
 </pre>
                 <h5>팝업으로 띄우기</h5>
@@ -63,7 +63,7 @@ MyCommon.goLink('http://google.com');
 					</span>
                     <input type="text" class="form-control" id="resultTry1_3" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 MyCommon.goWindow('/sample/guide/movepage/sampleGuideMovepage.view');
 MyCommon.goLink('/sample/guide/movepage/sampleGuideMovepage.view', 'W');
 MyCommon.goLink('http://google.com', 'W');
@@ -78,7 +78,7 @@ MyCommon.goLink('http://google.com', 'W');
 					</span>
                     <input type="text" class="form-control" id="resultTry1_4" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 MyCommon.goLink('http://google.com', 'L');
 </pre>
                 <div id="list2"></div>
@@ -100,7 +100,7 @@ MyCommon.goLink('http://google.com', 'L');
 					</span>
                     <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;a href="javascript:void(0);" onclick="MyCommon.goLink('http://google.com');" /&gt;
 </pre>
                 <div id="list3"></div>

@@ -47,7 +47,7 @@
 						<input type="text" class="form-control datepicker" id="resultTry1_1" placeholder="result..." readonly/>
 					</span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;input type="text" class="datepicker" placeholder="result..." readonly&gt;
 &lt;input type="text" class="datepicker-yyyymmdd" placeholder="result..." readonly&gt;
 </pre>
@@ -57,7 +57,7 @@
 						<input type="text" class="form-control datepicker-yyyymm" id="resultTry1_2" placeholder="result..." readonly/>
 					</span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;input type="text" class="datepicker-yyyymm" placeholder="result..." readonly&gt;
 </pre>
                 <h4>YYYY</h4>
@@ -66,7 +66,7 @@
 						<input type="text" class="form-control datepicker-yyyy" id="resultTry1_3" placeholder="result..." readonly/>
 					</span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;input type="text" class="datepicker-yyyy" placeholder="result..." readonly&gt;
 </pre>
                 <div id="list2"></div>
@@ -87,7 +87,7 @@
 						<input type="text" class="form-control datepicker" id="resultTry2_1_2" placeholder="result..." readonly/>
 					</span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 $(document).ready(function() {
     MyDatetimePicker.setFromTo($('#from'), $('#to'));
 });
@@ -101,7 +101,7 @@ $(document).ready(function() {
 						<input type="text" class="form-control datepicker-yyyymm" id="resultTry2_2_2" placeholder="result..." readonly/>
 					</span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 $(document).ready(function() {
     MyDatetimePicker.setFromTo($('#from'), $('#to'));
 });
@@ -115,7 +115,7 @@ $(document).ready(function() {
 						<input type="text" class="form-control datepicker-yyyy" id="resultTry2_3_2" placeholder="result..." readonly/>
 					</span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 $(document).ready(function() {
     MyDatetimePicker.setFromTo($('#from'), $('#to'));
 });
@@ -135,7 +135,7 @@ $(document).ready(function() {
 						<input type="text" class="form-control timepicker" id="resultTry3_2" placeholder="result..." readonly/>
 					</span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;input type="text" class="timepicker" placeholder="result..." readonly&gt;
 &lt;input type="text" class="timepicker-hhmm" placeholder="result..." readonly&gt;
 </pre>
@@ -145,7 +145,7 @@ $(document).ready(function() {
 						<input type="text" class="form-control timepicker-hh" id="resultTry3_3" placeholder="result..." readonly/>
 					</span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;input type="text" class="timepicker-hh" placeholder="result..." readonly&gt;
 </pre>
                 <h4>HH:mm:ss</h4>
@@ -154,7 +154,7 @@ $(document).ready(function() {
 						<input type="text" class="form-control timepicker-hhmmss" id="resultTry3_1" placeholder="result..." readonly/>
 					</span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;input type="text" class="timepicker-hhmmss" placeholder="result..." readonly&gt;
 </pre>
                 <div id="list4"></div>
@@ -175,7 +175,7 @@ $(document).ready(function() {
 						<input type="text" class="form-control timepicker" id="resultTry4_1_2" placeholder="result..." readonly/>
 					</span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 $(document).ready(function() {
     MyDatetimePicker.setFromTo($('#from'), $('#to'));
 });
@@ -195,7 +195,7 @@ $(document).ready(function() {
 						<input type="text" class="form-control datepicker" id="resultTry5_1" placeholder="result..." readonly/>
 					</span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 $(document).ready(function() {
     $(targetObj).data("DateTimePicker").disabledDates([ moment().subtract(1, 'days'), moment().add(1, 'days') ]);
 });
@@ -206,7 +206,7 @@ $(document).ready(function() {
 						<input type="text" class="form-control datepicker" id="resultTry5_2" placeholder="result..." readonly/>
 					</span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 $(document).ready(function() {
     let holidays = [ "0101", "0301", "0505", "0606", "0815", "1003", "1009", "1225", "1004", "1005", "1006" ];
     $(targetObj).data("DateTimePicker").disabledDates(holidays);
@@ -218,7 +218,7 @@ $(document).ready(function() {
 						<input type="text" class="form-control datepicker" id="resultTry5_3" placeholder="result..." readonly/>
 					</span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 $(document).ready(function() {
     let holidays = [ "0101", "0301", "0505", "0606", "0815", "1003", "1009", "1225", "1004", "1005", "1006" ];
     $(targetObj).data("DateTimePicker").disabledDates(holidays);
@@ -239,7 +239,7 @@ $(document).ready(function() {
 						<input type="text" class="form-control datepicker" id="resultTry6_1" placeholder="result..." readonly/>
 					</span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 $(document).ready(function() {
     $(targetObj).data("DateTimePicker").minDate(moment().add(3, 'days')).maxDate(moment().add(7, 'days'));
 });
@@ -259,7 +259,7 @@ $(document).ready(function() {
 						<input type="text" class="form-control datetimepicker" id="resultTry7_1" placeholder="result..." readonly/>
 					</span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;input type="text" class="datetimepicker" placeholder="result..." readonly&gt;
 &lt;input type="text" class="datetimepicker-yyyymmddhhmm" placeholder="result..." readonly&gt;
 </pre>
@@ -269,7 +269,7 @@ $(document).ready(function() {
 						<input type="text" class="form-control datetimepicker-yyyymmddhh" id="resultTry7_2" placeholder="result..." readonly/>
 					</span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;input type="text" class="datetimepicker-yyyymmddhh" placeholder="result..." readonly&gt;
 </pre>
                 <h4>YYYY-MM-DD HH:mm:ss</h4>
@@ -278,7 +278,7 @@ $(document).ready(function() {
 						<input type="text" class="form-control datetimepicker-yyyymmddhhmmss" id="resultTry7_3" placeholder="result..." readonly/>
 					</span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;input type="text" class="datetimepicker-yyyymmddhhmmss" placeholder="result..." readonly&gt;
 </pre>
 

@@ -37,7 +37,7 @@
 						</button>
 					</span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;div id="try1_modalContent" class="jmodal" style="display: none;"&gt;
     //modal contents
 &lt;/div&gt;
@@ -66,7 +66,7 @@ MyModal.close($('#try1_modalContent')).done(function(){
 						</button>
 					</span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;div id="try2_1-a" class="jmodal" style="display: none;"&gt;
     //modal contents
 &lt;/div&gt;

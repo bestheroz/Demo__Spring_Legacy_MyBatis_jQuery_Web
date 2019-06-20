@@ -70,7 +70,7 @@
 					</span>
                     <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;input type="text" title="input1" placeholder="input1" required /&gt;
 &lt;input type="text" title="input2" placeholder="input2" required /&gt;
 &lt;select title="select1" required&gt;
@@ -84,7 +84,7 @@
 &lt;input type="checkbox" title="checkbox1" name="checkbox1" required /&gt;
 &lt;input type="radio" title="radio1" name="radio1" required /&gt;
 &lt;input type="radio" title="radio1" name="radio1" required /&gt;</pre>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 if (MyValidator.validate($('#form_try1_1')) !== null) {
     return;
 }
@@ -114,14 +114,14 @@ if (MyValidator.validate($('#form_try1_1')) !== null) {
 					</span>
                     <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;form id="form_try2_1"&gt;
     &lt;input type="email" title="이메일1" placeholder="이메일1" /&gt;
     &lt;input type="text" title="이메일2" placeholder="이메일2" data-parsley-type="email" /&gt;
     &lt;input type="text" title="정수1" placeholder="정수1" data-parsley-type="integer" /&gt;
     &lt;input type="text" title="URL" placeholder="URL" data-parsley-type="url" /&gt;
 &lt;/form&gt;</pre>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 if (MyValidator.validate($('#form_try2_1')) !== null) {
     return;
 }
@@ -148,11 +148,11 @@ if (MyValidator.validate($('#form_try2_1')) !== null) {
 					</span>
                     <input type="text" class="form-control" id="resultTry3_1" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;form id="form_try3_1"&gt;
     &lt;input type="text" title="최소최대값필드(100~500)" placeholder="100 ~ 500" data-parsley-type="integer" min="100" max="500" /&gt;
 &lt;/form&gt;</pre>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 if (MyValidator.validate($('#form_try3_1')) !== null) {
     return;
 }
@@ -179,11 +179,11 @@ if (MyValidator.validate($('#form_try3_1')) !== null) {
 					</span>
                     <input type="text" class="form-control" id="resultTry4_1" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;form id="form_try4_1"&gt;
     &lt;input type="text" title="최소최대길이필드(2~5)" placeholder="2자리 ~ 5자리" data-parsley-minlength="2" maxlength="5" /&gt;
 &lt;/form&gt;</pre>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 if (MyValidator.validate($('#form_try4_1')) !== null) {
     return;
 }
@@ -210,11 +210,11 @@ if (MyValidator.validate($('#form_try4_1')) !== null) {
 					</span>
                     <input type="text" class="form-control" id="resultTry5_1" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;form id="form_try5_1"&gt;
     &lt;input type="text" title="입력1" placeholder="입력1" data-valid-message="사용자 메시지로 설정하였습니다." required /&gt;
 &lt;/form&gt;</pre>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 if (MyValidator.validate($('#form_try5_1')) !== null) {
     return;
 }
@@ -246,7 +246,7 @@ if (MyValidator.validate($('#form_try5_1')) !== null) {
 					</span>
                     <input type="text" class="form-control" id="resultTry6_1" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;form id="form_try6_1"&gt;
     &lt;input type="checkbox" title="checkbox1" name="checkbox1" required data-parsley-mincheck="2" data-parsley-maxcheck="3" /&gt;
     &lt;input type="checkbox" title="checkbox1" name="checkbox1" required /&gt;
@@ -255,7 +255,7 @@ if (MyValidator.validate($('#form_try5_1')) !== null) {
     &lt;input type="checkbox" title="checkbox1" name="checkbox1" required /&gt;
     &lt;input type="checkbox" title="checkbox1" name="checkbox1" required /&gt;
 &lt;/form&gt;</pre>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 if (MyValidator.validate($('#form_try6_1')) !== null) {
     return;
 }
@@ -294,7 +294,7 @@ if (MyValidator.validate($('#form_try6_1')) !== null) {
 					</span>
                     <input type="text" class="form-control" id="resultTry7_1" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;input type="text" title="input1" placeholder="input1" data-parsley-excluded="true" required /&gt;
 &lt;input type="text" title="input2" placeholder="input2" data-parsley-excluded="true" required /&gt;
 &lt;select title="select1" data-parsley-excluded="true" required&gt;
@@ -308,7 +308,7 @@ if (MyValidator.validate($('#form_try6_1')) !== null) {
 &lt;input type="checkbox" title="checkbox1" name="checkbox1" data-parsley-excluded="true" required /&gt;
 &lt;input type="radio" title="radio1" name="radio1" data-parsley-excluded="true" required /&gt;
 &lt;input type="radio" title="radio1" name="radio1" data-parsley-excluded="true" required /&gt;</pre>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 if (MyValidator.validate($('#form_try7_1')) !== null) {
     return;
 }

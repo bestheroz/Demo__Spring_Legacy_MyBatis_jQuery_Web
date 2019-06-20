@@ -51,7 +51,7 @@
 					</span>
                     <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 jQuery.isNumeric(value);
 </pre>
                 <div id="list2"></div>
@@ -74,7 +74,7 @@ jQuery.isNumeric(value);
 					</span>
                     <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 validator.isEmail(value);
 </pre>
                 <div id="list3"></div>
@@ -97,7 +97,7 @@ validator.isEmail(value);
 					</span>
                     <input type="text" class="form-control" id="resultTry3_1" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 validator.isURL(value);
 </pre>
                 <div id="list4"></div>
@@ -120,7 +120,7 @@ validator.isURL(value);
 					</span>
                     <input type="text" class="form-control" id="resultTry4_1" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 validator.isIP(value);
 </pre>
                 <div id="list5"></div>

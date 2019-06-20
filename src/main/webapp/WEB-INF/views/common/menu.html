@@ -33,11 +33,11 @@
     Vue.component('menu-component', {
         template: `
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{data.menuNm}}
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" v-for="item in data.children" :key="item.menuId" :href="item.url">{{item.menuNm}}</a>
+                <a class="dropdown-item" v-for="item in data.children" :key="item.menuId" href="javascript:void(0);" :data-onclick="item.url">{{item.menuNm}}</a>
             </div>
         </li>
         `,
@@ -54,6 +54,13 @@
         data: {
             items: menuData
         },
+        mounted() {
+            $('a[data-onclick]').each((index, value) => {
+                $(value).on('click', () => {
+                    MyCommon.goLink($(value).data('onclick'));
+                });
+            });
+        }
     });
     $(document).ready(() => {
         $('#menu_memberNm').text(menuMemberNm)

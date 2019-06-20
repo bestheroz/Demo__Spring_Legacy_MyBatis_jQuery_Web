@@ -33,9 +33,9 @@
             </div>
             <div class="card-body">
                 <h4>required</h4>
-                <pre class="prettyprint">&lt;my:html handlebars="YES"&gt;</pre>
+                <pre class="prettyprint lang-javascript">&lt;my:html handlebars="YES"&gt;</pre>
                 <h5>템플릿 선언</h5>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;script id="template01" type="text/x-handlebars-template"&gt;
 &lt;div&gt;
     &lt;span&gt;{{value1}}&lt;/span&gt;
@@ -45,11 +45,11 @@
 &lt;/script&gt;
 </pre>
                 <h5>데이터 준비</h5>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 { no : 1004, name : "천사", value : "천사값" }
 </pre>
                 <h5>결과 html</h5>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;div&gt;
     &lt;span&gt;1004&lt;/span&gt;
     &lt;span&gt;천사&lt;/span&gt;
@@ -57,7 +57,7 @@
 &lt;/div&gt;
 </pre>
                 <h5>MyHandlebars.drawDynamicHtml() 이용</h5>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 MyHandlebars.drawDynamicHtml(targetObj, mode, template, data);
 </pre>
                 <div class="input-group">
@@ -69,7 +69,7 @@ MyHandlebars.drawDynamicHtml(targetObj, mode, template, data);
 					</span>
                     <span class="form-control" id="resultTry1_1"></span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 let data = { no : 1004, name : "천사", value : "천사값" };
 MyHandlebars.drawDynamicHtml($('#resultTry1_1'), 'html', 'template01', data);
 </pre>
@@ -83,7 +83,7 @@ MyHandlebars.drawDynamicHtml($('#resultTry1_1'), 'html', 'template01', data);
             </div>
             <div class="card-body">
                 <h5>템플릿 선언</h5>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;script id="template02" type="text/x-handlebars-template"&gt;
 &lt;table&gt;
     &lt;thead&gt;
@@ -106,11 +106,11 @@ MyHandlebars.drawDynamicHtml($('#resultTry1_1'), 'html', 'template01', data);
 &lt;/script&gt;
 </pre>
                 <h5>데이터 준비</h5>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 [{ no : 1, name : "가나다", value : "첫번째 값" }, { no : 2, name : "라마바", value : "두번째 값" }, { no : 3, name : "사아자", value : "세번째 값" }]
 </pre>
                 <h5>결과 html</h5>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;table&gt;
     &lt;thead&gt;
         &lt;tr&gt;
@@ -139,7 +139,7 @@ MyHandlebars.drawDynamicHtml($('#resultTry1_1'), 'html', 'template01', data);
 &lt;/table&gt;
 </pre>
                 <h5>MyHandlebars.drawDynamicHtml() 이용</h5>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 MyHandlebars.drawDynamicHtml(targetObj, mode, template, data);
 </pre>
                 <div class="input-group">
@@ -151,7 +151,7 @@ MyHandlebars.drawDynamicHtml(targetObj, mode, template, data);
 					</span>
                     <span class="form-control" id="resultTry2_1" style="height: 60px;"></span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 let data = [{ no : 1, name : "가나다", value : "첫번째 값" }, { no : 2, name : "라마바", value : "두번째 값" }, { no : 3, name : "사아자", value : "세번째 값" }];
 MyHandlebars.drawDynamicHtml($('#resultTry2_1'), 'html', 'template02', data);
 </pre>
@@ -165,7 +165,7 @@ MyHandlebars.drawDynamicHtml($('#resultTry2_1'), 'html', 'template02', data);
             </div>
             <div class="card-body">
                 <h5>템플릿 선언</h5>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;script id="template03" type="text/x-handlebars-template"&gt;
 &lt;div&gt;
     &lt;span&gt;{{getYYYYMMDD dateValue}}&lt;/span&gt;
@@ -178,11 +178,11 @@ MyHandlebars.drawDynamicHtml($('#resultTry2_1'), 'html', 'template02', data);
 &lt;/script&gt;
 </pre>
                 <h5>데이터 준비</h5>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 { dateValue : 1513745846373, won : 3200000, name : "abcdefghijk", filterredHtml : '&lt;div&gt;' }
 </pre>
                 <h5>결과 html</h5>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;script id="template03" type="text/x-handlebars-template"&gt;
 &lt;div&gt;
     &lt;span&gt;2017-12-20&lt;/span&gt;
@@ -195,7 +195,7 @@ MyHandlebars.drawDynamicHtml($('#resultTry2_1'), 'html', 'template02', data);
 &lt;/script&gt;
 </pre>
                 <h5>MyHandlebars.drawDynamicHtml() 이용</h5>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 MyHandlebars.drawDynamicHtml(targetObj, mode, template, data);
 </pre>
                 <div class="input-group">
@@ -207,7 +207,7 @@ MyHandlebars.drawDynamicHtml(targetObj, mode, template, data);
 					</span>
                     <span class="form-control" id="resultTry3_1" style="height: 60px;"></span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 let data = { dateValue : 1513745846373, won : 3200000, name : "abcdefghijk", filterredHtml : '&lt;div&gt;' };
 MyHandlebars.drawDynamicHtml($('#resultTry3_1'), 'html', 'template03', data);
 </pre>
@@ -223,7 +223,7 @@ MyHandlebars.drawDynamicHtml($('#resultTry3_1'), 'html', 'template03', data);
             </div>
             <div class="card-body">
                 <h5>템플릿 선언</h5>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;script id="template04" type="text/x-handlebars-template"&gt;
 &lt;div&gt;
     {{#if_empty dateValue}}&lt;span&gt;{{dateValue}}&lt;/span&gt;{{/if_empty}}
@@ -233,18 +233,18 @@ MyHandlebars.drawDynamicHtml($('#resultTry3_1'), 'html', 'template03', data);
 &lt;/script&gt;
 </pre>
                 <h5>데이터 준비</h5>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 { dateValue : 1513745846373, name : "abcdefghijk" }
 </pre>
                 <h5>결과 html</h5>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;div&gt;
     &lt;span&gt;1513745846373&lt;/span&gt;
     &lt;span&gt;abcdefghijk&lt;/span&gt;
 &lt;/div&gt;
 </pre>
                 <h5>MyHandlebars.drawDynamicHtml() 이용</h5>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 MyHandlebars.drawDynamicHtml(targetObj, mode, template, data);
 </pre>
                 <div class="input-group">
@@ -256,7 +256,7 @@ MyHandlebars.drawDynamicHtml(targetObj, mode, template, data);
 					</span>
                     <span class="form-control" id="resultTry4_1"></span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 let data = { dateValue : 1513745846373, name : "abcdefghijk" }
 MyHandlebars.drawDynamicHtml($('#resultTry4_1'), 'html', 'template04', data);
 </pre>

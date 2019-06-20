@@ -34,7 +34,7 @@
 					</span>
                     <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 moment().format('YYYY-MM-DD HH:mm');
 </pre>
                 <h5>현재 시간 출력(YYYY년MM월DD일 HH시mm분ss초)</h5>
@@ -47,7 +47,7 @@ moment().format('YYYY-MM-DD HH:mm');
 					</span>
                     <input type="text" class="form-control" id="resultTry1_2" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 moment().format('YYYY년MM월DD일 HH시mm분ss초');
 </pre>
                 <h5>데이터를 받아 포맷변경(YYYY-MM-DD -> YYYY년MM월DD일)</h5>
@@ -60,7 +60,7 @@ moment().format('YYYY년MM월DD일 HH시mm분ss초');
 					</span>
                     <input type="text" class="form-control" id="resultTry1_3" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 moment('YYYY-MM-DD').format('YYYY년MM월DD일');
 </pre>
                 <h5>데이터를 받아 포맷변경(YYYYMMDD HHmmss -> YYYY년MM월DD일 HH시mm분ss초)</h5>
@@ -73,7 +73,7 @@ moment('YYYY-MM-DD').format('YYYY년MM월DD일');
 					</span>
                     <input type="text" class="form-control" id="resultTry1_4" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 moment('YYYYMMDD HHmmss').format('YYYY년MM월DD일 HH시mm분ss초');
 // 아래는 안되니 주의!
 moment('YYYYMMDDHHmmss').format('YYYY년MM월DD일 HH시mm분ss초');
@@ -88,7 +88,7 @@ moment('YYYYMMDDHHmmss').format('YYYY년MM월DD일 HH시mm분ss초');
 					</span>
                     <input type="text" class="form-control" id="resultTry1_5" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 let longValue = 1497513052362;
 moment(longValue).format('YYYY년MM월DD일 HH시mm분ss초');
 </pre>
@@ -102,7 +102,7 @@ moment(longValue).format('YYYY년MM월DD일 HH시mm분ss초');
 					</span>
                     <input type="text" class="form-control" id="resultTry1_6" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 moment().add(10, 'years').add(3, 'months').subtract(2, 'weeks').add(1, 'days').subtract(5, 'hours').subtract(35, 'minutes').add(20, 'seconds').format('YYYY-MM-DD HH:mm:ss');
 </pre>
                 <div id="list2"></div>
@@ -115,7 +115,7 @@ moment().add(10, 'years').add(3, 'months').subtract(2, 'weeks').add(1, 'days').s
             </div>
             <div class="card-body">
                 <h4>required</h4>
-                <pre class="prettyprint">&lt;my:html numberFormatter="YES"&gt;</pre>
+                <pre class="prettyprint lang-javascript">&lt;my:html numberFormatter="YES"&gt;</pre>
                 <h5>숫자 천자리마다 콤마(,) 포맷 후 값 얻기</h5>
                 <div class="input-group">
 					<span class="input-group-btn">
@@ -126,7 +126,7 @@ moment().add(10, 'years').add(3, 'months').subtract(2, 'weeks').add(1, 'days').s
 					</span>
                     <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 $.number(123456789000);
 </pre>
                 <h5>실수 소수점 자리수 포맷 후 값 얻기</h5>
@@ -139,7 +139,7 @@ $.number(123456789000);
 					</span>
                     <input type="text" class="form-control" id="resultTry2_2" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 $.number(5020.2364, 2);
 </pre>
                 <h5>숫자 천자리마다 콤마(,) 포맷 후 값 얻기</h5>
@@ -157,7 +157,7 @@ $.number(5020.2364, 2);
 						</button>
 					</span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 $('ul#ul_try2_3 > li').number( true );
 </pre>
                 <h5>실수 소수점 자리수 포맷 후 값 얻기</h5>
@@ -175,7 +175,7 @@ $('ul#ul_try2_3 > li').number( true );
 						</button>
 					</span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 $('ul#ul_try2_4 > li').number( true, 2 );
 </pre>
                 <div id="list3"></div>

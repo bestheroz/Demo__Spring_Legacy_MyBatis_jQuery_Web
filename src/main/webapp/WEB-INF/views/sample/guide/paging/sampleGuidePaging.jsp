@@ -79,7 +79,7 @@
 					</span>
                     <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;nav&gt;
     &lt;ul class="pagination"&gt;
         &lt;li&gt;

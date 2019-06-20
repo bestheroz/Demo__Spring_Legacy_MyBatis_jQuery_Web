@@ -27,7 +27,7 @@
                 <h3 class="panel-title">1. 사용법</h3>
             </div>
             <div class="card-body">
-				<pre class="prettyprint">
+				<pre class="prettyprint lang-javascript">
 &lt;my:html title="페이지 타이틀" fileDownloader="YES" progressBar="NO"&gt;
 &lt;body&gt;
 &lt;/body&gt;

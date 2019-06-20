@@ -34,7 +34,7 @@
                     <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly/>
                 </div>
                 <h4>프로토콜별 js 선언</h4>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 &lt;%
 	if (request.isSecure()) {
 %&gt;
@@ -47,7 +47,7 @@
 	}
 %&gt;
 </pre>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-javascript">
 new daum.Postcode({
 	oncomplete : function(data) {
 		console.info(data);
