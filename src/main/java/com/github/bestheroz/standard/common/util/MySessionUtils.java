@@ -20,6 +20,9 @@ public class MySessionUtils {
     public static boolean isLogined(final HttpSession session) {
         return session.getAttribute(SESSION_VALUE_OF_LOGIN_VO) != null;
     }
+    public static boolean isNotLogined(final HttpSession session) {
+        return !isLogined(session);
+    }
 
     public static LoginVO getLoginVO(final HttpSession session) {
         try {

@@ -21,16 +21,16 @@ public class MenuService {
     private MenuDAO menuDAO;
 
     public JsonArray getMenuVOObject(final JsonObject param, HttpSession session) throws CommonException {
-        if (MySessionUtils.isLogined(session)) {
+        if (MySessionUtils.isNotLogined(session)) {
             this.logger.warn(CommonException.EXCEPTION_ERROR_NOT_ALLOWED_MEMBER.getJsonObject().toString());
             throw CommonException.EXCEPTION_ERROR_NOT_ALLOWED_MEMBER;
         }
 
         JsonObject temp = new JsonObject();
         for (MenuVO menuVO : this.menuDAO.getMenuVOList(param)) {
-            if (menuVO.getLvl().intValue() == 2) {
+            if (menuVO.getLvl() == 2) {
                 temp.add(menuVO.getMenuId().toString(), MyMapperUtils.writeObjectAsJsonElement(menuVO));
-            } else if (menuVO.getLvl().intValue() == 3) {
+            } else if (menuVO.getLvl() == 3) {
                 JsonObject tempJsonObject = temp.get(menuVO.getParMenuId().toString()).getAsJsonObject();
                 JsonArray children;
                 if (tempJsonObject.has("children")) {

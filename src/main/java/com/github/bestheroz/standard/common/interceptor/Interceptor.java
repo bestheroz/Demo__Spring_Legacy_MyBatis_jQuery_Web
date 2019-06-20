@@ -26,7 +26,7 @@ public class Interceptor extends HandlerInterceptorAdapter {
     // preHandle : controller 이벤트 호출전
     public boolean preHandle(final HttpServletRequest request, final HttpServletResponse response, final Object handler) throws CommonException {
         try {
-            if (!MySessionUtils.isLogined(request.getSession())) {
+            if (MySessionUtils.isNotLogined(request.getSession())) {
                 if (!StringUtils.contains(request.getHeader("accept"), "html") && (StringUtils.startsWith(request.getContentType(), MediaType.APPLICATION_FORM_URLENCODED_VALUE)
                         || StringUtils.startsWith(request.getContentType(), MediaType.APPLICATION_JSON_VALUE))) {
                     LOGGER.warn(CommonException.EXCEPTION_ERROR_TRY_LOGIN_FIRST.getJsonObject().toString());
