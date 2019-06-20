@@ -78,10 +78,10 @@ public class AdminMenuController {
         final List<ExcelVO> excelVOList = new ArrayList<>();
         AbstractExcelXView.addHeader(excelVOList, "메뉴ID", "menuId", ExcelService.CellType.STRING_CENTER);
         AbstractExcelXView.addHeader(excelVOList, "메뉴명", "menuNm", ExcelService.CellType.STRING);
-        AbstractExcelXView.addHeader(excelVOList, "메뉴구분", "menuTyp", ExcelService.CellType.STRING_CENTER, this.valueLabelService.getValueLabelVoListToJsonObject("MENU_TYP", this.session));
+        AbstractExcelXView.addHeader(excelVOList, "메뉴구분", "menuTyp", ExcelService.CellType.STRING_CENTER, this.valueLabelService.getValueLabelVoListToJsonObject("MENU_TYP"));
         AbstractExcelXView.addHeader(excelVOList, "부모메뉴ID", "parMenuId", ExcelService.CellType.STRING_CENTER);
-        AbstractExcelXView.addHeader(excelVOList, "사용여부", "useYn", ExcelService.CellType.STRING_CENTER, this.valueLabelService.getValueLabelVoListToJsonObject("USE_YN", this.session));
-        AbstractExcelXView.addHeader(excelVOList, "권한", "power", ExcelService.CellType.STRING_RIGHT, this.valueLabelService.getValueLabelVoListToJsonObject("MEMBER_TYP", this.session));
+        AbstractExcelXView.addHeader(excelVOList, "사용여부", "useYn", ExcelService.CellType.STRING_CENTER, this.valueLabelService.getValueLabelVoListToJsonObject("USE_YN"));
+        AbstractExcelXView.addHeader(excelVOList, "권한", "power", ExcelService.CellType.STRING_RIGHT, this.valueLabelService.getValueLabelVoListToJsonObject("MEMBER_TYP"));
         AbstractExcelXView.addHeader(excelVOList, "(같은그룹내)출력순서", "dispSeq", ExcelService.CellType.INTEGER);
         AbstractExcelXView.addHeader(excelVOList, "URL", "url", ExcelService.CellType.STRING);
         AbstractExcelXView.addHeader(excelVOList, "비고", "remark1", ExcelService.CellType.STRING);
@@ -103,10 +103,10 @@ public class AdminMenuController {
         final List<ExcelVO> excelVOList = new ArrayList<>();
         AbstractExcelXView.addHeader(excelVOList, "메뉴ID", "menuId", ExcelService.CellType.STRING_CENTER);
         AbstractExcelXView.addHeader(excelVOList, "메뉴명", "menuNm", ExcelService.CellType.STRING);
-        AbstractExcelXView.addHeader(excelVOList, "메뉴구분", "menuTyp", ExcelService.CellType.STRING_CENTER, this.valueLabelService.getValueLabelVoListToJsonObject("MENU_TYP", this.session));
+        AbstractExcelXView.addHeader(excelVOList, "메뉴구분", "menuTyp", ExcelService.CellType.STRING_CENTER, this.valueLabelService.getValueLabelVoListToJsonObject("MENU_TYP"));
         AbstractExcelXView.addHeader(excelVOList, "부모메뉴ID", "parMenuId", ExcelService.CellType.STRING_CENTER);
-        AbstractExcelXView.addHeader(excelVOList, "사용여부", "useYn", ExcelService.CellType.STRING_CENTER, this.valueLabelService.getValueLabelVoListToJsonObject("USE_YN", this.session));
-        AbstractExcelXView.addHeader(excelVOList, "권한", "power", ExcelService.CellType.STRING_RIGHT, this.valueLabelService.getValueLabelVoListToJsonObject("MEMBER_TYP", this.session));
+        AbstractExcelXView.addHeader(excelVOList, "사용여부", "useYn", ExcelService.CellType.STRING_CENTER, this.valueLabelService.getValueLabelVoListToJsonObject("USE_YN"));
+        AbstractExcelXView.addHeader(excelVOList, "권한", "power", ExcelService.CellType.STRING_RIGHT, this.valueLabelService.getValueLabelVoListToJsonObject("MEMBER_TYP"));
         AbstractExcelXView.addHeader(excelVOList, "(같은그룹내)출력순서", "dispSeq", ExcelService.CellType.INTEGER);
         AbstractExcelXView.addHeader(excelVOList, "URL", "url", ExcelService.CellType.STRING);
         AbstractExcelXView.addHeader(excelVOList, "비고", "remark1", ExcelService.CellType.STRING);
@@ -130,7 +130,7 @@ public class AdminMenuController {
         AbstractPdfboxView.addPdfDataType(pdfVOList, "메뉴ID", "menuId", AbstractPdfboxView.CellType.STRING_CENTER, 10f);
         AbstractPdfboxView.addPdfDataType(pdfVOList, "메뉴명", "menuNm", AbstractPdfboxView.CellType.STRING, 20f);
         AbstractPdfboxView.addPdfDataType(pdfVOList, "메뉴구분", "menuTyp", AbstractPdfboxView.CellType.STRING_CENTER, 10f,
-                this.valueLabelService.getValueLabelVoListToJsonObject("MENU_TYP", this.session));
+                this.valueLabelService.getValueLabelVoListToJsonObject("MENU_TYP"));
         AbstractPdfboxView.addPdfDataType(pdfVOList, "URL", "url", AbstractPdfboxView.CellType.STRING, 40f);
         model.addAttribute(AbstractPdfboxView.PDF_VOS, pdfVOList);
 

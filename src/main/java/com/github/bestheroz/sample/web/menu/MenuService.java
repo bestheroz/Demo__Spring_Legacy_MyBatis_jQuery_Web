@@ -20,8 +20,8 @@ public class MenuService {
     @Autowired
     private MenuDAO menuDAO;
 
-    public JsonArray getMenuVOObject(final JsonObject param, HttpSession session) throws CommonException {
-        if (MySessionUtils.isNotLogined(session)) {
+    public JsonArray getMenuVOObject(final JsonObject param, boolean isNotLogined) throws CommonException {
+        if (isNotLogined) {
             this.logger.warn(CommonException.EXCEPTION_ERROR_NOT_ALLOWED_MEMBER.getJsonObject().toString());
             throw CommonException.EXCEPTION_ERROR_NOT_ALLOWED_MEMBER;
         }

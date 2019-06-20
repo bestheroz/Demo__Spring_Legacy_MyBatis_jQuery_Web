@@ -90,36 +90,6 @@ INTO   SAMPLE_MEMBER_MST
        )
        VALUES
        (
-              'bestheroz',
-              '4dff4ea340f0a823f15d3f4f01ab62eae0e5da579ccb851f8db9dfe84c58b2b37b89903a740e1ee172da793a6e79d560e5f7f9bd058a12a280433ed6fa46510a',
-              '개발자/김동준M',
-              '999',
-              0,
-              'N',
-              SYSDATE+365,
-              'bestheroz',
-              SYSDATE,
-              'bestheroz',
-              SYSDATE
-       );
-
-INSERT
-INTO   SAMPLE_MEMBER_MST
-       (
-              MEMBER_ID,
-              MEMBER_PW,
-              MEMBER_NM,
-              MEMBER_TYP,
-              LOGIN_FAIL_CNT,
-              CLOSE_YN,
-              EXPIRE_DT,
-              REG_MEMBER_ID,
-              REG_DT,
-              UPD_MEMBER_ID,
-              UPD_DT
-       )
-       VALUES
-       (
               'guest',
               '4dff4ea340f0a823f15d3f4f01ab62eae0e5da579ccb851f8db9dfe84c58b2b37b89903a740e1ee172da793a6e79d560e5f7f9bd058a12a280433ed6fa46510a',
               '게스트',
@@ -203,7 +173,7 @@ INTO   SAMPLE_MENU_MST
        )
        VALUES
        (
-              SEQ_SAMPLE_MENU_MST.NEXTVAL,
+              SEQ_SAMPLE_MENU_MST.NEXTVAL, --1000000001
               'JS 가이드',
               'G',
               1000000000,
@@ -233,7 +203,7 @@ INTO   SAMPLE_MENU_MST
        )
        VALUES
        (
-              SEQ_SAMPLE_MENU_MST.NEXTVAL,
+              SEQ_SAMPLE_MENU_MST.NEXTVAL, --1000000002
               'JSP 가이드',
               'G',
               1000000000,
@@ -256,7 +226,6 @@ INTO   SAMPLE_MENU_MST
               USE_YN,
               POWER,
               DISP_SEQ,
-              URL,
               REG_MEMBER_ID,
               REG_DT,
               UPD_MEMBER_ID,
@@ -264,44 +233,13 @@ INTO   SAMPLE_MENU_MST
        )
        VALUES
        (
-              SEQ_SAMPLE_MENU_MST.NEXTVAL,
-              'Java 가이드는 가이드문서를 확인',
-              'P',
-              1000000000,
-              'Y',
-              300,
-              30,
-              '',
-              'bestheroz',
-              SYSDATE,
-              'bestheroz',
-              SYSDATE
-       );
-
-INSERT
-INTO   SAMPLE_MENU_MST
-       (
-              MENU_ID,
-              MENU_NM,
-              MENU_TYP,
-              PAR_MENU_ID,
-              USE_YN,
-              POWER,
-              DISP_SEQ,
-              REG_MEMBER_ID,
-              REG_DT,
-              UPD_MEMBER_ID,
-              UPD_DT
-       )
-       VALUES
-       (
-              SEQ_SAMPLE_MENU_MST.NEXTVAL,
-              'GitLab',
+              SEQ_SAMPLE_MENU_MST.NEXTVAL, --1000000003
+              'Github',
               'G',
               1000000000,
               'Y',
               300,
-              70,
+              100,
               'bestheroz',
               SYSDATE,
               'bestheroz',
@@ -325,223 +263,13 @@ INTO   SAMPLE_MENU_MST
        )
        VALUES
        (
-              SEQ_SAMPLE_MENU_MST.NEXTVAL,
+              SEQ_SAMPLE_MENU_MST.NEXTVAL, --1000000004
               '관리자',
               'G',
               1000000000,
               'Y',
               700,
-              110,
-              'bestheroz',
-              SYSDATE,
-              'bestheroz',
-              SYSDATE
-       );
-
-INSERT
-INTO   SAMPLE_MENU_MST
-       (
-              MENU_ID,
-              MENU_NM,
-              MENU_TYP,
-              PAR_MENU_ID,
-              USE_YN,
-              POWER,
-              DISP_SEQ,
-              REG_MEMBER_ID,
-              REG_DT,
-              UPD_MEMBER_ID,
-              UPD_DT
-       )
-       VALUES
-       (
-              SEQ_SAMPLE_MENU_MST.NEXTVAL,
-              '테스트레벨1',
-              'G',
-              1000000000,
-              'Y',
-              300,
-              99999,
-              'bestheroz',
-              SYSDATE,
-              'bestheroz',
-              SYSDATE
-       );
-
-INSERT
-INTO   SAMPLE_MENU_MST
-       (
-              MENU_ID,
-              MENU_NM,
-              MENU_TYP,
-              PAR_MENU_ID,
-              USE_YN,
-              POWER,
-              DISP_SEQ,
-              REG_MEMBER_ID,
-              REG_DT,
-              UPD_MEMBER_ID,
-              UPD_DT
-       )
-       VALUES
-       (
-              SEQ_SAMPLE_MENU_MST.NEXTVAL,
-              '테스트레벨21',
-              'G',
-              1000000006,
-              'Y',
-              300,
-              1,
-              'bestheroz',
-              SYSDATE,
-              'bestheroz',
-              SYSDATE
-       );
-
-INSERT
-INTO   SAMPLE_MENU_MST
-       (
-              MENU_ID,
-              MENU_NM,
-              MENU_TYP,
-              PAR_MENU_ID,
-              USE_YN,
-              POWER,
-              DISP_SEQ,
-              REG_MEMBER_ID,
-              REG_DT,
-              UPD_MEMBER_ID,
-              UPD_DT
-       )
-       VALUES
-       (
-              SEQ_SAMPLE_MENU_MST.NEXTVAL,
-              '테스트레벨22',
-              'G',
-              1000000006,
-              'Y',
-              300,
-              2,
-              'bestheroz',
-              SYSDATE,
-              'bestheroz',
-              SYSDATE
-       );
-
-INSERT
-INTO   SAMPLE_MENU_MST
-       (
-              MENU_ID,
-              MENU_NM,
-              MENU_TYP,
-              PAR_MENU_ID,
-              USE_YN,
-              POWER,
-              DISP_SEQ,
-              REG_MEMBER_ID,
-              REG_DT,
-              UPD_MEMBER_ID,
-              UPD_DT
-       )
-       VALUES
-       (
-              SEQ_SAMPLE_MENU_MST.NEXTVAL,
-              '테스트레벨31',
-              'G',
-              1000000007,
-              'Y',
-              300,
-              1,
-              'bestheroz',
-              SYSDATE,
-              'bestheroz',
-              SYSDATE
-       );
-
-INSERT
-INTO   SAMPLE_MENU_MST
-       (
-              MENU_ID,
-              MENU_NM,
-              MENU_TYP,
-              PAR_MENU_ID,
-              USE_YN,
-              POWER,
-              DISP_SEQ,
-              REG_MEMBER_ID,
-              REG_DT,
-              UPD_MEMBER_ID,
-              UPD_DT
-       )
-       VALUES
-       (
-              SEQ_SAMPLE_MENU_MST.NEXTVAL,
-              '테스트레벨32',
-              'P',
-              1000000007,
-              'Y',
-              300,
-              2,
-              'bestheroz',
-              SYSDATE,
-              'bestheroz',
-              SYSDATE
-       );
-
-INSERT
-INTO   SAMPLE_MENU_MST
-       (
-              MENU_ID,
-              MENU_NM,
-              MENU_TYP,
-              PAR_MENU_ID,
-              USE_YN,
-              POWER,
-              DISP_SEQ,
-              REG_MEMBER_ID,
-              REG_DT,
-              UPD_MEMBER_ID,
-              UPD_DT
-       )
-       VALUES
-       (
-              SEQ_SAMPLE_MENU_MST.NEXTVAL,
-              '테스트레벨33',
-              'P',
-              1000000008,
-              'Y',
-              300,
-              1,
-              'bestheroz',
-              SYSDATE,
-              'bestheroz',
-              SYSDATE
-       );
-
-INSERT
-INTO   SAMPLE_MENU_MST
-       (
-              MENU_ID,
-              MENU_NM,
-              MENU_TYP,
-              PAR_MENU_ID,
-              USE_YN,
-              POWER,
-              DISP_SEQ,
-              REG_MEMBER_ID,
-              REG_DT,
-              UPD_MEMBER_ID,
-              UPD_DT
-       )
-       VALUES
-       (
-              SEQ_SAMPLE_MENU_MST.NEXTVAL,
-              '테스트41',
-              'P',
-              1000000009,
-              'Y',
-              300,
-              1,
+              70,
               'bestheroz',
               SYSDATE,
               'bestheroz',
@@ -569,7 +297,7 @@ INTO   SAMPLE_MENU_MST
               SEQ_SAMPLE_MENU_MST.NEXTVAL,
               '메뉴관리',
               'P',
-              1000000005,
+              1000000004,
               'Y',
               700,
               1,
@@ -601,7 +329,7 @@ INTO   SAMPLE_MENU_MST
               SEQ_SAMPLE_MENU_MST.NEXTVAL,
               '코드관리',
               'P',
-              1000000005,
+              1000000004,
               'Y',
               700,
               3,
@@ -665,7 +393,7 @@ INTO   SAMPLE_MENU_MST
               SEQ_SAMPLE_MENU_MST.NEXTVAL,
               '회원관리',
               'P',
-              1000000005,
+              1000000004,
               'Y',
               700,
               5,
@@ -697,11 +425,43 @@ INTO   SAMPLE_MENU_MST
               SEQ_SAMPLE_MENU_MST.NEXTVAL,
               '모든 프로젝트 보기',
               'P',
-              1000000004,
+              1000000003,
               'Y',
               300,
-              1,
-              'http://10.125.251.12/explore/projects',
+              999,
+              'https://github.com/bestheroz?tab=repositories',
+              'bestheroz',
+              SYSDATE,
+              'bestheroz',
+              SYSDATE
+       );
+
+INSERT
+INTO   SAMPLE_MENU_MST
+       (
+              MENU_ID,
+              MENU_NM,
+              MENU_TYP,
+              PAR_MENU_ID,
+              USE_YN,
+              POWER,
+              DISP_SEQ,
+              URL,
+              REG_MEMBER_ID,
+              REG_DT,
+              UPD_MEMBER_ID,
+              UPD_DT
+       )
+       VALUES
+       (
+              SEQ_SAMPLE_MENU_MST.NEXTVAL, --1000000005
+              '나의 개발 팁',
+              'P',
+              1000000003,
+              'Y',
+              700,
+              5,
+              'https://github.com/bestheroz/MyDevTips#my-development-tips-',
               'bestheroz',
               SYSDATE,
               'bestheroz',
@@ -727,13 +487,13 @@ INTO   SAMPLE_MENU_MST
        VALUES
        (
               SEQ_SAMPLE_MENU_MST.NEXTVAL,
-              '개발환경구축가이드',
+              '웹(Mybatis/jQuery/Bootstrap4) 템플릿 프로젝트',
               'P',
-              1000000004,
+              1000000003,
               'Y',
               300,
               10,
-              NULL,
+              'https://github.com/bestheroz/My_Spring_Maven_Bootstrap_Web_Project',
               'bestheroz',
               SYSDATE,
               'bestheroz',
@@ -759,13 +519,13 @@ INTO   SAMPLE_MENU_MST
        VALUES
        (
               SEQ_SAMPLE_MENU_MST.NEXTVAL,
-              '표준 웹 프로젝트',
+              'API 템플릿 프로젝트(Mybatis/Swagger)',
               'P',
-              1000000004,
+              1000000003,
               'Y',
               300,
               20,
-              NULL,
+              'https://github.com/bestheroz/My_Spring_Maven_Swagger_API_Project',
               'bestheroz',
               SYSDATE,
               'bestheroz',
@@ -1237,13 +997,13 @@ INTO   SAMPLE_MENU_MST
        VALUES
        (
               SEQ_SAMPLE_MENU_MST.NEXTVAL,
-              '표준 DB I/F + 웹 프로젝트',
+              'Mybatis 자동 CRUD DAO 프로젝트',
               'P',
-              1000000004,
+              1000000003,
               'Y',
               300,
               30,
-              NULL,
+              'https://github.com/bestheroz/Mybatis_Auto_CRUD_DAO',
               'bestheroz',
               SYSDATE,
               'bestheroz',
@@ -1303,7 +1063,7 @@ INTO   SAMPLE_MENU_MST
               SEQ_SAMPLE_MENU_MST.NEXTVAL,
               '파일관리',
               'P',
-              1000000005,
+              1000000004,
               'Y',
               700,
               40,

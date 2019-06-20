@@ -17,23 +17,13 @@ public class ValueLabelService {
     @Autowired
     private ValueLabelDAO valueLabelDAO;
 
-    @SuppressWarnings("unchecked")
-    public List<ValueLabelVO> getValueLabeVOList(final String grcode, final HttpSession session) throws CommonException {
-        if (session.getAttribute("ValueLabel." + grcode) == null) {
-            session.setAttribute("ValueLabel." + grcode, this.valueLabelDAO.getValueLabeVOList(grcode));
-            this.logger.debug("save ==> ValueLabel.{}.", grcode);
-        }
-        this.logger.debug("cache ==> ValueLabel.{}.", grcode);
-        return (List<ValueLabelVO>) session.getAttribute("ValueLabel." + grcode);
+    public List<ValueLabelVO> getValueLabeVOList(final String grcode) throws CommonException {
+        return this.valueLabelDAO.getValueLabeVOList(grcode);
     }
 
-    public String getLabelByValue(final Map<String, Object> params) throws CommonException {
-        return this.valueLabelDAO.getLabelByValue(params);
-    }
-
-    public JsonObject getValueLabelVoListToJsonObject(final String grcode, final HttpSession session) throws CommonException {
+    public JsonObject getValueLabelVoListToJsonObject(final String grcode) throws CommonException {
         final JsonObject jsonObject = new JsonObject();
-        for (final ValueLabelVO vo : this.getValueLabeVOList(grcode, session)) {
+        for (final ValueLabelVO vo : this.getValueLabeVOList(grcode)) {
             jsonObject.addProperty(vo.getValue(), vo.getLabel());
         }
         return jsonObject;

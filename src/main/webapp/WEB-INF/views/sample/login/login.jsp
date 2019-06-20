@@ -34,7 +34,6 @@
         </div>
     </main>
     <my:footer/>
-    </body>
     <script data-for="ready">
         $(document).ready(function () {
             $('#memberPw, #memberId').on('keydown', function (event) {

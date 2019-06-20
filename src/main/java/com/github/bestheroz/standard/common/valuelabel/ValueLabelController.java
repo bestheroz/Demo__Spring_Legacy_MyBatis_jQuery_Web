@@ -21,6 +21,6 @@ public class ValueLabelController {
     @RequestMapping(value = "/common/valuelabel/getValueLabeVOList.json", method = RequestMethod.POST)
     @ResponseBody
     public List<ValueLabelVO> getValueLabeVOList(@RequestParam("grcode") final String grcode) throws CommonException {
-        return this.valueLabelService.getValueLabeVOList(grcode, this.session);
+        return this.valueLabelService.getValueLabeVOList(grcode);
     }
 }

@@ -58,10 +58,9 @@ public class HtmlTag extends TagSupport {
         // <!-- 페이지 필수 공통 내용 START -->
         this.makeLinkTag("https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css");
         this.makeLinkTag("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
-//        this.makeLinkTag("https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css");
         this.makeLinkTag(CommonCode.PATH_CSS + "/MyCommon.css");
         this.makeScriptTag("https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js");
-        this.makeScriptTag("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js");
+        this.makeScriptTag("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js");
         this.makeScriptTag("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js");
         this.makeScriptTag("https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js");
         this.makeScriptTag("https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js");

@@ -1,10 +1,6 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="#">Home</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <a class="navbar-brand" href="javascript:void(0);" onclick="MyCommon.goLink('/');">Home</a>
 
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav mr-auto">
@@ -12,46 +8,21 @@
             </ul>
             <ul class="navbar-nav float-right">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRight" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
+                    <a class="nav-link dropdown-toggle" href="javascript:void(0);" id="navbarDropdownRight" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="far fa-user-circle"></i>
+                        &nbsp;
+                        <span id="menu_memberNm"></span>
+                        <span class="caret"></span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownRight">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="javascript:void(0);" onclick="MyCommon.goLink();"><i class="fas fa-user-cog"></i>
+                            내 정보 수정</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="javascript:void(0);" onclick="MyCommon.goLink('/sample/login/logout.view');"><i class="fas fa-sign-out-alt"></i>
+                            로그아웃</a>
                     </div>
                 </li>
             </ul>
-
-            <!--            <div class="collapse navbar-collapse">-->
-            <!--                <ul id="nav_top" class="nav navbar-nav">-->
-            <!--                </ul>-->
-            <!--                <ul class="nav navbar-nav navbar-right">-->
-            <!--                    <li class="dropdown">-->
-            <!--                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">-->
-            <!--                            <i class="fa fa-user-circle-o" aria-hidden="true"></i>-->
-            <!--                            &nbsp;-->
-            <!--                            <span id="menu_memberNm"></span>-->
-            <!--                            <span class="caret"></span>-->
-            <!--                        </a>-->
-            <!--                        <ul class="dropdown-menu">-->
-            <!--                            <li>-->
-            <!--                                <a href="javascript:void(0);" onclick="MyCommon.goLink();">-->
-            <!--                                    <i class="fa fa-user-md" aria-hidden="true"></i>-->
-            <!--                                    내 정보 수정-->
-            <!--                                </a>-->
-            <!--                            </li>-->
-            <!--                            <li>-->
-            <!--                                <a href="javascript:void(0);" id="a_logout" onclick="MyCommon.goLink('/sample/login/logout.view');">-->
-            <!--                                    <i class="fa fa-sign-out" aria-hidden="true"></i>-->
-            <!--                                    로그아웃-->
-            <!--                                </a>-->
-            <!--                            </li>-->
-            <!--                        </ul>-->
-            <!--                    </li>-->
-            <!--                </ul>-->
-            <!--            </div>-->
         </div>
     </div>
 </nav>
@@ -62,11 +33,11 @@
     Vue.component('menu-component', {
         template: `
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLeft" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{data.menuNm}}
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownLeft" v-for="item in data.children" :key="item.menuId">
-                <a class="dropdown-item" :href="item.url">{{item.menuNm}}</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" v-for="item in data.children" :key="item.menuId" :href="item.url">{{item.menuNm}}</a>
             </div>
         </li>
         `,
@@ -78,10 +49,13 @@
         },
     });
 
-    new Vue({
+    const vm = new Vue({
         el: '#navbar',
         data: {
             items: menuData
         },
     });
+    $(document).ready(() => {
+        $('#menu_memberNm').text(menuMemberNm)
+    })
 </script>
