@@ -72,6 +72,11 @@ public class SqlForTableVO {
     }
 
     private void validWhereKey(final List<String> whereKey, final Map<String, Object> param) {
+        if (MyNullUtils.size(whereKey) < 1) {
+            this.logger.warn(CommonExceptionCode.ERROR_INVALID_PARAMETER.toString());
+            throw CommonException.EXCEPTION_ERROR_INVALID_PARAMETER;
+        }
+
         for (final String key : whereKey) {
             if (!param.containsKey(key) || param.get(key) == null) {
                 this.logger.warn(CommonExceptionCode.ERROR_INVALID_PARAMETER.toString());
@@ -82,7 +87,11 @@ public class SqlForTableVO {
 
     private <T extends Object> void getWhereSql(final T vo, final List<String> whereKey, final SQL sql, final String tableName) {
         final Map<String, Object> param = MyMapperUtils.writeObjectAsHashMap(vo);
-        validWhereKey(whereKey, param);
+        try {
+            validWhereKey(whereKey, param);
+        } catch (Exception e) {
+            // pass
+        }
         final Set<String> encryptedColumnList = this.getEncryptedColumnList(vo);
         for (final Entry<String, Object> entry : param.entrySet()) {
             final String camelFieldName = entry.getKey();
@@ -131,10 +140,6 @@ public class SqlForTableVO {
     }
 
     public <T extends Object> String selectOneTableVO(final T vo, final List<String> whereKey) {
-        if (MyNullUtils.size(whereKey) < 1) {
-            this.logger.warn(CommonExceptionCode.ERROR_INVALID_PARAMETER.toString());
-            throw CommonException.EXCEPTION_ERROR_INVALID_PARAMETER;
-        }
         validWhereKey(whereKey, MyMapperUtils.writeObjectAsHashMap(vo));
 
         final SQL sql = new SQL();
@@ -185,10 +190,6 @@ public class SqlForTableVO {
     }
 
     public <T extends Object> String updateTableVO(final T vo, final List<String> whereKey, final List<String> forcedUpdateKey) {
-        if (MyNullUtils.size(whereKey) < 1) {
-            this.logger.warn(CommonExceptionCode.ERROR_NO_DATA_SUCCESS.toString());
-            throw CommonException.EXCEPTION_ERROR_NO_DATA_SUCCESS;
-        }
         final Map<String, Object> param = MyMapperUtils.writeObjectAsHashMap(vo);
         validWhereKey(whereKey, param);
 
