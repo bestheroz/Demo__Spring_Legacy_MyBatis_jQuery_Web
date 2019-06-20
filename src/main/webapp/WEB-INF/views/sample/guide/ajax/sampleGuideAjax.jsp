@@ -142,7 +142,7 @@ const response = await MyAjax.excuteWithFile('&#36;{CONTEXT_PATH}/common/file/up
                         <input type="hidden" id="filePath" class="form-control" value=".no-image-available.png"/>
                     </div>
                     <pre class="prettyprint lang-javascript">
-let dataParam = {
+const dataParam = {
 	filePath : $('#filePath').val()
 };
 MyAjax.downloadFile('&#36;{CONTEXT_PATH}/common/file/download/fileDownload.proc', dataParam);
@@ -159,7 +159,7 @@ MyAjax.downloadFile('&#36;{CONTEXT_PATH}/common/file/download/fileDownload.proc'
                         <input type="hidden" id="filePath2" class="form-control" value="./MyFileDownloadController.java"/>
                     </div>
                     <pre class="prettyprint lang-javascript">
-let dataParam = {
+const dataParam = {
 	fileSeq : $('#fileSeq').val(),
 	fileName : $('#fileName').val() // 보안이슈로 추가
 };
