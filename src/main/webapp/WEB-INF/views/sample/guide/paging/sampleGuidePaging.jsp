@@ -27,8 +27,8 @@
     </div>
     <div class="container">
         <div class="card">
-            <div class="panel-heading text-center">
-                <h3 class="panel-title">1. &lt;button&gt; 페이징 처리</h3>
+
+                <h3 class="panel-title text-center">1. &lt;button&gt; 페이징 처리</h3>
             </div>
             <div class="card-body">
                 <nav>
@@ -71,15 +71,14 @@
                     </ul>
                 </nav>
                 <div class="input-group">
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button" onclick="try1_1()">
+					<div class="input-group-prepend">
+						<button class="btn btn-outline-secondary" type="button" onclick="try1_1()">
 							<i class="far fa-play-circle"></i>
 							Demo
 						</button>
-					</span>
-                    <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly/>
+					</div><input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-html">
 &lt;nav&gt;
     &lt;ul class="pagination"&gt;
         &lt;li&gt;

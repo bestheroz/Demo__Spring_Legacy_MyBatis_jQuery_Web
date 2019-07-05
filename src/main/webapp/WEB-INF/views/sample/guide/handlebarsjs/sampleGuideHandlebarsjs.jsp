@@ -28,14 +28,14 @@
     </div>
     <div class="container">
         <div class="card">
-            <div class="panel-heading text-center">
-                <h3 class="panel-title">1. 기본형</h3>
+
+                <h3 class="panel-title text-center">1. 기본형</h3>
             </div>
             <div class="card-body">
                 <h4>required</h4>
-                <pre class="prettyprint">&lt;my:html handlebars="YES"&gt;</pre>
-                <h5>템플릿 선언</h5>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-html">&lt;my:html handlebars="YES"&gt;</pre>
+                <h5 class="card-title">템플릿 선언</h5>
+                <pre class="prettyprint lang-html">
 &lt;script id="template01" type="text/x-handlebars-template"&gt;
 &lt;div&gt;
     &lt;span&gt;{{value1}}&lt;/span&gt;
@@ -44,32 +44,32 @@
 &lt;/div&gt;
 &lt;/script&gt;
 </pre>
-                <h5>데이터 준비</h5>
-                <pre class="prettyprint">
+                <h5 class="card-title">데이터 준비</h5>
+                <pre class="prettyprint lang-html">
 { no : 1004, name : "천사", value : "천사값" }
 </pre>
-                <h5>결과 html</h5>
-                <pre class="prettyprint">
+                <h5 class="card-title">결과 html</h5>
+                <pre class="prettyprint lang-html">
 &lt;div&gt;
     &lt;span&gt;1004&lt;/span&gt;
     &lt;span&gt;천사&lt;/span&gt;
     &lt;span&gt;천사값&lt;/span&gt;
 &lt;/div&gt;
 </pre>
-                <h5>MyHandlebars.drawDynamicHtml() 이용</h5>
-                <pre class="prettyprint">
+                <h5 class="card-title">MyHandlebars.drawDynamicHtml() 이용</h5>
+                <pre class="prettyprint lang-html">
 MyHandlebars.drawDynamicHtml(targetObj, mode, template, data);
 </pre>
                 <div class="input-group">
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button" onclick="try1_1()">
+					<div class="input-group-prepend">
+						<button class="btn btn-outline-secondary" type="button" onclick="try1_1()">
 							<i class="far fa-play-circle"></i>
 							Demo
 						</button>
 					</span>
                     <span class="form-control" id="resultTry1_1"></span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-html">
 let data = { no : 1004, name : "천사", value : "천사값" };
 MyHandlebars.drawDynamicHtml($('#resultTry1_1'), 'html', 'template01', data);
 </pre>
@@ -78,12 +78,12 @@ MyHandlebars.drawDynamicHtml($('#resultTry1_1'), 'html', 'template01', data);
         </div>
 
         <div class="card">
-            <div class="panel-heading text-center">
-                <h3 class="panel-title">2. 배열형</h3>
+
+                <h3 class="panel-title text-center">2. 배열형</h3>
             </div>
             <div class="card-body">
-                <h5>템플릿 선언</h5>
-                <pre class="prettyprint">
+                <h5 class="card-title">템플릿 선언</h5>
+                <pre class="prettyprint lang-html">
 &lt;script id="template02" type="text/x-handlebars-template"&gt;
 &lt;table&gt;
     &lt;thead&gt;
@@ -105,12 +105,12 @@ MyHandlebars.drawDynamicHtml($('#resultTry1_1'), 'html', 'template01', data);
 &lt;/table&gt;
 &lt;/script&gt;
 </pre>
-                <h5>데이터 준비</h5>
-                <pre class="prettyprint">
+                <h5 class="card-title">데이터 준비</h5>
+                <pre class="prettyprint lang-html">
 [{ no : 1, name : "가나다", value : "첫번째 값" }, { no : 2, name : "라마바", value : "두번째 값" }, { no : 3, name : "사아자", value : "세번째 값" }]
 </pre>
-                <h5>결과 html</h5>
-                <pre class="prettyprint">
+                <h5 class="card-title">결과 html</h5>
+                <pre class="prettyprint lang-html">
 &lt;table&gt;
     &lt;thead&gt;
         &lt;tr&gt;
@@ -138,20 +138,20 @@ MyHandlebars.drawDynamicHtml($('#resultTry1_1'), 'html', 'template01', data);
     &lt;/tbody&gt;
 &lt;/table&gt;
 </pre>
-                <h5>MyHandlebars.drawDynamicHtml() 이용</h5>
-                <pre class="prettyprint">
+                <h5 class="card-title">MyHandlebars.drawDynamicHtml() 이용</h5>
+                <pre class="prettyprint lang-html">
 MyHandlebars.drawDynamicHtml(targetObj, mode, template, data);
 </pre>
                 <div class="input-group">
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button" style="height: 60px;" onclick="try2_1()">
+					<div class="input-group-prepend">
+						<button class="btn btn-outline-secondary" type="button" style="height: 60px;" onclick="try2_1()">
 							<i class="far fa-play-circle"></i>
 							Demo
 						</button>
 					</span>
                     <span class="form-control" id="resultTry2_1" style="height: 60px;"></span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-html">
 let data = [{ no : 1, name : "가나다", value : "첫번째 값" }, { no : 2, name : "라마바", value : "두번째 값" }, { no : 3, name : "사아자", value : "세번째 값" }];
 MyHandlebars.drawDynamicHtml($('#resultTry2_1'), 'html', 'template02', data);
 </pre>
@@ -160,12 +160,12 @@ MyHandlebars.drawDynamicHtml($('#resultTry2_1'), 'html', 'template02', data);
         </div>
 
         <div class="card">
-            <div class="panel-heading text-center">
-                <h3 class="panel-title">3. 데이터처리(가공)</h3>
+
+                <h3 class="panel-title text-center">3. 데이터처리(가공)</h3>
             </div>
             <div class="card-body">
-                <h5>템플릿 선언</h5>
-                <pre class="prettyprint">
+                <h5 class="card-title">템플릿 선언</h5>
+                <pre class="prettyprint lang-html">
 &lt;script id="template03" type="text/x-handlebars-template"&gt;
 &lt;div&gt;
     &lt;span&gt;{{getYYYYMMDD dateValue}}&lt;/span&gt;
@@ -177,12 +177,12 @@ MyHandlebars.drawDynamicHtml($('#resultTry2_1'), 'html', 'template02', data);
 &lt;/div&gt;
 &lt;/script&gt;
 </pre>
-                <h5>데이터 준비</h5>
-                <pre class="prettyprint">
+                <h5 class="card-title">데이터 준비</h5>
+                <pre class="prettyprint lang-html">
 { dateValue : 1513745846373, won : 3200000, name : "abcdefghijk", filterredHtml : '&lt;div&gt;' }
 </pre>
-                <h5>결과 html</h5>
-                <pre class="prettyprint">
+                <h5 class="card-title">결과 html</h5>
+                <pre class="prettyprint lang-html">
 &lt;script id="template03" type="text/x-handlebars-template"&gt;
 &lt;div&gt;
     &lt;span&gt;2017-12-20&lt;/span&gt;
@@ -194,36 +194,36 @@ MyHandlebars.drawDynamicHtml($('#resultTry2_1'), 'html', 'template02', data);
 &lt;/div&gt;
 &lt;/script&gt;
 </pre>
-                <h5>MyHandlebars.drawDynamicHtml() 이용</h5>
-                <pre class="prettyprint">
+                <h5 class="card-title">MyHandlebars.drawDynamicHtml() 이용</h5>
+                <pre class="prettyprint lang-html">
 MyHandlebars.drawDynamicHtml(targetObj, mode, template, data);
 </pre>
                 <div class="input-group">
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button" style="height: 60px;" onclick="try3_1()">
+					<div class="input-group-prepend">
+						<button class="btn btn-outline-secondary" type="button" style="height: 60px;" onclick="try3_1()">
 							<i class="far fa-play-circle"></i>
 							Demo
 						</button>
 					</span>
                     <span class="form-control" id="resultTry3_1" style="height: 60px;"></span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-html">
 let data = { dateValue : 1513745846373, won : 3200000, name : "abcdefghijk", filterredHtml : '&lt;div&gt;' };
 MyHandlebars.drawDynamicHtml($('#resultTry3_1'), 'html', 'template03', data);
 </pre>
-                <h5>데이터처리(가공)를 추가하려면 Handlebars.registerHelper(); 사용방법을 익혀서 추가하자.</h5>
+                <h5 class="card-title">데이터처리(가공)를 추가하려면 Handlebars.registerHelper(); 사용방법을 익혀서 추가하자.</h5>
 
                 <div id="list4"></div>
             </div>
         </div>
 
         <div class="card">
-            <div class="panel-heading text-center">
-                <h3 class="panel-title">4. 조건처리(if문)</h3>
+
+                <h3 class="panel-title text-center">4. 조건처리(if문)</h3>
             </div>
             <div class="card-body">
-                <h5>템플릿 선언</h5>
-                <pre class="prettyprint">
+                <h5 class="card-title">템플릿 선언</h5>
+                <pre class="prettyprint lang-html">
 &lt;script id="template04" type="text/x-handlebars-template"&gt;
 &lt;div&gt;
     {{#if_empty dateValue}}&lt;span&gt;{{dateValue}}&lt;/span&gt;{{/if_empty}}
@@ -232,35 +232,35 @@ MyHandlebars.drawDynamicHtml($('#resultTry3_1'), 'html', 'template03', data);
 &lt;/div&gt;
 &lt;/script&gt;
 </pre>
-                <h5>데이터 준비</h5>
-                <pre class="prettyprint">
+                <h5 class="card-title">데이터 준비</h5>
+                <pre class="prettyprint lang-html">
 { dateValue : 1513745846373, name : "abcdefghijk" }
 </pre>
-                <h5>결과 html</h5>
-                <pre class="prettyprint">
+                <h5 class="card-title">결과 html</h5>
+                <pre class="prettyprint lang-html">
 &lt;div&gt;
     &lt;span&gt;1513745846373&lt;/span&gt;
     &lt;span&gt;abcdefghijk&lt;/span&gt;
 &lt;/div&gt;
 </pre>
-                <h5>MyHandlebars.drawDynamicHtml() 이용</h5>
-                <pre class="prettyprint">
+                <h5 class="card-title">MyHandlebars.drawDynamicHtml() 이용</h5>
+                <pre class="prettyprint lang-html">
 MyHandlebars.drawDynamicHtml(targetObj, mode, template, data);
 </pre>
                 <div class="input-group">
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button" onclick="try4_1()">
+					<div class="input-group-prepend">
+						<button class="btn btn-outline-secondary" type="button" onclick="try4_1()">
 							<i class="far fa-play-circle"></i>
 							Demo
 						</button>
 					</span>
                     <span class="form-control" id="resultTry4_1"></span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-html">
 let data = { dateValue : 1513745846373, name : "abcdefghijk" }
 MyHandlebars.drawDynamicHtml($('#resultTry4_1'), 'html', 'template04', data);
 </pre>
-                <h5>조건처리(if)를 추가하려면 Handlebars.registerHelper(); 사용방법을 익혀서 추가하자.</h5>
+                <h5 class="card-title">조건처리(if)를 추가하려면 Handlebars.registerHelper(); 사용방법을 익혀서 추가하자.</h5>
                 <div id="list5"></div>
             </div>
         </div>

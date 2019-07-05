@@ -4,109 +4,100 @@
 <my:html>
     <body>
     <my:menu/>
-    <div class="mx-auto text-center">
-        <h3>
-            페이지 이동
-            <small>(a href)</small>
-        </h3>
-    </div>
-
-    <div class="mx-auto text-center">
-        <h4>목차</h4>
-        <p class="text-muted">
-            <a href="#list1"> 1. 페이지 이동 </a>
-        </p>
-        <div id="list1"></div>
-        <p class="text-muted">
-            <a href="#list2"> 2. &lt;a href="url"&gt; </a>
-        </p>
-    </div>
-    <div class="container">
-        <div class="card">
-            <div class="panel-heading text-center">
-                <h3 class="panel-title">1. 페이지 이동</h3>
-            </div>
-            <div class="card-body">
-                <h5>내부 링크</h5>
-                <div class="input-group">
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button" onclick="try1_1()">
-							<i class="far fa-play-circle"></i>
-							Demo
-						</button>
-					</span>
-                    <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly/>
+    <main role="main" class="flex-shrink-0">
+        <div class="container">
+            <div class="jumbotron text-center">
+                <h1 class="display-4">
+                    페이지 이동
+                    <small>(a href)</small>
+                </h1>
+                <hr class="my-4">
+                <h4>목차</h4>
+                <div class="list-group list-group-flush">
+                    <a href="#list1" class="list-group-item list-group-item-action list-group-item-light"> 1. 페이지 이동 </a>
+                    <a href="#list2" class="list-group-item list-group-item-action list-group-item-light"> 2. &lt;a href="url"&gt; </a>
                 </div>
-                <pre class="prettyprint">
+            </div>
+            <div class="card" id="list1">
+                <h3 class="panel-title text-center">1. 페이지 이동</h3>
+                <div class="card-body">
+                    <h5 class="card-title">내부 링크</h5>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary" type="button" onclick="try1_1()">
+                                <i class="far fa-play-circle"></i>
+                                Demo
+                            </button>
+                        </div>
+                        <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly/>
+                    </div>
+                    <pre class="prettyprint lang-js">
 MyCommon.goLink('/sample/guide/movepage/sampleGuideMovepage.view');
 </pre>
-                <h5>외부 링크(외부 링크는 기본적으로 탭으로 뜹니다.)</h5>
-                <div class="input-group">
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button" onclick="try1_2()">
-							<i class="far fa-play-circle"></i>
-							Demo
-						</button>
-					</span>
-                    <input type="text" class="form-control" id="resultTry1_2" placeholder="result..." readonly/>
-                </div>
-                <pre class="prettyprint">
+                    <h5 class="card-title">외부 링크(외부 링크는 기본적으로 탭으로 뜹니다.)</h5>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary" type="button" onclick="try1_2()">
+                                <i class="far fa-play-circle"></i>
+                                Demo
+                            </button>
+                        </div>
+                        <input type="text" class="form-control" id="resultTry1_2" placeholder="result..." readonly/>
+                    </div>
+                    <pre class="prettyprint lang-js">
 MyCommon.goLink('http://google.com');
 </pre>
-                <h5>팝업으로 띄우기</h5>
-                <div class="input-group">
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button" onclick="try1_3()">
-							<i class="far fa-play-circle"></i>
-							Demo
-						</button>
-					</span>
-                    <input type="text" class="form-control" id="resultTry1_3" placeholder="result..." readonly/>
-                </div>
-                <pre class="prettyprint">
+                    <h5 class="card-title">팝업으로 띄우기</h5>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary" type="button" onclick="try1_3()">
+                                <i class="far fa-play-circle"></i>
+                                Demo
+                            </button>
+                        </div>
+                        <input type="text" class="form-control" id="resultTry1_3" placeholder="result..." readonly/>
+                    </div>
+                    <pre class="prettyprint lang-js">
 MyCommon.goWindow('/sample/guide/movepage/sampleGuideMovepage.view');
 MyCommon.goLink('/sample/guide/movepage/sampleGuideMovepage.view', 'W');
 MyCommon.goLink('http://google.com', 'W');
 </pre>
-                <h5>외부 링크(페이지 이동)</h5>
-                <div class="input-group">
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button" onclick="try1_4()">
-							<i class="far fa-play-circle"></i>
-							Demo
-						</button>
-					</span>
-                    <input type="text" class="form-control" id="resultTry1_4" placeholder="result..." readonly/>
-                </div>
-                <pre class="prettyprint">
+                    <h5 class="card-title">외부 링크(페이지 이동)</h5>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary" type="button" onclick="try1_4()">
+                                <i class="far fa-play-circle"></i>
+                                Demo
+                            </button>
+                        </div>
+                        <input type="text" class="form-control" id="resultTry1_4" placeholder="result..." readonly/>
+                    </div>
+                    <pre class="prettyprint lang-js">
 MyCommon.goLink('http://google.com', 'L');
 </pre>
-                <div id="list2"></div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="panel-heading text-center">
-                <h3 class="panel-title">2. &lt;a href="url"&gt;</h3>
-            </div>
-            <div class="card-body">
-                <h5>&lt;a href&gt; 사용을 지양합니다.</h5>
-                <div class="input-group">
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button" onclick="try2_1()">
-							<i class="far fa-play-circle"></i>
-							Demo
-						</button>
-					</span>
-                    <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly/>
                 </div>
-                <pre class="prettyprint">
+            </div>
+
+            <div class="card" id="list2">
+                <h3 class="panel-title text-center">2. &lt;a href="url"&gt;</h3>
+                <div class="card-body">
+                    <h5 class="card-title">&lt;a href&gt; 사용을 지양합니다.</h5>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary" type="button" onclick="try2_1()">
+                                <i class="far fa-play-circle"></i>
+                                Demo
+                            </button>
+                        </div>
+                        <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly/>
+                    </div>
+                    <pre class="prettyprint lang-html">
 &lt;a href="javascript:void(0);" onclick="MyCommon.goLink('http://google.com');" /&gt;
 </pre>
-                <div id="list3"></div>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
     <my:footer/>
     </body>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>

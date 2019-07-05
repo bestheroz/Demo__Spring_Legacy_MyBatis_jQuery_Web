@@ -4,37 +4,32 @@
 <my:html>
     <body>
     <my:menu/>
-    <div class="mx-auto text-center">
-        <h3>
-            우편번호 검색창
-            <small>띄우기</small>
-        </h3>
-    </div>
-
-    <div class="mx-auto text-center">
-        <h4>목차</h4>
-        <div id="list1"></div>
-        <p class="text-muted">
-            <a href="#list1"> 1. 우편번호 검색창 띄우기 </a>
-        </p>
-    </div>
-    <div class="container">
-        <div class="card">
-            <div class="panel-heading text-center">
-                <h3 class="panel-title">1. 우편번호 검색창 띄우기</h3>
-            </div>
-            <div class="card-body">
-                <div class="input-group">
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button" onclick="try1_1()">
-							<i class="far fa-play-circle"></i>
-							Demo
-						</button>
-					</span>
-                    <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly/>
+    <main role="main" class="flex-shrink-0">
+        <div class="container">
+            <div class="jumbotron text-center">
+                <h1 class="display-4">우편번호 검색창
+                    <small>띄우기</small>
+                </h1>
+                <hr class="my-4">
+                <h4>목차</h4>
+                <div class="list-group list-group-flush">
+                    <a href="#list1" class="list-group-item list-group-item-action list-group-item-light"> 1. 우편번호 검색창 띄우기 </a>
                 </div>
-                <h4>프로토콜별 js 선언</h4>
-                <pre class="prettyprint">
+            </div>
+            <div class="card" id="list1">
+                <h3 class="panel-title text-center">1. 우편번호 검색창 띄우기</h3>
+                <div class="card-body">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary" type="button" onclick="try1_1()">
+                                <i class="far fa-play-circle"></i>
+                                Demo
+                            </button>
+                        </div>
+                        <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly/>
+                    </div>
+                    <h4>프로토콜별 js 선언</h4>
+                    <pre class="prettyprint lang-html">
 &lt;%
 	if (request.isSecure()) {
 %&gt;
@@ -47,17 +42,17 @@
 	}
 %&gt;
 </pre>
-                <pre class="prettyprint">
+                    <pre class="prettyprint lang-js">
 new daum.Postcode({
 	oncomplete : function(data) {
 		console.info(data);
 	}
 }).open();</pre>
-                <div id="list2"></div>
+                </div>
             </div>
         </div>
-    </div>
-    <my:footer/>
+        <my:footer/>
+    </main>
     </body>
     <%
         if (request.isSecure()) {

@@ -39,7 +39,7 @@ public class InitWebConstantContext {
         servletContext.setAttribute("TIME_ZONE_ASIA_SEOUL", MyDateUtils.TIME_ZONE_ASIA_SEOUL.getID());
         servletContext.setAttribute("LOCALE_KOREAN", MyDateUtils.LOCALE_KOREAN.toString());
         this.logger.info("DateTimeZone/TimeZone.setDefault(\"{}\"); - Complete", MyDateUtils.TIME_ZONE_ASIA_SEOUL.getID());
-        this.logger.info("\n{}\nThis Framework is managed by bestheroz.\nPlease send me feedback.\nE-mail: bestheroz@gmail.com\ngithub: https://github.com/bestheroz\n{}", StringUtils.repeat("=", 80),
+        this.logger.info("\n{}\nThis Framework is managed by bestheroz.\nIf you have any questions, send me feedback.\nE-mail: bestheroz@gmail.com\ngithub: https://github.com/bestheroz\n{}", StringUtils.repeat("=", 80),
                 StringUtils.repeat("=", 80));
     }
 

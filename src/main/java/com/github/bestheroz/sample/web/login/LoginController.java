@@ -25,7 +25,7 @@ public class LoginController {
         if (MySessionUtils.getLoginVO(this.session) != null) {
             final String returnUrl = MySessionUtils.getAttribute(this.session, "returnUrl");
             this.session.removeAttribute("returnUrl");
-            if (StringUtils.isEmpty(returnUrl) || StringUtils.equals(returnUrl, "null")) {
+            if (StringUtils.isEmpty(returnUrl) || StringUtils.equals(returnUrl, "null") || StringUtils.endsWith(returnUrl, "bootstrap-solid.svg")) {
                 return "redirect:/sample/admin/menu/adminMenu.view";
             } else {
                 return "redirect:" + returnUrl;

@@ -24,20 +24,20 @@
             </p>
         </div>
         <div class="card">
-            <div class="panel-heading text-center">
-                <h3 class="panel-title">1. 모달 띄우기</h3>
+
+                <h3 class="panel-title text-center">1. 모달 띄우기</h3>
             </div>
             <div class="card-body">
-                <h5>띄우기 / 닫기</h5>
+                <h5 class="card-title">띄우기 / 닫기</h5>
                 <div class="input-group">
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button" onclick="try1_1()">
+					<div class="input-group-prepend">
+						<button class="btn btn-outline-secondary" type="button" onclick="try1_1()">
 							<i class="far fa-play-circle"></i>
 							Demo
 						</button>
 					</span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-html">
 &lt;div id="try1_modalContent" class="jmodal" style="display: none;"&gt;
     //modal contents
 &lt;/div&gt;
@@ -53,20 +53,20 @@ MyModal.close($('#try1_modalContent')).done(function(){
         </div>
 
         <div class="card">
-            <div class="panel-heading text-center">
-                <h3 class="panel-title">2. 다중 모달 띄우기</h3>
+
+                <h3 class="panel-title text-center">2. 다중 모달 띄우기</h3>
             </div>
             <div class="card-body">
-                <h5>띄우기</h5>
+                <h5 class="card-title">띄우기</h5>
                 <div class="input-group">
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button" onclick="try2_1()">
+					<div class="input-group-prepend">
+						<button class="btn btn-outline-secondary" type="button" onclick="try2_1()">
 							<i class="far fa-play-circle"></i>
 							Demo
 						</button>
 					</span>
                 </div>
-                <pre class="prettyprint">
+                <pre class="prettyprint lang-html">
 &lt;div id="try2_1-a" class="jmodal" style="display: none;"&gt;
     //modal contents
 &lt;/div&gt;

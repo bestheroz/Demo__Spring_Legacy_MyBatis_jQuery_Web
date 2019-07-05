@@ -23,11 +23,11 @@
     </div>
     <div class="container">
         <div class="card">
-            <div class="panel-heading text-center">
-                <h3 class="panel-title">1. 사용법</h3>
+
+                <h3 class="panel-title text-center">1. 사용법</h3>
             </div>
             <div class="card-body">
-				<pre class="prettyprint">
+				<pre class="prettyprint lang-html">
 &lt;my:html title="페이지 타이틀" fileDownloader="YES" progressBar="NO"&gt;
 &lt;body&gt;
 &lt;/body&gt;
@@ -38,8 +38,8 @@
         </div>
 
         <div class="card">
-            <div class="panel-heading text-center">
-                <h3 class="panel-title">2. 옵션종류</h3>
+
+                <h3 class="panel-title text-center">2. 옵션종류</h3>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
