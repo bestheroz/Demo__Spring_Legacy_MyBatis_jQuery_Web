@@ -27,7 +27,7 @@
                     <h4>YYYY-MM-DD(기본형)</h4>
                     <div class="row">
 					<span class="col-sm-2">
-						<input type="text" class="form-control datepicker" id="resultTry1_1" placeholder="result..." readonly/>
+						<input type="text" class="form-control datepicker" id="resultTry1_1" placeholder="result..."/>
 					</span>
                     </div>
                     <pre class="prettyprint lang-html">
@@ -163,12 +163,14 @@ $(document).ready(function() {
                     <h4>특정일 제외</h4>
                     <div class="row">
 					<span class="col-sm-2">
-						<input type="text" class="form-control datepicker" id="resultTry5_1" placeholder="result..." readonly/>
+						<input type="text" class="form-control" id="resultTry5_1" placeholder="result..."/>
 					</span>
                     </div>
                     <pre class="prettyprint lang-html">
 $(document).ready(function() {
-    $(targetObj).data("DateTimePicker").disabledDates([ moment().subtract(1, 'days'), moment().add(1, 'days') ]);
+    $(targetObj).datetimepicker({
+        disabledDates : [moment().subtract(1, 'days'), moment().add(1, 'days')],
+    });
 });
 </pre>
                     <h4>공휴일 제외</h4>
@@ -180,7 +182,9 @@ $(document).ready(function() {
                     <pre class="prettyprint lang-html">
 $(document).ready(function() {
     let holidays = [ "0101", "0301", "0505", "0606", "0815", "1003", "1009", "1225", "1004", "1005", "1006" ];
-    $(targetObj).data("DateTimePicker").disabledDates(holidays);
+    $(targetObj).datetimepicker({
+        disabledDates : holidays
+    });
 });
 </pre>
                     <h4>토, 일요일 제외</h4>
@@ -191,8 +195,9 @@ $(document).ready(function() {
                     </div>
                     <pre class="prettyprint lang-html">
 $(document).ready(function() {
-    let holidays = [ "0101", "0301", "0505", "0606", "0815", "1003", "1009", "1225", "1004", "1005", "1006" ];
-    $(targetObj).data("DateTimePicker").disabledDates(holidays);
+    $(targetObj).datetimepicker({
+        daysOfWeekDisabled: [0, 6]
+    });
 });
 </pre>
                 </div>
@@ -209,7 +214,10 @@ $(document).ready(function() {
                     </div>
                     <pre class="prettyprint lang-html">
 $(document).ready(function() {
-    $(targetObj).data("DateTimePicker").minDate(moment().add(3, 'days')).maxDate(moment().add(7, 'days'));
+    $(targetObj).datetimepicker({
+        minDate: moment().add(3, 'days'),
+        maxDate: moment().add(7, 'days'),
+    });
 });
 </pre>
                 </div>
@@ -260,11 +268,20 @@ $(document).ready(function() {
             MyDatetimePicker.setFromTo($('#resultTry2_2_1'), $('#resultTry2_2_2'));
             MyDatetimePicker.setFromTo($('#resultTry2_3_1'), $('#resultTry2_3_2'));
             MyDatetimePicker.setFromTo($('#resultTry4_1_1'), $('#resultTry4_1_2'));
-            $('#resultTry5_1').data("DateTimePicker").disabledDates([moment().subtract(1, 'days'), moment().add(1, 'days')]);
+            $('#resultTry5_1').datetimepicker({
+                disabledDates: [moment().subtract(1, 'days'), moment().add(1, 'days')],
+            });
             let holidays = ["20170101", "20170301", "20170505", "20170606", "20170815", "20171003", "20171009", "20171225", "20171004", "20171005", "20171006"];
-            $('#resultTry5_2').data("DateTimePicker").disabledDates(holidays);
-            $('#resultTry5_3').data("DateTimePicker").daysOfWeekDisabled([0, 6]);
-            $('#resultTry6_1').data("DateTimePicker").minDate(moment().add(3, 'days')).maxDate(moment().add(7, 'days'));
+            $('#resultTry5_2').datetimepicker({
+                disabledDates: holidays
+            });
+            $('#resultTry5_3').datetimepicker({
+                daysOfWeekDisabled: [0, 6]
+            });
+            $('#resultTry6_1').datetimepicker({
+                minDate: moment().add(3, 'days'),
+                maxDate: moment().add(7, 'days'),
+            });
         });
     </script>
     <script>

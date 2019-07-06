@@ -4,14 +4,12 @@
     <my:menu/>
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            <div class="jumbotron text-center">
-                <h1 class="display-4">코드관리
-                    <small>
-                        For 관리자
-                        <i class="fas fa-wrench"></i>
-                    </small>
-                </h1>
-            </div>
+            <h1 class="display-4 text-center">코드관리
+                <small>
+                    For 관리자
+                    <i class="fas fa-wrench"></i>
+                </small>
+            </h1>
             <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -56,122 +54,133 @@
             </div>
         </div>
         <!-- Modal -->
-        <div id="modalValueLabel" class="jmodal" style="display: none;">
-            <div class="modal-header">
-                <h3>그룹코드 입력</h3>
-            </div>
-            <div class="modal-body">
-                <form id="form1" class="form-horizontal">
-                    <div class="form-group">
-                        <label for="grcode" class="col-sm-3 control-label">그룹코드</label>
-                        <div class="col-sm-9">
-                            <input type="text" id="grcode" class="form-control" title="그룹코드" maxlength="100"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="grcodeNm" class="col-sm-3 control-label">그룹코드명</label>
-                        <div class="col-sm-9">
-                            <input type="text" id="grcodeNm" class="form-control" title="그룹코드명" maxlength="300"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="remark1" class="col-sm-3 control-label">비고</label>
-                        <div class="col-sm-9">
-                            <input type="text" id="remark1" class="form-control" title="비고" maxlength="1000"/>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <div class="text-center">
-                    <div class="btn-group btn-group-padding" role="group" aria-label="...">
-                        <button type="button" class="btn btn-default" onclick="MyModal.close($('#modalValueLabel'));">
-                            <i class="far fa-window-close"></i>
+        <div id="modalValueLabel" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">그룹코드 입력</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
                         </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form1" class="form-horizontal">
+                            <div class="form-group">
+                                <label for="grcode" class="col-sm-3 control-label">그룹코드</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="grcode" class="form-control" title="그룹코드" maxlength="100"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="grcodeNm" class="col-sm-3 control-label">그룹코드명</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="grcodeNm" class="form-control" title="그룹코드명" maxlength="300"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="remark1" class="col-sm-3 control-label">비고</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="remark1" class="form-control" title="비고" maxlength="1000"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-trash-alt"></i>
+                            <button type="button" class="btn btn-outline-primary" onclick="MyModal.close($('#modalValueLabel'));">
+                                <i class="far fa-window-close"></i>
                             </button>
-                            <ul class="dropdown-menu color-danger">
-                                <li class="text-center">
-                                    <a href="javascript:void(0);" onclick="deleteValueLabel();">
+
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-outline-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                                <div class="dropdown-menu color-danger" aria-labelledby="btnGroupDrop1">
+                                    <a class="dropdown-item" href="javascript:void(0);" onclick="deleteValueLabel();">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
-                                </li>
-                            </ul>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-outline-success" onclick="saveValueLabel();">
+                                <i class="far fa-save"></i>
+                            </button>
                         </div>
-                        <button type="button" class="btn btn-success" onclick="saveValueLabel();">
-                            <i class="far fa-save"></i>
-                        </button>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="modalValueLabelDet" style="display: none;">
-            <div class="modal-header">
-                <h3>그룹코드-코드 입력</h3>
-            </div>
-            <div class="modal-body">
-                <form id="form2" class="form-horizontal">
-                    <div class="form-group">
-                        <label for="grcodeDet" class="col-sm-3 control-label">그룹코드</label>
-                        <div class="col-sm-9">
-                            <input type="text" id="grcodeDet" class="form-control" title="그룹코드" maxlength="100" readonly/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="code" class="col-sm-3 control-label">코드</label>
-                        <div class="col-sm-9">
-                            <input type="text" id="code" class="form-control" title="코드" maxlength="100"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="codeNm" class="col-sm-3 control-label">코드명</label>
-                        <div class="col-sm-9">
-                            <input type="text" id="codeNm" class="form-control" title="코드명" maxlength="300"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="useYn" class="col-sm-3 control-label">사용여부</label>
-                        <div class="col-sm-9">
-                            <select id="useYn" class="form-control" title="사용여부" style="width: 70%" required></select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="dispSeq" class="col-sm-3 control-label">출력순서</label>
-                        <div class="col-sm-9">
-                            <input type="text" id="dispSeq" class="form-control" title="출력순서" maxlength="10" data-parsley-type="digits"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="remark1Det" class="col-sm-3 control-label">비고</label>
-                        <div class="col-sm-9">
-                            <input type="text" id="remark1Det" class="form-control" title="비고" maxlength="1000"/>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <div class="text-center">
-                    <div class="btn-group btn-group-padding" role="group" aria-label="...">
-                        <button type="button" class="btn btn-default" onclick="MyModal.close($('#modalValueLabelDet'));">
-                            <i class="far fa-window-close"></i>
+        <!-- Modal -->
+        <div id="modalValueLabelDet" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">그룹코드-코드 입력</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
                         </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form2" class="form-horizontal">
+                            <div class="form-group">
+                                <label for="grcodeDet" class="col-sm-3 control-label">그룹코드</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="grcodeDet" class="form-control" title="그룹코드" maxlength="100" readonly/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="code" class="col-sm-3 control-label">코드</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="code" class="form-control" title="코드" maxlength="100"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="codeNm" class="col-sm-3 control-label">코드명</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="codeNm" class="form-control" title="코드명" maxlength="300"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="useYn" class="col-sm-3 control-label">사용여부</label>
+                                <div class="col-sm-9">
+                                    <select id="useYn" class="form-control" title="사용여부" style="width: 70%" required></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dispSeq" class="col-sm-3 control-label">출력순서</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="dispSeq" class="form-control" title="출력순서" maxlength="10" data-parsley-type="digits"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="remark1Det" class="col-sm-3 control-label">비고</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="remark1Det" class="form-control" title="비고" maxlength="1000"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-trash-alt"></i>
+                            <button type="button" class="btn btn-outline-primary" onclick="MyModal.close($('#modalValueLabelDet'));">
+                                <i class="far fa-window-close"></i>
                             </button>
-                            <ul class="dropdown-menu color-danger">
-                                <li class="text-center">
-                                    <a href="javascript:void(0);" onclick="deleteValueLabelDet();">
+
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop2" type="button" class="btn btn-outline-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                                <div class="dropdown-menu color-danger" aria-labelledby="btnGroupDrop2">
+                                    <a class="dropdown-item" href="javascript:void(0);" onclick="deleteValueLabelDet();">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
-                                </li>
-                            </ul>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-outline-success" onclick="saveValueLabelDet();">
+                                <i class="far fa-save"></i>
+                            </button>
                         </div>
-                        <button type="button" class="btn btn-success" onclick="saveValueLabelDet();">
-                            <i class="far fa-save"></i>
-                        </button>
                     </div>
                 </div>
             </div>

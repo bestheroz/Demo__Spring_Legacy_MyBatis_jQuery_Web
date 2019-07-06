@@ -237,7 +237,7 @@ const MyAjax = {
         }
         // ajax를 통해 가져온 (기존)중복된 Model 제거
         try {
-            $.each($(targetObj).find('.jmodal'), function (index, value) {
+            $.each($(targetObj).find('.modal'), function (index, value) {
                 if ($('body > #' + $(value).prop('id')) !== $(value)) {
                     $('body > #' + $(value).prop('id')).remove();
                 }

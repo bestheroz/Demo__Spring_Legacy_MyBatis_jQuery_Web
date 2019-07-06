@@ -1,15 +1,1 @@
 @CHARSET "UTF-8";
-
-.jmodal {
-    z-index: 4;
-    max-width: 85%;
-    background-color: #f5f5dc;
-}
-
-.blocker {
-    z-index: 3;
-}
-
-.overflow-visible {
-    overflow: visible;
-}

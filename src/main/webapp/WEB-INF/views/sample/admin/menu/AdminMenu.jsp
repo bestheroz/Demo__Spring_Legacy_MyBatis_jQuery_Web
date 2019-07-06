@@ -4,13 +4,12 @@
     <my:menu/>
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            <h3 class="mx-auto text-center">
-                메뉴관리
+            <h1 class="display-4 text-center">메뉴관리
                 <small>
                     For 관리자
                     <i class="fas fa-wrench"></i>
                 </small>
-            </h3>
+            </h1>
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">

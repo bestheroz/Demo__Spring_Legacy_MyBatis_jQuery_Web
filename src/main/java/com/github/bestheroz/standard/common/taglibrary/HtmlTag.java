@@ -105,9 +105,9 @@ public class HtmlTag extends TagSupport {
             this.makeScriptTag(CommonCode.PATH_JS + "/MyCookie.js");
         }
         if (!StringUtils.equals(this.datetimePicker, CommonCode.NO)) {
-//            this.makeLinkTag("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.min.css");
+            this.makeLinkTag("https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css");
             this.makeLinkTag(CommonCode.PATH_CSS + "/MyDatetimePicker.css");
-            this.makeScriptTag("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js");
+            this.makeScriptTag("https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js");
             this.makeScriptTag(CommonCode.PATH_JS + "/MyDatetimePicker.js");
         }
         if (StringUtils.equals(this.fileDownloader, CommonCode.YES)) {

@@ -5,14 +5,12 @@
     <my:menu/>
     <main role="main" class="flex-shrink-0">
         <div class="container">
-            <div class="jumbotron text-center">
-                <h1 class="display-4">회원관리
-                    <small>
-                        For 관리자
-                        <i class="fas fa-wrench"></i>
-                    </small>
-                </h1>
-            </div>
+            <h1 class="display-4 text-center">회원관리
+                <small>
+                    For 관리자
+                    <i class="fas fa-wrench"></i>
+                </small>
+            </h1>
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
@@ -41,83 +39,88 @@
             </div>
         </div>
         <!-- Modal -->
-        <div id="modalMember" class="jmodal" style="display: none;">
-            <div class="modal-header">
-                <h3>회원 입력</h3>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label for="memberId" class="col-sm-3 control-label">회원ID</label>
-                        <div class="col-sm-9">
-                            <input type="text" id="memberId" class="form-control" title="회원" maxlength="20"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="memberNm" class="col-sm-3 control-label">회원명</label>
-                        <div class="col-sm-9">
-                            <input type="text" id="memberNm" class="form-control" title="회원명" maxlength="30"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="memberPw" class="col-sm-3 control-label">비밀번호</label>
-                        <div class="col-sm-9">
-                            <input type="password" id="memberPw" class="form-control" title="비밀번호" data-parsley-minlength="5" maxlength="20"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="memberPw2" class="col-sm-3 control-label">비밀번호(확인용)</label>
-                        <div class="col-sm-9">
-                            <input type="password" id="memberPw2" class="form-control" title="비밀번호(확인용)" data-parsley-minlength="5" maxlength="20"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="memberTyp" class="col-sm-3 control-label">회원종류</label>
-                        <div class="col-sm-9">
-                            <select id="memberTyp" class="form-control" title="회원종류" style="width: 70%" required></select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="loginFailCnt" class="col-sm-3 control-label">로그인 실패 횟수</label>
-                        <div class="col-sm-9">
-                            <input type="number" id="loginFailCnt" class="form-control" title="비밀번호(확인용)" data-parsley-minlength="1" maxlength="10"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="closeYn" class="col-sm-3 control-label">계정잠금여부</label>
-                        <div class="col-sm-9">
-                            <select id="closeYn" class="form-control" title="계정잠금여부" style="width: 30%" required></select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="expireDt" class="col-sm-3 control-label">계정사용 만기일</label>
-                        <div class="col-sm-9">
-                            <input type="text" id="expireDt" class="form-control datetimepicker" title="계정사용 만기일"/>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <div class="text-center">
-                    <div class="btn-group btn-group-padding" role="group" aria-label="...">
-                        <button type="button" class="btn btn-default" onclick="MyModal.close($('#modalMember'));">
-                            <i class="far fa-window-close"></i>
+        <div id="modalMember" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">회원 입력</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
                         </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="memberId" class="col-sm-3 control-label">회원ID</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="memberId" class="form-control" title="회원" maxlength="20"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="memberNm" class="col-sm-3 control-label">회원명</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="memberNm" class="form-control" title="회원명" maxlength="30"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="memberPw" class="col-sm-3 control-label">비밀번호</label>
+                                <div class="col-sm-9">
+                                    <input type="password" id="memberPw" class="form-control" title="비밀번호" data-parsley-minlength="5" maxlength="20"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="memberPw2" class="col-sm-3 control-label">비밀번호(확인용)</label>
+                                <div class="col-sm-9">
+                                    <input type="password" id="memberPw2" class="form-control" title="비밀번호(확인용)" data-parsley-minlength="5" maxlength="20"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="memberTyp" class="col-sm-3 control-label">회원종류</label>
+                                <div class="col-sm-9">
+                                    <select id="memberTyp" class="form-control" title="회원종류" style="width: 70%" required></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="loginFailCnt" class="col-sm-3 control-label">로그인 실패 횟수</label>
+                                <div class="col-sm-9">
+                                    <input type="number" id="loginFailCnt" class="form-control" title="비밀번호(확인용)" data-parsley-minlength="1" maxlength="10"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="closeYn" class="col-sm-3 control-label">계정잠금여부</label>
+                                <div class="col-sm-9">
+                                    <select id="closeYn" class="form-control" title="계정잠금여부" style="width: 30%" required></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="expireDt" class="col-sm-3 control-label">계정사용 만기일</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="expireDt" class="form-control datetimepicker" title="계정사용 만기일"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-trash-alt"></i>
+                            <button type="button" class="btn btn-outline-primary" onclick="MyModal.close($('#modalMember'));">
+                                <i class="far fa-window-close"></i>
                             </button>
-                            <ul class="dropdown-menu color-danger">
-                                <li class="text-center">
-                                    <a href="javascript:void(0);" onclick="deleteMember();">
+
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-outline-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                                <div class="dropdown-menu color-danger" aria-labelledby="btnGroupDrop1">
+                                    <a class="dropdown-item" href="javascript:void(0);" onclick="deleteMember();">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
-                                </li>
-                            </ul>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-outline-success" onclick="saveMember();">
+                                <i class="far fa-save"></i>
+                            </button>
                         </div>
-                        <button type="button" class="btn btn-success" onclick="saveMember();">
-                            <i class="far fa-save"></i>
-                        </button>
                     </div>
                 </div>
             </div>

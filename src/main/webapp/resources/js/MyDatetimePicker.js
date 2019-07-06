@@ -40,7 +40,6 @@ const MyDatetimePicker = {
         $(targetObj).find('.datetimepicker-yyyymmddhh').each(function () {
             MyDatetimePicker.setDateTimePickerYYYYMMDDHH(this);
         });
-
     },
     setDatePicker: function (targetObj) {
         MyDatetimePicker.setDatePickerYYYYMMDD(targetObj);
@@ -54,7 +53,6 @@ const MyDatetimePicker = {
             $(targetObj).datetimepicker({
                 format: 'YYYY-MM-DD'
             });
-            MyDatetimePicker.setDefaultOption(targetObj);
         }
         return $(targetObj);
     },
@@ -66,7 +64,6 @@ const MyDatetimePicker = {
             $(targetObj).datetimepicker({
                 format: 'YYYY-MM'
             });
-            MyDatetimePicker.setDefaultOption(targetObj);
         }
         return $(targetObj);
     },
@@ -78,7 +75,6 @@ const MyDatetimePicker = {
             $(targetObj).datetimepicker({
                 format: 'YYYY'
             });
-            MyDatetimePicker.setDefaultOption(targetObj);
         }
         return $(targetObj);
     },
@@ -99,7 +95,6 @@ const MyDatetimePicker = {
             $(targetObj).datetimepicker({
                 format: 'HH:mm:ss'
             });
-            MyDatetimePicker.setDefaultOption(targetObj);
         }
         return $(targetObj);
     },
@@ -111,7 +106,6 @@ const MyDatetimePicker = {
             $(targetObj).datetimepicker({
                 format: 'HH:mm'
             });
-            MyDatetimePicker.setDefaultOption(targetObj);
         }
         return $(targetObj);
     },
@@ -123,7 +117,6 @@ const MyDatetimePicker = {
             $(targetObj).datetimepicker({
                 format: 'HH'
             });
-            MyDatetimePicker.setDefaultOption(targetObj);
         }
         return $(targetObj);
     },
@@ -145,7 +138,6 @@ const MyDatetimePicker = {
                 // sideBySide : true,
                 format: 'YYYY-MM-DD HH:mm:ss'
             });
-            MyDatetimePicker.setDefaultOption(targetObj);
         }
         return $(targetObj);
     },
@@ -158,7 +150,6 @@ const MyDatetimePicker = {
                 // sideBySide : true,
                 format: 'YYYY-MM-DD HH:mm'
             });
-            MyDatetimePicker.setDefaultOption(targetObj);
         }
         return $(targetObj);
     },
@@ -171,32 +162,6 @@ const MyDatetimePicker = {
                 // sideBySide : true,
                 format: 'YYYY-MM-DD HH'
             });
-            MyDatetimePicker.setDefaultOption(targetObj);
-        }
-        return $(targetObj);
-    },
-
-    setDateTimePickerDefault: function (targetObj) {
-        if ($(targetObj).length === 0) {
-            console.warn('올바르지않은 대상');
-        } else {
-            MyDatetimePicker.setParentPositionRelative(targetObj);
-            $(targetObj).datetimepicker({});
-            MyDatetimePicker.setDefaultOption(targetObj);
-        }
-        return $(targetObj);
-    },
-
-    setDateTimePickerFormat: function (targetObj, paramFormat) {
-        if ($(targetObj).length === 0) {
-            console.warn('올바르지않은 대상');
-        } else {
-            MyDatetimePicker.setParentPositionRelative(targetObj);
-            $(targetObj).datetimepicker({
-                format: paramFormat,
-                // sideBySide : true
-            });
-            MyDatetimePicker.setDefaultOption(targetObj);
         }
         return $(targetObj);
     },
@@ -208,16 +173,24 @@ const MyDatetimePicker = {
         }
         $(fromObj).on("dp.change", function (e) {
             if (_.isEmpty($(fromObj).val())) {
-                $(toObj).data("DateTimePicker").minDate(false);
+                $(toObj).datetimepicker({
+                    minDate: false
+                });
             } else {
-                $(toObj).data("DateTimePicker").minDate($(fromObj).data("DateTimePicker").date());
+                $(toObj).datetimepicker({
+                    minDate: $(fromObj).datetimepicker().date()
+                });
             }
         });
         $(toObj).on("dp.change", function (e) {
             if (_.isEmpty($(toObj).val())) {
-                $(fromObj).data("DateTimePicker").maxDate(false);
+                $(fromObj).datetimepicker({
+                    minDate: false
+                });
             } else {
-                $(fromObj).data("DateTimePicker").maxDate($(toObj).data("DateTimePicker").date());
+                $(fromObj).datetimepicker({
+                    minDate: $(toObj).datetimepicker().date()
+                });
             }
         });
         $(fromObj).trigger('dp.change').trigger('change');
@@ -233,16 +206,16 @@ const MyDatetimePicker = {
         MyDatetimePicker.setDatePickerYYYYMMDD($(toObj));
         $(fromObj).on("dp.change", function (e) {
             if (_.isEmpty($(fromObj).val())) {
-                $(toObj).data("DateTimePicker").minDate(false);
+                $(toObj).datetimepicker().minDate(false);
             } else {
-                $(toObj).data("DateTimePicker").minDate($(fromObj).data("DateTimePicker").date());
+                $(toObj).datetimepicker().minDate($(fromObj).datetimepicker().date());
             }
         });
         $(toObj).on("dp.change", function (e) {
             if (_.isEmpty($(toObj).val())) {
-                $(fromObj).data("DateTimePicker").maxDate(false);
+                $(fromObj).datetimepicker().maxDate(false);
             } else {
-                $(fromObj).data("DateTimePicker").maxDate($(toObj).data("DateTimePicker").date());
+                $(fromObj).datetimepicker().maxDate($(toObj).datetimepicker().date());
             }
         });
         $(fromObj).trigger('dp.change').trigger('change');
@@ -251,30 +224,43 @@ const MyDatetimePicker = {
 
     // 달력이 모달이나 새로 띄워진 화면에 띄우려면 위치를 지정해줘야한다.
     setParentPositionRelative: function (targetObj) {
-        let datetimepickerId = moment().valueOf() + _.random(0, 999);
-        $('<span style="position:relative;" data-datetimepicker-id="' + datetimepickerId + '">').insertBefore(targetObj);
-        $('span[data-datetimepicker-id="' + datetimepickerId + '"]').css({
-            margin: 0,
-            padding: 0,
-            border: 0
-        }).html($(targetObj));
+        // let datetimepickerId = moment().valueOf() + _.random(0, 999);
+        // $('<span style="position:relative;" data-datetimepicker-id="' + datetimepickerId + '">').insertBefore(targetObj);
+        // $('span[data-datetimepicker-id="' + datetimepickerId + '"]').css({
+        //     margin: 0,
+        //     padding: 0,
+        //     border: 0
+        // }).html($(targetObj));
     },
 
-    setDefaultOption: function (targetObj) {
-        if ($(targetObj).length === 0) {
-            console.warn('올바르지않은 대상');
-            return;
-        }
-        $(targetObj).data("DateTimePicker").showClear(true).showTodayButton(true).locale(new moment().local('locale')).ignoreReadonly(true).useCurrent(false);
-    },
     destroy: function (targetObj) {
         if ($(targetObj).length === 0) {
             console.warn('올바르지않은 대상');
             return;
         }
-        $(targetObj).data("DateTimePicker").destroy();
+        $(targetObj).datetimepicker().destroy();
     }
 };
+$.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Constructor.Default, {
+    icons: {
+        time: 'far fa-clock',
+        date: 'far fa-calendar',
+        up: 'far fa-arrow-up',
+        down: 'far fa-arrow-down',
+        previous: 'far fa-chevron-left',
+        next: 'far fa-chevron-right',
+        today: 'far fa-calendar-check-o',
+        clear: 'far fa-trash',
+        close: 'far fa-times'
+    },
+    buttons: {
+        showClear: true,
+        showToday: true,
+    },
+    ignoreReadonly: true,
+    useCurrent: false,
+    locale: moment.locale(),
+});
 $(document).ready(function () {
     MyDatetimePicker.init();
 });
