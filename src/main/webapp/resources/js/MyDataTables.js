@@ -31,7 +31,7 @@ const MyDataTables = {
             return;
         }
         let $newTargetObj = $('#' + $(targetObj).attr('id') + '_filter');
-        $newTargetObj.children('label').append('<div class="input-group"></div>');
+        $newTargetObj.children('label').append('<div class="input-group mb-3"></div>');
         $newTargetObj.find('label > div.input-group').append('<div class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></div>');
         $newTargetObj.find('label > div.input-group > div.input-group-addon').after($newTargetObj.find('label > input'));
         $($newTargetObj.children('label').contents()[0]).remove();

@@ -21,25 +21,25 @@
             margin-right: 10px;
         }
     </style>
-    <body>
     <my:menu/>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="error-template">
-                    <h1>Oops!</h1>
-                    <h2>500 Internal Server Error</h2>
-                    <div class="error-details">Sorry, an error has occured, Requested page not found!</div>
-                    <div class="error-actions">
-                        <a href="javascript:void(0);" class="btn btn-primary btn-lg" onclick="MyCommon.goLink('${CONTEXT_PATH}/');">
-                            <span class="glyphicon glyphicon-home"></span>
-                            Take Me Home
-                        </a>
+    <main role="main" class="flex-shrink-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="error-template">
+                        <h1>Oops!</h1>
+                        <h2>500 Internal Server Error</h2>
+                        <div class="error-details">Sorry, an error has occured, Requested page not found!</div>
+                        <div class="error-actions">
+                            <a href="javascript:void(0);" class="btn btn-primary btn-lg" onclick="MyCommon.goLink('${CONTEXT_PATH}/');">
+                                <span class="glyphicon glyphicon-home"></span>
+                                Take Me Home
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
     <my:footer/>
-    </body>
 </my:html>

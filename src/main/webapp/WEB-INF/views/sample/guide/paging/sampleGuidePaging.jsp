@@ -2,83 +2,75 @@
 <%@include file="/WEB-INF/include/include.jsp" %>
 
 <my:html paging="YES">
-    <body>
     <my:menu/>
-    <div class="mx-auto text-center">
-        <h3>
-            페이징
-            <small>처리</small>
-        </h3>
-    </div>
-    <div class="mx-auto text-center">
-        <h4>required</h4>
-        <p>&lt;my:html paging="YES"&gt;</p>
-    </div>
-
-    <div class="mx-auto text-center">
-        <h4>목차</h4>
-        <p class="text-muted">
-            <a href="#list1"> 1. &lt;button&gt; 페이징 처리 </a>
-        </p>
-        <div id="list1"></div>
-        <p class="text-muted">
-            <a href="#list2"> 1. &lt;a&gt; 페이징 처리 </a>
-        </p>
-    </div>
-    <div class="container">
-        <div class="card">
-
-                <h3 class="panel-title text-center">1. &lt;button&gt; 페이징 처리</h3>
-            </div>
-            <div class="card-body">
-                <nav>
-                    <ul class="pagination">
-                        <li>
-                            <a href="javascript:void(0);" aria-label="First">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" aria-label="Previous">
-                                <span aria-hidden="true">&lt;</span>
-                            </a>
-                        </li>
-                        <li class="active">
-                            <a href="javascript:void(0);" data-page-number="true">1</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" data-page-number="true" style="display: none;">2</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" data-page-number="true" style="display: none;">3</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" data-page-number="true" style="display: none;">4</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" data-page-number="true" style="display: none;">5</a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" aria-label="Next">
-                                <span aria-hidden="true">&gt;</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" aria-label="Last">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <div class="input-group">
-					<div class="input-group-prepend">
-						<button class="btn btn-outline-secondary" type="button" onclick="try1_1()">
-							<i class="far fa-play-circle"></i>
-							Demo
-						</button>
-					</div><input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly/>
+    <main role="main" class="flex-shrink-0">
+        <div class="container">
+            <div class="jumbotron text-center">
+                <h1 class="display-4">페이징
+                    <small>처리하기</small>
+                </h1>
+                <hr class="my-4">
+                <h4>required</h4>
+                <pre class="prettyprint lang-html">&lt;my:html paging="YES"&gt;</pre>
+                <hr class="my-4">
+                <h4>목차</h4>
+                <div class="list-group list-group-flush">
+                    <a href="#list1" class="list-group-item list-group-item-action list-group-item-light"> 1. &lt;button&gt; 페이징 처리 </a>
+                    <a href="#list2" class="list-group-item list-group-item-action list-group-item-light"> 2. &lt;a&gt; 페이징 처리 </a>
                 </div>
-                <pre class="prettyprint lang-html">
+            </div>
+            <div class="card" id="list1">
+                <h3 class="panel-title text-center">1. &lt;button&gt; 페이징 처리</h3>
+                <div class="card-body">
+                    <nav>
+                        <ul class="pagination">
+                            <li>
+                                <a href="javascript:void(0);" aria-label="First">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" aria-label="Previous">
+                                    <span aria-hidden="true">&lt;</span>
+                                </a>
+                            </li>
+                            <li class="active">
+                                <a href="javascript:void(0);" data-page-number="true">1</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" data-page-number="true" style="display: none;">2</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" data-page-number="true" style="display: none;">3</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" data-page-number="true" style="display: none;">4</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" data-page-number="true" style="display: none;">5</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" aria-label="Next">
+                                    <span aria-hidden="true">&gt;</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" aria-label="Last">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-primary" type="button" onclick="try1_1()">
+                                <i class="far fa-play-circle"></i>
+                                Demo
+                            </button>
+                        </div>
+                        <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly/>
+                    </div>
+                    <pre class="prettyprint lang-html">
 &lt;nav&gt;
     &lt;ul class="pagination"&gt;
         &lt;li&gt;
@@ -108,12 +100,11 @@
         &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/nav&gt;</pre>
-                <div id="list2"></div>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
     <my:footer/>
-    </body>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <script data-for="ready">
         $(document).ready(function () {

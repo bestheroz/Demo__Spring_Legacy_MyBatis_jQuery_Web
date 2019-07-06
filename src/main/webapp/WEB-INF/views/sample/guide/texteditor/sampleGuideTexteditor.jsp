@@ -2,8 +2,6 @@
 <%@include file="/WEB-INF/include/include.jsp" %>
 
 <my:html textEditor="YES" modal="YES">
-
-    <body>
     <my:menu/>
     <main role="main" class="flex-shrink-0">
         <div class="container">
@@ -40,14 +38,15 @@
                     <div id="textarea1_1" data-texteditor="on" data-texteditor-height="50"></div>
 
                     <p>수동 : MyTextEditor.instance($('#textarea1_2')); 사용</p>
+                    <pre class="prettyprint lang-html">
+&lt;div id="textarea1_2"&gt;&lt;/div&gt;</pre>
                     <pre class="prettyprint lang-js">
-&lt;div id="textarea1_2"&gt;&lt;/div&gt;
 MyTextEditor.instance($('#textarea1_2'));
 MyTextEditor.instance($('#textarea1_2'), {height : '50px'});
 </pre>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try1_1()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try1_1()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -55,92 +54,89 @@ MyTextEditor.instance($('#textarea1_2'), {height : '50px'});
                         </div>
                         <div id="textarea1_2">textarea1_2 textarea1_2 textarea1_2</div>
                     </div>
-
-
-                    <h3 class="panel-title text-center">2. get/set code</h3>
                 </div>
-                <div class="card-body">
-                    <p>1. 값 가져오기(get)</p>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try2_1()">
-                                <i class="far fa-play-circle"></i>
-                                Demo
-                            </button>
+                <div class="card" id="list2">
+                    <h3 class="panel-title text-center">2. get/set code</h3>
+                    <div class="card-body">
+                        <p>1. 값 가져오기(get)</p>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-primary" type="button" onclick="try2_1()">
+                                    <i class="far fa-play-circle"></i>
+                                    Demo
+                                </button>
+                            </div>
+                            <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly/>
                         </div>
-                        <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly/>
-                    </div>
-                    <pre class="prettyprint lang-html">
+                        <pre class="prettyprint lang-js">
 MyTextEditor.getCode($('#textarea2'));
 </pre>
-                    <p>2. 값 입력하기(set)</p>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try2_2()">
-                                <i class="far fa-play-circle"></i>
-                                Demo
-                            </button>
+                        <p>2. 값 입력하기(set)</p>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-primary" type="button" onclick="try2_2()">
+                                    <i class="far fa-play-circle"></i>
+                                    Demo
+                                </button>
+                            </div>
+                            <input type="text" class="form-control" id="resultTry2_2" placeholder="result..." value="set Value">
                         </div>
-                        <input type="text" class="form-control" id="resultTry2_2" placeholder="result..." value="set Value">
-                    </div>
-                    <pre class="prettyprint lang-html">
+                        <pre class="prettyprint lang-js">
 MyTextEditor.setCode($('#textarea2'), 'set Value');
 </pre>
-                    <div id="textarea2" data-texteditor="on" data-texteditor-height="50"></div>
-                    <div id="list3"></div>
-                </div>
-                <h3 class="panel-title text-center">3. 수정/읽기 모드</h3>
-            </div>
-            <div class="card-body">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <button class="btn btn-outline-secondary" type="button" onclick="try3_1()">
-                            <i class="far fa-play-circle"></i>
-                            Demo(disable true)
-                        </button>
-                        <button class="btn btn-outline-secondary" type="button" onclick="try3_2()">
-                            <i class="far fa-play-circle"></i>
-                            Demo(disable false)
-                        </button>
-                        </span>
+                        <div id="textarea2" data-texteditor="on" data-texteditor-height="50"></div>
                     </div>
-                    <pre class="prettyprint lang-html">
+                </div>
+                <div class="card" id="list3">
+                    <h3 class="panel-title text-center">3. 수정/읽기 모드</h3>
+                    <div class="card-body">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-primary" type="button" onclick="try3_1()">
+                                    <i class="far fa-play-circle"></i>
+                                    Demo(disable true)
+                                </button>
+                                <button class="btn btn-outline-primary" type="button" onclick="try3_2()">
+                                    <i class="far fa-play-circle"></i>
+                                    Demo(disable false)
+                                </button>
+                                </span>
+                            </div>
+                        </div>
+                        <pre class="prettyprint lang-js">
 MyTextEditor.disable($('#textarea3'), true); // 읽기모드로 전환
 MyTextEditor.disable($('#textarea3'), false); // 수정모드로 전환
 </pre>
-                    <div id="textarea3" data-texteditor="on" data-texteditor-height="50">textarea3 textarea3 textarea3</div>
-                    <div id="list4"></div>
+                        <div id="textarea3" data-texteditor="on" data-texteditor-height="50">textarea3 textarea3 textarea3</div>
+                    </div>
                 </div>
-
-
-                <h3 class="panel-title text-center">4. Air 모드</h3>
-            </div>
-            <div class="card-body">
+                <div class="card" id="list4">
+                    <h3 class="panel-title text-center">4. Air 모드</h3>
+                    <div class="card-body">
 				<pre class="prettyprint lang-html">
 //자동
-                    &lt;div id="textarea4" data-texteditor="on" data-texteditor-height="50" data-texteditor-airmode="true"&gt;&lt;/div&gt;</pre>
-                <pre class="prettyprint lang-js">
+&lt;div id="textarea4" data-texteditor="on" data-texteditor-height="50" data-texteditor-airmode="true"&gt;&lt;/div&gt;</pre>
+                        <pre class="prettyprint lang-js">
 //수동
 MyTextEditor.instance($('#textarea4'), {
     airMode: true
 });
 </pre>
-                <div id="textarea4" data-texteditor="on" data-texteditor-height="50" data-texteditor-airmode="true">textarea4 textarea4 textarea4</div>
-            </div>
-            <h3 class="panel-title text-center">5. 기타</h3>
-        </div>
-        <div class="card-body">
-				<pre class="prettyprint lang-html">
+                        <div id="textarea4" data-texteditor="on" data-texteditor-height="50" data-texteditor-airmode="true">textarea4 textarea4 textarea4</div>
+                    </div>
+                    <h3 class="panel-title text-center">5. 기타</h3>
+                </div>
+                <div class="card-body">
+				<pre class="prettyprint lang-js">
 MyTextEditor.isEmpty($('#textarea4')) // 빈값 검증 시에 사용
 MyTextEditor.focus($('#textarea4')) // 빈값 검증 시후 fucos 이동 시
 MyTextEditor.reset($('#textarea4')) // 새로고침
 </pre>
+                </div>
+            </div>
         </div>
-        </div>
-        </div>
-            <my:footer/>
     </main>
-    </body>
+    <my:footer/>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <script data-for="ready">
         $(document).ready(function () {

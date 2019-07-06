@@ -22,9 +22,9 @@
                 <h3 class="panel-title text-center">1. ajax - json</h3>
                 <div class="card-body">
                     <h5 class="card-title">데이터 얻어오기</h5>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try1_1()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try1_1()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -38,9 +38,9 @@ MyAjax.excute('&#36;{CONTEXT_PATH}/sample/admin/menu/getSampleMenuMstVOList.json
 });
 </pre>
                     <h5 class="card-title">추가/수정/삭제 등의 처리 요청하기</h5>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try1_2()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try1_2()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -65,9 +65,9 @@ MyAjax.excute('&#36;{CONTEXT_PATH}/sample/admin/member/deleteSampleMemberMst.jso
                 <h3 class="panel-title text-center">2. ajax - html</h3>
                 <div class="card-body">
                     <h5 class="card-title">html 얻어오기</h5>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try2_1()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try2_1()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -89,9 +89,9 @@ MyAjax.excute('&#36;{CONTEXT_PATH}/sample/guide/ajax/sampleHtml.view', params, {
                 <div class="card-body">
                     <h5 class="card-title">요청하기</h5>
                     <input type="file" id="file"/>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try3_1()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try3_1()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -122,9 +122,9 @@ MyAjax.excuteWithFile('&#36;{CONTEXT_PATH}/common/file/upload/fileUpload', formD
                     <h5 class="card-title">required</h5>
                     <pre class="prettyprint lang-html">&lt;my:html fileDownloader="YES"&gt;</pre>
                     <h5 class="card-title">파일 경로로 요청하기</h5>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try4_1()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try4_1()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -139,9 +139,9 @@ let dataParam = {
 MyAjax.downloadFile('&#36;{CONTEXT_PATH}/common/file/download/fileDownload.proc', dataParam);
 </pre>
                     <h5 class="card-title">(파일데이터가 테이블:샘플SAMPLE_FILE_MST참조 에 존재할때)요청하기</h5>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try4_2()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try4_2()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>

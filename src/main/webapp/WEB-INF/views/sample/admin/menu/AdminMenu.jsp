@@ -98,7 +98,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-outline-secondary" onclick="MyModal.close($('#modalMenu'));">
+                        <button type="button" class="btn btn-outline-primary" onclick="MyModal.close($('#modalMenu'));">
                             <i class="far fa-window-close"></i>
                         </button>
 

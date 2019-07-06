@@ -2,7 +2,6 @@
 <%@include file="/WEB-INF/include/include.jsp" %>
 
 <my:html validator="YES">
-    <body>
     <my:menu/>
     <main role="main" class="flex-shrink-0">
         <div class="container">
@@ -44,9 +43,9 @@
                         <input type="radio" title="radio1" name="radio1" required/>
                     </form>
 
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try1_1()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try1_1()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -85,9 +84,9 @@ if (MyValidator.validate($('#form_try1_1')) !== null) {
                         <input type="text" title="URL" placeholder="URL" data-parsley-type="url" value="http://google.com"/>
                     </form>
 
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try2_1()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try2_1()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -116,9 +115,9 @@ if (MyValidator.validate($('#form_try2_1')) !== null) {
                         <input type="text" title="최소최대값필드(100~500)" placeholder="100 ~ 500" data-parsley-type="integer" min="100" max="500" value="77"/>
                     </form>
 
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try3_1()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try3_1()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -144,9 +143,9 @@ if (MyValidator.validate($('#form_try3_1')) !== null) {
                         <input type="text" title="최소최대길이필드(2~5)" placeholder="2자리 ~ 5자리" data-parsley-minlength="2" maxlength="5" value="a"/>
                     </form>
 
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try4_1()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try4_1()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -172,9 +171,9 @@ if (MyValidator.validate($('#form_try4_1')) !== null) {
                         <input type="text" title="입력1" placeholder="입력1" data-valid-message="사용자 메시지로 설정하였습니다." required/>
                     </form>
 
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try5_1()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try5_1()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -204,9 +203,9 @@ if (MyValidator.validate($('#form_try5_1')) !== null) {
                         <input type="checkbox" title="checkbox1" name="checkbox1" required/>
                     </form>
 
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try6_1()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try6_1()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -249,9 +248,9 @@ if (MyValidator.validate($('#form_try6_1')) !== null) {
                         <input type="radio" title="radio1" name="radio1" data-parsley-excluded="true" required/>
                     </form>
 
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try7_1()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try7_1()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -280,9 +279,8 @@ if (MyValidator.validate($('#form_try7_1')) !== null) {
                 </div>
             </div>
         </div>
-        <my:footer/>
     </main>
-    </body>
+    <my:footer/>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <script data-for="ready">
         $(document).ready(function () {

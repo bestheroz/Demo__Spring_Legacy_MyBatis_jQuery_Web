@@ -2,7 +2,6 @@
 <%@include file="/WEB-INF/include/include.jsp" %>
 
 <my:html>
-    <body>
     <my:menu/>
     <main role="main" class="flex-shrink-0">
         <div class="container">
@@ -252,9 +251,8 @@ $(document).ready(function() {
                 </div>
             </div>
         </div>
-        <my:footer/>
     </main>
-    </body>
+    <my:footer/>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <script data-for="ready">
         $(document).ready(function () {

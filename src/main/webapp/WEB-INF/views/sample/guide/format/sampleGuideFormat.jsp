@@ -2,7 +2,6 @@
 <%@include file="/WEB-INF/include/include.jsp" %>
 
 <my:html numberFormatter="YES">
-    <body>
     <my:menu/>
     <main role="main" class="flex-shrink-0">
         <div class="container">
@@ -14,16 +13,16 @@
                 <h4>목차</h4>
                 <div class="list-group list-group-flush">
                     <a href="#list1" class="list-group-item list-group-item-action list-group-item-light"> 1. 날짜 포맷 처리 </a>
-                    <a href="#list2" class="list-group-item list-group-item-action list-group-item-light"> 2. 숫자 포맷 처리l </a>
+                    <a href="#list2" class="list-group-item list-group-item-action list-group-item-light"> 2. 숫자 포맷 처리 </a>
                 </div>
             </div>
             <div class="card" id="list1">
                 <h3 class="panel-title text-center">1. 날짜 포맷 처리</h3>
                 <div class="card-body">
                     <h5 class="card-title">현재 시간 출력(YYYY-MM-DD HH:mm)</h5>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try1_1()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try1_1()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -34,9 +33,9 @@
 moment().format('YYYY-MM-DD HH:mm');
 </pre>
                     <h5 class="card-title">현재 시간 출력(YYYY년MM월DD일 HH시mm분ss초)</h5>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try1_2()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try1_2()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -47,9 +46,9 @@ moment().format('YYYY-MM-DD HH:mm');
 moment().format('YYYY년MM월DD일 HH시mm분ss초');
 </pre>
                     <h5 class="card-title">데이터를 받아 포맷변경(YYYY-MM-DD -> YYYY년MM월DD일)</h5>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try1_3()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try1_3()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -60,9 +59,9 @@ moment().format('YYYY년MM월DD일 HH시mm분ss초');
 moment('YYYY-MM-DD').format('YYYY년MM월DD일');
 </pre>
                     <h5 class="card-title">데이터를 받아 포맷변경(YYYYMMDD HHmmss -> YYYY년MM월DD일 HH시mm분ss초)</h5>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try1_4()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try1_4()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -75,9 +74,9 @@ moment('YYYYMMDD HHmmss').format('YYYY년MM월DD일 HH시mm분ss초');
 moment('YYYYMMDDHHmmss').format('YYYY년MM월DD일 HH시mm분ss초');
 </pre>
                     <h5 class="card-title">Timestamp 데이터를 받아 포맷변경(longValue -> YYYY년MM월DD일 HH시mm분ss초)</h5>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try1_5()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try1_5()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -89,9 +88,9 @@ let longValue = 1497513052362;
 moment(longValue).format('YYYY년MM월DD일 HH시mm분ss초');
 </pre>
                     <h5 class="card-title">현재 시간에서 +10년, +3달, -2주, +1일, -5시간, -35분, +20초 연산한 후 출력(YYYY-MM-DD HH:mm:ss)</h5>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try1_6()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try1_6()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -110,9 +109,9 @@ moment().add(10, 'years').add(3, 'months').subtract(2, 'weeks').add(1, 'days').s
                     <h4>required</h4>
                     <pre class="prettyprint lang-js">&lt;my:html numberFormatter="YES"&gt;</pre>
                     <h5 class="card-title">숫자 천자리마다 콤마(,) 포맷 후 값 얻기</h5>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try2_1()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try2_1()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -123,9 +122,9 @@ moment().add(10, 'years').add(3, 'months').subtract(2, 'weeks').add(1, 'days').s
 $.number(123456789000);
 </pre>
                     <h5 class="card-title">실수 소수점 자리수 포맷 후 값 얻기</h5>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try2_2()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try2_2()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -142,9 +141,9 @@ $.number(5020.2364, 2);
                         <li>982.3</li>
                         <li>.346323</li>
                     </ul>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try2_3()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try2_3()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -161,9 +160,9 @@ $('ul#ul_try2_3 > li').number( true );
                         <li>982.3</li>
                         <li>.346323</li>
                     </ul>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try2_4()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try2_4()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -177,9 +176,8 @@ $('ul#ul_try2_4 > li').number( true, 2 );
                 </div>
             </div>
         </div>
-        <my:footer/>
     </main>
-    </body>
+    <my:footer/>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <script data-for="ready">
         $(document).ready(function () {

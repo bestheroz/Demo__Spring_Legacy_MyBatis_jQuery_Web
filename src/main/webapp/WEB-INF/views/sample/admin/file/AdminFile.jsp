@@ -2,95 +2,98 @@
 <%@include file="/WEB-INF/include/include.jsp" %>
 <my:html table="YES" modal="YES" validator="YES" fileDownloader="YES">
     <my:menu/>
-    <div class="container">
-        <h3 class="mx-auto text-center">
-            파일관리
-            <small>
-                For 관리자
-                <i class="fas fa-wrench"></i>
-            </small>
-        </h3>
-        <div class="card">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table id="table1" class="table table-bordered table-hover table-sm" data-order='[[ 5, "desc" ]]' data-page-length="10">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th>
-                                <i class="fas fa-key"></i>
-                                &nbsp;파일 Seq.
-                            </th>
-                            <th>파일명</th>
-                            <th>파일확장자</th>
-                            <th>MIME_TYPE</th>
-                            <th>수정자</th>
-                            <th>수정일</th>
-                        </tr>
-                        </thead>
-                    </table>
+    <main role="main" class="flex-shrink-0">
+        <div class="container">
+            <div class="jumbotron text-center">
+                <h1 class="display-4">파일관리
+                    <small>
+                        For 관리자
+                        <i class="fas fa-wrench"></i>
+                    </small>
+                </h1>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="table1" class="table table-bordered table-hover table-sm" data-order='[[ 5, "desc" ]]' data-page-length="10">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th>
+                                    <i class="fas fa-key"></i>
+                                    &nbsp;파일 Seq.
+                                </th>
+                                <th>파일명</th>
+                                <th>파일확장자</th>
+                                <th>MIME_TYPE</th>
+                                <th>수정자</th>
+                                <th>수정일</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Modal -->
-    <div id="modalFile" class="jmodal" style="display: none;">
-        <div class="modal-header">
-            <h3>파일 입력</h3>
-        </div>
-        <div class="modal-body">
-            <form class="form-horizontal">
-                <input type="hidden" id="fileSeq"/>
-                <div class="form-group">
-                    <label for="file" class="col-sm-3 control-label">파일선택</label>
-                    <div class="col-sm-9">
-                        <input type="file" id="file" class="form-control" title="파일선택" readonly/>
+        <!-- Modal -->
+        <div id="modalFile" class="jmodal" style="display: none;">
+            <div class="modal-header">
+                <h3>파일 입력</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <input type="hidden" id="fileSeq"/>
+                    <div class="form-group">
+                        <label for="file" class="col-sm-3 control-label">파일선택</label>
+                        <div class="col-sm-9">
+                            <input type="file" id="file" class="form-control" title="파일선택" readonly/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="fileNm" class="col-sm-3 control-label">기존 파일명</label>
-                    <div class="col-sm-9">
-                        <input type="text" id="fileNm" class="form-control" title="파일명" readonly/>
+                    <div class="form-group">
+                        <label for="fileNm" class="col-sm-3 control-label">기존 파일명</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="fileNm" class="form-control" title="파일명" readonly/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="fileNmExt" class="col-sm-3 control-label">기존 파일확장자</label>
-                    <div class="col-sm-9">
-                        <input type="text" id="fileNmExt" class="form-control" title="파일확장자" readonly/>
+                    <div class="form-group">
+                        <label for="fileNmExt" class="col-sm-3 control-label">기존 파일확장자</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="fileNmExt" class="form-control" title="파일확장자" readonly/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="mimeTyp" class="col-sm-3 control-label">기존 MIME_TYP</label>
-                    <div class="col-sm-9">
-                        <input type="text" id="mimeTyp" class="form-control" title="MIME_TYP" readonly/>
+                    <div class="form-group">
+                        <label for="mimeTyp" class="col-sm-3 control-label">기존 MIME_TYP</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="mimeTyp" class="form-control" title="MIME_TYP" readonly/>
+                        </div>
                     </div>
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <div class="text-center">
-                <div class="btn-group btn-group-padding" role="group" aria-label="...">
-                    <button type="button" class="btn btn-default" onclick="MyModal.close($('#modalFile'));">
-                        <i class="far fa-window-close"></i>
-                    </button>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-trash-alt"></i>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center">
+                    <div class="btn-group btn-group-padding" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default" onclick="MyModal.close($('#modalFile'));">
+                            <i class="far fa-window-close"></i>
                         </button>
-                        <ul class="dropdown-menu color-danger">
-                            <li class="text-center">
-                                <a href="javascript:void(0);" onclick="deleteFile();">
-                                    <i class="fas fa-trash-alt"></i>
-                                </a>
-                            </li>
-                        </ul>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                            <ul class="dropdown-menu color-danger">
+                                <li class="text-center">
+                                    <a href="javascript:void(0);" onclick="deleteFile();">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <button type="button" class="btn btn-success" onclick="saveFile();">
+                            <i class="far fa-save"></i>
+                        </button>
                     </div>
-                    <button type="button" class="btn btn-success" onclick="saveFile();">
-                        <i class="far fa-save"></i>
-                    </button>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
     <my:footer/>
     <script data-for="ready">
         $(document).ready(function () {

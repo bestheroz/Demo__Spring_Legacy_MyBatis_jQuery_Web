@@ -2,7 +2,6 @@
 <%@include file="/WEB-INF/include/include.jsp" %>
 
 <my:html>
-    <body>
     <my:menu/>
     <main role="main" class="flex-shrink-0">
         <div class="container">
@@ -19,9 +18,9 @@
             <div class="card" id="list1">
                 <h3 class="panel-title text-center">1. 우편번호 검색창 띄우기</h3>
                 <div class="card-body">
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try1_1()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try1_1()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -51,9 +50,8 @@ new daum.Postcode({
                 </div>
             </div>
         </div>
-        <my:footer/>
     </main>
-    </body>
+    <my:footer/>
     <%
         if (request.isSecure()) {
     %>

@@ -2,7 +2,6 @@
 <%@include file="/WEB-INF/include/include.jsp" %>
 
 <my:html validator="YES">
-    <body>
     <my:menu/>
     <main role="main" class="flex-shrink-0">
         <div class="container">
@@ -27,9 +26,9 @@
                 <h3 class="panel-title text-center">1. 숫자값 검증</h3>
                 <div class="card-body">
                     <input type="text" placeholder="숫자값 검증" id="inputTry1_1"/>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try1_1()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try1_1()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -46,9 +45,9 @@ jQuery.isNumeric(value);
                 <div class="card-body">
                     <input type="text" placeholder="이메일값 검증" id="inputTry2_1"/>
 
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try2_1()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try2_1()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -66,9 +65,9 @@ validator.isEmail(value);
                 <div class="card-body">
                     <input type="text" placeholder="URL값 검증" id="inputTry3_1"/>
 
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try3_1()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try3_1()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -86,9 +85,9 @@ validator.isURL(value);
                 <div class="card-body">
                     <input type="text" placeholder="IP값 검증" id="inputTry4_1"/>
 
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try4_1()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try4_1()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -105,9 +104,9 @@ validator.isIP(value);
                 <h3 class="panel-title text-center">5. 기타값 검증</h3>
             </div>
             <div class="card-body">
-                <div class="input-group">
+                <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <button class="btn btn-outline-secondary" type="button" onclick="try5_1()">
+                        <button class="btn btn-outline-primary" type="button" onclick="try5_1()">
                             <i class="far fa-play-circle"></i>
                             Demo
                         </button>
@@ -117,9 +116,8 @@ validator.isIP(value);
                 <div id="list6"></div>
             </div>
         </div>
-        <my:footer/>
     </main>
-    </body>
+    <my:footer/>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <script data-for="ready">
         $(document).ready(function () {

@@ -2,128 +2,129 @@
 <%@include file="/WEB-INF/include/include.jsp" %>
 
 <my:html table="YES" modal="YES" validator="YES">
-    <body>
     <my:menu/>
-    <div class="container">
-        <h3 class="mx-auto text-center">
-            회원관리
-            <small>
-                For 관리자
-                <i class="fas fa-wrench"></i>
-            </small>
-        </h3>
-        <div class="card">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table id="table1" class="table table-bordered table-hover table-sm" data-order='[[ 7, "desc" ]]' data-page-length="10">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th>
-                                <i class="fas fa-key"></i>
-                                &nbsp;회원ID
-                            </th>
-                            <th>회원명</th>
-                            <th>회원종류</th>
-                            <th>로그인실패횟수</th>
-                            <th>계정잠금여부</th>
-                            <th>
-                                <i class="fas fa-user-lock"></i>
-                                &nbsp;계정만료일
-                            </th>
-                            <th>수정자</th>
-                            <th>수정일</th>
-                        </tr>
-                        </thead>
-                    </table>
+    <main role="main" class="flex-shrink-0">
+        <div class="container">
+            <div class="jumbotron text-center">
+                <h1 class="display-4">회원관리
+                    <small>
+                        For 관리자
+                        <i class="fas fa-wrench"></i>
+                    </small>
+                </h1>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="table1" class="table table-bordered table-hover table-sm" data-order='[[ 7, "desc" ]]' data-page-length="10">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th>
+                                    <i class="fas fa-key"></i>
+                                    &nbsp;회원ID
+                                </th>
+                                <th>회원명</th>
+                                <th>회원종류</th>
+                                <th>로그인실패횟수</th>
+                                <th>계정잠금여부</th>
+                                <th>
+                                    <i class="fas fa-user-lock"></i>
+                                    &nbsp;계정만료일
+                                </th>
+                                <th>수정자</th>
+                                <th>수정일</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Modal -->
-    <div id="modalMember" class="jmodal" style="display: none;">
-        <div class="modal-header">
-            <h3>회원 입력</h3>
-        </div>
-        <div class="modal-body">
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <label for="memberId" class="col-sm-3 control-label">회원ID</label>
-                    <div class="col-sm-9">
-                        <input type="text" id="memberId" class="form-control" title="회원" maxlength="20"/>
+        <!-- Modal -->
+        <div id="modalMember" class="jmodal" style="display: none;">
+            <div class="modal-header">
+                <h3>회원 입력</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="memberId" class="col-sm-3 control-label">회원ID</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="memberId" class="form-control" title="회원" maxlength="20"/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="memberNm" class="col-sm-3 control-label">회원명</label>
-                    <div class="col-sm-9">
-                        <input type="text" id="memberNm" class="form-control" title="회원명" maxlength="30"/>
+                    <div class="form-group">
+                        <label for="memberNm" class="col-sm-3 control-label">회원명</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="memberNm" class="form-control" title="회원명" maxlength="30"/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="memberPw" class="col-sm-3 control-label">비밀번호</label>
-                    <div class="col-sm-9">
-                        <input type="password" id="memberPw" class="form-control" title="비밀번호" data-parsley-minlength="5" maxlength="20"/>
+                    <div class="form-group">
+                        <label for="memberPw" class="col-sm-3 control-label">비밀번호</label>
+                        <div class="col-sm-9">
+                            <input type="password" id="memberPw" class="form-control" title="비밀번호" data-parsley-minlength="5" maxlength="20"/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="memberPw2" class="col-sm-3 control-label">비밀번호(확인용)</label>
-                    <div class="col-sm-9">
-                        <input type="password" id="memberPw2" class="form-control" title="비밀번호(확인용)" data-parsley-minlength="5" maxlength="20"/>
+                    <div class="form-group">
+                        <label for="memberPw2" class="col-sm-3 control-label">비밀번호(확인용)</label>
+                        <div class="col-sm-9">
+                            <input type="password" id="memberPw2" class="form-control" title="비밀번호(확인용)" data-parsley-minlength="5" maxlength="20"/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="memberTyp" class="col-sm-3 control-label">회원종류</label>
-                    <div class="col-sm-9">
-                        <select id="memberTyp" class="form-control" title="회원종류" style="width: 70%" required></select>
+                    <div class="form-group">
+                        <label for="memberTyp" class="col-sm-3 control-label">회원종류</label>
+                        <div class="col-sm-9">
+                            <select id="memberTyp" class="form-control" title="회원종류" style="width: 70%" required></select>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="loginFailCnt" class="col-sm-3 control-label">로그인 실패 횟수</label>
-                    <div class="col-sm-9">
-                        <input type="number" id="loginFailCnt" class="form-control" title="비밀번호(확인용)" data-parsley-minlength="1" maxlength="10"/>
+                    <div class="form-group">
+                        <label for="loginFailCnt" class="col-sm-3 control-label">로그인 실패 횟수</label>
+                        <div class="col-sm-9">
+                            <input type="number" id="loginFailCnt" class="form-control" title="비밀번호(확인용)" data-parsley-minlength="1" maxlength="10"/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="closeYn" class="col-sm-3 control-label">계정잠금여부</label>
-                    <div class="col-sm-9">
-                        <select id="closeYn" class="form-control" title="계정잠금여부" style="width: 30%" required></select>
+                    <div class="form-group">
+                        <label for="closeYn" class="col-sm-3 control-label">계정잠금여부</label>
+                        <div class="col-sm-9">
+                            <select id="closeYn" class="form-control" title="계정잠금여부" style="width: 30%" required></select>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="expireDt" class="col-sm-3 control-label">계정사용 만기일</label>
-                    <div class="col-sm-9">
-                        <input type="text" id="expireDt" class="form-control datetimepicker" title="계정사용 만기일"/>
+                    <div class="form-group">
+                        <label for="expireDt" class="col-sm-3 control-label">계정사용 만기일</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="expireDt" class="form-control datetimepicker" title="계정사용 만기일"/>
+                        </div>
                     </div>
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <div class="text-center">
-                <div class="btn-group btn-group-padding" role="group" aria-label="...">
-                    <button type="button" class="btn btn-default" onclick="MyModal.close($('#modalMember'));">
-                        <i class="far fa-window-close"></i>
-                    </button>
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-trash-alt"></i>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center">
+                    <div class="btn-group btn-group-padding" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default" onclick="MyModal.close($('#modalMember'));">
+                            <i class="far fa-window-close"></i>
                         </button>
-                        <ul class="dropdown-menu color-danger">
-                            <li class="text-center">
-                                <a href="javascript:void(0);" onclick="deleteMember();">
-                                    <i class="fas fa-trash-alt"></i>
-                                </a>
-                            </li>
-                        </ul>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                            <ul class="dropdown-menu color-danger">
+                                <li class="text-center">
+                                    <a href="javascript:void(0);" onclick="deleteMember();">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <button type="button" class="btn btn-success" onclick="saveMember();">
+                            <i class="far fa-save"></i>
+                        </button>
                     </div>
-                    <button type="button" class="btn btn-success" onclick="saveMember();">
-                        <i class="far fa-save"></i>
-                    </button>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
     <!-- /.modal -->
     <my:footer/>
-    </body>
     <script data-for="ready">
         $(document).ready(function () {
             $.when(drawTable1(), MyAjax.getSelectOptions($("#memberTyp"), "${CONTEXT_PATH}/common/valuelabel/getValueLabeVOList.json", {

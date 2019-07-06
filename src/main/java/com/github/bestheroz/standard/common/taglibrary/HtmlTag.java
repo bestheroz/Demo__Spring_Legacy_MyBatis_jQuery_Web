@@ -105,7 +105,7 @@ public class HtmlTag extends TagSupport {
             this.makeScriptTag(CommonCode.PATH_JS + "/MyCookie.js");
         }
         if (!StringUtils.equals(this.datetimePicker, CommonCode.NO)) {
-            this.makeLinkTag("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css");
+//            this.makeLinkTag("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.min.css");
             this.makeLinkTag(CommonCode.PATH_CSS + "/MyDatetimePicker.css");
             this.makeScriptTag("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js");
             this.makeScriptTag(CommonCode.PATH_JS + "/MyDatetimePicker.js");
@@ -149,9 +149,9 @@ public class HtmlTag extends TagSupport {
         }
 
         if (StringUtils.equals(this.textEditor, CommonCode.YES)) {
-            this.makeLinkTag("https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css");
+            this.makeLinkTag("https://cdn.jsdelivr.net/npm/summernote@0.8.12/dist/summernote-bs4.css");
             this.makeLinkTag(CommonCode.PATH_CSS + "/MyTextEditor.css");
-            this.makeScriptTag("https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.min.js");
+            this.makeScriptTag("https://cdn.jsdelivr.net/npm/summernote@0.8.12/dist/summernote-bs4.js");
             this.makeScriptTag("https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/lang/summernote-ko-KR.min.js");
             this.makeScriptTag(CommonCode.PATH_JS + "/MyTextEditor.js");
         }

@@ -2,7 +2,6 @@
 <%@include file="/WEB-INF/include/include.jsp" %>
 
 <my:html>
-    <body>
     <my:menu/>
     <main role="main" class="flex-shrink-0">
         <div class="container">
@@ -22,9 +21,9 @@
                 <h3 class="panel-title text-center">1. 페이지 이동</h3>
                 <div class="card-body">
                     <h5 class="card-title">내부 링크</h5>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try1_1()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try1_1()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -35,9 +34,9 @@
 MyCommon.goLink('/sample/guide/movepage/sampleGuideMovepage.view');
 </pre>
                     <h5 class="card-title">외부 링크(외부 링크는 기본적으로 탭으로 뜹니다.)</h5>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try1_2()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try1_2()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -48,9 +47,9 @@ MyCommon.goLink('/sample/guide/movepage/sampleGuideMovepage.view');
 MyCommon.goLink('http://google.com');
 </pre>
                     <h5 class="card-title">팝업으로 띄우기</h5>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try1_3()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try1_3()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -63,9 +62,9 @@ MyCommon.goLink('/sample/guide/movepage/sampleGuideMovepage.view', 'W');
 MyCommon.goLink('http://google.com', 'W');
 </pre>
                     <h5 class="card-title">외부 링크(페이지 이동)</h5>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try1_4()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try1_4()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -82,9 +81,9 @@ MyCommon.goLink('http://google.com', 'L');
                 <h3 class="panel-title text-center">2. &lt;a href="url"&gt;</h3>
                 <div class="card-body">
                     <h5 class="card-title">&lt;a href&gt; 사용을 지양합니다.</h5>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try2_1()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try2_1()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -99,7 +98,6 @@ MyCommon.goLink('http://google.com', 'L');
         </div>
     </main>
     <my:footer/>
-    </body>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <script data-for="ready">
         $(document).ready(function () {

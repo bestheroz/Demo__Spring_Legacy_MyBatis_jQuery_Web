@@ -2,9 +2,7 @@
 <%@include file="/WEB-INF/include/include.jsp" %>
 
 <my:html>
-    <body>
     <my:menu/>
-
     <main role="main" class="flex-shrink-0">
         <div class="container">
             <div class="jumbotron text-center">
@@ -22,9 +20,9 @@
                 <h3 class="panel-title text-center">1. 팝업 띄우기</h3>
                 <div class="card-body">
                     <h5 class="card-title">새창으로 띄우기</h5>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try1_1()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try1_1()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -35,9 +33,9 @@
 MyCommon.goWindow('http://google.com');
 </pre>
                     <h5 class="card-title">새창으로 띄우기(옵션추가)</h5>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try1_2()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try1_2()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -57,9 +55,9 @@ MyCommon.goWindow('http://google.com', {
                 <h3 class="panel-title text-center">2. 탭 띄우기</h3>
                 <div class="card-body">
                     <h5 class="card-title">탭으로 띄우기</h5>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="button" onclick="try2_1()">
+                            <button class="btn btn-outline-primary" type="button" onclick="try2_1()">
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
@@ -72,9 +70,8 @@ MyCommon.goTab('http://google.com');
                 </div>
             </div>
         </div>
-        <my:footer/>
     </main>
-    </body>
+    <my:footer/>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <script data-for="ready">
         $(document).ready(function () {
