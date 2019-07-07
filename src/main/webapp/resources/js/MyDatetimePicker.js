@@ -15,29 +15,26 @@ const MyDatetimePicker = {
             console.warn('올바르지않은 대상');
             return;
         }
-        $.when().done(function () {
-            MyDatetimePicker.makeDatetimepicker(fromObj, format);
-            MyDatetimePicker.makeDatetimepicker(toObj, format);
-        }).done(function () {
-            $(fromObj).on("change.datetimepicker", (e) => {
-                if (_.isEmpty($(fromObj).val())) {
-                    $(toObj).datetimepicker('minDate', false);
-                    $(toObj).datetimepicker('useCurrent', false);
-                } else {
-                    $(toObj).datetimepicker('minDate', e.date);
-                    $(toObj).datetimepicker('useCurrent', false);
-                }
-            });
-            $(toObj).on("change.datetimepicker", (e) => {
-                if (_.isEmpty($(toObj).val())) {
-                    $(fromObj).datetimepicker('maxDate', false);
-                } else {
-                    $(fromObj).datetimepicker('maxDate', e.date);
-                }
-            });
-            $(fromObj).trigger('change.datetimepicker').trigger('change');
-            $(toObj).trigger('change.datetimepicker').trigger('change');
+        MyDatetimePicker.makeDatetimepicker(fromObj, format);
+        MyDatetimePicker.makeDatetimepicker(toObj, format);
+        $(fromObj).on("change.datetimepicker", (e) => {
+            if (_.isEmpty($(fromObj).val())) {
+                $(toObj).datetimepicker('minDate', false);
+                $(toObj).datetimepicker('useCurrent', false);
+            } else {
+                $(toObj).datetimepicker('minDate', e.date);
+                $(toObj).datetimepicker('useCurrent', false);
+            }
         });
+        $(toObj).on("change.datetimepicker", (e) => {
+            if (_.isEmpty($(toObj).val())) {
+                $(fromObj).datetimepicker('maxDate', false);
+            } else {
+                $(fromObj).datetimepicker('maxDate', e.date);
+            }
+        });
+        $(fromObj).trigger('change.datetimepicker').trigger('change');
+        $(toObj).trigger('change.datetimepicker').trigger('change');
     },
 
     // 달력이 모달이나 새로 띄워진 화면에 띄우려면 위치를 지정해줘야한다.
