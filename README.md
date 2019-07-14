@@ -23,7 +23,7 @@
         <properties>
             <m2eclipse.wtp.contextRoot>/ROOT</m2eclipse.wtp.contextRoot>
             <java-version>1.8</java-version>
-            <springframework-version>5.1.7.RELEASE</springframework-version>
+            <springframework-version>5.1.8.RELEASE</springframework-version>
             <spring-security-version>5.1.5.RELEASE</spring-security-version>
             <aspectj-version>1.9.4</aspectj-version>
             <slf4j-version>1.7.26</slf4j-version>
@@ -31,7 +31,7 @@
             <jdbcdslogexp2-version>2.1</jdbcdslogexp2-version>
             <ddal-sqlparser-version>3.0.3</ddal-sqlparser-version>
             <gson-version>2.8.5</gson-version>
-            <joda-time-version>2.10.2</joda-time-version>
+            <joda-time-version>2.10.3</joda-time-version>
             <lang3-version>3.9</lang3-version>
             <mybatis-version>3.5.1</mybatis-version>
             <mybatis-spring-version>2.0.1</mybatis-spring-version>
@@ -39,16 +39,15 @@
             <common-io-version>2.6</common-io-version>
             <tika-version>1.21</tika-version>
             <commons-codec-version>1.12</commons-codec-version>
-            <junit-version>5.5.0-M1</junit-version>
+            <junit-version>5.5.0</junit-version>
             <servlet-api-version>4.0.1</servlet-api-version> <!-- tomcat9 : 4.0.1 tomcat8.5 : 3.1.0, tomcat7 : 3.0.1 -->
             <servlet.jsp-api-version>2.3.3</servlet.jsp-api-version> <!-- tomcat9 & tomcat 8.5 : 2.3.3, tomcat7 : 2.2.1 -->
             <jstl-version>1.2</jstl-version>
             <ziplet-version>2.4.1</ziplet-version>
             <lucy-version>1.6.3</lucy-version>
             <poi-version>4.1.0</poi-version>
-            <pdfbox-version>2.0.15</pdfbox-version>
+            <pdfbox-version>2.0.16</pdfbox-version>
             <boxable-version>1.5</boxable-version>
-            <jsoup-version>1.11.3</jsoup-version>
             <mockito-version>2.27.0</mockito-version>
             <hamcrest-version>1.3</hamcrest-version>
             <h2database-version>1.4.199</h2database-version>
@@ -56,7 +55,7 @@
             <maven-eclipse-plugin-version>2.10</maven-eclipse-plugin-version>
             <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
             <exec-maven-plugin-version>1.6.0</exec-maven-plugin-version>
-            <maven-war-plugin-version>3.2.2</maven-war-plugin-version>
+            <maven-war-plugin-version>3.2.3</maven-war-plugin-version>
             <maven-antrun-plugin-version>1.8</maven-antrun-plugin-version>
             <org.apache.ant-version>1.10.6</org.apache.ant-version>
             <jsch-version>0.1.55</jsch-version>
@@ -71,8 +70,8 @@
                 <version>${springframework-version}</version>
             </dependency>
             <dependency>
-                <groupId>org.springframework</groupId>
                 <artifactId>spring-jdbc</artifactId>
+                <groupId>org.springframework</groupId>
                 <version>${springframework-version}</version>
             </dependency>
             <dependency>
@@ -305,13 +304,6 @@
                 <version>${boxable-version}</version>
             </dependency>
     
-            <!-- HTML Parser -->
-            <dependency>
-                <groupId>org.jsoup</groupId>
-                <artifactId>jsoup</artifactId>
-                <version>${jsoup-version}</version>
-            </dependency>
-    
             <!-- 임시DB h2 -->
             <dependency>
                 <groupId>com.h2database</groupId>
@@ -331,6 +323,9 @@
                 <properties>
                     <resources>resources-local</resources>
                 </properties>
+                <activation>
+                    <activeByDefault>true</activeByDefault>
+                </activation>
             </profile>
             <profile>
                 <id>dev</id>
