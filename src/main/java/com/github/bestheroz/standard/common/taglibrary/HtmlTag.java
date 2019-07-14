@@ -62,7 +62,7 @@ public class HtmlTag extends TagSupport {
         this.makeScriptTag("https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js");
         this.makeScriptTag("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js");
         this.makeScriptTag("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js");
-        this.makeScriptTag("https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js");
+        this.makeScriptTag("https://cdn.jsdelivr.net/npm/lodash@4.17.14/lodash.min.js");
         this.makeScriptTag("https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js");
         this.makeScriptTag("https://cdn.jsdelivr.net/npm/moment@2.24.0/locale/ko.js");
 
@@ -118,7 +118,7 @@ public class HtmlTag extends TagSupport {
             this.makeScriptTag(CommonCode.PATH_JS + "/MyHandlebars.js");
         }
         if (!StringUtils.equals(this.icon, CommonCode.NO)) {
-            this.makeLinkTag("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css");
+            this.makeLinkTag("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css");
         }
         if (!StringUtils.equals(this.maxLength, CommonCode.NO)) {
             this.makeScriptTag("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-maxlength/1.7.0/bootstrap-maxlength.min.js");
@@ -157,7 +157,7 @@ public class HtmlTag extends TagSupport {
         }
 
         if (StringUtils.equals(this.validator, CommonCode.YES)) {
-            this.makeScriptTag("https://cdnjs.cloudflare.com/ajax/libs/validator/11.0.0/validator.min.js");
+            this.makeScriptTag("https://cdnjs.cloudflare.com/ajax/libs/validator/11.1.0/validator.min.js");
             this.makeScriptTag("https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.1/parsley.min.js");
             this.makeScriptTag("https://cdn.jsdelivr.net/npm/parsleyjs@2.9.1/dist/i18n/ko.js");
             this.makeScriptTag(CommonCode.PATH_JS + "/MyValidator.js");
