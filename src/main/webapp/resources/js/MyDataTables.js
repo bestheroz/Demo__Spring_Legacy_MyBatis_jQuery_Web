@@ -25,15 +25,4 @@ const MyDataTables = {
         "decimal": ",",
         "thousands": "."
     },
-    drawPrettySearchInput: function (targetObj) {
-        if (MyCommon.isEmpty(targetObj)) {
-            console.warn('MyDataTables.drawPrettySearchInput(targetObj) 잘못된 targetObj 값 에러 ==> ' + targetObj);
-            return;
-        }
-        let $newTargetObj = $('#' + $(targetObj).attr('id') + '_filter');
-        $newTargetObj.children('label').append('<div class="input-group mb-3"></div>');
-        $newTargetObj.find('label > div.input-group').append('<div class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></div>');
-        $newTargetObj.find('label > div.input-group > div.input-group-addon').after($newTargetObj.find('label > input'));
-        $($newTargetObj.children('label').contents()[0]).remove();
-    }
 };

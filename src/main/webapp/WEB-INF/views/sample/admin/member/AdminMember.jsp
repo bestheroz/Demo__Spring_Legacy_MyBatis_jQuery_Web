@@ -95,7 +95,7 @@
                             <div class="form-group">
                                 <label for="expireDt" class="col-sm-3 control-label">계정사용 만기일</label>
                                 <div class="col-sm-9">
-                                    <input type="text" id="expireDt" class="form-control datetimepicker" title="계정사용 만기일"/>
+                                    <input type="text" id="expireDt" class="form-control" title="계정사용 만기일"/>
                                 </div>
                             </div>
                         </form>
@@ -105,7 +105,6 @@
                             <button type="button" class="btn btn-outline-primary" onclick="MyModal.close($('#modalMember'));">
                                 <i class="far fa-window-close"></i>
                             </button>
-
                             <div class="btn-group" role="group">
                                 <button id="btnGroupDrop1" type="button" class="btn btn-outline-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-trash-alt"></i>
@@ -137,6 +136,7 @@
             })).done(function (response) {
                 selectList();
             });
+            MyDatetimePicker.makeDatetimepicker('#expireDt', 'YYYY-MM-DD HH:mm');
         });
     </script>
     <script data-for="define-table">
@@ -252,7 +252,6 @@
                     "data": "updDt"
                 }]
             });
-            MyDataTables.drawPrettySearchInput($('#table1'));
         }
     </script>
     <script>
@@ -289,7 +288,7 @@
                 memberTyp: $('#memberTyp option:selected').val(),
                 loginFailCnt: $('#loginFailCnt').val(),
                 closeYn: $('#closeYn option:selected').val(),
-                expireDt: moment($('#expireDt').data("DateTimePicker").date().format("YYYYMMDD HHmm59")).valueOf()
+                expireDt: $('#expireDt').datetimepicker('viewDate').valueOf()
             }, {
                 autoResultFunctionTF: true
             }).done(function (response) {
@@ -328,7 +327,7 @@
             MyModal.open($('#modalMember')).done(function () {
                 $('#memberId').attr('disabled', false);
                 $('#loginFailCnt').val(0);
-                $('#expireDt').val(moment().add(1, 'years').format('YYYY-MM-DD 23:59:59')).trigger('change');
+                $('#expireDt').val(moment().add(1, 'years').format('YYYY-MM-DD 23:59:59')).trigger('change.datetimepicker');
             });
         }
 
@@ -348,7 +347,7 @@
                 $('#memberTyp').val(selectedRow.memberTyp);
                 $('#loginFailCnt').val(selectedRow.loginFailCnt);
                 $('#closeYn').val(selectedRow.closeYn);
-                $('#expireDt').val(moment(selectedRow.expireDt).format('YYYY-MM-DD HH:mm')).trigger('change');
+                $('#expireDt').val(moment(selectedRow.expireDt).format('YYYY-MM-DD HH:mm')).trigger('change.datetimepicker');
             });
         }
     </script>

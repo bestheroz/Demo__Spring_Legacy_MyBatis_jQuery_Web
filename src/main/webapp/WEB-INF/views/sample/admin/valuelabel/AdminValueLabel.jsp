@@ -295,7 +295,6 @@
                     "data": "updDt"
                 }]
             });
-            MyDataTables.drawPrettySearchInput($('#table1'));
         }
 
         function drawTable2() {
@@ -400,7 +399,6 @@
                     "data": "updDt"
                 }]
             });
-            MyDataTables.drawPrettySearchInput($('#table2'));
         }
     </script>
     <script>

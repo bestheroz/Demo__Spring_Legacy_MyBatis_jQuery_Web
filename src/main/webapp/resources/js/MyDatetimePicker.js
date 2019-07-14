@@ -33,8 +33,6 @@ const MyDatetimePicker = {
                 $(fromObj).datetimepicker('maxDate', e.date);
             }
         });
-        $(fromObj).trigger('change.datetimepicker').trigger('change');
-        $(toObj).trigger('change.datetimepicker').trigger('change');
     },
 
     // 달력이 모달이나 새로 띄워진 화면에 띄우려면 위치를 지정해줘야한다.

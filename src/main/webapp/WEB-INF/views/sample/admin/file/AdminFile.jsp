@@ -187,7 +187,6 @@
                     "data": "updDt"
                 }]
             });
-            MyDataTables.drawPrettySearchInput($('#table1'));
         }
     </script>
     <script>
