@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/My_Spring_Maven_Bootstrap_Web_Project.iml" filepath="$PROJECT_DIR$/.idea/My_Spring_Maven_Bootstrap_Web_Project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/my_spring_maven_bootstrap_web_project.iml" filepath="$PROJECT_DIR$/my_spring_maven_bootstrap_web_project.iml" />
     </modules>
   </component>
 </project>
