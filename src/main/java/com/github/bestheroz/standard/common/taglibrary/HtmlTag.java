@@ -118,7 +118,7 @@ public class HtmlTag extends TagSupport {
             this.makeScriptTag(CommonCode.PATH_JS + "/MyHandlebars.js");
         }
         if (!StringUtils.equals(this.icon, CommonCode.NO)) {
-            this.makeLinkTag("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.1/css/all.min.css");
+            this.makeLinkTag("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-12/css/all.min.css");
         }
         if (!StringUtils.equals(this.maxLength, CommonCode.NO)) {
             this.makeScriptTag("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-maxlength/1.7.0/bootstrap-maxlength.min.js");
