@@ -45,12 +45,12 @@ public class HtmlTag extends TagSupport {
         this.sb.append("<head>");
         this.sb.append("<title>");
         if (StringUtils.isEmpty(this.title)) {
-            this.sb.append("Bestheroz's Spring-Maven-Bootstrap Web ver.190319");
+            this.sb.append("Bestheroz's Spring-Maven-Bootstrap Web ver.190819");
         } else {
             this.sb.append(this.title);
         }
         this.sb.append("</title>");
-        this.sb.append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
+        this.sb.append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">");
         this.sb.append("<meta http-equiv=\"Content-Type\" charset=\"UTF-8\" content=\"text/html; charset=utf-8\" />");
         this.sb.append("<meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\" />");
         this.sb.append("<link rel=\"shortcut icon\" href=\"data:image/x-icon;,\" type=\"image/x-icon\"> ");
