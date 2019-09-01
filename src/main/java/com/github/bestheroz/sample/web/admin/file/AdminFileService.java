@@ -65,10 +65,10 @@ public class AdminFileService {
             }
         }
         vo.setUpdMemberId(loginVO.getMemberId());
-        this.tableSampleFileMstDAO.update(vo, Collections.singletonList("fileSeq"), null);
+        this.tableSampleFileMstDAO.update(vo, Collections.singleton("fileSeq"), null);
     }
 
     public void deleteSampleFileMst(final TableSampleFileMstVO vo) throws CommonException {
-        this.tableSampleFileMstDAO.delete(vo, Collections.singletonList("fileSeq"));
+        this.tableSampleFileMstDAO.delete(vo, Collections.singleton("fileSeq"));
     }
 }

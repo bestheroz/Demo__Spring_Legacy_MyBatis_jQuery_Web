@@ -38,7 +38,7 @@ public class DefaultTestClass {
         tableSampleMemberMstVO.setMemberId("1");
         MyTestUtils
                 .doLogined(MyMapperUtils
-                        .writeObjectAsObject(MyAccessBeanUtils.getBean(TableSampleMemberMstDAO.class).getVO(tableSampleMemberMstVO, Collections.singletonList("memberId")), LoginVO.class));
+                        .writeObjectAsObject(MyAccessBeanUtils.getBean(TableSampleMemberMstDAO.class).getVO(tableSampleMemberMstVO, Collections.singleton("memberId")), LoginVO.class));
     }
 
     @Test

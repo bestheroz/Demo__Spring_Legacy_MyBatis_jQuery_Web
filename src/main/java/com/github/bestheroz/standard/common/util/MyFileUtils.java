@@ -2,6 +2,7 @@ package com.github.bestheroz.standard.common.util;
 
 import com.github.bestheroz.standard.common.exception.CommonException;
 import com.github.bestheroz.standard.common.exception.CommonExceptionCode;
+import com.google.common.collect.Sets;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -195,26 +196,26 @@ public class MyFileUtils {
     }
 
     public enum FileType {
-        IMAGE(Arrays.asList("gif", "jpg", "jpeg", "tif", "tiff", "png", "bmp"), Arrays.asList("image/gif", "image/jpeg", "image/pjpeg", "image/tiff", "image/x-tiff", "image/png", "image/bmp")),
+        IMAGE(Sets.newHashSet("gif", "jpg", "jpeg", "tif", "tiff", "png", "bmp"), Sets.newHashSet("image/gif", "image/jpeg", "image/pjpeg", "image/tiff", "image/x-tiff", "image/png", "image/bmp")),
 
-        EXCEL(Arrays.asList("xlsx", "xls"),
-                Arrays.asList("application/excel", "application/vnd.ms-excel", "application/x-excel", "application/x-msexcel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")),
+        EXCEL(Sets.newHashSet("xlsx", "xls"),
+                Sets.newHashSet("application/excel", "application/vnd.ms-excel", "application/x-excel", "application/x-msexcel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")),
 
-        WORD(Arrays.asList("docx", "doc", "dotx"), Arrays.asList("application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        WORD(Sets.newHashSet("docx", "doc", "dotx"), Sets.newHashSet("application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                 "application/vnd.openxmlformats-officedocument.wordprocessingml.template")),
 
-        PDF(Collections.singletonList("pdf"), Arrays.asList("application/pdf", "application/x-pdf")),
+        PDF(Collections.singleton("pdf"), Sets.newHashSet("application/pdf", "application/x-pdf")),
 
-        ILLEGAL(Arrays.asList("exe", "sh", "csh", "ai"),
-                Arrays.asList("application/octet-stream", "application/x-sh", "application/x-shar", "text/x-script.sh", "application/x-csh", "text/x-script.csh", "application/postscript"));
+        ILLEGAL(Sets.newHashSet("exe", "sh", "csh", "ai"),
+                Sets.newHashSet("application/octet-stream", "application/x-sh", "application/x-shar", "text/x-script.sh", "application/x-csh", "text/x-script.csh", "application/postscript"));
 
-        FileType(final List<String> extList, final List<String> mimeTypeList) {
+        FileType(final Set<String> extList, final Set<String> mimeTypeList) {
             this.extList = extList;
             this.mimeTypeList = mimeTypeList;
         }
 
-        private List<String> extList;
-        private List<String> mimeTypeList;
+        private Set<String> extList;
+        private Set<String> mimeTypeList;
     }
 
     private static final Tika TIKA_INSTANCE = new Tika();

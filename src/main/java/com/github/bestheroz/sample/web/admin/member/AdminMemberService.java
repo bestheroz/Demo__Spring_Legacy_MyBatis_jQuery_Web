@@ -9,7 +9,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,11 +18,11 @@ public class AdminMemberService {
     private TableSampleMemberMstDAO tableMemberMstDAO;
 
     public List<AdminMemberVO> getSampleMemberMstVOList(final AdminMemberVO vo) throws CommonException {
-        final List<String> whereKey = new ArrayList<>();
+        final Set<String> whereKeys = new HashSet<>();
         if (StringUtils.isNotEmpty(vo.getMemberId())) {
-            whereKey.add("memberId");
+            whereKeys.add("memberId");
         }
-        return MyMapperUtils.writeObjectAsArrayList(this.tableMemberMstDAO.getList(MyMapperUtils.writeObjectAsObject(vo, TableSampleMemberMstVO.class), whereKey, "UPD_DT DESC"),
+        return MyMapperUtils.writeObjectAsArrayList(this.tableMemberMstDAO.getList(MyMapperUtils.writeObjectAsObject(vo, TableSampleMemberMstVO.class), whereKeys, "UPD_DT DESC"),
                 AdminMemberVO.class);
     }
 
@@ -35,10 +34,10 @@ public class AdminMemberService {
 
     public void updateSampleMemberMst(final TableSampleMemberMstVO vo, final LoginVO loginVO) throws CommonException {
         vo.setUpdMemberId(loginVO.getMemberId());
-        this.tableMemberMstDAO.update(vo, Collections.singletonList("memberId"), null);
+        this.tableMemberMstDAO.update(vo, Collections.singleton("memberId"), null);
     }
 
     public void deleteSampleMemberMst(final TableSampleMemberMstVO vo) throws CommonException {
-        this.tableMemberMstDAO.delete(vo, Collections.singletonList("memberId"));
+        this.tableMemberMstDAO.delete(vo, Collections.singleton("memberId"));
     }
 }

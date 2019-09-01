@@ -1,15 +1,15 @@
 package com.github.bestheroz.standard.common.util;
 
+import com.google.common.collect.Sets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.Set;
 
 public class TestMyFilterUtils {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private final List<String> dirtyCodes = Arrays.asList("<applet><!-- abc --></applet>", "<img src='ftp://aaa'>", "<A href=\\\"javaScript:popImage('6921730')\\\" ></A>",
+    private final Set<String> dirtyCodes = Sets.newHashSet("<applet><!-- abc --></applet>", "<img src='ftp://aaa'>", "<A href=\\\"javaScript:popImage('6921730')\\\" ></A>",
             "<A style=\\\"expression\\\" ></A>", "<embed src=\"\"></embed>", "<object></object>", "<SCRIPT SRC=http://xxx/xss.js></SCRIPT>", "<IMG SRC=\"javascript:alert!('XSS');\">",
             "<IMG SRC=javascript:alert!('XSS')>", "<IMG SRC=JaVaScRiPt:alert!('XSS')>", "<IMG SRC=javascript:alert!(\"XSS\")>", "<IMG SRC=`javascript:alert!(\"RSnake says, 'XSS'\")`>",
             "<IMG \"\"\"><SCRIPT>alert!(\"XSS\")</SCRIPT>\">", "<IMG SRC=javascript:alert!(String.fromCharCode(88,83,83))>", "<IMG SRC=javascript:alert('XSS')>", "<IMG SRC=javascript:alert('XSS')>",
@@ -30,7 +30,7 @@ public class TestMyFilterUtils {
             "<BASE HREF=\"javascript:alert!('XSS');//\">", "<EMBED SRC=http://xxxx/xss.swf AllowScriptAccess=\"always\"></EMBED>", "<<SCRIPT>alert!(\"XSS\");//<</SCRIPT>",
             "<SCRIPT>a=/XSS/alert!(a.source)</SCRIPT>", "#\\\";alert!('XSS');//", "#¼script¾alert!(¢XSS¢)¼/script¾");
 
-    private final List<String> dirtyMarkupCodes = Arrays.asList("<SCRIPT>", "<SCRIPT SRC=http://hacker-site.com/xss.js></SCRIPT>", "<SCRIPT> alert(“XSS”); </SCRIPT>", "<BODY>",
+    private final Set<String> dirtyMarkupCodes = Sets.newHashSet("<SCRIPT>", "<SCRIPT SRC=http://hacker-site.com/xss.js></SCRIPT>", "<SCRIPT> alert(“XSS”); </SCRIPT>", "<BODY>",
             "<BODY ONLOAD=alert(\"XSS\")>", "<BODY BACKGROUND=\"javascript:alert('XSS')\">", "<IMG>", "<IMG SRC=\"javascript:alert('XSS');\">", "<IMG DYNSRC=\"javascript:alert('XSS')\">",
             "<IMG LOWSRC=\"javascript:alert('XSS')\">", "<IFRAME>", "<IFRAME SRC=”http://hacker-site.com/xss.html”>", "<INPUT>", "<INPUT TYPE=\"IMAGE\" SRC=\"javascript:alert('XSS');\">", "<LINK>",
             "<LINK REL=\"stylesheet\" HREF=\"javascript:alert('XSS');\">", "<TABLE>", "<TABLE BACKGROUND=\"javascript:alert('XSS')\">", "<TD BACKGROUND=\"javascript:alert('XSS')\">", "<DIV>",

@@ -18,9 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 public class MyBlobFileUtils {
     private static final Logger LOGGER = LoggerFactory.getLogger(MyBlobFileUtils.class);
@@ -29,10 +27,10 @@ public class MyBlobFileUtils {
         final TableSampleFileMstVO tableSampleFileMstVO = new TableSampleFileMstVO();
         tableSampleFileMstVO.setFileSeq(fileSeq);
         tableSampleFileMstVO.setFileNm(fileName);
-        final List<String> whereKey = new ArrayList<>();
-        whereKey.add("fileSeq");
+        final Set<String> whereKeys = new HashSet<>();
+        whereKeys.add("fileSeq");
         if (StringUtils.isNotEmpty(tableSampleFileMstVO.getFileNm())) {
-            whereKey.add("fileNm");
+            whereKeys.add("fileNm");
         }
         final TableSampleFileMstVO sampleFileMstVO = MyAccessBeanUtils.getBean(TableSampleFileMstDAO.class).getVO(tableSampleFileMstVO, whereKey);
         if (sampleFileMstVO == null) {
@@ -81,7 +79,7 @@ public class MyBlobFileUtils {
                     tableSampleFileMstVO.setMimeTyp(MyFileUtils.getMimeType(multipartFile));
                     tableSampleFileMstVO.setFileNm(multipartFile.getOriginalFilename());
                     tableSampleFileMstVO.setFileNmExt(MyFileUtils.getExtension(multipartFile));
-                    MyAccessBeanUtils.getBean(TableSampleFileMstDAO.class).update(tableSampleFileMstVO, Collections.singletonList("fileSeq"), null);
+                    MyAccessBeanUtils.getBean(TableSampleFileMstDAO.class).update(tableSampleFileMstVO, Collections.singleton("fileSeq"), null);
                 } catch (final IOException e) {
                     LOGGER.warn(ExceptionUtils.getStackTrace(e));
                     throw new CommonException(e);

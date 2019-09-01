@@ -16,10 +16,10 @@ public interface TableSampleMenuMstDAO extends SqlForTableDAO {
 
     @SuppressWarnings("unused")
     @SelectProvider(type = SqlForTableVO.class, method = SqlForTableVO.SELECT)
-    List<TableSampleMenuMstVO> getList(final TableSampleMenuMstVO vo, final List<String> whereKey, final String orderByColumns) throws CommonException;
+    List<TableSampleMenuMstVO> getList(final TableSampleMenuMstVO vo, final Set<String> whereKeys, final String orderByColumns) throws CommonException;
 
     @SelectProvider(type = SqlForTableVO.class, method = SqlForTableVO.SELECT_ONE)
-    TableSampleMenuMstVO getVO(final TableSampleMenuMstVO vo, final List<String> whereKey) throws CommonException;
+    TableSampleMenuMstVO getVO(final TableSampleMenuMstVO vo, final Set<String> whereKeys) throws CommonException;
 
     @Override
     @InsertProvider(type = SqlForTableVO.class, method = SqlForTableVO.INSERT)
