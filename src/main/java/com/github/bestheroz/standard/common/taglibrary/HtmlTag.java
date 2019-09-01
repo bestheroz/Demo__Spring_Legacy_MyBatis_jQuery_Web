@@ -41,11 +41,11 @@ public class HtmlTag extends TagSupport {
 
         this.sb.setLength(0);
         this.sb.append("<!DOCTYPE html>");
-        this.sb.append("<html lang=\"ko\" class=\"h-100\">");
+        this.sb.append("<html lang=\"ko\">");
         this.sb.append("<head>");
         this.sb.append("<title>");
         if (StringUtils.isEmpty(this.title)) {
-            this.sb.append("Bestheroz's Spring-Maven-Bootstrap Web ver.190319");
+            this.sb.append("Bestheroz's Spring-Maven-Bootstrap Web ver.190819");
         } else {
             this.sb.append(this.title);
         }
@@ -62,7 +62,7 @@ public class HtmlTag extends TagSupport {
         this.makeScriptTag("https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js");
         this.makeScriptTag("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js");
         this.makeScriptTag("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js");
-        this.makeScriptTag("https://cdn.jsdelivr.net/npm/lodash@4.17.14/lodash.min.js");
+        this.makeScriptTag("https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js");
         this.makeScriptTag("https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js");
         this.makeScriptTag("https://cdn.jsdelivr.net/npm/moment@2.24.0/locale/ko.js");
 
@@ -118,7 +118,7 @@ public class HtmlTag extends TagSupport {
             this.makeScriptTag(CommonCode.PATH_JS + "/MyHandlebars.js");
         }
         if (!StringUtils.equals(this.icon, CommonCode.NO)) {
-            this.makeLinkTag("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css");
+            this.makeLinkTag("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-12/css/all.min.css");
         }
         if (!StringUtils.equals(this.maxLength, CommonCode.NO)) {
             this.makeScriptTag("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-maxlength/1.7.0/bootstrap-maxlength.min.js");
