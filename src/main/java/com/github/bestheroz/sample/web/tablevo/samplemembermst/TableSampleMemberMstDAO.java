@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.SelectProvider;
 
 import java.util.List;
+import java.util.Set;
 
 @Mapper
 public interface TableSampleMemberMstDAO extends SqlForTableDAO {

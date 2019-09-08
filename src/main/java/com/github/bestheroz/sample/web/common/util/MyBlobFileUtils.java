@@ -19,6 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 public class MyBlobFileUtils {
     private static final Logger LOGGER = LoggerFactory.getLogger(MyBlobFileUtils.class);
@@ -32,7 +34,7 @@ public class MyBlobFileUtils {
         if (StringUtils.isNotEmpty(tableSampleFileMstVO.getFileNm())) {
             whereKeys.add("fileNm");
         }
-        final TableSampleFileMstVO sampleFileMstVO = MyAccessBeanUtils.getBean(TableSampleFileMstDAO.class).getVO(tableSampleFileMstVO, whereKey);
+        final TableSampleFileMstVO sampleFileMstVO = MyAccessBeanUtils.getBean(TableSampleFileMstDAO.class).getVO(tableSampleFileMstVO, whereKeys);
         if (sampleFileMstVO == null) {
             LOGGER.warn("fileSeq: {}, fileName: {} :: {}", fileSeq, fileName, CommonExceptionCode.ERROR_FILE_NOT_FOUND.toString());
             throw new CommonException(CommonExceptionCode.ERROR_FILE_NOT_FOUND);
