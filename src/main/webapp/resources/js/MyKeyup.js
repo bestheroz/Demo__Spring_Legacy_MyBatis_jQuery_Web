@@ -1,6 +1,6 @@
 ;
 const MyKeyup = {
-    isNumber: function (e, obj) {
+    isNumber: (e, obj) => {
         if (MyCommon.isNotEmpty(obj) && MyCommon.isNotEmpty(obj.value) && !$.isNumeric(obj.value)) {
             let evt = e || window.e;
             obj.value = obj.value.replace(/[^0-9]/g, '');
@@ -11,7 +11,7 @@ const MyKeyup = {
     }
 };
 // 포커스가 text readonly 속성의 input에 있을 경우 백스페이스 불가
-$(document).off('keydown', 'input').on('keydown', 'input', function (e) {
+$(document).off('keydown', 'input').on('keydown', 'input', (e) => {
     if (e.key === 'Backspace') {
         let doPrevent = true;
         let types = ["text", "password", "file", "search", "email", "number", "date", "color", "datetime", "datetime-local", "month", "range", "search", "tel", "time", "url", "week"];
@@ -34,7 +34,7 @@ $(document).off('keydown', 'input').on('keydown', 'input', function (e) {
         return false;
     }
 });
-$(document).off('keydown', 'textarea').on('keydown', 'textarea', function (e) {
+$(document).off('keydown', 'textarea').on('keydown', 'textarea', (e) => {
     if (e.key === 'Backspace') {
         let doPrevent = true;
         let d = $(e.srcElement || e.target);

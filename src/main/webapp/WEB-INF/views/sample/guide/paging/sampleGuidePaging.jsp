@@ -107,7 +107,7 @@
     <my:footer/>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <script data-for="ready">
-        $(document).ready(function () {
+        $(($) => {
         });
     </script>
     <script>
@@ -126,7 +126,7 @@
         }
 
         let selectList = function () {
-            MyAjax.excute('${CONTEXT_PATH }/sample/guide/paging/sampleGuidePaging.json', {}).done(function (response) {
+            MyAjax.execute('${CONTEXT_PATH }/sample/guide/paging/sampleGuidePaging.json', {}).done(function (response) {
                 MyPaging.changeValue(MyPaging.getSelectedPageIndex(), response.totalItemCount, response.itemPerPage, response.nextPage);
             });
         }

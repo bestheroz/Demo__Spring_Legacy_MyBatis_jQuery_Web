@@ -33,7 +33,7 @@
                     </div>
                     <pre class="prettyprint lang-html">
 let params = {};
-MyAjax.excute('&#36;{CONTEXT_PATH}/sample/admin/menu/getSampleMenuMstVOList.json', params).done(function(response) {
+MyAjax.execute('&#36;{CONTEXT_PATH}/sample/admin/menu/getSampleMenuMstVOList.json', params).done(function(response) {
     console.info(response);
 });
 </pre>
@@ -51,7 +51,7 @@ MyAjax.excute('&#36;{CONTEXT_PATH}/sample/admin/menu/getSampleMenuMstVOList.json
 let params = {
     memberId : 0
 };
-MyAjax.excute('&#36;{CONTEXT_PATH}/sample/admin/member/deleteSampleMemberMst.json', params, {
+MyAjax.execute('&#36;{CONTEXT_PATH}/sample/admin/member/deleteSampleMemberMst.json', params, {
     autoResultFunctionTF : true // 자동 결과 메시지 출력
     //, successMessage : "정상적으로 삭제 처리되었습니다." // 성공 시 수동 메시지 설정
 }).done(function(response) {
@@ -76,7 +76,7 @@ MyAjax.excute('&#36;{CONTEXT_PATH}/sample/admin/member/deleteSampleMemberMst.jso
                     </div>
                     <pre class="prettyprint lang-html">
 let params = {};
-MyAjax.excute('&#36;{CONTEXT_PATH}/sample/guide/ajax/sampleHtml.view', params, {
+MyAjax.execute('&#36;{CONTEXT_PATH}/sample/guide/ajax/sampleHtml.view', params, {
     dataType : "html"
 }).done(function(response) {
     console.info(response);
@@ -106,7 +106,7 @@ if ($('#file')[0].files[0] === undefined || $('#file')[0].files[0] === null) { /
 }
 formData.append('targetDirPath', '/upload_test/');
 formData.append("file", $('#file')[0].files[0]);
-MyAjax.excuteWithFile('&#36;{CONTEXT_PATH}/common/file/upload/fileUpload', formData, {
+MyAjax.executeWithFile('&#36;{CONTEXT_PATH}/common/file/upload/fileUpload', formData, {
     autoResultFunctionTF : true,
     successMessage : "업로드 성공"
 }).done(function(response) {
@@ -163,13 +163,13 @@ MyAjax.downloadFile('&#36;{CONTEXT_PATH}/common/file/download/fileDownload.proc'
     <my:footer/>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <script data-for="ready">
-        $(document).ready(function () {
+        $(($) => {
         });
     </script>
     <script>
         function try1_1() {
             let params = {};
-            MyAjax.excute('${CONTEXT_PATH}/sample/admin/menu/getSampleMenuMstVOList.json', params).done(function (response) {
+            MyAjax.execute('${CONTEXT_PATH}/sample/admin/menu/getSampleMenuMstVOList.json', params).done(function (response) {
                 $('#resultTry1_1').val(JSON.stringify(response));
             });
         }
@@ -178,7 +178,7 @@ MyAjax.downloadFile('&#36;{CONTEXT_PATH}/common/file/download/fileDownload.proc'
             let params = {
                 memberId: 0
             };
-            MyAjax.excute('${CONTEXT_PATH}/sample/admin/member/deleteSampleMemberMst.json', params, {
+            MyAjax.execute('${CONTEXT_PATH}/sample/admin/member/deleteSampleMemberMst.json', params, {
                 autoResultFunctionTF: true
             }).done(function (response) {
                 $('#resultTry1_2').val(JSON.stringify(response));
@@ -187,7 +187,7 @@ MyAjax.downloadFile('&#36;{CONTEXT_PATH}/common/file/download/fileDownload.proc'
 
         function try2_1() {
             let params = {};
-            MyAjax.excute('${CONTEXT_PATH}/sample/guide/ajax/sampleHtml.view', params, {
+            MyAjax.execute('${CONTEXT_PATH}/sample/guide/ajax/sampleHtml.view', params, {
                 dataType: "html"
             }).done(function (response) {
                 $('#resultTry2_1').val(response);
@@ -202,7 +202,7 @@ MyAjax.downloadFile('&#36;{CONTEXT_PATH}/common/file/download/fileDownload.proc'
             }
             formData.append('targetDirPath', '/upload_test/');
             formData.append("file", $('#file')[0].files[0]);
-            MyAjax.excuteWithFile('${CONTEXT_PATH}/common/file/upload/fileUpload', formData, {
+            MyAjax.executeWithFile('${CONTEXT_PATH}/common/file/upload/fileUpload', formData, {
                 autoResultFunctionTF: true,
                 successMessage: "업로드 성공"
             }).done(function (response) {

@@ -128,7 +128,7 @@
     <!-- /.modal -->
     <my:footer/>
     <script data-for="ready">
-        $(document).ready(function () {
+        $(($) => {
             $.when(drawTable1(), MyAjax.getSelectOptions($("#memberTyp"), "${CONTEXT_PATH}/common/valuelabel/getValueLabeVOList.json", {
                 grcode: "MEMBER_TYP"
             }), MyAjax.getSelectOptions($("#closeYn"), "${CONTEXT_PATH}/common/valuelabel/getValueLabeVOList.json", {
@@ -256,7 +256,7 @@
     </script>
     <script>
         function selectList() {
-            MyAjax.excute('${CONTEXT_PATH}/sample/admin/member/getSampleMemberMstVOList.json', {}).done(function (response) {
+            MyAjax.execute('${CONTEXT_PATH}/sample/admin/member/getSampleMemberMstVOList.json', {}).done(function (response) {
                 $('#table1').DataTable().clear().rows.add(response).draw();
             });
         }
@@ -276,12 +276,12 @@
                 memberPw = CryptoJS.SHA512($('#memberPw').val()).toString();
             }
             let url;
-            if ($('#modalMember div.modal-footer i.fa-trash-o').parentsUntil('div.btn-group-padding').filter('div.btn-group').is(':hidden')) {
+            if ($('div.modal-footer>div.btn-group>div.btn-group').is(':hidden')) {
                 url = '${CONTEXT_PATH}/sample/admin/member/insertSampleMemberMst.json';
             } else {
                 url = '${CONTEXT_PATH}/sample/admin/member/updateSampleMemberMst.json';
             }
-            MyAjax.excute(url, {
+            MyAjax.execute(url, {
                 memberId: $('#memberId').val(),
                 memberNm: $('#memberNm').val(),
                 memberPw: memberPw,
@@ -308,7 +308,7 @@
                 return;
             }
             if (confirm("정말 삭제하시겠습니까?")) {
-                MyAjax.excute('${CONTEXT_PATH}/sample/admin/member/deleteSampleMemberMst.json', {
+                MyAjax.execute('${CONTEXT_PATH}/sample/admin/member/deleteSampleMemberMst.json', {
                     memberId: selectedRow.memberId
                 }, {
                     autoResultFunctionTF: true
@@ -323,7 +323,7 @@
 
         function modalAddMember() {
             $('form.form-horizontal')[0].reset();
-            $('#modalMember div.modal-footer i.fa-trash-o').parentsUntil('div.btn-group-padding').filter('div.btn-group').hide();
+            $('div.modal-footer>div.btn-group>div.btn-group').hide();
             MyModal.open($('#modalMember')).done(function () {
                 $('#memberId').attr('disabled', false);
                 $('#loginFailCnt').val(0);
@@ -340,7 +340,7 @@
                 return;
             }
             $('form.form-horizontal')[0].reset();
-            $('#modalMember div.modal-footer i.fa-trash-o').parentsUntil('div.btn-group-padding').filter('div.btn-group').show();
+            $('div.modal-footer>div.btn-group>div.btn-group').show();
             MyModal.open($('#modalMember')).done(function () {
                 $('#memberId').val(selectedRow.memberId).attr('disabled', true);
                 $('#memberNm').val(selectedRow.memberNm);

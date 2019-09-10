@@ -99,15 +99,14 @@
     </main>
     <my:footer/>
     <script data-for="ready">
-        $(document).ready(function () {
-            $.when(drawTable1()).done(function (response) {
-                selectList();
-            });
+        $(($) => {
+            drawTable1();
+            selectList();
         });
     </script>
     <script data-for="define-table">
         function drawTable1() {
-            let table = $('#table1').DataTable({
+            $('#table1').DataTable({
                 dom: 'Bfrtip',
                 lengthChange: false,
                 language: MyDataTables.language,
@@ -190,15 +189,14 @@
         }
     </script>
     <script>
-        function selectList() {
-            MyAjax.excute('${CONTEXT_PATH}/sample/admin/file/getSampleFileMstVOList.json', {}).done(function (response) {
-                $('#table1').DataTable().clear().rows.add(response).draw();
-            });
+        async function selectList() {
+            const response = await MyAjax.execute('${CONTEXT_PATH}/sample/admin/file/getSampleFileMstVOList.json', {});
+            $('#table1').DataTable().clear().rows.add(response).draw();
         }
 
         function modalAddFile() {
             $('form.form-horizontal')[0].reset();
-            $('#modalFile div.modal-footer i.fa-trash-o').parentsUntil('div.btn-group-padding').filter('div.btn-group').hide();
+            $('div.modal-footer>div.btn-group>div.btn-group').hide();
             $('#file').parentsUntil('form.form-horizontal').siblings('div').hide();
             MyModal.open($('#modalFile')).done(function () {
                 let selectedRow = $('#table1').DataTable().rows({
@@ -208,7 +206,7 @@
             });
         }
 
-        function modalModifyFile() {
+        async function modalModifyFile() {
             let selectedRow = $('#table1').DataTable().rows({
                 selected: true
             }).data().toArray()[0];
@@ -217,17 +215,17 @@
                 return;
             }
             $('form.form-horizontal')[0].reset();
-            $('#modalFile div.modal-footer i.fa-trash-o').parentsUntil('div.btn-group-padding').filter('div.btn-group').show();
+            $('div.modal-footer>div.btn-group>div.btn-group').show();
+            $('#btnGroupDrop1').next('div').css('display', '');
             $('#file').parentsUntil('form.form-horizontal').siblings('div').show();
-            MyModal.open($('#modalFile')).done(function () {
-                $('#fileSeq').val(selectedRow.fileSeq);
-                $('#fileNm').val(selectedRow.fileNm);
-                $('#fileNmExt').val(selectedRow.fileNmExt);
-                $('#mimeTyp').val(selectedRow.mimeTyp);
-            });
+            await MyModal.open($('#modalFile'));
+            $('#fileSeq').val(selectedRow.fileSeq);
+            $('#fileNm').val(selectedRow.fileNm);
+            $('#fileNmExt').val(selectedRow.fileNmExt);
+            $('#mimeTyp').val(selectedRow.mimeTyp);
         }
 
-        function saveFile() {
+        async function saveFile() {
             if (MyValidator.validate($('form.form-horizontal'), true) !== null) {
                 return;
             }
@@ -236,7 +234,7 @@
                 return;
             }
             let url;
-            if ($('#modalFile div.modal-footer i.fa-trash-o').parentsUntil('div.btn-group-padding').filter('div.btn-group').is(':hidden')) {
+            if ($('div.modal-footer>div.btn-group>div.btn-group').is(':hidden')) {
                 url = '${CONTEXT_PATH}/sample/admin/file/insertSampleFileMst.json';
             } else {
                 url = '${CONTEXT_PATH}/sample/admin/file/updateSampleFileMst.json';
@@ -244,17 +242,16 @@
             let formData = new FormData();
             formData.append('fileSeq', $('#fileSeq').val());
             formData.append('file', $('#file')[0].files[0]);
-            MyAjax.excuteWithFile(url, formData, {
+            const response = await MyAjax.executeWithFile(url, formData, {
                 autoResultFunctionTF: true
-            }).done(function (response) {
-                if (_.startsWith(response.responseCode, 'S')) {
-                    MyModal.close($('#modalFile'));
-                    selectList();
-                }
             });
+            if (_.startsWith(response.responseCode, 'S')) {
+                MyModal.close($('#modalFile'));
+                await selectList();
+            }
         }
 
-        function deleteFile() {
+        async function deleteFile() {
             let selectedRow = $('#table1').DataTable().rows({
                 selected: true
             }).data().toArray()[0];
@@ -263,16 +260,15 @@
                 return;
             }
             if (confirm("정말 삭제하시겠습니까?")) {
-                MyAjax.excute('${CONTEXT_PATH}/sample/admin/file/deleteSampleFileMst.json', {
+                const response = await MyAjax.execute('${CONTEXT_PATH}/sample/admin/file/deleteSampleFileMst.json', {
                     fileSeq: selectedRow.fileSeq
                 }, {
                     autoResultFunctionTF: true
-                }).done(function (response) {
-                    if (_.startsWith(response.responseCode, 'S')) {
-                        MyModal.close($('#modalFile'));
-                        selectList();
-                    }
                 });
+                if (_.startsWith(response.responseCode, 'S')) {
+                    MyModal.close($('#modalFile'));
+                    selectList();
+                }
             }
         }
 

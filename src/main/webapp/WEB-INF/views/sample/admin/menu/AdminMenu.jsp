@@ -121,14 +121,14 @@
         </div>
     </div>
     <script data-for="ready">
-        $(document).ready(function () {
+        $(($) => {
             $.when(drawTable1(), MyAjax.getSelectOptions($("#menuTyp"), "${CONTEXT_PATH}/common/valuelabel/getValueLabeVOList.json", {
                 grcode: "MENU_TYP"
             }), MyAjax.getSelectOptions($("#useYn"), "${CONTEXT_PATH}/common/valuelabel/getValueLabeVOList.json", {
                 grcode: "USE_YN"
             }), MyAjax.getSelectOptions($("#power"), "${CONTEXT_PATH}/common/valuelabel/getValueLabeVOList.json", {
                 grcode: "MEMBER_TYP"
-            }), MyAjax.getSelectOptions($("#parMenuId"), "${CONTEXT_PATH}/sample/admin/menu/getPMenuValueLableVOList.json")).done(function (response) {
+            }), MyAjax.getSelectOptions($("#parMenuId"), "${CONTEXT_PATH}/sample/admin/menu/getPMenuValueLableVOList.json")).done((response) => {
                 selectList();
             });
         });
@@ -282,10 +282,9 @@
         }
     </script>
     <script>
-        function selectList() {
-            MyAjax.excute('${CONTEXT_PATH}/sample/admin/menu/getSampleMenuMstVOList.json', {}).done(function (response) {
-                $('#table1').DataTable().clear().rows.add(response).draw();
-            });
+        async function selectList() {
+            const response = await MyAjax.execute('${CONTEXT_PATH}/sample/admin/menu/getSampleMenuMstVOList.json', {});
+            $('#table1').DataTable().clear().rows.add(response).draw();
         }
 
         function modalAddMenu() {
@@ -309,7 +308,7 @@
                 return;
             }
             $('form.form-horizontal')[0].reset();
-            $('#modalMenu div.modal-footer i.fa-trash-o').parentsUntil('div.btn-group-padding').filter('div.btn-group').show();
+            $('div.modal-footer>div.btn-group>div.btn-group').show();
             MyModal.open($('#modalMenu')).done(function () {
                 $('#menuId').val(selectedRow.menuId);
                 $('#menuNm').val(selectedRow.menuNm);
@@ -327,12 +326,12 @@
                 return;
             }
             let url;
-            if ($('#modalMenu div.modal-footer i.fa-trash-o').parentsUntil('div.btn-group-padding').filter('div.btn-group').is(':hidden')) {
+            if ($('div.modal-footer>div.btn-group>div.btn-group').is(':hidden')) {
                 url = '${CONTEXT_PATH}/sample/admin/menu/insertSampleMenuMst.json';
             } else {
                 url = '${CONTEXT_PATH}/sample/admin/menu/updateSampleMenuMst.json';
             }
-            MyAjax.excute(url, {
+            MyAjax.execute(url, {
                 menuId: $('#menuId').val(),
                 menuNm: $('#menuNm').val(),
                 menuTyp: $('#menuTyp > option:selected').val(),
@@ -360,7 +359,7 @@
                 return;
             }
             if (confirm("정말 삭제하시겠습니까?")) {
-                MyAjax.excute('${CONTEXT_PATH}/sample/admin/menu/deleteSampleMenuMst.json', {
+                MyAjax.execute('${CONTEXT_PATH}/sample/admin/menu/deleteSampleMenuMst.json', {
                     menuId: selectedRow.menuId
                 }, {
                     autoResultFunctionTF: true

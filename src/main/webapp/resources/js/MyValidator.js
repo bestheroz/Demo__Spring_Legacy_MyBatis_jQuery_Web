@@ -1,6 +1,6 @@
 ;
 const MyValidator = {
-    validate: function (targetObj, autoAlertTF) {
+    validate: (targetObj, autoAlertTF) => {
         if (_.toLower(targetObj.prop("tagName")) === 'form') {
             return MyValidator.validateForm(targetObj, autoAlertTF);
         } else {
@@ -8,7 +8,7 @@ const MyValidator = {
         }
     },
 
-    validateForm: function (formObj, autoAlertTF) {
+    validateForm: (formObj, autoAlertTF) => {
         let validForm = formObj.parsley();
         if (validForm === undefined) {
             // 개발용
@@ -24,7 +24,7 @@ const MyValidator = {
         return null;
     },
 
-    validateElement: function (elementObj, autoAlertTF) {
+    validateElement: (elementObj, autoAlertTF) => {
         if ($(elementObj).length === 0) {
             return null;
         }
@@ -35,7 +35,7 @@ const MyValidator = {
             return "";
         }
         if (!validElement.isValid()) {
-            $.when().done(function () {
+            $.when().done(() => {
                 if (autoAlertTF !== false) {
                     if (!!$(validElement.$element[0]).data("valid-message")) {
                         alert($(validElement.$element[0]).data("valid-message"));
@@ -43,7 +43,7 @@ const MyValidator = {
                         alert(validElement.$element[0].title + "은(는) " + validElement.getErrorsMessages());
                     }
                 }
-            }).done(function () {
+            }).done(() => {
                 $(validElement.$element).trigger('focus');
             });
 

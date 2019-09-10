@@ -174,7 +174,7 @@ MyModal.close($('#try2_1-a')).done(function(){
     <my:footer/>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <script data-for="ready">
-        $(document).ready(function () {
+        $(($) => {
         });
     </script>
     <script>

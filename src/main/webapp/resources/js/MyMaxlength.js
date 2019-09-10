@@ -1,8 +1,8 @@
 ;
 const MyMaxlength = {
-    init: function (targetObj) {
+    init: (targetObj) => {
         targetObj = targetObj || $(document);
-        $(targetObj).find('[maxlength]').each(function () {
+        $(targetObj).find('[maxlength]').each(() => {
             $(this).maxlength({
                 threshold: $(this).attr('maxlength') - 1,
                 validate: true
@@ -10,6 +10,6 @@ const MyMaxlength = {
         });
     }
 };
-$(document).ready(function () {
+$(($) => {
     MyMaxlength.init();
 });

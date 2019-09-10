@@ -189,7 +189,7 @@
     </main>
     <my:footer/>
     <script data-for="ready">
-        $(document).ready(function () {
+        $(($) => {
             $.when(drawTable1(), drawTable2(), MyAjax.getSelectOptions($("#useYn"), "${CONTEXT_PATH}/common/valuelabel/getValueLabeVOList.json", {
                 grcode: "USE_YN"
             })).done(function (response) {
@@ -403,13 +403,13 @@
     </script>
     <script>
         function selectList() {
-            MyAjax.excute('${CONTEXT_PATH}/sample/admin/valuelabel/getSampleCodeMstVOList.json', {}).done(function (response) {
+            MyAjax.execute('${CONTEXT_PATH}/sample/admin/valuelabel/getSampleCodeMstVOList.json', {}).done(function (response) {
                 $('#table1').DataTable().clear().rows.add(response).draw();
             });
         }
 
         function selectListDet(grcode) {
-            MyAjax.excute('${CONTEXT_PATH}/sample/admin/valuelabel/getSampleCodeDetVOList.json', {
+            MyAjax.execute('${CONTEXT_PATH}/sample/admin/valuelabel/getSampleCodeDetVOList.json', {
                 grcode: grcode
             }).done(function (response) {
                 $('#table2').DataTable().clear().rows.add(response).draw();
@@ -418,7 +418,7 @@
 
         function modalAddValueLabel() {
             $('#form1')[0].reset();
-            $('#modalValueLabel div.modal-footer i.fa-trash-o').parentsUntil('div.btn-group-padding').filter('div.btn-group').hide();
+            $('div.modal-footer>div.btn-group>div.btn-group').hide();
             MyModal.open($('#modalValueLabel')).done(function () {
                 $('#grcode').prop('readonly', false);
             });
@@ -433,7 +433,7 @@
                 return;
             }
             $('#form1')[0].reset();
-            $('#modalValueLabel div.modal-footer i.fa-trash-o').parentsUntil('div.btn-group-padding').filter('div.btn-group').show();
+            $('div.modal-footer>div.btn-group>div.btn-group').show();
             MyModal.open($('#modalValueLabel')).done(function () {
                 $('#grcode').val(selectedRow.grcode).prop('readonly', true);
                 $('#grcodeNm').val(selectedRow.grcodeNm);
@@ -446,12 +446,12 @@
                 return;
             }
             let url;
-            if ($('#modalValueLabel div.modal-footer i.fa-trash-o').parentsUntil('div.btn-group-padding').filter('div.btn-group').is(':hidden')) {
+            if ($('div.modal-footer>div.btn-group>div.btn-group').is(':hidden')) {
                 url = '${CONTEXT_PATH}/sample/admin/valuelabel/insertSampleCodeMst.json';
             } else {
                 url = '${CONTEXT_PATH}/sample/admin/valuelabel/updateSampleCodeMst.json';
             }
-            MyAjax.excute(url, {
+            MyAjax.execute(url, {
                 grcode: $('#grcode').val(),
                 grcodeNm: $('#grcodeNm').val(),
                 remark1: $('#remark1').val()
@@ -475,7 +475,7 @@
                 return;
             }
             if (confirm("정말 삭제하시겠습니까?")) {
-                MyAjax.excute('${CONTEXT_PATH}/sample/admin/valuelabel/deleteCOMM_CODE.json', {
+                MyAjax.execute('${CONTEXT_PATH}/sample/admin/valuelabel/deleteCOMM_CODE.json', {
                     grcode: selectedRow.grcode
                 }, {
                     autoResultFunctionTF: true
@@ -498,7 +498,7 @@
                 return;
             }
             $('#form2')[0].reset();
-            $('#modalValueLabelDet div.modal-footer i.fa-trash-o').parentsUntil('div.btn-group-padding').filter('div.btn-group').hide();
+            $('div.modal-footer>div.btn-group>div.btn-group').hide();
             MyModal.open($('#modalValueLabelDet')).done(function () {
                 $('#code').prop('readonly', false);
                 $('#grcodeDet').val(selectedRow.grcode);
@@ -521,7 +521,7 @@
                 return;
             }
             $('#form2')[0].reset();
-            $('#modalValueLabelDet div.modal-footer i.fa-trash-o').parentsUntil('div.btn-group-padding').filter('div.btn-group').show();
+            $('div.modal-footer>div.btn-group>div.btn-group').show();
             MyModal.open($('#modalValueLabelDet')).done(function () {
                 $('#code').prop('readonly', true);
                 $('#grcodeDet').val(selectedRow1.grcode);
@@ -538,12 +538,12 @@
                 return;
             }
             let url;
-            if ($('#modalValueLabelDet div.modal-footer i.fa-trash-o').parentsUntil('div.btn-group-padding').filter('div.btn-group').is(':hidden')) {
+            if ($('div.modal-footer>div.btn-group>div.btn-group').is(':hidden')) {
                 url = '${CONTEXT_PATH}/sample/admin/valuelabel/insertSampleCodeDet.json';
             } else {
                 url = '${CONTEXT_PATH}/sample/admin/valuelabel/updateSampleCodeDet.json';
             }
-            MyAjax.excute(url, {
+            MyAjax.execute(url, {
                 grcode: $('#grcodeDet').val(),
                 code: $('#code').val(),
                 codeNm: $('#codeNm').val(),
@@ -570,7 +570,7 @@
             }
 
             if (confirm("정말 삭제하시겠습니까?")) {
-                MyAjax.excute('${CONTEXT_PATH}/sample/admin/valuelabel/deleteSampleCodeDet.json', {
+                MyAjax.execute('${CONTEXT_PATH}/sample/admin/valuelabel/deleteSampleCodeDet.json', {
                     grcode: selectedRow.grcode,
                     code: selectedRow.code
                 }, {
