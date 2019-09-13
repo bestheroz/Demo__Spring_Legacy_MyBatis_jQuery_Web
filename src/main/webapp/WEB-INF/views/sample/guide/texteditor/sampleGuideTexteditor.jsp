@@ -50,7 +50,6 @@ MyTextEditor.instance($('#textarea1_2'), {height : '50px'});
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
-                            </span>
                         </div>
                         <div id="textarea1_2">textarea1_2 textarea1_2 textarea1_2</div>
                     </div>
@@ -100,7 +99,6 @@ MyTextEditor.setCode($('#textarea2'), 'set Value');
                                     <i class="far fa-play-circle"></i>
                                     Demo(disable false)
                                 </button>
-                                </span>
                             </div>
                         </div>
                         <pre class="prettyprint lang-js">

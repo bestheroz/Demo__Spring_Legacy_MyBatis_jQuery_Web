@@ -147,7 +147,6 @@ $.number(5020.2364, 2);
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
-                            </span>
                         </div>
                     </div>
                     <pre class="prettyprint lang-js">
@@ -166,7 +165,6 @@ $('ul#ul_try2_3 > li').number( true );
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
-                            </span>
                         </div>
                     </div>
                     <pre class="prettyprint lang-js">

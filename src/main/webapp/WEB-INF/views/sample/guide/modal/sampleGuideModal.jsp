@@ -37,12 +37,8 @@
 &lt;/div&gt;
                 </pre>
                     <pre class="prettyprint lang-js">
-MyModal.open($('#try1_modalContent')).done(() => {
-    //callback
-});
-MyModal.close($('#try1_modalContent')).done(() => {
-    //callback
-});
+MyModal.open($('#try1_modalContent'));
+MyModal.close($('#try1_modalContent'));
 </pre>
                 </div>
 
@@ -64,12 +60,8 @@ MyModal.close($('#try1_modalContent')).done(() => {
 &lt;/div&gt;
                     </pre>
                         <pre class="prettyprint lang-js">
-MyModal.openMultiple($('#try2_1-a')).done(() => {
-    //callback
-});
-MyModal.close($('#try2_1-a')).done(() => {
-    //callback
-});
+MyModal.openMultiple($('#try2_1-a'));
+MyModal.close($('#try2_1-a'));
 </pre>
                     </div>
 
@@ -179,15 +171,10 @@ MyModal.close($('#try2_1-a')).done(() => {
     </script>
     <script>
         function try1_1() {
-            MyModal.open($('#try1_modalContent')).done(() => {
-                //
-            });
+            MyModal.open($('#try1_modalContent'));
         }
-
         function try2_1() {
-            MyModal.open($('#try2_1-a')).done(() => {
-                //
-            });
+            MyModal.open($('#try2_1-a'));
         }
     </script>
 </my:html>

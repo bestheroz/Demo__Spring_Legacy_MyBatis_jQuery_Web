@@ -133,7 +133,7 @@
                 grcode: "MEMBER_TYP"
             }), MyAjax.getSelectOptions($("#closeYn"), "${CONTEXT_PATH}/common/valuelabel/getValueLabeVOList.json", {
                 grcode: "USE_YN_REVERSE"
-            })).done((response) => {
+            })).done(() => {
                 selectList();
             });
             MyDatetimePicker.makeDatetimepicker('#expireDt', 'YYYY-MM-DD HH:mm');

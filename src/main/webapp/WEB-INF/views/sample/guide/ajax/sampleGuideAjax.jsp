@@ -33,9 +33,8 @@
                     </div>
                     <pre class="prettyprint lang-html">
 const params = {};
-MyAjax.execute('&#36;{CONTEXT_PATH}/sample/admin/menu/getSampleMenuMstVOList.json', params).done((response) => {
-    console.info(response);
-});
+const response = await MyAjax.execute('&#36;{CONTEXT_PATH}/sample/admin/menu/getSampleMenuMstVOList.json', params);
+console.info(response);
 </pre>
                     <h5 class="card-title">추가/수정/삭제 등의 처리 요청하기</h5>
                     <div class="input-group mb-3">
@@ -51,12 +50,11 @@ MyAjax.execute('&#36;{CONTEXT_PATH}/sample/admin/menu/getSampleMenuMstVOList.jso
 const params = {
     memberId : 0
 };
-MyAjax.execute('&#36;{CONTEXT_PATH}/sample/admin/member/deleteSampleMemberMst.json', params, {
+const response = await MyAjax.execute('&#36;{CONTEXT_PATH}/sample/admin/member/deleteSampleMemberMst.json', params, {
     autoResultFunctionTF : true // 자동 결과 메시지 출력
     //, successMessage : "정상적으로 삭제 처리되었습니다." // 성공 시 수동 메시지 설정
-}).done((response) => {
-    console.info(response);
 });
+console.info(response);
 </pre>
                 </div>
             </div>
@@ -76,11 +74,10 @@ MyAjax.execute('&#36;{CONTEXT_PATH}/sample/admin/member/deleteSampleMemberMst.js
                     </div>
                     <pre class="prettyprint lang-html">
 const params = {};
-MyAjax.execute('&#36;{CONTEXT_PATH}/sample/guide/ajax/sampleHtml.view', params, {
+const response = await MyAjax.execute('&#36;{CONTEXT_PATH}/sample/guide/ajax/sampleHtml.view', params, {
     dataType : "html"
-}).done((response) => {
-    console.info(response);
 });
+console.info(response);
 </pre>
                 </div>
             </div>
@@ -106,12 +103,11 @@ if ($('#file')[0].files[0] === undefined || $('#file')[0].files[0] === null) { /
 }
 formData.append('targetDirPath', '/upload_test/');
 formData.append("file", $('#file')[0].files[0]);
-MyAjax.executeWithFile('&#36;{CONTEXT_PATH}/common/file/upload/fileUpload', formData, {
+const response = await MyAjax.executeWithFile('&#36;{CONTEXT_PATH}/common/file/upload/fileUpload', formData, {
     autoResultFunctionTF : true,
     successMessage : "업로드 성공"
-}).done((response) => {
-    // callback
 });
+// callback
 </pre>
                 </div>
             </div>
@@ -167,34 +163,31 @@ MyAjax.downloadFile('&#36;{CONTEXT_PATH}/common/file/download/fileDownload.proc'
         });
     </script>
     <script>
-        function try1_1() {
+        async function try1_1() {
             const params = {};
-            MyAjax.execute('${CONTEXT_PATH}/sample/admin/menu/getSampleMenuMstVOList.json', params).done((response) => {
-                $('#resultTry1_1').val(JSON.stringify(response));
-            });
+            const response = await MyAjax.execute('${CONTEXT_PATH}/sample/admin/menu/getSampleMenuMstVOList.json', params);
+            $('#resultTry1_1').val(JSON.stringify(response));
         }
 
-        function try1_2() {
+        async function try1_2() {
             const params = {
                 memberId: 0
             };
-            MyAjax.execute('${CONTEXT_PATH}/sample/admin/member/deleteSampleMemberMst.json', params, {
+            const response = await MyAjax.execute('${CONTEXT_PATH}/sample/admin/member/deleteSampleMemberMst.json', params, {
                 autoResultFunctionTF: true
-            }).done((response) => {
-                $('#resultTry1_2').val(JSON.stringify(response));
             });
+            $('#resultTry1_2').val(JSON.stringify(response));
         }
 
-        function try2_1() {
+        async function try2_1() {
             const params = {};
-            MyAjax.execute('${CONTEXT_PATH}/sample/guide/ajax/sampleHtml.view', params, {
+            const response = await MyAjax.execute('${CONTEXT_PATH}/sample/guide/ajax/sampleHtml.view', params, {
                 dataType: "html"
-            }).done((response) => {
-                $('#resultTry2_1').val(response);
             });
+            $('#resultTry2_1').val(response);
         }
 
-        function try3_1() {
+        async function try3_1() {
             const formData = new FormData();
             if ($('#file')[0].files[0] === undefined || $('#file')[0].files[0] === null) { // 기본 undefined, ie에서는 null
                 alert("파일을 선택해주세요.");
@@ -202,12 +195,11 @@ MyAjax.downloadFile('&#36;{CONTEXT_PATH}/common/file/download/fileDownload.proc'
             }
             formData.append('targetDirPath', '/upload_test/');
             formData.append("file", $('#file')[0].files[0]);
-            MyAjax.executeWithFile('${CONTEXT_PATH}/common/file/upload/fileUpload', formData, {
+            const response = await MyAjax.executeWithFile('${CONTEXT_PATH}/common/file/upload/fileUpload', formData, {
                 autoResultFunctionTF: true,
                 successMessage: "업로드 성공"
-            }).done((response) => {
-                $('#resultTry3_1').val(JSON.stringify(response));
             });
+            $('#resultTry3_1').val(JSON.stringify(response));
         }
 
         function try4_1() {

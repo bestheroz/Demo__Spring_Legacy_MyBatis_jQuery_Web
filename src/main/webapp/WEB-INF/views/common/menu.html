@@ -47,7 +47,7 @@
         },
     });
 
-    const vm = new Vue({
+    new Vue({
         el: '#navbar',
         data: {
             items: menuData
@@ -60,7 +60,7 @@
             });
         }
     });
-    $(document).ready(() => {
-        $('#menu_memberNm').text(menuMemberNm)
-    })
+    jQuery(($) => {
+        $('#menu_memberNm').text(menuMemberNm);
+    });
 </script>
