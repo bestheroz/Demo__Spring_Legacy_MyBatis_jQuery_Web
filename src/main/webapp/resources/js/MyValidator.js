@@ -15,8 +15,8 @@ const MyValidator = {
             alert('개발오류 : 잘못된 validate 대상');
             return "";
         }
-        for (const field in validForm.fields) {
-            const result = MyValidator.validateElement(field.$element[0], autoAlertTF);
+        for (const i in validForm.fields) {
+            const result = MyValidator.validateElement(validForm.fields[i].$element[0], autoAlertTF);
             if (result !== null) {
                 return result;
             }
