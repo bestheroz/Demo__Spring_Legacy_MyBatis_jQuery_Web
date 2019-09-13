@@ -247,4 +247,3 @@ const MyAjax = {
         }
     }
 };
-jQuery.ajaxSettings.traditional = true;

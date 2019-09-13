@@ -322,7 +322,7 @@
             $('form.form-horizontal')[0].reset();
             $('div.modal-footer>div.btn-group>div.btn-group').hide();
             MyModal.open($('#modalMember'));
-            $('#memberId').attr('disabled', false);
+            $('#memberId').prop('disabled', false);
             $('#loginFailCnt').val(0);
             $('#expireDt').val(moment().add(1, 'years').format('YYYY-MM-DD 23:59:59')).trigger('change.datetimepicker');
         }
@@ -338,7 +338,7 @@
             $('form.form-horizontal')[0].reset();
             $('div.modal-footer>div.btn-group>div.btn-group').show();
             MyModal.open($('#modalMember'));
-            $('#memberId').val(selectedRow.memberId).attr('disabled', true);
+            $('#memberId').val(selectedRow.memberId).prop('disabled', true);
             $('#memberNm').val(selectedRow.memberNm);
             $('#memberTyp').val(selectedRow.memberTyp);
             $('#loginFailCnt').val(selectedRow.loginFailCnt);

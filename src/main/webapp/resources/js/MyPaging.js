@@ -39,9 +39,9 @@ const MyPaging = {
         $(document).on('click', MyPaging.selectorNumberGroup, () => {
             // console.log('event :: selectorNumberGroup');
             if (MyPaging.positionSelectedClassName === 'parent') {
-                $(this).parent().addClass(MyPaging.numberSelectedClassName).siblings().removeClass(MyPaging.numberSelectedClassName).focusout();
+                $(this).parent().addClass(MyPaging.numberSelectedClassName).siblings().removeClass(MyPaging.numberSelectedClassName).trigger('focusout');
             } else {
-                $(this).addClass(MyPaging.numberSelectedClassName).siblings().removeClass(MyPaging.numberSelectedClassName).focusout();
+                $(this).addClass(MyPaging.numberSelectedClassName).siblings().removeClass(MyPaging.numberSelectedClassName).trigger('focusout');
             }
             MyPaging.selectListFunction(MyPaging.getSelectedPageIndex());
         });
@@ -70,7 +70,7 @@ const MyPaging = {
         });
         $(document).on('click', MyPaging.selectorLastBtn, () => {
             // console.log('event :: selectorLastBtn');
-            MyPaging.setPageBtnNumber(parseInt(MyPaging.lastPageNumber / MyPaging.numberOfDisplayPages) * MyPaging.numberOfDisplayPages + 1);
+            MyPaging.setPageBtnNumber((MyPaging.lastPageNumber / MyPaging.numberOfDisplayPages).toFixed(0) * MyPaging.numberOfDisplayPages + 1);
             $(MyPaging.selectorNumberGroup + ":not(:hidden)").last().trigger('click');
         });
     },
@@ -82,7 +82,7 @@ const MyPaging = {
             MyPaging.lastPageNumber = 1;
             pageIndex = 1;
         }
-        let test = parseInt((pageIndex - 1) / MyPaging.numberOfDisplayPages);
+        let test = ((pageIndex - 1).toFixed(0) / MyPaging.numberOfDisplayPages);
         test = test < 0 ? 0 : test;
         for (let i = 0; i < MyPaging.numberOfDisplayPages; i++) {
             if (MyPaging.lastPageNumber > test * MyPaging.numberOfDisplayPages + i + 1) {
@@ -108,18 +108,18 @@ const MyPaging = {
 
         MyPaging.numberOfDisplayPages = numberOfNextPage;
         if (totalItemCount % itemPerPage === 0) {
-            MyPaging.lastPageNumber = parseInt(totalItemCount / itemPerPage);
+            MyPaging.lastPageNumber = (totalItemCount / itemPerPage).toFixed(0);
         } else {
-            MyPaging.lastPageNumber = parseInt(totalItemCount / itemPerPage) + 1;
+            MyPaging.lastPageNumber = (totalItemCount / itemPerPage).toFixed(0) + 1;
         }
         MyPaging.setPageBtnNumber(pageIndex);
 
         $.each($(MyPaging.selectorNumberGroup + ":not(:hidden)"), (index, value) => {
             if (+$(this).text() === pageIndex) {
                 if (MyPaging.positionSelectedClassName === 'parent') {
-                    $(this).parent().addClass(MyPaging.numberSelectedClassName).siblings().removeClass(MyPaging.numberSelectedClassName).focusout();
+                    $(this).parent().addClass(MyPaging.numberSelectedClassName).siblings().removeClass(MyPaging.numberSelectedClassName).trigger('focusout');
                 } else {
-                    $(this).addClass(MyPaging.numberSelectedClassName).siblings().removeClass(MyPaging.numberSelectedClassName).focusout();
+                    $(this).addClass(MyPaging.numberSelectedClassName).siblings().removeClass(MyPaging.numberSelectedClassName).trigger('focusout');
                 }
                 return false;
             }

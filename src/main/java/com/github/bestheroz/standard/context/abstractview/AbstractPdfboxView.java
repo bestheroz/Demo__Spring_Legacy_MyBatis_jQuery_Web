@@ -70,6 +70,7 @@ public abstract class AbstractPdfboxView extends AbstractView {
         return true;
     }
 
+    @SuppressWarnings("DuplicatedCode")
     @Override
     protected void renderMergedOutputModel(final Map<String, Object> model, final HttpServletRequest request, final HttpServletResponse response) {
         try {
@@ -176,19 +177,19 @@ public abstract class AbstractPdfboxView extends AbstractView {
         }
     }
 
-    protected void setString(final Row<PDPage> row, final float columnWidth, final String text) {
+    private void setString(final Row<PDPage> row, final float columnWidth, final String text) {
         row.createCell(columnWidth, this.getSecureCellText(text), HorizontalAlignment.LEFT, VerticalAlignment.MIDDLE).setFont(this.font);
     }
 
-    protected void setStringCenter(final Row<PDPage> row, final float columnWidth, final String text) {
+    private void setStringCenter(final Row<PDPage> row, final float columnWidth, final String text) {
         row.createCell(columnWidth, this.getSecureCellText(text), HorizontalAlignment.CENTER, VerticalAlignment.MIDDLE).setFont(this.font);
     }
 
-    protected void setStringRight(final Row<PDPage> row, final float columnWidth, final String text) {
+    private void setStringRight(final Row<PDPage> row, final float columnWidth, final String text) {
         row.createCell(columnWidth, this.getSecureCellText(text), HorizontalAlignment.RIGHT, VerticalAlignment.MIDDLE).setFont(this.font);
     }
 
-    protected void setInteger(final Row<PDPage> row, final float columnWidth, final String text) {
+    private void setInteger(final Row<PDPage> row, final float columnWidth, final String text) {
         try {
             row.createCell(columnWidth, this.getSecureCellText(text), HorizontalAlignment.RIGHT, VerticalAlignment.MIDDLE).setFont(this.font);
         } catch (final Throwable e) {
@@ -197,7 +198,7 @@ public abstract class AbstractPdfboxView extends AbstractView {
         }
     }
 
-    protected void setDouble(final Row<PDPage> row, final float columnWidth, final String text) {
+    private void setDouble(final Row<PDPage> row, final float columnWidth, final String text) {
         try {
             row.createCell(columnWidth, this.getSecureCellText(text), HorizontalAlignment.RIGHT, VerticalAlignment.MIDDLE).setFont(this.font);
         } catch (final Throwable e) {
@@ -206,7 +207,7 @@ public abstract class AbstractPdfboxView extends AbstractView {
         }
     }
 
-    protected void setDate(final Row<PDPage> row, final float columnWidth, final String text) {
+    private void setDate(final Row<PDPage> row, final float columnWidth, final String text) {
         try {
             this.setStringCenter(row, columnWidth, this.getSecureCellText(text));
         } catch (final Throwable e) {
@@ -214,7 +215,7 @@ public abstract class AbstractPdfboxView extends AbstractView {
         }
     }
 
-    protected String getSecureCellText(final String text) {
+    private String getSecureCellText(final String text) {
         if (StringUtils.isEmpty(text) || StringUtils.equals(text, "null")) {
             return "";
         } else {

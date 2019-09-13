@@ -56,7 +56,7 @@ public class WiredTransactionManager implements PlatformTransactionManager, Init
      * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
      */
     @Override
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet() {
         if (this.transactionManagers == null || this.transactionManagers.size() == 0) {
             this.logger.warn(ExceptionUtils.getStackTrace(new IllegalArgumentException("Property 'transactionManagers' is required")));
             throw new IllegalArgumentException("Property 'transactionManagers' is required");

@@ -1,4 +1,5 @@
 ;
+// noinspection DuplicatedCode
 const MyCommon = {
     isEmpty: (obj) => {
         if (obj === undefined || obj === null || obj === '' || obj.length === 0) {

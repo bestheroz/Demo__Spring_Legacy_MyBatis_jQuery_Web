@@ -34,7 +34,7 @@ public class AdminMenuController {
     private HttpSession session;
 
     @RequestMapping(value = "/sample/admin/menu/adminMenu.view", method = RequestMethod.GET)
-    public String home() throws Exception {
+    public String home() {
         return "/sample/admin/menu/AdminMenu";
     }
 
@@ -97,7 +97,7 @@ public class AdminMenuController {
     }
 
     @RequestMapping(value = "/sample/admin/menu/adminMenuHugeExcel.xlsx", method = RequestMethod.POST)
-    public String getHugeExcel(final Model model, final AdminMenuVO vo) throws Exception {
+    public String getHugeExcel(final Model model, final AdminMenuVO vo) {
         model.addAttribute(AbstractExcelXView.FILE_NAME, "메뉴리스트");
 
         final List<ExcelVO> excelVOList = new ArrayList<>();

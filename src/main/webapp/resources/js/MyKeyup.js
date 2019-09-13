@@ -1,7 +1,7 @@
 ;
 const MyKeyup = {
     isNumber: (e, obj) => {
-        if (MyCommon.isNotEmpty(obj) && MyCommon.isNotEmpty(obj.value) && !$.isNumeric(obj.value)) {
+        if (MyCommon.isNotEmpty(obj) && MyCommon.isNotEmpty(obj.value) && !_.isNumber(obj.value)) {
             const evt = e || window.e;
             obj.value = obj.value.replace(/[^0-9]/g, '');
             evt.preventDefault ? evt.preventDefault() : (evt.returnValue = false);

@@ -16,7 +16,7 @@
                 <h4>목차</h4>
                 <div class="list-group list-group-flush">
                     <a href="#list1" class="list-group-item list-group-item-action list-group-item-light"> 1. &lt;button&gt; 페이징 처리 </a>
-                    <a href="#list2" class="list-group-item list-group-item-action list-group-item-light"> 2. &lt;a&gt; 페이징 처리 </a>
+                        <%--                    <a href="#list2" class="list-group-item list-group-item-action list-group-item-light"> 2. &lt;a&gt; 페이징 처리 </a>--%>
                 </div>
             </div>
             <div class="card" id="list1">

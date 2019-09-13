@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.Collections;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class TestAdminMenuController extends DefaultTestClass {
     @Test
     public void 메뉴화면호출() throws Exception {

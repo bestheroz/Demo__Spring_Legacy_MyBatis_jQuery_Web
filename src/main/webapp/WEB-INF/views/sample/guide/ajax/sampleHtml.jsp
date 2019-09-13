@@ -2,15 +2,15 @@
 <div id="list1" class="mx-auto text-center">
     <h4>목차</h4>
     <p class="text-muted">
-        <a href="#list1"> 1. ajax - json </a>
+        <a> 1. ajax - json </a>
     </p>
     <p class="text-muted">
-        <a href="#list2"> 2. ajax - html </a>
+        <a> 2. ajax - html </a>
     </p>
     <p class="text-muted">
-        <a href="#list3"> 3. ajax - file(form data) </a>
+        <a> 3. ajax - file(form data) </a>
     </p>
     <p class="text-muted">
-        <a href="#list4"> 4. ajax - &lt;select&gt; </a>
+        <a> 4. ajax - &lt;select&gt; </a>
     </p>
 </div>

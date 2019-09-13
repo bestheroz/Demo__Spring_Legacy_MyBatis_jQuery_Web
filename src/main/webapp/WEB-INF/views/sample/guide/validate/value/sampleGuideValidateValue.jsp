@@ -125,7 +125,7 @@ validator.isIP(value);
     </script>
     <script>
         function try1_1() {
-            $('#resultTry1_1').val(jQuery.isNumeric($('#inputTry1_1').val()));
+            $('#resultTry1_1').val(_.isNumber($('#inputTry1_1').val()));
         }
 
         function try2_1() {
