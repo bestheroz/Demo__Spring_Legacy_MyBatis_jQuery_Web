@@ -9,14 +9,14 @@ const MyValidator = {
     },
 
     validateForm: (formObj, autoAlertTF) => {
-        let validForm = formObj.parsley();
+        const validForm = formObj.parsley();
         if (validForm === undefined) {
             // 개발용
             alert('개발오류 : 잘못된 validate 대상');
             return "";
         }
-        for (let i in validForm.fields) {
-            let result = MyValidator.validateElement(validForm.fields[i].$element[0], autoAlertTF);
+        for (const i in validForm.fields) {
+            const result = MyValidator.validateElement(validForm.fields[i].$element[0], autoAlertTF);
             if (result !== null) {
                 return result;
             }
@@ -28,7 +28,7 @@ const MyValidator = {
         if ($(elementObj).length === 0) {
             return null;
         }
-        let validElement = $(elementObj).parsley();
+        const validElement = $(elementObj).parsley();
         if (validElement === undefined) {
             // 개발용
             alert('개발오류 : 잘못된 validate 대상');

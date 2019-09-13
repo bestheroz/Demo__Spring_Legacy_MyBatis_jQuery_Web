@@ -10,6 +10,6 @@ const MyMaxlength = {
         });
     }
 };
-$(($) => {
+jQuery(($) => {
     MyMaxlength.init();
 });

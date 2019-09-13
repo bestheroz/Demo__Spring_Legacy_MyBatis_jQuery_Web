@@ -203,7 +203,7 @@ MyDatetimePicker.makeDatetimepicker('#resultTry5_2').datetimepicker('disabledDat
     <my:footer/>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <script data-for="ready">
-        $(($) => {
+        jQuery(($) => {
             MyDatetimePicker.makeDatetimepicker('#resultTry1_1');
             MyDatetimePicker.makeDatetimepicker('#resultTry1_2', 'YYYY-MM');
             MyDatetimePicker.makeDatetimepicker('#resultTry1_3', 'YYYY');

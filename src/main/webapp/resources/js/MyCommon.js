@@ -43,7 +43,7 @@ const MyCommon = {
             tempUrl = CONTEXT_PATH + tempUrl;
         }
 
-        let options = MyCommon.getOptions(MyCommon.defaultLinkOptions, paramOption);
+        const options = MyCommon.getOptions(MyCommon.defaultLinkOptions, paramOption);
 
         // url 앞에 http가 있으면 새창으로 띄운다.
         if (isNewWindow === 'L') { // 이동
@@ -96,9 +96,9 @@ const MyCommon = {
         $(obj).removeAttr('onerror').attr('data-original-src', $(obj).attr('src')).attr('src', noImgPath).addClass('noImg');
     },
     getOptions: (defaultOption, userOptions) => {
-        let tempOptions = _.clone(defaultOption);
+        const tempOptions = _.clone(defaultOption);
         if (userOptions) {
-            for (let key in userOptions) {
+            for (const key in userOptions) {
                 tempOptions[key] = userOptions[key];
             }
         }
@@ -108,20 +108,20 @@ const MyCommon = {
         return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
     },
     submitFormGET: (url, param, target) => {
-        let $form = $('<form method="GET"></form>');
+        const $form = $('<form method="GET"></form>');
         $form.attr('action', url);
         target && $form.attr('target', target);
-        for (let key in param) {
+        for (const key in param) {
             $form.append('<input type="hidden" name="' + key + '" value="' + param[key] + '" >');
         }
         $(document.body).append($form[0]);
         $form[0].submit();
     },
     submitFormPOST: (url, param, target) => {
-        let $form = $('<form method="POST"></form>');
+        const $form = $('<form method="POST"></form>');
         $form.attr('action', url);
         target && $form.attr('target', target);
-        for (let key in param) {
+        for (const key in param) {
             $form.append('<input type="hidden" name="' + key + '" value="' + param[key] + '" >');
         }
         $(document.body).append($form[0]);

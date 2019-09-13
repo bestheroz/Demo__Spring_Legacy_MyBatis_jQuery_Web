@@ -74,7 +74,7 @@ MyCommon.goTab('http://google.com');
     <my:footer/>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <script data-for="ready">
-        $(($) => {
+        jQuery(($) => {
         });
     </script>
     <script>

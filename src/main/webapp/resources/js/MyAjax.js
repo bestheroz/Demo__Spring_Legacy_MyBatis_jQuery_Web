@@ -18,14 +18,14 @@ const MyAjax = {
     },
 
     execute: (url, data, options) => {
-        let chk = MyAjax.checkMaxPostSize(data);
+        const chk = MyAjax.checkMaxPostSize(data);
         if (chk !== null) {
             return chk;
         }
         let promise;
         Pace.track(() => {
             Pace.restart();
-            let ajaxOptions = MyCommon.getOptions(MyAjax.defaultOptions, options);
+            const ajaxOptions = MyCommon.getOptions(MyAjax.defaultOptions, options);
             ajaxOptions['url'] = url;
             ajaxOptions['data'] = data;
             promise = $.ajax(ajaxOptions).done((response) => {
@@ -39,14 +39,14 @@ const MyAjax = {
         return promise;
     },
     executeWithFile: (url, paramFormData, options) => {
-        let chk = MyAjax.checkMaxPostSize(paramFormData);
+        const chk = MyAjax.checkMaxPostSize(paramFormData);
         if (chk !== null) {
             return chk;
         }
         let promise;
         Pace.track(() => {
             Pace.restart();
-            let ajaxOptions = MyCommon.getOptions(MyAjax.defaultOptions, options);
+            const ajaxOptions = MyCommon.getOptions(MyAjax.defaultOptions, options);
             ajaxOptions['url'] = url;
             ajaxOptions['data'] = paramFormData;
             ajaxOptions['processData'] = false;
@@ -63,14 +63,14 @@ const MyAjax = {
     },
 
     getSelectOptions: (paramTargetObj, url, data, options) => {
-        let chk = MyAjax.checkMaxPostSize(data);
+        const chk = MyAjax.checkMaxPostSize(data);
         if (chk !== null) {
             return chk;
         }
         let promise;
         Pace.track(() => {
             Pace.restart();
-            let ajaxOptions = MyCommon.getOptions(MyAjax.defaultOptions, options);
+            const ajaxOptions = MyCommon.getOptions(MyAjax.defaultOptions, options);
             ajaxOptions['url'] = url;
             ajaxOptions['data'] = data;
             promise = $.ajax(ajaxOptions).done((response) => {
@@ -94,14 +94,14 @@ const MyAjax = {
         return promise;
     },
     downloadFile: (url, data, options) => {
-        let chk = MyAjax.checkMaxPostSize(data);
+        const chk = MyAjax.checkMaxPostSize(data);
         if (chk !== null) {
             return chk;
         }
         let promise;
         Pace.track(() => {
             Pace.restart();
-            let ajaxOptions = MyCommon.getOptions(MyAjax.defaultOptions, options);
+            const ajaxOptions = MyCommon.getOptions(MyAjax.defaultOptions, options);
             promise = $.fileDownload(url, {
                 httpMethod: ajaxOptions.type,
                 data: data,
@@ -110,7 +110,7 @@ const MyAjax = {
                 }
             }).fail((responseHtml, url, error) => {
                 console.warn("responseHtml : " + responseHtml + "\nurl : " + url + "\nerror : " + error);
-                let response = MyAjax.getJsonFromWrappedInPreTag(responseHtml);
+                const response = MyAjax.getJsonFromWrappedInPreTag(responseHtml);
                 if (MyCommon.isNotEmpty(response.responseMessage)) {
                     alert(response.responseMessage);
                 } else {

@@ -128,12 +128,12 @@
     <!-- /.modal -->
     <my:footer/>
     <script data-for="ready">
-        $(($) => {
+        jQuery(($) => {
             $.when(drawTable1(), MyAjax.getSelectOptions($("#memberTyp"), "${CONTEXT_PATH}/common/valuelabel/getValueLabeVOList.json", {
                 grcode: "MEMBER_TYP"
             }), MyAjax.getSelectOptions($("#closeYn"), "${CONTEXT_PATH}/common/valuelabel/getValueLabeVOList.json", {
                 grcode: "USE_YN_REVERSE"
-            })).done(function (response) {
+            })).done((response) => {
                 selectList();
             });
             MyDatetimePicker.makeDatetimepicker('#expireDt', 'YYYY-MM-DD HH:mm');
@@ -141,7 +141,7 @@
     </script>
     <script data-for="define-table">
         function drawTable1() {
-            let table = $('#table1').DataTable({
+            $('#table1').DataTable({
                 dom: 'Bfrtip',
                 lengthChange: false,
                 language: MyDataTables.language,
@@ -156,19 +156,19 @@
                 buttons: [{
                     text: '<i class="fas fa-plus"></i>',
                     titleAttr: '추가',
-                    action: function (e, dt, node, config) {
+                    action: (e, dt, node, config) => {
                         modalAddMember();
                     }
                 }, {
                     text: '<i class="fas fa-pencil-alt"></i>',
                     titleAttr: '수정',
-                    action: function (e, dt, node, config) {
+                    action: (e, dt, node, config) => {
                         modalModifyMember();
                     }
                 }, {
                     text: '<i class="fas fa-trash-alt"></i>',
                     titleAttr: '삭제',
-                    action: function (e, dt, node, config) {
+                    action: (e, dt, node, config) => {
                         deleteMember();
                     }
                 }, {
@@ -202,7 +202,7 @@
                     targets: 2,
                     width: 100,
                     className: "text-center",
-                    render: function (data, type, row) {
+                    render: (data, type, row) => {
                         return MyCommon.getLabelFromSelectTag($('#memberTyp'), data);
                     }
                 }, {
@@ -213,14 +213,14 @@
                     targets: 4,
                     width: 100,
                     className: "text-center",
-                    render: function (data, type, row) {
+                    render: (data, type, row) => {
                         return MyCommon.getLabelFromSelectTag($('#closeYn'), data);
                     }
                 }, {
                     targets: 5,
                     width: 120,
                     className: "text-center",
-                    render: function (data, type, row) {
+                    render: (data, type, row) => {
                         return moment(data).format("YYYY-MM-DD HH:mm");
                     }
                 }, {
@@ -230,7 +230,7 @@
                     targets: 7,
                     width: 120,
                     className: "text-center",
-                    render: function (data, type, row) {
+                    render: (data, type, row) => {
                         return moment(data).format("YYYY-MM-DD HH:mm");
                     }
                 }],
@@ -255,13 +255,12 @@
         }
     </script>
     <script>
-        function selectList() {
-            MyAjax.execute('${CONTEXT_PATH}/sample/admin/member/getSampleMemberMstVOList.json', {}).done(function (response) {
-                $('#table1').DataTable().clear().rows.add(response).draw();
-            });
+        async function selectList() {
+            const response = await MyAjax.execute('${CONTEXT_PATH}/sample/admin/member/getSampleMemberMstVOList.json', {});
+            $('#table1').DataTable().clear().rows.add(response).draw();
         }
 
-        function saveMember() {
+        async function saveMember() {
             if (MyValidator.validate($('form.form-horizontal'), true) !== null) {
                 return;
             }
@@ -281,7 +280,7 @@
             } else {
                 url = '${CONTEXT_PATH}/sample/admin/member/updateSampleMemberMst.json';
             }
-            MyAjax.execute(url, {
+            const response = await MyAjax.execute(url, {
                 memberId: $('#memberId').val(),
                 memberNm: $('#memberNm').val(),
                 memberPw: memberPw,
@@ -291,16 +290,15 @@
                 expireDt: $('#expireDt').datetimepicker('viewDate').valueOf()
             }, {
                 autoResultFunctionTF: true
-            }).done(function (response) {
-                if (_.startsWith(response.responseCode, 'S')) {
-                    MyModal.close($('#modalMember'));
-                    selectList();
-                }
             });
+            if (_.startsWith(response.responseCode, 'S')) {
+                MyModal.close($('#modalMember'));
+                await selectList();
+            }
         }
 
-        function deleteMember() {
-            let selectedRow = $('#table1').DataTable().rows({
+        async function deleteMember() {
+            const selectedRow = $('#table1').DataTable().rows({
                 selected: true
             }).data().toArray()[0];
             if (MyCommon.isEmpty(selectedRow)) {
@@ -308,31 +306,29 @@
                 return;
             }
             if (confirm("정말 삭제하시겠습니까?")) {
-                MyAjax.execute('${CONTEXT_PATH}/sample/admin/member/deleteSampleMemberMst.json', {
+                const response = await MyAjax.execute('${CONTEXT_PATH}/sample/admin/member/deleteSampleMemberMst.json', {
                     memberId: selectedRow.memberId
                 }, {
                     autoResultFunctionTF: true
-                }).done(function (response) {
-                    if (_.startsWith(response.responseCode, 'S')) {
-                        MyModal.close($('#modalMember'));
-                        selectList();
-                    }
                 });
+                if (_.startsWith(response.responseCode, 'S')) {
+                    MyModal.close($('#modalMember'));
+                    await selectList();
+                }
             }
         }
 
         function modalAddMember() {
             $('form.form-horizontal')[0].reset();
             $('div.modal-footer>div.btn-group>div.btn-group').hide();
-            MyModal.open($('#modalMember')).done(function () {
-                $('#memberId').attr('disabled', false);
-                $('#loginFailCnt').val(0);
-                $('#expireDt').val(moment().add(1, 'years').format('YYYY-MM-DD 23:59:59')).trigger('change.datetimepicker');
-            });
+            MyModal.open($('#modalMember'));
+            $('#memberId').attr('disabled', false);
+            $('#loginFailCnt').val(0);
+            $('#expireDt').val(moment().add(1, 'years').format('YYYY-MM-DD 23:59:59')).trigger('change.datetimepicker');
         }
 
         function modalModifyMember() {
-            let selectedRow = $('#table1').DataTable().rows({
+            const selectedRow = $('#table1').DataTable().rows({
                 selected: true
             }).data().toArray()[0];
             if (MyCommon.isEmpty(selectedRow)) {
@@ -341,14 +337,13 @@
             }
             $('form.form-horizontal')[0].reset();
             $('div.modal-footer>div.btn-group>div.btn-group').show();
-            MyModal.open($('#modalMember')).done(function () {
-                $('#memberId').val(selectedRow.memberId).attr('disabled', true);
-                $('#memberNm').val(selectedRow.memberNm);
-                $('#memberTyp').val(selectedRow.memberTyp);
-                $('#loginFailCnt').val(selectedRow.loginFailCnt);
-                $('#closeYn').val(selectedRow.closeYn);
-                $('#expireDt').val(moment(selectedRow.expireDt).format('YYYY-MM-DD HH:mm')).trigger('change.datetimepicker');
-            });
+            MyModal.open($('#modalMember'));
+            $('#memberId').val(selectedRow.memberId).attr('disabled', true);
+            $('#memberNm').val(selectedRow.memberNm);
+            $('#memberTyp').val(selectedRow.memberTyp);
+            $('#loginFailCnt').val(selectedRow.loginFailCnt);
+            $('#closeYn').val(selectedRow.closeYn);
+            $('#expireDt').val(moment(selectedRow.expireDt).format('YYYY-MM-DD HH:mm')).trigger('change.datetimepicker');
         }
     </script>
 

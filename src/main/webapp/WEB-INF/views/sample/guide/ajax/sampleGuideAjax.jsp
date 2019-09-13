@@ -32,8 +32,8 @@
                         <input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly/>
                     </div>
                     <pre class="prettyprint lang-html">
-let params = {};
-MyAjax.execute('&#36;{CONTEXT_PATH}/sample/admin/menu/getSampleMenuMstVOList.json', params).done(function(response) {
+const params = {};
+MyAjax.execute('&#36;{CONTEXT_PATH}/sample/admin/menu/getSampleMenuMstVOList.json', params).done((response) => {
     console.info(response);
 });
 </pre>
@@ -48,13 +48,13 @@ MyAjax.execute('&#36;{CONTEXT_PATH}/sample/admin/menu/getSampleMenuMstVOList.jso
                         <input type="text" class="form-control" id="resultTry1_2" placeholder="result..." readonly/>
                     </div>
                     <pre class="prettyprint lang-html">
-let params = {
+const params = {
     memberId : 0
 };
 MyAjax.execute('&#36;{CONTEXT_PATH}/sample/admin/member/deleteSampleMemberMst.json', params, {
     autoResultFunctionTF : true // 자동 결과 메시지 출력
     //, successMessage : "정상적으로 삭제 처리되었습니다." // 성공 시 수동 메시지 설정
-}).done(function(response) {
+}).done((response) => {
     console.info(response);
 });
 </pre>
@@ -75,10 +75,10 @@ MyAjax.execute('&#36;{CONTEXT_PATH}/sample/admin/member/deleteSampleMemberMst.js
                         <input type="text" class="form-control" id="resultTry2_1" placeholder="result..." readonly/>
                     </div>
                     <pre class="prettyprint lang-html">
-let params = {};
+const params = {};
 MyAjax.execute('&#36;{CONTEXT_PATH}/sample/guide/ajax/sampleHtml.view', params, {
     dataType : "html"
-}).done(function(response) {
+}).done((response) => {
     console.info(response);
 });
 </pre>
@@ -99,7 +99,7 @@ MyAjax.execute('&#36;{CONTEXT_PATH}/sample/guide/ajax/sampleHtml.view', params, 
                         <input type="text" class="form-control" id="resultTry3_1" placeholder="result..." readonly/>
                     </div>
                     <pre class="prettyprint lang-html">
-let formData = new FormData();
+const formData = new FormData();
 if ($('#file')[0].files[0] === undefined || $('#file')[0].files[0] === null) { // 기본 undefined, ie에서는 null
     alert("파일을 선택해주세요.");
     return;
@@ -109,7 +109,7 @@ formData.append("file", $('#file')[0].files[0]);
 MyAjax.executeWithFile('&#36;{CONTEXT_PATH}/common/file/upload/fileUpload', formData, {
     autoResultFunctionTF : true,
     successMessage : "업로드 성공"
-}).done(function(response) {
+}).done((response) => {
     // callback
 });
 </pre>
@@ -133,7 +133,7 @@ MyAjax.executeWithFile('&#36;{CONTEXT_PATH}/common/file/upload/fileUpload', form
                         <input type="hidden" id="filePath" class="form-control" value="./MyFileDownloadController.java"/>
                     </div>
                     <pre class="prettyprint lang-html">
-let dataParam = {
+const dataParam = {
 	filePath : $('#filePath').val()
 };
 MyAjax.downloadFile('&#36;{CONTEXT_PATH}/common/file/download/fileDownload.proc', dataParam);
@@ -150,7 +150,7 @@ MyAjax.downloadFile('&#36;{CONTEXT_PATH}/common/file/download/fileDownload.proc'
                         <input type="hidden" id="filePath2" class="form-control" value="./MyFileDownloadController.java"/>
                     </div>
                     <pre class="prettyprint lang-html">
-let dataParam = {
+const dataParam = {
 	fileSeq : $('#fileSeq').val(),
 	fileName : $('#fileName').val() // 보안이슈로 추가
 };
@@ -163,39 +163,39 @@ MyAjax.downloadFile('&#36;{CONTEXT_PATH}/common/file/download/fileDownload.proc'
     <my:footer/>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <script data-for="ready">
-        $(($) => {
+        jQuery(($) => {
         });
     </script>
     <script>
         function try1_1() {
-            let params = {};
-            MyAjax.execute('${CONTEXT_PATH}/sample/admin/menu/getSampleMenuMstVOList.json', params).done(function (response) {
+            const params = {};
+            MyAjax.execute('${CONTEXT_PATH}/sample/admin/menu/getSampleMenuMstVOList.json', params).done((response) => {
                 $('#resultTry1_1').val(JSON.stringify(response));
             });
         }
 
         function try1_2() {
-            let params = {
+            const params = {
                 memberId: 0
             };
             MyAjax.execute('${CONTEXT_PATH}/sample/admin/member/deleteSampleMemberMst.json', params, {
                 autoResultFunctionTF: true
-            }).done(function (response) {
+            }).done((response) => {
                 $('#resultTry1_2').val(JSON.stringify(response));
             });
         }
 
         function try2_1() {
-            let params = {};
+            const params = {};
             MyAjax.execute('${CONTEXT_PATH}/sample/guide/ajax/sampleHtml.view', params, {
                 dataType: "html"
-            }).done(function (response) {
+            }).done((response) => {
                 $('#resultTry2_1').val(response);
             });
         }
 
         function try3_1() {
-            let formData = new FormData();
+            const formData = new FormData();
             if ($('#file')[0].files[0] === undefined || $('#file')[0].files[0] === null) { // 기본 undefined, ie에서는 null
                 alert("파일을 선택해주세요.");
                 return;
@@ -205,20 +205,20 @@ MyAjax.downloadFile('&#36;{CONTEXT_PATH}/common/file/download/fileDownload.proc'
             MyAjax.executeWithFile('${CONTEXT_PATH}/common/file/upload/fileUpload', formData, {
                 autoResultFunctionTF: true,
                 successMessage: "업로드 성공"
-            }).done(function (response) {
+            }).done((response) => {
                 $('#resultTry3_1').val(JSON.stringify(response));
             });
         }
 
         function try4_1() {
-            let dataParam = {
+            const dataParam = {
                 filePath: $('#filePath').val()
             };
             MyAjax.downloadFile('${CONTEXT_PATH}/common/file/download/fileDownload.proc', dataParam);
         }
 
         function try4_2() {
-            let dataParam = {
+            const dataParam = {
                 fileSeq: '1000000003',
                 fileName: 'smile_icon.jpg'
             };

@@ -20,6 +20,6 @@ const MyScrollUp = {
         });
     }
 };
-$(($) => {
+jQuery(($) => {
     MyScrollUp.init();
 });

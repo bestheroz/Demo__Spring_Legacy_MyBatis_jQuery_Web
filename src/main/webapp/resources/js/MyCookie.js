@@ -1,7 +1,7 @@
 ;
 const MyCookie = {
     getCookie: (name) => {
-        let wcname = name + '=';
+        const wcname = name + '=';
         let wcstart, wcend, end;
         let i = 0;
 
@@ -23,13 +23,13 @@ const MyCookie = {
         return null;
     },
     setCookie: (name, value, expiredays) => {
-        let todayDate = new Date();
+        const todayDate = new Date();
         todayDate.setDate(todayDate.getDate() + expiredays);
         document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";
     },
     // 지정된 expiredays의 00시 기준으로 setting
     setCookieAt00: (name, value, expiredays) => {
-        let todayDate = new Date();
+        const todayDate = new Date();
         todayDate.setHours(0);
         todayDate.setMinutes(0);
         todayDate.setSeconds(0);

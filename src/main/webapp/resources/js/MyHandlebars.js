@@ -214,7 +214,7 @@ const MyHandlebars = {
 
     }
 };
-$(($) => {
+jQuery(($) => {
     MyHandlebars.init();
     MyHandlebars.setTemplateScript();
 });

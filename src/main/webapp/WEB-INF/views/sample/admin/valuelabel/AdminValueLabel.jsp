@@ -189,19 +189,19 @@
     </main>
     <my:footer/>
     <script data-for="ready">
-        $(($) => {
+        jQuery(($) => {
             $.when(drawTable1(), drawTable2(), MyAjax.getSelectOptions($("#useYn"), "${CONTEXT_PATH}/common/valuelabel/getValueLabeVOList.json", {
                 grcode: "USE_YN"
-            })).done(function (response) {
+            })).done(() => {
                 selectList();
             });
             $('#table2_wrapper > div.dt-buttons > a').addClass('disabled');
-            $('#table1').DataTable().on('select', function (e, dt, type, indexes) {
-                let rowData = $('#table1').DataTable().rows(indexes).data().toArray()[0];
+            $('#table1').DataTable().on('select', (e, dt, type, indexes) => {
+                const rowData = $('#table1').DataTable().rows(indexes).data().toArray()[0];
                 $('#table2_wrapper > div.dt-buttons > a').removeClass('disabled');
                 selectListDet(rowData.grcode);
             });
-            $('#table1').DataTable().on('deselect', function (e, dt, type, indexes) {
+            $('#table1').DataTable().on('deselect', (e, dt, type, indexes) => {
                 $('#table2_wrapper > div.dt-buttons > a').addClass('disabled');
                 $('#table2').DataTable().clear().draw();
             });
@@ -209,7 +209,7 @@
     </script>
     <script data-for="define-table">
         function drawTable1() {
-            let table = $('#table1').DataTable({
+            $('#table1').DataTable({
                 dom: 'Bfrtip',
                 lengthChange: false,
                 language: MyDataTables.language,
@@ -224,19 +224,19 @@
                 buttons: [{
                     text: '<i class="fas fa-plus"></i>',
                     titleAttr: '추가',
-                    action: function (e, dt, node, config) {
+                    action: (e, dt, node, config) => {
                         modalAddValueLabel();
                     }
                 }, {
                     text: '<i class="fas fa-pencil-alt"></i>',
                     titleAttr: '수정',
-                    action: function (e, dt, node, config) {
+                    action: (e, dt, node, config) => {
                         modalModifyValueLabel();
                     }
                 }, {
                     text: '<i class="fas fa-trash-alt"></i>',
                     titleAttr: '삭제',
-                    action: function (e, dt, node, config) {
+                    action: (e, dt, node, config) => {
                         deleteValueLabel();
                     }
                 }, {
@@ -281,7 +281,7 @@
                     targets: 3,
                     width: 120,
                     className: "text-center",
-                    render: function (data, type, row) {
+                    render: (data, type, row) => {
                         return moment(data).format("YYYY-MM-DD HH:mm");
                     }
                 }],
@@ -298,7 +298,7 @@
         }
 
         function drawTable2() {
-            let table = $('#table2').DataTable({
+            $('#table2').DataTable({
                 dom: 'Bfrtip',
                 lengthChange: false,
                 language: MyDataTables.language,
@@ -313,19 +313,19 @@
                 buttons: [{
                     text: '<i class="fas fa-plus"></i>',
                     titleAttr: '추가',
-                    action: function (e, dt, node, config) {
+                    action: (e, dt, node, config) => {
                         modalAddValueLabelDet();
                     }
                 }, {
                     text: '<i class="fas fa-pencil-alt"></i>',
                     titleAttr: '수정',
-                    action: function (e, dt, node, config) {
+                    action: (e, dt, node, config) => {
                         modalModifyValueLabelDet();
                     }
                 }, {
                     text: '<i class="fas fa-trash-alt"></i>',
                     titleAttr: '삭제',
-                    action: function (e, dt, node, config) {
+                    action: (e, dt, node, config) => {
                         deleteValueLabelDet();
                     }
                 }, {
@@ -367,7 +367,7 @@
                     targets: 2,
                     width: 80,
                     className: "text-center",
-                    render: function (data, type, row) {
+                    render: (data, type, row) => {
                         return MyCommon.getLabelFromSelectTag($('#useYn'), data);
                     }
                 }, {
@@ -381,7 +381,7 @@
                     targets: 5,
                     width: 120,
                     className: "text-center",
-                    render: function (data, type, row) {
+                    render: (data, type, row) => {
                         return moment(data).format("YYYY-MM-DD HH:mm");
                     }
                 }],
@@ -402,30 +402,27 @@
         }
     </script>
     <script>
-        function selectList() {
-            MyAjax.execute('${CONTEXT_PATH}/sample/admin/valuelabel/getSampleCodeMstVOList.json', {}).done(function (response) {
-                $('#table1').DataTable().clear().rows.add(response).draw();
-            });
+        async function selectList() {
+            const response = await MyAjax.execute('${CONTEXT_PATH}/sample/admin/valuelabel/getSampleCodeMstVOList.json', {});
+            $('#table1').DataTable().clear().rows.add(response).draw();
         }
 
-        function selectListDet(grcode) {
-            MyAjax.execute('${CONTEXT_PATH}/sample/admin/valuelabel/getSampleCodeDetVOList.json', {
+        async function selectListDet(grcode) {
+            const response = await MyAjax.execute('${CONTEXT_PATH}/sample/admin/valuelabel/getSampleCodeDetVOList.json', {
                 grcode: grcode
-            }).done(function (response) {
-                $('#table2').DataTable().clear().rows.add(response).draw();
             });
+            $('#table2').DataTable().clear().rows.add(response).draw();
         }
 
         function modalAddValueLabel() {
             $('#form1')[0].reset();
             $('div.modal-footer>div.btn-group>div.btn-group').hide();
-            MyModal.open($('#modalValueLabel')).done(function () {
-                $('#grcode').prop('readonly', false);
-            });
+            MyModal.open($('#modalValueLabel'));
+            $('#grcode').prop('readonly', false);
         }
 
         function modalModifyValueLabel() {
-            let selectedRow = $('#table1').DataTable().rows({
+            const selectedRow = $('#table1').DataTable().rows({
                 selected: true
             }).data().toArray()[0];
             if (MyCommon.isEmpty(selectedRow)) {
@@ -434,14 +431,13 @@
             }
             $('#form1')[0].reset();
             $('div.modal-footer>div.btn-group>div.btn-group').show();
-            MyModal.open($('#modalValueLabel')).done(function () {
-                $('#grcode').val(selectedRow.grcode).prop('readonly', true);
-                $('#grcodeNm').val(selectedRow.grcodeNm);
-                $('#remark1').val(selectedRow.remark1);
-            });
+            MyModal.open($('#modalValueLabel'));
+            $('#grcode').val(selectedRow.grcode).prop('readonly', true);
+            $('#grcodeNm').val(selectedRow.grcodeNm);
+            $('#remark1').val(selectedRow.remark1);
         }
 
-        function saveValueLabel() {
+        async function saveValueLabel() {
             if (MyValidator.validate($('#form1'), true) !== null) {
                 return;
             }
@@ -451,23 +447,22 @@
             } else {
                 url = '${CONTEXT_PATH}/sample/admin/valuelabel/updateSampleCodeMst.json';
             }
-            MyAjax.execute(url, {
+            const response = await MyAjax.execute(url, {
                 grcode: $('#grcode').val(),
                 grcodeNm: $('#grcodeNm').val(),
                 remark1: $('#remark1').val()
             }, {
                 autoResultFunctionTF: true
-            }).done(function (response) {
-                if (_.startsWith(response.responseCode, 'S')) {
-                    MyModal.close($('#modalValueLabel'));
-                    selectList();
-                    $('#table2').DataTable().clear().draw();
-                }
             });
+            if (_.startsWith(response.responseCode, 'S')) {
+                MyModal.close($('#modalValueLabel'));
+                await selectList();
+                $('#table2').DataTable().clear().draw();
+            }
         }
 
-        function deleteValueLabel() {
-            let selectedRow = $('#table1').DataTable().rows({
+        async function deleteValueLabel() {
+            const selectedRow = $('#table1').DataTable().rows({
                 selected: true
             }).data().toArray()[0];
             if (MyCommon.isEmpty(selectedRow)) {
@@ -475,22 +470,21 @@
                 return;
             }
             if (confirm("정말 삭제하시겠습니까?")) {
-                MyAjax.execute('${CONTEXT_PATH}/sample/admin/valuelabel/deleteCOMM_CODE.json', {
+                const response = await MyAjax.execute('${CONTEXT_PATH}/sample/admin/valuelabel/deleteCOMM_CODE.json', {
                     grcode: selectedRow.grcode
                 }, {
                     autoResultFunctionTF: true
-                }).done(function (response) {
-                    if (_.startsWith(response.responseCode, 'S')) {
-                        MyModal.close($('#modalValueLabel'));
-                        selectList();
-                        $('#table2').DataTable().clear().draw();
-                    }
                 });
+                if (_.startsWith(response.responseCode, 'S')) {
+                    MyModal.close($('#modalValueLabel'));
+                    await selectList();
+                    $('#table2').DataTable().clear().draw();
+                }
             }
         }
 
         function modalAddValueLabelDet() {
-            let selectedRow = $('#table1').DataTable().rows({
+            const selectedRow = $('#table1').DataTable().rows({
                 selected: true
             }).data().toArray()[0];
             if (MyCommon.isEmpty(selectedRow)) {
@@ -499,21 +493,20 @@
             }
             $('#form2')[0].reset();
             $('div.modal-footer>div.btn-group>div.btn-group').hide();
-            MyModal.open($('#modalValueLabelDet')).done(function () {
-                $('#code').prop('readonly', false);
-                $('#grcodeDet').val(selectedRow.grcode);
-            });
+            MyModal.open($('#modalValueLabelDet'));
+            $('#code').prop('readonly', false);
+            $('#grcodeDet').val(selectedRow.grcode);
         }
 
         function modalModifyValueLabelDet() {
-            let selectedRow = $('#table2').DataTable().rows({
+            const selectedRow = $('#table2').DataTable().rows({
                 selected: true
             }).data().toArray()[0];
             if (MyCommon.isEmpty(selectedRow)) {
                 alert("수정하실 항목을 선택해주세요.");
                 return;
             }
-            let selectedRow1 = $('#table1').DataTable().rows({
+            const selectedRow1 = $('#table1').DataTable().rows({
                 selected: true
             }).data().toArray()[0];
             if (MyCommon.isEmpty(selectedRow1)) {
@@ -522,18 +515,17 @@
             }
             $('#form2')[0].reset();
             $('div.modal-footer>div.btn-group>div.btn-group').show();
-            MyModal.open($('#modalValueLabelDet')).done(function () {
-                $('#code').prop('readonly', true);
-                $('#grcodeDet').val(selectedRow1.grcode);
-                $('#code').val(selectedRow.code);
-                $('#codeNm').val(selectedRow.codeNm);
-                $('#useYn').val(selectedRow.useYn);
-                $('#dispSeq').val(selectedRow.dispSeq);
-                $('#remark1Det').val(selectedRow.remark1);
-            });
+            MyModal.open($('#modalValueLabelDet'));
+            $('#code').prop('readonly', true);
+            $('#grcodeDet').val(selectedRow1.grcode);
+            $('#code').val(selectedRow.code);
+            $('#codeNm').val(selectedRow.codeNm);
+            $('#useYn').val(selectedRow.useYn);
+            $('#dispSeq').val(selectedRow.dispSeq);
+            $('#remark1Det').val(selectedRow.remark1);
         }
 
-        function saveValueLabelDet() {
+        async function saveValueLabelDet() {
             if (MyValidator.validate($('#form2'), true) !== null) {
                 return;
             }
@@ -543,7 +535,7 @@
             } else {
                 url = '${CONTEXT_PATH}/sample/admin/valuelabel/updateSampleCodeDet.json';
             }
-            MyAjax.execute(url, {
+            const response = await MyAjax.execute(url, {
                 grcode: $('#grcodeDet').val(),
                 code: $('#code').val(),
                 codeNm: $('#codeNm').val(),
@@ -552,16 +544,15 @@
                 remark1: $('#remark1Det').val()
             }, {
                 autoResultFunctionTF: true
-            }).done(function (response) {
-                if (_.startsWith(response.responseCode, 'S')) {
-                    MyModal.close($('#modalValueLabelDet'));
-                    selectListDet($('#grcodeDet').val());
-                }
             });
+            if (_.startsWith(response.responseCode, 'S')) {
+                MyModal.close($('#modalValueLabelDet'));
+                await selectListDet($('#grcodeDet').val());
+            }
         }
 
-        function deleteValueLabelDet() {
-            let selectedRow = $('#table2').DataTable().rows({
+        async function deleteValueLabelDet() {
+            const selectedRow = $('#table2').DataTable().rows({
                 selected: true
             }).data().toArray()[0];
             if (MyCommon.isEmpty(selectedRow)) {
@@ -570,17 +561,16 @@
             }
 
             if (confirm("정말 삭제하시겠습니까?")) {
-                MyAjax.execute('${CONTEXT_PATH}/sample/admin/valuelabel/deleteSampleCodeDet.json', {
+                const response = await MyAjax.execute('${CONTEXT_PATH}/sample/admin/valuelabel/deleteSampleCodeDet.json', {
                     grcode: selectedRow.grcode,
                     code: selectedRow.code
                 }, {
                     autoResultFunctionTF: true
-                }).done(function (response) {
-                    if (_.startsWith(response.responseCode, 'S')) {
-                        MyModal.close($('#modalValueLabelDet'));
-                        selectListDet(selectedRow.grcode);
-                    }
                 });
+                if (_.startsWith(response.responseCode, 'S')) {
+                    MyModal.close($('#modalValueLabelDet'));
+                    await selectListDet(selectedRow.grcode);
+                }
             }
         }
     </script>

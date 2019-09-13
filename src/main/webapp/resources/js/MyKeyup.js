@@ -2,11 +2,10 @@
 const MyKeyup = {
     isNumber: (e, obj) => {
         if (MyCommon.isNotEmpty(obj) && MyCommon.isNotEmpty(obj.value) && !$.isNumeric(obj.value)) {
-            let evt = e || window.e;
+            const evt = e || window.e;
             obj.value = obj.value.replace(/[^0-9]/g, '');
             evt.preventDefault ? evt.preventDefault() : (evt.returnValue = false);
             alert('숫자만 입력해주세요.');
-
         }
     }
 };
@@ -14,11 +13,11 @@ const MyKeyup = {
 $(document).off('keydown', 'input').on('keydown', 'input', (e) => {
     if (e.key === 'Backspace') {
         let doPrevent = true;
-        let types = ["text", "password", "file", "search", "email", "number", "date", "color", "datetime", "datetime-local", "month", "range", "search", "tel", "time", "url", "week"];
-        let d = $(e.srcElement || e.target);
-        let disabled = d.prop("readonly") || d.prop("disabled");
+        const types = ["text", "password", "file", "search", "email", "number", "date", "color", "datetime", "datetime-local", "month", "range", "search", "tel", "time", "url", "week"];
+        const d = $(e.srcElement || e.target);
+        const disabled = d.prop("readonly") || d.prop("disabled");
         if (!disabled) {
-            let type = d.attr("type");
+            const type = d.attr("type");
             if (MyCommon.isNotEmpty(type)) {
                 if (_.includes(types, type.toLowerCase())) {
                     doPrevent = false;
@@ -37,8 +36,8 @@ $(document).off('keydown', 'input').on('keydown', 'input', (e) => {
 $(document).off('keydown', 'textarea').on('keydown', 'textarea', (e) => {
     if (e.key === 'Backspace') {
         let doPrevent = true;
-        let d = $(e.srcElement || e.target);
-        let disabled = d.prop("readonly") || d.prop("disabled");
+        const d = $(e.srcElement || e.target);
+        const disabled = d.prop("readonly") || d.prop("disabled");
         if (!disabled) {
             if (d.is("textarea")) {
                 doPrevent = false;

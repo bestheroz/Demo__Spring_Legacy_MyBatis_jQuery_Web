@@ -13,7 +13,7 @@ const MyTextEditor = {
     init: (targetObj) => {
         targetObj = targetObj || $(document);
         $(targetObj).find('[data-texteditor="on"]').each(() => {
-            let options = {};
+            const options = {};
             if (MyCommon.isNotEmpty($(this).attr('data-texteditor-height'))) {
                 options['height'] = $(this).attr('data-texteditor-height') + 'px';
             }
@@ -28,10 +28,10 @@ const MyTextEditor = {
         // if (!paramOptions.useBase64DataUrlImage && !MyCommon.isLocalhost()) {
         // paramOptions['callbacks'] = {
         // onImageUpload : function(files) {
-        // let $summernote = $(this);
-        // let formData = new FormData();
+        // const $summernote = $(this);
+        // const formData = new FormData();
         // formData.append("file", files[0]);
-        // MyAjax.executeWithFile(CONTEXT_PATH + '/common/textEditor/imageUpload.proc', formData).done(function(response) {
+        // MyAjax.executeWithFile(CONTEXT_PATH + '/common/textEditor/imageUpload.proc', formData).done((response) => {
         // // upload image to server and create imgNode...
         // $summernote.summernote('insertImage', url);
         // });
@@ -72,7 +72,7 @@ const MyTextEditor = {
         }
     }
 };
-$(($) => {
+jQuery(($) => {
     MyTextEditor.init();
 });
 // 드래그 방지에서 textarea와 충돌하기떄문에 드래그 방지소스는 아래와 같이 처리해줘야한다! 17-12-13 by bestheroz

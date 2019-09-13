@@ -35,13 +35,13 @@
     </main>
     <my:footer/>
     <script data-for="ready">
-        $(($) => {
+        jQuery(($) => {
             $('#memberPw, #memberId').on('keydown', (event) => {
                 if (event.key === 'Enter') {
                     proc();
                 }
             });
-            let savedLoginId = MyCookie.getCookie("savedLoginId");
+            const savedLoginId = MyCookie.getCookie("savedLoginId");
             if (savedLoginId !== null) {
                 $('#memberId').val(savedLoginId);
                 $('#save_id').removeClass('fa-square').addClass('fa-check-square');
@@ -53,7 +53,7 @@
             if (MyValidator.validate($('form.form-horizontal'), true) !== null) {
                 return;
             }
-            let param = {
+            const param = {
                 memberId: $('#memberId').val(),
                 memberPw: CryptoJS.SHA512($('#memberPw').val()).toString()
             };

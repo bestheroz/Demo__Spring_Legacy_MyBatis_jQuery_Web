@@ -99,7 +99,7 @@
     </main>
     <my:footer/>
     <script data-for="ready">
-        $(($) => {
+        jQuery(($) => {
             drawTable1();
             selectList();
         });
@@ -121,25 +121,25 @@
                 buttons: [{
                     text: '<i class="fas fa-plus"></i>',
                     titleAttr: '추가',
-                    action: function (e, dt, node, config) {
+                    action: (e, dt, node, config) => {
                         modalAddFile();
                     }
                 }, {
                     text: '<i class="fas fa-pencil-alt"></i>',
                     titleAttr: '수정',
-                    action: function (e, dt, node, config) {
+                    action: (e, dt, node, config) => {
                         modalModifyFile();
                     }
                 }, {
                     text: '<i class="fas fa-trash-alt"></i>',
                     titleAttr: '삭제',
-                    action: function (e, dt, node, config) {
+                    action: (e, dt, node, config) => {
                         deleteFile();
                     }
                 }, {
                     text: '<i class="fas fa-download"></i>',
                     titleAttr: '다운로드',
-                    action: function (e, dt, node, config) {
+                    action: (e, dt, node, config) => {
                         downloadFile();
                     }
                 }, {
@@ -168,7 +168,7 @@
                     targets: 5,
                     width: 120,
                     className: "text-center",
-                    render: function (data, type, row) {
+                    render: (data, type, row) => {
                         return moment(data).format("YYYY-MM-DD HH:mm");
                     }
                 }],
@@ -198,16 +198,15 @@
             $('form.form-horizontal')[0].reset();
             $('div.modal-footer>div.btn-group>div.btn-group').hide();
             $('#file').parentsUntil('form.form-horizontal').siblings('div').hide();
-            MyModal.open($('#modalFile')).done(function () {
-                let selectedRow = $('#table1').DataTable().rows({
-                    selected: true
-                }).data().toArray()[0];
-                $('#power').val(300);
-            });
+            MyModal.open($('#modalFile'));
+            const selectedRow = $('#table1').DataTable().rows({
+                selected: true
+            }).data().toArray()[0];
+            $('#power').val(300);
         }
 
-        async function modalModifyFile() {
-            let selectedRow = $('#table1').DataTable().rows({
+        function modalModifyFile() {
+            const selectedRow = $('#table1').DataTable().rows({
                 selected: true
             }).data().toArray()[0];
             if (MyCommon.isEmpty(selectedRow)) {
@@ -218,7 +217,7 @@
             $('div.modal-footer>div.btn-group>div.btn-group').show();
             $('#btnGroupDrop1').next('div').css('display', '');
             $('#file').parentsUntil('form.form-horizontal').siblings('div').show();
-            await MyModal.open($('#modalFile'));
+            MyModal.open($('#modalFile'));
             $('#fileSeq').val(selectedRow.fileSeq);
             $('#fileNm').val(selectedRow.fileNm);
             $('#fileNmExt').val(selectedRow.fileNmExt);
@@ -239,7 +238,7 @@
             } else {
                 url = '${CONTEXT_PATH}/sample/admin/file/updateSampleFileMst.json';
             }
-            let formData = new FormData();
+            const formData = new FormData();
             formData.append('fileSeq', $('#fileSeq').val());
             formData.append('file', $('#file')[0].files[0]);
             const response = await MyAjax.executeWithFile(url, formData, {
@@ -252,7 +251,7 @@
         }
 
         async function deleteFile() {
-            let selectedRow = $('#table1').DataTable().rows({
+            const selectedRow = $('#table1').DataTable().rows({
                 selected: true
             }).data().toArray()[0];
             if (MyCommon.isEmpty(selectedRow)) {
@@ -267,13 +266,13 @@
                 });
                 if (_.startsWith(response.responseCode, 'S')) {
                     MyModal.close($('#modalFile'));
-                    selectList();
+                    await selectList();
                 }
             }
         }
 
         function downloadFile() {
-            let selectedRow = $('#table1').DataTable().rows({
+            const selectedRow = $('#table1').DataTable().rows({
                 selected: true
             }).data().toArray()[0];
             if (MyCommon.isEmpty(selectedRow)) {
