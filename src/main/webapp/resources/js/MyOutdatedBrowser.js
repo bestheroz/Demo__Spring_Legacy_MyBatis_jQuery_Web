@@ -1,11 +1,11 @@
 ;
 const MyOutdatedBrowser = {
-    addLoadEvent: function (func) {
-        let oldonload = window.onload;
-        if (typeof window.onload != 'function') {
+    addLoadEvent: (func) => {
+        const oldonload = window.onload;
+        if (typeof window.onload != '') {
             window.onload = func;
         } else {
-            window.onload = function () {
+            window.onload = () => {
                 if (oldonload) {
                     oldonload();
                 }
@@ -24,9 +24,9 @@ const MyOutdatedBrowser = {
  * IE8, borderSpacing
  * </pre>
  */
-$(document).ready(function () {
+jQuery(($) => {
     $('body').append('<div id=\"outdated\"></div>');
-    MyOutdatedBrowser.addLoadEvent(function () {
+    MyOutdatedBrowser.addLoadEvent(() => {
         outdatedBrowser({
             bgColor: '#f25648',
             color: '#ffffff',

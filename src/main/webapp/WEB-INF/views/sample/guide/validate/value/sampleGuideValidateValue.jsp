@@ -120,12 +120,12 @@ validator.isIP(value);
     <my:footer/>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <script data-for="ready">
-        $(document).ready(function () {
+        jQuery(($) => {
         });
     </script>
     <script>
         function try1_1() {
-            $('#resultTry1_1').val(jQuery.isNumeric($('#inputTry1_1').val()));
+            $('#resultTry1_1').val(_.isNumber($('#inputTry1_1').val()));
         }
 
         function try2_1() {

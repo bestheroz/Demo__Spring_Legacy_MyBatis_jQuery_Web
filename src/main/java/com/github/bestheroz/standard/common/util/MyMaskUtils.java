@@ -91,21 +91,7 @@ public class MyMaskUtils {
     }
 
     public static String getName(final String name) {
-        if (StringUtils.isEmpty(name)) {
-            return "";
-        }
-
-        final String dirty = MyEscapeUtils.unescapeAll(name);
-        final StringBuilder returnValue = new StringBuilder();
-
-        for (int i = 0; i < dirty.length(); i++) {
-            if (i % 2 == 0) {
-                returnValue.append(dirty.charAt(i));
-            } else {
-                returnValue.append("*");
-            }
-        }
-        return returnValue.toString();
+        return getId(name);
     }
 
 }

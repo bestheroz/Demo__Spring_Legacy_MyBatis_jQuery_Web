@@ -99,15 +99,14 @@
     </main>
     <my:footer/>
     <script data-for="ready">
-        $(document).ready(function () {
-            $.when(drawTable1()).done(function (response) {
-                selectList();
-            });
+        jQuery(($) => {
+            drawTable1();
+            selectList();
         });
     </script>
     <script data-for="define-table">
         function drawTable1() {
-            let table = $('#table1').DataTable({
+            $('#table1').DataTable({
                 dom: 'Bfrtip',
                 lengthChange: false,
                 language: MyDataTables.language,
@@ -122,25 +121,25 @@
                 buttons: [{
                     text: '<i class="fas fa-plus"></i>',
                     titleAttr: '추가',
-                    action: function (e, dt, node, config) {
+                    action: (e, dt, node, config) => {
                         modalAddFile();
                     }
                 }, {
                     text: '<i class="fas fa-pencil-alt"></i>',
                     titleAttr: '수정',
-                    action: function (e, dt, node, config) {
+                    action: (e, dt, node, config) => {
                         modalModifyFile();
                     }
                 }, {
                     text: '<i class="fas fa-trash-alt"></i>',
                     titleAttr: '삭제',
-                    action: function (e, dt, node, config) {
+                    action: (e, dt, node, config) => {
                         deleteFile();
                     }
                 }, {
                     text: '<i class="fas fa-download"></i>',
                     titleAttr: '다운로드',
-                    action: function (e, dt, node, config) {
+                    action: (e, dt, node, config) => {
                         downloadFile();
                     }
                 }, {
@@ -169,7 +168,7 @@
                     targets: 5,
                     width: 120,
                     className: "text-center",
-                    render: function (data, type, row) {
+                    render: (data, type, row) => {
                         return moment(data).format("YYYY-MM-DD HH:mm");
                     }
                 }],
@@ -190,26 +189,24 @@
         }
     </script>
     <script>
-        function selectList() {
-            MyAjax.excute('${CONTEXT_PATH}/sample/admin/file/getSampleFileMstVOList.json', {}).done(function (response) {
-                $('#table1').DataTable().clear().rows.add(response).draw();
-            });
+        async function selectList() {
+            const response = await MyAjax.execute('${CONTEXT_PATH}/sample/admin/file/getSampleFileMstVOList.json', {});
+            $('#table1').DataTable().clear().rows.add(response).draw();
         }
 
         function modalAddFile() {
             $('form.form-horizontal')[0].reset();
-            $('#modalFile div.modal-footer i.fa-trash-o').parentsUntil('div.btn-group-padding').filter('div.btn-group').hide();
+            $('div.modal-footer>div.btn-group>div.btn-group').hide();
             $('#file').parentsUntil('form.form-horizontal').siblings('div').hide();
-            MyModal.open($('#modalFile')).done(function () {
-                let selectedRow = $('#table1').DataTable().rows({
-                    selected: true
-                }).data().toArray()[0];
-                $('#power').val(300);
-            });
+            MyModal.open($('#modalFile'));
+            const selectedRow = $('#table1').DataTable().rows({
+                selected: true
+            }).data().toArray()[0];
+            $('#power').val(300);
         }
 
         function modalModifyFile() {
-            let selectedRow = $('#table1').DataTable().rows({
+            const selectedRow = $('#table1').DataTable().rows({
                 selected: true
             }).data().toArray()[0];
             if (MyCommon.isEmpty(selectedRow)) {
@@ -217,17 +214,17 @@
                 return;
             }
             $('form.form-horizontal')[0].reset();
-            $('#modalFile div.modal-footer i.fa-trash-o').parentsUntil('div.btn-group-padding').filter('div.btn-group').show();
+            $('div.modal-footer>div.btn-group>div.btn-group').show();
+            $('#btnGroupDrop1').next('div').css('display', '');
             $('#file').parentsUntil('form.form-horizontal').siblings('div').show();
-            MyModal.open($('#modalFile')).done(function () {
-                $('#fileSeq').val(selectedRow.fileSeq);
-                $('#fileNm').val(selectedRow.fileNm);
-                $('#fileNmExt').val(selectedRow.fileNmExt);
-                $('#mimeTyp').val(selectedRow.mimeTyp);
-            });
+            MyModal.open($('#modalFile'));
+            $('#fileSeq').val(selectedRow.fileSeq);
+            $('#fileNm').val(selectedRow.fileNm);
+            $('#fileNmExt').val(selectedRow.fileNmExt);
+            $('#mimeTyp').val(selectedRow.mimeTyp);
         }
 
-        function saveFile() {
+        async function saveFile() {
             if (MyValidator.validate($('form.form-horizontal'), true) !== null) {
                 return;
             }
@@ -236,26 +233,25 @@
                 return;
             }
             let url;
-            if ($('#modalFile div.modal-footer i.fa-trash-o').parentsUntil('div.btn-group-padding').filter('div.btn-group').is(':hidden')) {
+            if ($('div.modal-footer>div.btn-group>div.btn-group').is(':hidden')) {
                 url = '${CONTEXT_PATH}/sample/admin/file/insertSampleFileMst.json';
             } else {
                 url = '${CONTEXT_PATH}/sample/admin/file/updateSampleFileMst.json';
             }
-            let formData = new FormData();
+            const formData = new FormData();
             formData.append('fileSeq', $('#fileSeq').val());
             formData.append('file', $('#file')[0].files[0]);
-            MyAjax.excuteWithFile(url, formData, {
+            const response = await MyAjax.executeWithFile(url, formData, {
                 autoResultFunctionTF: true
-            }).done(function (response) {
-                if (_.startsWith(response.responseCode, 'S')) {
-                    MyModal.close($('#modalFile'));
-                    selectList();
-                }
             });
+            if (_.startsWith(response.responseCode, 'S')) {
+                MyModal.close($('#modalFile'));
+                await selectList();
+            }
         }
 
-        function deleteFile() {
-            let selectedRow = $('#table1').DataTable().rows({
+        async function deleteFile() {
+            const selectedRow = $('#table1').DataTable().rows({
                 selected: true
             }).data().toArray()[0];
             if (MyCommon.isEmpty(selectedRow)) {
@@ -263,21 +259,20 @@
                 return;
             }
             if (confirm("정말 삭제하시겠습니까?")) {
-                MyAjax.excute('${CONTEXT_PATH}/sample/admin/file/deleteSampleFileMst.json', {
+                const response = await MyAjax.execute('${CONTEXT_PATH}/sample/admin/file/deleteSampleFileMst.json', {
                     fileSeq: selectedRow.fileSeq
                 }, {
                     autoResultFunctionTF: true
-                }).done(function (response) {
-                    if (_.startsWith(response.responseCode, 'S')) {
-                        MyModal.close($('#modalFile'));
-                        selectList();
-                    }
                 });
+                if (_.startsWith(response.responseCode, 'S')) {
+                    MyModal.close($('#modalFile'));
+                    await selectList();
+                }
             }
         }
 
         function downloadFile() {
-            let selectedRow = $('#table1').DataTable().rows({
+            const selectedRow = $('#table1').DataTable().rows({
                 selected: true
             }).data().toArray()[0];
             if (MyCommon.isEmpty(selectedRow)) {

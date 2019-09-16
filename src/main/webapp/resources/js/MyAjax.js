@@ -17,100 +17,100 @@ const MyAjax = {
         label: 'label'
     },
 
-    excute: function (paramUrl, paramData, paramOption) {
-        let chk = MyAjax.checkMaxPostSize(paramData);
+    execute: (url, data, options) => {
+        const chk = MyAjax.checkMaxPostSize(data);
         if (chk !== null) {
             return chk;
         }
         let promise;
-        Pace.track(function () {
+        Pace.track(() => {
             Pace.restart();
-            let options = MyCommon.getOptions(MyAjax.defaultOptions, paramOption);
-            options['url'] = paramUrl;
-            options['data'] = paramData;
-            promise = $.ajax(options).done(function (response) {
-                MyAjax.doneDefaultFunction(response, options);
-            }).done(function (response) {
-                MyAjax.doneAutoResultFunction(response, options);
-            }).fail(function (jqXHR, textStatus, errorThrown) {
-                MyAjax.failFunction(jqXHR, textStatus, errorThrown, options);
+            const ajaxOptions = MyCommon.getOptions(MyAjax.defaultOptions, options);
+            ajaxOptions['url'] = url;
+            ajaxOptions['data'] = data;
+            promise = $.ajax(ajaxOptions).done((response) => {
+                MyAjax.doneDefaultFunction(response, ajaxOptions);
+            }).done((response) => {
+                MyAjax.doneAutoResultFunction(response, ajaxOptions);
+            }).fail((jqXHR, textStatus, errorThrown) => {
+                MyAjax.failFunction(jqXHR, textStatus, errorThrown, ajaxOptions);
             });
         });
         return promise;
     },
-    excuteWithFile: function (paramUrl, paramFormData, paramOption) {
-        let chk = MyAjax.checkMaxPostSize(paramFormData);
+    executeWithFile: (url, paramFormData, options) => {
+        const chk = MyAjax.checkMaxPostSize(paramFormData);
         if (chk !== null) {
             return chk;
         }
         let promise;
-        Pace.track(function () {
+        Pace.track(() => {
             Pace.restart();
-            let options = MyCommon.getOptions(MyAjax.defaultOptions, paramOption);
-            options['url'] = paramUrl;
-            options['data'] = paramFormData;
-            options['processData'] = false;
-            options['contentType'] = false;
-            promise = $.ajax(options).done(function (response) {
-                MyAjax.doneDefaultFunction(response, options);
-            }).done(function (response) {
-                MyAjax.doneAutoResultFunction(response, options);
-            }).fail(function (jqXHR, textStatus, errorThrown) {
-                MyAjax.failFunction(jqXHR, textStatus, errorThrown, options);
+            const ajaxOptions = MyCommon.getOptions(MyAjax.defaultOptions, options);
+            ajaxOptions['url'] = url;
+            ajaxOptions['data'] = paramFormData;
+            ajaxOptions['processData'] = false;
+            ajaxOptions['contentType'] = false;
+            promise = $.ajax(ajaxOptions).done((response) => {
+                MyAjax.doneDefaultFunction(response, ajaxOptions);
+            }).done((response) => {
+                MyAjax.doneAutoResultFunction(response, ajaxOptions);
+            }).fail((jqXHR, textStatus, errorThrown) => {
+                MyAjax.failFunction(jqXHR, textStatus, errorThrown, ajaxOptions);
             });
         });
         return promise;
     },
 
-    getSelectOptions: function (paramTargetObj, paramUrl, paramData, paramOption) {
-        let chk = MyAjax.checkMaxPostSize(paramData);
+    getSelectOptions: (paramTargetObj, url, data, options) => {
+        const chk = MyAjax.checkMaxPostSize(data);
         if (chk !== null) {
             return chk;
         }
         let promise;
-        Pace.track(function () {
+        Pace.track(() => {
             Pace.restart();
-            let options = MyCommon.getOptions(MyAjax.defaultOptions, paramOption);
-            options['url'] = paramUrl;
-            options['data'] = paramData;
-            promise = $.ajax(options).done(function (response) {
-                MyAjax.doneDefaultFunction(response, options)
-            }).done(function (response) {
+            const ajaxOptions = MyCommon.getOptions(MyAjax.defaultOptions, options);
+            ajaxOptions['url'] = url;
+            ajaxOptions['data'] = data;
+            promise = $.ajax(ajaxOptions).done((response) => {
+                MyAjax.doneDefaultFunction(response, ajaxOptions)
+            }).done((response) => {
                 $(paramTargetObj).html('');
-                if (!$(paramTargetObj).prop('required') || (MyCommon.isNotEmpty(paramOption) && MyCommon.isNotEmpty(paramOption.placeholder))) {
-                    $(paramTargetObj).append("<option value=''>" + options.placeholder + "</option>");
+                if (!$(paramTargetObj).prop('required') || (MyCommon.isNotEmpty(ajaxOptions) && MyCommon.isNotEmpty(ajaxOptions.placeholder))) {
+                    $(paramTargetObj).append("<option value=''>" + ajaxOptions.placeholder + "</option>");
                 }
-                $.each(response, function (index, value) {
-                    if (options.withCodeTF) {
-                        $(paramTargetObj).append("<option value='" + value[options.value] + "'>" + "[" + value[options.value] + "]" + value[options.label] + "</option>");
+                $.each(response, (index, value) => {
+                    if (ajaxOptions.withCodeTF) {
+                        $(paramTargetObj).append("<option value='" + value[ajaxOptions.value] + "'>" + "[" + value[ajaxOptions.value] + "]" + value[ajaxOptions.label] + "</option>");
                     } else {
-                        $(paramTargetObj).append("<option value='" + value[options.value] + "'>" + value[options.label] + "</option>");
+                        $(paramTargetObj).append("<option value='" + value[ajaxOptions.value] + "'>" + value[ajaxOptions.label] + "</option>");
                     }
                 });
-            }).fail(function (jqXHR, textStatus, errorThrown) {
-                MyAjax.failFunction(jqXHR, textStatus, errorThrown, options);
+            }).fail((jqXHR, textStatus, errorThrown) => {
+                MyAjax.failFunction(jqXHR, textStatus, errorThrown, ajaxOptions);
             });
         });
         return promise;
     },
-    downloadFile: function (paramUrl, paramData, paramOption) {
-        let chk = MyAjax.checkMaxPostSize(paramData);
+    downloadFile: (url, data, options) => {
+        const chk = MyAjax.checkMaxPostSize(data);
         if (chk !== null) {
             return chk;
         }
         let promise;
-        Pace.track(function () {
+        Pace.track(() => {
             Pace.restart();
-            let options = MyCommon.getOptions(MyAjax.defaultOptions, paramOption);
-            promise = $.fileDownload(paramUrl, {
-                httpMethod: options.type,
-                data: paramData,
-                prepareCallback: function (url) {
+            const ajaxOptions = MyCommon.getOptions(MyAjax.defaultOptions, options);
+            promise = $.fileDownload(url, {
+                httpMethod: ajaxOptions.type,
+                data: data,
+                prepareCallback: (url) => {
                     //
                 }
-            }).fail(function (responseHtml, url, error) {
+            }).fail((responseHtml, url, error) => {
                 console.warn("responseHtml : " + responseHtml + "\nurl : " + url + "\nerror : " + error);
-                let response = MyAjax.getJsonFromWrappedInPreTag(responseHtml);
+                const response = MyAjax.getJsonFromWrappedInPreTag(responseHtml);
                 if (MyCommon.isNotEmpty(response.responseMessage)) {
                     alert(response.responseMessage);
                 } else {
@@ -120,8 +120,8 @@ const MyAjax = {
         });
         return promise;
     },
-    checkMaxPostSize: function (paramData) {
-        if (MyCommon.isNotEmpty(paramData) && JSON.stringify(paramData).length > 8388608) { // 현재8MB : server.xml maxPoolSize값 참고
+    checkMaxPostSize: (data) => {
+        if (MyCommon.isNotEmpty(data) && JSON.stringify(data).length > 8388608) { // 현재8MB : server.xml maxPoolSize값 참고
             alert('입력하신 값이 너무 많아서 문제가 발생하고 있습니다. 입력하신 값을 줄여주세요.');
             return $.Deferred().reject('입력하신 값이 너무 많아서 문제가 발생하고 있습니다. 입력하신 값을 줄여주세요.').promise();
         } else {
@@ -129,7 +129,7 @@ const MyAjax = {
         }
     },
     // 가끔 ajax 에러발생시 <pre>를 포함한 데이터가 넘어올 때가 있다.
-    getJsonFromWrappedInPreTag: function (paramHtml) {
+    getJsonFromWrappedInPreTag: (paramHtml) => {
         if (!!~paramHtml.toString().indexOf('<pre ') || !!~paramHtml.toString().indexOf('<pre>')) {
             try {
                 return JSON.parse(paramHtml.substring(paramHtml.indexOf('>') + 1, paramHtml.indexOf('</')));
@@ -139,7 +139,7 @@ const MyAjax = {
         }
         return paramHtml;
     },
-    doneDefaultFunction: function (response, options) {
+    doneDefaultFunction: (response, options) => {
         if (options.dataType === 'json') {
             response = MyAjax.getJsonFromWrappedInPreTag(response);
         }
@@ -150,7 +150,7 @@ const MyAjax = {
             return false;
         }
     },
-    doneAutoResultFunction: function (response, options) {
+    doneAutoResultFunction: (response, options) => {
         if (options.autoResultFunctionTF) {
             if (MyCommon.isNotEmpty(response.responseCode) && MyCommon.isNotEmpty(response.responseMessage)) {
                 let message = null;
@@ -166,7 +166,7 @@ const MyAjax = {
             }
         }
     },
-    failFunction: function (jqXHR, textStatus, errorThrown, options) {
+    failFunction: (jqXHR, textStatus, errorThrown, options) => {
         console.warn("jqXHR : " + jqXHR + "\ntextStatus : " + textStatus + "\nerrorThrown : " + errorThrown);
         if (textStatus === "timeout") {
             console.warn("요청시간 초과");
@@ -180,8 +180,8 @@ const MyAjax = {
             }
         }
     },
-    drawHtml: function (targetObj, mode, html) {
-        return $.when().done(function () {
+    drawHtml: (targetObj, mode, html) => {
+        return $.when().done(() => {
             if (mode === 'html') {
                 MyHandlebars.removeTemplateScript(targetObj);
                 $(targetObj).html('').html(html);
@@ -198,12 +198,12 @@ const MyAjax = {
             } else if (mode === 'before') {
                 $(targetObj).before(html);
             }
-        }).done(function () {
+        }).done(() => {
             MyAjax.initView(targetObj);
-            MyAjax.removeDeplicationModal(targetObj);
+            MyAjax.removeDuplicationModal(targetObj);
         });
     },
-    initView: function (targetObj) {
+    initView: (targetObj) => {
         targetObj = targetObj || $(document);
 
         // Handlebars
@@ -231,13 +231,13 @@ const MyAjax = {
             // console.warn(e);
         }
     },
-    removeDeplicationModal: function (targetObj) {
+    removeDuplicationModal: (targetObj) => {
         if (!targetObj) {
             return;
         }
         // ajax를 통해 가져온 (기존)중복된 Model 제거
         try {
-            $.each($(targetObj).find('.modal'), function (index, value) {
+            $.each($(targetObj).find('.modal'), (index, value) => {
                 if ($('body > #' + $(value).prop('id')) !== $(value)) {
                     $('body > #' + $(value).prop('id')).remove();
                 }
@@ -247,4 +247,3 @@ const MyAjax = {
         }
     }
 };
-jQuery.ajaxSettings.traditional = true;

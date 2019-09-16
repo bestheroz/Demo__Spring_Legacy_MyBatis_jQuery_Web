@@ -23,7 +23,7 @@ public class AdminValueLabelController {
     private AdminValueLabelService adminValueLabelService;
 
     @RequestMapping(value = "/sample/admin/valuelabel/adminValueLabel.view", method = RequestMethod.GET)
-    public String view(final Model model) throws Exception {
+    public String view(final Model model) {
         return "/sample/admin/valuelabel/AdminValueLabel";
     }
 

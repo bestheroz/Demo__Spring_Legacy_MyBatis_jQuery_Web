@@ -21,7 +21,7 @@ public class LoginController {
     private HttpSession session;
 
     @RequestMapping(value = {"/", "/sample/login/login.view"}, method = RequestMethod.GET)
-    public String view() throws Exception {
+    public String view() {
         if (MySessionUtils.getLoginVO(this.session) != null) {
             final String returnUrl = MySessionUtils.getAttribute(this.session, "returnUrl");
             this.session.removeAttribute("returnUrl");

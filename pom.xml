@@ -5,7 +5,7 @@
     <groupId>com.github.bestheroz</groupId>
     <artifactId>my_spring_maven_bootstrap_web_project</artifactId>
     <name>My_Spring_Maven_Bootstrap_Web_Project</name>
-    <packaging>war</packaging>
+    <!--    <packaging>war</packaging>-->
     <version>1.0.0-BUILD-SNAPSHOT</version>
     <properties>
         <m2eclipse.wtp.contextRoot>/ROOT</m2eclipse.wtp.contextRoot>

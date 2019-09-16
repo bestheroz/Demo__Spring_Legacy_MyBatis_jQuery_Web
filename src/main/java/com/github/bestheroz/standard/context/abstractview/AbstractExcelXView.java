@@ -110,6 +110,7 @@ public abstract class AbstractExcelXView extends AbstractView {
     /**
      * Renders the Excel view, given the specified model.
      */
+    @SuppressWarnings("DuplicatedCode")
     @Override
     protected final void renderMergedOutputModel(final Map<String, Object> model, final HttpServletRequest request, final HttpServletResponse response) {
         // java.lang.OutOfMemoryError: Java heap space 발생시...
@@ -206,8 +207,8 @@ public abstract class AbstractExcelXView extends AbstractView {
             sheet.autoSizeColumn(j);
             // java.lang.IllegalArgumentException: The maximum column width for an individual cell is 255 characters. max 59999
             int columWidth = (int) (sheet.getColumnWidth(j) * excelVOs.get(j).getCharByte() + 300);
-            columWidth = columWidth < 3000 ? 3000 : columWidth;
-            columWidth = columWidth > 59999 ? 59999 : columWidth;
+            columWidth = Math.max(columWidth, 3000);
+            columWidth = Math.min(columWidth, 59999);
             sheet.setColumnWidth(j, columWidth);
         }
         sheet.untrackAllColumnsForAutoSizing();
@@ -257,24 +258,24 @@ public abstract class AbstractExcelXView extends AbstractView {
         }
     }
 
-    protected void setString(final SXSSFCell cell, final String text) {
+    private void setString(final SXSSFCell cell, final String text) {
         cell.setCellType(org.apache.poi.ss.usermodel.CellType.STRING);
         cell.setCellValue(this.getSecureCellText(text));
     }
 
-    protected void setStringCenter(final SXSSFCell cell, final String text) {
+    private void setStringCenter(final SXSSFCell cell, final String text) {
         cell.setCellType(org.apache.poi.ss.usermodel.CellType.STRING);
         cell.setCellStyle(this.stringCenterStyle);
         cell.setCellValue(this.getSecureCellText(text));
     }
 
-    protected void setStringRight(final SXSSFCell cell, final String text) {
+    private void setStringRight(final SXSSFCell cell, final String text) {
         cell.setCellType(org.apache.poi.ss.usermodel.CellType.STRING);
         cell.setCellStyle(this.stringRightStyle);
         cell.setCellValue(this.getSecureCellText(text));
     }
 
-    protected void setInteger(final SXSSFCell cell, final String text) {
+    private void setInteger(final SXSSFCell cell, final String text) {
         cell.setCellType(org.apache.poi.ss.usermodel.CellType.NUMERIC);
         cell.setCellStyle(this.numberStyle);
         try {
@@ -285,7 +286,7 @@ public abstract class AbstractExcelXView extends AbstractView {
         }
     }
 
-    protected void setDouble(final SXSSFCell cell, final String text) {
+    private void setDouble(final SXSSFCell cell, final String text) {
         cell.setCellType(org.apache.poi.ss.usermodel.CellType.NUMERIC);
         cell.setCellStyle(this.doubleStyle);
         try {
@@ -296,7 +297,7 @@ public abstract class AbstractExcelXView extends AbstractView {
         }
     }
 
-    protected void setDate(final SXSSFCell cell, final String text) {
+    private void setDate(final SXSSFCell cell, final String text) {
         cell.setCellType(org.apache.poi.ss.usermodel.CellType.STRING);
         cell.setCellStyle(this.dateStyle);
         try {
@@ -306,7 +307,7 @@ public abstract class AbstractExcelXView extends AbstractView {
         }
     }
 
-    protected String getSecureCellText(final String text) {
+    private String getSecureCellText(final String text) {
         if (StringUtils.isEmpty(text) || StringUtils.equals(text, "null")) {
             return "";
         } else {

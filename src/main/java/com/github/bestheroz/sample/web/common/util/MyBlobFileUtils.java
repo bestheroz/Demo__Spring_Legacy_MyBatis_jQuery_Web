@@ -50,6 +50,7 @@ public class MyBlobFileUtils {
         }
     }
 
+    @SuppressWarnings("DuplicatedCode")
     public static TableSampleFileMstVO insert(final MultipartFile multipartFile, final LoginVO loginVO) throws CommonException {
         final TableSampleFileMstVO tableSampleFileMstVO = new TableSampleFileMstVO();
         if (!MyNullUtils.isEmpty(multipartFile)) {
@@ -69,6 +70,7 @@ public class MyBlobFileUtils {
         return tableSampleFileMstVO;
     }
 
+    @SuppressWarnings("DuplicatedCode")
     public static TableSampleFileMstVO update(final Integer fileSeq, final MultipartFile multipartFile, final LoginVO loginVO) throws CommonException {
         final TableSampleFileMstVO tableSampleFileMstVO = new TableSampleFileMstVO();
         if (fileSeq != null) {

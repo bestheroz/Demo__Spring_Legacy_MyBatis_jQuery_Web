@@ -1,12 +1,12 @@
 ;
 const MyModal = {
-    open: function (paramObj) {
-        return $.when($(paramObj).modal({
+    open: (paramObj) => {
+        return $(paramObj).modal({
             backdrop: 'static',
             show: true
-        }));
+        });
     },
-    close: function (paramObj) {
+    close: (paramObj) => {
         $(paramObj).modal('hide');
     }
 };

@@ -23,7 +23,7 @@ public class AdminFileController {
     private HttpSession session;
 
     @RequestMapping(value = "/sample/admin/file/adminFile.view", method = RequestMethod.GET)
-    public String view() throws Exception {
+    public String view() {
         return "/sample/admin/file/AdminFile";
     }
 

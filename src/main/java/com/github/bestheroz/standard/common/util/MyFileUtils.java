@@ -43,18 +43,17 @@ public class MyFileUtils {
         return true;
     }
 
-    public static boolean deleteDirectory(final String filePath) throws CommonException {
-        return deleteFile(getFile(filePath));
+    public static void deleteDirectory(final String filePath) throws CommonException {
+        deleteFile(getFile(filePath));
     }
 
-    public static boolean deleteFile(final File file) throws CommonException {
+    public static void deleteFile(final File file) throws CommonException {
         forceDelete(file);
         LOGGER.info("Target for deleting file : {}", file.getAbsolutePath());
-        return true;
     }
 
-    public static boolean deleteFile(final String filePath) throws CommonException {
-        return deleteFile(getFile(filePath));
+    public static void deleteFile(final String filePath) throws CommonException {
+        deleteFile(getFile(filePath));
     }
 
     private static File forceDelete(final File file) throws CommonException {
@@ -87,14 +86,15 @@ public class MyFileUtils {
                     }
                 }
                 encodedFilename = sb.toString();
-            } else if (StringUtils.contains(header, "Opera")) {
-                encodedFilename = "\"" + new String(fileName.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1) + "\"";
-                // } else if (StringUtils.contains(header, "Safari")) {
-                // encodedFilename = "\"" + new String(fileName.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1) + "\"";
-                // encodedFilename = URLDecoder.decode(encodedFilename, StandardCharsets.UTF_8.displayName());
             } else {
                 encodedFilename = "\"" + new String(fileName.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1) + "\"";
-                encodedFilename = URLDecoder.decode(encodedFilename, StandardCharsets.UTF_8.displayName());
+                if (StringUtils.contains(header, "Opera")) {
+                    // } else if (StringUtils.contains(header, "Safari")) {
+                    // encodedFilename = "\"" + new String(fileName.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1) + "\"";
+                    // encodedFilename = URLDecoder.decode(encodedFilename, StandardCharsets.UTF_8.displayName());
+                } else {
+                    encodedFilename = URLDecoder.decode(encodedFilename, StandardCharsets.UTF_8.displayName());
+                }
             }
             return encodedFilename;
         } catch (final UnsupportedEncodingException e) {
@@ -155,30 +155,14 @@ public class MyFileUtils {
             final MultipartFile multipartFile = fileMap.get(fileNames.next());
             validateFile(multipartFile);
 
-            final StringBuilder fileName = new StringBuilder(80);
-            fileName.append(DateTime.now().toString(MyDateUtils.YYYYMMDDHHMMSS)).append(STR_UNDERLINE).append(DigestUtils.md5Hex(multipartFile.getOriginalFilename()));
-            if (StringUtils.isNotEmpty(getExtension(multipartFile))) {
-                fileName.append(STR_DOT).append(getExtension(multipartFile));
-            }
-            final File file = getFile(targetDirPath + "/" + fileName);
-            try {
-                FileCopyUtils.copy(multipartFile.getBytes(), file);
-            } catch (final IOException e) {
-                LOGGER.warn(ExceptionUtils.getStackTrace(e));
-                throw new CommonException(e);
-            }
+            final File file = uploadMultipartFile(targetDirPath, multipartFile);
             savedFiles.add(file);
             LOGGER.info(STR_INFO_MESSAGE, file.getAbsolutePath());
         }
         return savedFiles;
     }
 
-    public static File uploadFile(final MultipartFile multipartFile, final String targetDirPath) throws CommonException {
-        if (MyNullUtils.isEmpty(multipartFile)) {
-            return null;
-        }
-        validateFile(multipartFile);
-        getDirectory(targetDirPath);
+    private static File uploadMultipartFile(final String targetDirPath, final MultipartFile multipartFile) {
         final StringBuilder fileName = new StringBuilder(80);
         fileName.append(DateTime.now().toString(MyDateUtils.YYYYMMDDHHMMSS)).append(STR_UNDERLINE).append(DigestUtils.md5Hex(multipartFile.getOriginalFilename()));
         if (StringUtils.isNotEmpty(getExtension(multipartFile))) {
@@ -191,6 +175,16 @@ public class MyFileUtils {
             LOGGER.warn(ExceptionUtils.getStackTrace(e));
             throw new CommonException(e);
         }
+        return file;
+    }
+
+    public static File uploadFile(final MultipartFile multipartFile, final String targetDirPath) throws CommonException {
+        if (MyNullUtils.isEmpty(multipartFile)) {
+            return null;
+        }
+        validateFile(multipartFile);
+        getDirectory(targetDirPath);
+        final File file = uploadMultipartFile(targetDirPath, multipartFile);
         LOGGER.info(STR_INFO_MESSAGE, file.getAbsolutePath());
         return file;
     }

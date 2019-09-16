@@ -1,7 +1,7 @@
 ;
 const MyCookie = {
-    getCookie: function (name) {
-        let wcname = name + '=';
+    getCookie: (name) => {
+        const wcname = name + '=';
         let wcstart, wcend, end;
         let i = 0;
 
@@ -22,14 +22,14 @@ const MyCookie = {
         }
         return null;
     },
-    setCookie: function (name, value, expiredays) {
-        let todayDate = new Date();
+    setCookie: (name, value, expiredays) => {
+        const todayDate = new Date();
         todayDate.setDate(todayDate.getDate() + expiredays);
         document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";
     },
     // 지정된 expiredays의 00시 기준으로 setting
-    setCookieAt00: function (name, value, expiredays) {
-        let todayDate = new Date();
+    setCookieAt00: (name, value, expiredays) => {
+        const todayDate = new Date();
         todayDate.setHours(0);
         todayDate.setMinutes(0);
         todayDate.setSeconds(0);
@@ -40,7 +40,7 @@ const MyCookie = {
             MyCommon.setCookie(name, value, expiredays);
         }
     },
-    removeCookie: function (name) {
+    removeCookie: (name) => {
         document.cookie = name + '=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     }
 };

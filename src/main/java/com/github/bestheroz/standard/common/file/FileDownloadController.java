@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class FileDownloadController {
     @RequestMapping(value = "/common/file/download/fileDownload.proc", method = RequestMethod.POST)
     public String downloadFile(@RequestParam(value = "filePath", required = false) final String filePath, @RequestParam(value = "fileSeq", required = false) final Integer fileSeq,
-                               @RequestParam(value = "fileName", required = false) final String fileName, final Model model) throws Exception {
+                               @RequestParam(value = "fileName", required = false) final String fileName, final Model model) {
         if (fileSeq != null) {
             model.addAttribute(AbstractDownloadView.DOWNLOAD_FILE, MyBlobFileUtils.getFileFromSampleFileMstObject(fileSeq, fileName));
         } else if (StringUtils.isNotEmpty(filePath)) {
