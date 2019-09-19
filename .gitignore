@@ -1,6 +1,11 @@
 /target/
+/.idea/artifacts/
+/.idea/libraries/
+/.idea/**/*.iml
 /.idea/hotswap_agent.xml
-/.idea/workspace.xml
 /.idea/misc.xml
-/.idea/libraries/**
+/.idea/modules.xml
+/.idea/sqldialects.xml
 /.idea/webContexts.xml
+/.idea/workspace.xml
+/.classpath
