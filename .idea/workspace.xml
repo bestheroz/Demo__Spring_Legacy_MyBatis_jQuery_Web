@@ -7,9 +7,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17a65c47-6223-4b56-aded-9c44c3f92926" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/My_Spring_Maven_Bootstrap_Web_Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/My_Spring_MyBatis_Jquery_Web_Project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/my_spring_maven_bootstrap_web_project_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/my_spring_maven_bootstrap_web_project_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" afterPath="$PROJECT_DIR$/.project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/My_Spring_Maven_Bootstrap_Web_Project/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_spring_maven_bootstrap_web_project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/my_spring_mybatis_jquery_web_project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom-web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom-web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/github/bestheroz/standard/common/taglibrary/HtmlTag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/bestheroz/standard/common/taglibrary/HtmlTag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources-local/sample/DB/MySqlNH2/mysql-h2-db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources-local/sample/DB/MySqlNH2/mysql-h2-db.sql" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,11 +42,7 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1680" />
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
-  </component>
+  <component name="ProjectId" id="1PdXPmT95pXEFvJ9EAzNjNvSHiT" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -48,6 +54,9 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -252,6 +261,10 @@
       <updated>1556515120621</updated>
       <workItem from="1556515121898" duration="10000" />
       <workItem from="1556515187242" duration="3000" />
+      <workItem from="1566204926838" duration="51000" />
+      <workItem from="1567566693554" duration="26000" />
+      <workItem from="1568871317467" duration="281000" />
+      <workItem from="1568871603880" duration="149000" />
     </task>
     <task id="LOCAL-00001" summary="gitignore 항목추가: /.idea/libraries/**">
       <created>1566204017667</created>
@@ -281,7 +294,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566204477998</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="최신라이브러리 적용">
+      <created>1566204903075</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1566204903075</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -325,11 +345,44 @@
             </State>
           </value>
         </entry>
+        <entry key="2">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
       </map>
     </option>
     <option name="OPEN_TABS">
       <set>
         <option value="1" />
+        <option value="2" />
       </set>
     </option>
   </component>

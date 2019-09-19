@@ -16,8 +16,8 @@
              xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
         <modelVersion>4.0.0</modelVersion>
         <groupId>com.github.bestheroz</groupId>
-        <artifactId>my_spring_maven_bootstrap_web_project</artifactId>
-        <name>My_Spring_Maven_Bootstrap_Web_Project</name>
+        <artifactId>my_spring_mybatis_jquery_web_project</artifactId>
+        <name>My_Spring_MyBatis_jQuery_Web_Project</name>
         <packaging>war</packaging>
         <version>1.0.0-BUILD-SNAPSHOT</version>
         <properties>

@@ -487,13 +487,13 @@ INTO   SAMPLE_MENU_MST
        VALUES
        (
               SEQ_SAMPLE_MENU_MST.NEXTVAL,
-              '웹(Mybatis/jQuery/Bootstrap4) 템플릿 프로젝트',
+              '웹(Spring/Mybatis/jQuery/Bootstrap4) 템플릿 프로젝트',
               'P',
               1000000003,
               'Y',
               300,
               10,
-              'https://github.com/bestheroz/My_Spring_Maven_Bootstrap_Web_Project',
+              'https://github.com/bestheroz/My_Spring_MyBatis_jQuery_Web_Project',
               'bestheroz',
               SYSDATE,
               'bestheroz',
