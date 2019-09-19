@@ -7,13 +7,14 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.SelectProvider;
 
 import java.util.List;
+import java.util.Set;
 
 @Mapper
 public interface TableSampleMemberMstDAO extends SqlForTableDAO {
 
     @SelectProvider(type = SqlForTableVO.class, method = SqlForTableVO.SELECT)
-    List<TableSampleMemberMstVO> getList(final TableSampleMemberMstVO vo, final List<String> whereKey, final String orderByColumns) throws CommonException;
+    List<TableSampleMemberMstVO> getList(final TableSampleMemberMstVO vo, final Set<String> whereKeys, final String orderByColumns) throws CommonException;
 
     @SelectProvider(type = SqlForTableVO.class, method = SqlForTableVO.SELECT_ONE)
-    TableSampleMemberMstVO getVO(final TableSampleMemberMstVO vo, final List<String> whereKey) throws CommonException;
+    TableSampleMemberMstVO getVO(final TableSampleMemberMstVO vo, final Set<String> whereKeys) throws CommonException;
 }

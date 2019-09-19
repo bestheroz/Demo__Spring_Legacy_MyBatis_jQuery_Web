@@ -18,9 +18,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class MyBlobFileUtils {
     private static final Logger LOGGER = LoggerFactory.getLogger(MyBlobFileUtils.class);
@@ -29,12 +29,12 @@ public class MyBlobFileUtils {
         final TableSampleFileMstVO tableSampleFileMstVO = new TableSampleFileMstVO();
         tableSampleFileMstVO.setFileSeq(fileSeq);
         tableSampleFileMstVO.setFileNm(fileName);
-        final List<String> whereKey = new ArrayList<>();
-        whereKey.add("fileSeq");
+        final Set<String> whereKeys = new HashSet<>();
+        whereKeys.add("fileSeq");
         if (StringUtils.isNotEmpty(tableSampleFileMstVO.getFileNm())) {
-            whereKey.add("fileNm");
+            whereKeys.add("fileNm");
         }
-        final TableSampleFileMstVO sampleFileMstVO = MyAccessBeanUtils.getBean(TableSampleFileMstDAO.class).getVO(tableSampleFileMstVO, whereKey);
+        final TableSampleFileMstVO sampleFileMstVO = MyAccessBeanUtils.getBean(TableSampleFileMstDAO.class).getVO(tableSampleFileMstVO, whereKeys);
         if (sampleFileMstVO == null) {
             LOGGER.warn("fileSeq: {}, fileName: {} :: {}", fileSeq, fileName, CommonExceptionCode.ERROR_FILE_NOT_FOUND.toString());
             throw new CommonException(CommonExceptionCode.ERROR_FILE_NOT_FOUND);
@@ -50,6 +50,7 @@ public class MyBlobFileUtils {
         }
     }
 
+    @SuppressWarnings("DuplicatedCode")
     public static TableSampleFileMstVO insert(final MultipartFile multipartFile, final LoginVO loginVO) throws CommonException {
         final TableSampleFileMstVO tableSampleFileMstVO = new TableSampleFileMstVO();
         if (!MyNullUtils.isEmpty(multipartFile)) {
@@ -69,6 +70,7 @@ public class MyBlobFileUtils {
         return tableSampleFileMstVO;
     }
 
+    @SuppressWarnings("DuplicatedCode")
     public static TableSampleFileMstVO update(final Integer fileSeq, final MultipartFile multipartFile, final LoginVO loginVO) throws CommonException {
         final TableSampleFileMstVO tableSampleFileMstVO = new TableSampleFileMstVO();
         if (fileSeq != null) {
@@ -81,7 +83,7 @@ public class MyBlobFileUtils {
                     tableSampleFileMstVO.setMimeTyp(MyFileUtils.getMimeType(multipartFile));
                     tableSampleFileMstVO.setFileNm(multipartFile.getOriginalFilename());
                     tableSampleFileMstVO.setFileNmExt(MyFileUtils.getExtension(multipartFile));
-                    MyAccessBeanUtils.getBean(TableSampleFileMstDAO.class).update(tableSampleFileMstVO, Collections.singletonList("fileSeq"), null);
+                    MyAccessBeanUtils.getBean(TableSampleFileMstDAO.class).update(tableSampleFileMstVO, Collections.singleton("fileSeq"), null);
                 } catch (final IOException e) {
                     LOGGER.warn(ExceptionUtils.getStackTrace(e));
                     throw new CommonException(e);

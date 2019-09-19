@@ -27,11 +27,11 @@ public class FileUploadController {
     @ResponseBody
     public JsonObject uploadAllFiles(final MultipartHttpServletRequest mRequest, final String targetDirPath) throws CommonException {
         final JsonObject result = CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject();
-        final StringBuffer stringBuffer = new StringBuffer();
+        final StringBuilder stringBuilder = new StringBuilder();
         for (final File file : MyFileUtils.uploadAllFiles(mRequest, targetDirPath)) {
-            stringBuffer.append(file.getName()).append("\n");
+            stringBuilder.append(file.getName()).append("\n");
         }
-        result.addProperty("fileName", stringBuffer.toString());
+        result.addProperty("fileName", stringBuilder.toString());
         return result;
     }
 }

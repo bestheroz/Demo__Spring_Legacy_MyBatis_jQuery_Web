@@ -12,6 +12,7 @@ import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class MyNullUtils {
     private static final Logger LOGGER = LoggerFactory.getLogger(MyNullUtils.class);
@@ -93,6 +94,15 @@ public class MyNullUtils {
         }
     }
 
+    public static boolean isEmpty(final Set<?> list) {
+        try {
+            return size(list) == 0;
+        } catch (final Throwable e) {
+            LOGGER.warn(ExceptionUtils.getStackTrace(e));
+            return true;
+        }
+    }
+
     public static boolean isNotEmpty(final JsonElement json) {
         return !isEmpty(json);
     }
@@ -105,7 +115,20 @@ public class MyNullUtils {
         return !isEmpty(list);
     }
 
+    public static boolean isNotEmpty(final Set<?> list) {
+        return !isEmpty(list);
+    }
+
     public static int size(final List<?> list) throws CommonException {
+        try {
+            return list == null ? 0 : list.size();
+        } catch (final Throwable e) {
+            LOGGER.warn(ExceptionUtils.getStackTrace(e));
+            return 0;
+        }
+    }
+
+    public static int size(final Set<?> list) throws CommonException {
         try {
             return list == null ? 0 : list.size();
         } catch (final Throwable e) {

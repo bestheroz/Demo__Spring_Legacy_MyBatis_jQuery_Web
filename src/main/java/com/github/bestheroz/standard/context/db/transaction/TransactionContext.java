@@ -18,7 +18,7 @@ public class TransactionContext {
     // @Bean(name = "transactionManager")
     // @Autowired
     // @Primary
-    public WiredTransactionManager getWiredTransactionManager(final ApplicationContext applicationContext) throws Exception {
+    public WiredTransactionManager getWiredTransactionManager(final ApplicationContext applicationContext) {
         final WiredTransactionManager wiredTransactionManager = new WiredTransactionManager();
         final List<PlatformTransactionManager> transactionManagers = new ArrayList<>();
         // transactionManagers.add(new DataSourceTransactionManager(this.h2dbMybatisContext.dataSource()));

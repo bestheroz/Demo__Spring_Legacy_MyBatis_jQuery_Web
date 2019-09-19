@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.Collections;
 
+@SuppressWarnings("NonAsciiCharacters")
 public class TestAdminMenuController extends DefaultTestClass {
     @Test
     public void 메뉴화면호출() throws Exception {
@@ -42,7 +43,7 @@ public class TestAdminMenuController extends DefaultTestClass {
         final MvcResult mvcResult = MyTestUtils.performPostLogined("/sample/admin/menu/insertSampleMenuMst.json", vo).andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8)).andReturn();
         Assertions.assertEquals(MyMapperUtils.writeObjectAsJsonObject(mvcResult.getResponse().getContentAsString()), CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject());
-        Assertions.assertEquals(MyAccessBeanUtils.getBean(TableSampleMenuMstDAO.class).getVO(vo, Collections.singletonList("menuNm")).getMenuNm(), "메뉴데이터_추가");
+        Assertions.assertEquals(MyAccessBeanUtils.getBean(TableSampleMenuMstDAO.class).getVO(vo, Collections.singleton("menuNm")).getMenuNm(), "메뉴데이터_추가");
     }
 
     @Test
@@ -53,7 +54,7 @@ public class TestAdminMenuController extends DefaultTestClass {
         final MvcResult mvcResult = MyTestUtils.performPostLogined("/sample/admin/menu/updateSampleMenuMst.json", vo).andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8)).andReturn();
         Assertions.assertEquals(MyMapperUtils.writeObjectAsJsonObject(mvcResult.getResponse().getContentAsString()), CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject());
-        Assertions.assertEquals(MyAccessBeanUtils.getBean(TableSampleMenuMstDAO.class).getVO(vo, Collections.singletonList("menuId")).getRemark1(), "메뉴데이터_수정");
+        Assertions.assertEquals(MyAccessBeanUtils.getBean(TableSampleMenuMstDAO.class).getVO(vo, Collections.singleton("menuId")).getRemark1(), "메뉴데이터_수정");
     }
 
     @Test
@@ -63,7 +64,7 @@ public class TestAdminMenuController extends DefaultTestClass {
         final MvcResult mvcResult = MyTestUtils.performPostLogined("/sample/admin/menu/deleteSampleMenuMst.json", vo).andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8)).andReturn();
         Assertions.assertEquals(MyMapperUtils.writeObjectAsJsonObject(mvcResult.getResponse().getContentAsString()), CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject());
-        Assertions.assertNull(MyAccessBeanUtils.getBean(TableSampleMenuMstDAO.class).getVO(vo, Collections.singletonList("menuId")));
+        Assertions.assertNull(MyAccessBeanUtils.getBean(TableSampleMenuMstDAO.class).getVO(vo, Collections.singleton("menuId")));
     }
 
     @Test

@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -25,7 +24,7 @@ public class MenuTag extends TagSupport {
     public static final String MENU_TAG = "MENU_TAG";
 
     @Override
-    public int doStartTag() throws JspException {
+    public int doStartTag() {
         final HttpSession session = ((HttpServletRequest) this.pageContext.getRequest()).getSession();
 
         try {
@@ -37,9 +36,10 @@ public class MenuTag extends TagSupport {
                     final Integer memberTyp = Integer.parseInt(loginVO.getMemberTyp());
                     if (memberTyp != null && memberTyp.intValue() >= 800) {
                         param.addProperty("power", memberTyp);
-                        bodyHtml.append("<script> const menuData = " +
-                                MyMapperUtils.writeObjectAsString(MyAccessBeanUtils.getBean(MenuService.class).getMenuVOObject(param, MySessionUtils.isNotLogined(session))) + "</script>");
-                        bodyHtml.append("<script> const menuMemberNm = " + loginVO.getMemberNm() + "</script>");
+                        bodyHtml.append("<script> const menuData = ")
+                                .append(MyMapperUtils.writeObjectAsString(MyAccessBeanUtils.getBean(MenuService.class).getMenuVOObject(param, MySessionUtils.isNotLogined(session))))
+                                .append("</script>");
+                        bodyHtml.append("<script> const menuMemberNm = ").append(loginVO.getMemberNm()).append("</script>");
                     }
                     bodyHtml.append(IOUtils.toString(new File(session.getServletContext().getRealPath("/WEB-INF/views/common/menu.html")).toURI(), StandardCharsets.UTF_8));
                 }

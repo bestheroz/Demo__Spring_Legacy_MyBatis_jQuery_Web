@@ -26,7 +26,7 @@ public class LoginService {
 
     public void loginProcess(final LoginVO vo, final HttpSession session) throws CommonException {
         final TableSampleMemberMstVO tableSampleMemberMstVO = MyMapperUtils.writeObjectAsObject(vo, TableSampleMemberMstVO.class);
-        final TableSampleMemberMstVO sampleMemberMstVO = this.tableSampleMemberMstDAO.getVO(tableSampleMemberMstVO, Collections.singletonList("memberId"));
+        final TableSampleMemberMstVO sampleMemberMstVO = this.tableSampleMemberMstDAO.getVO(tableSampleMemberMstVO, Collections.singleton("memberId"));
 
         // 로그인 관문
         // 1. 유저가 없으면

@@ -57,19 +57,19 @@ public class PdfService extends AbstractPdfboxView {
 
         super.font = PDType0Font.load(document, new ClassPathResource(FONT_PATH).getFile());
 
-        final Double tableWidth = page.getMediaBox().getWidth() - 2 * PAGE_MARGIN;
-        final Double yStartNewPage = page.getMediaBox().getHeight() - 2 * PAGE_MARGIN;
-        final Double yStart = yStartNewPage;
-        final Double bottomMargin = 0.0;
+        final double tableWidth = page.getMediaBox().getWidth() - 2 * PAGE_MARGIN;
+        final double yStartNewPage = page.getMediaBox().getHeight() - 2 * PAGE_MARGIN;
+        final double bottomMargin = 0.0;
 
-        final BaseTable table = new BaseTable(yStart.floatValue(), yStartNewPage.floatValue(), bottomMargin.floatValue(), tableWidth.floatValue(), PAGE_MARGIN.floatValue(), document, page, true,
-                true);
+        final BaseTable table =
+                new BaseTable((float) yStartNewPage, (float) yStartNewPage, (float) bottomMargin, (float) tableWidth, PAGE_MARGIN.floatValue(), document, page, true,
+                        true);
         this.createColumnLabel(document, table, pdfVOs);
         this.addRowData(document, table, pdfVOs, listData);
 
     }
 
-    private void createColumnLabel(final PDDocument document, final BaseTable table, final List<PdfVO> pdfVOs) throws IOException {
+    private void createColumnLabel(final PDDocument document, final BaseTable table, final List<PdfVO> pdfVOs) {
         // Create Header row
         final Row<PDPage> headerRow = table.createRow(15F);
         for (PdfVO pdfVO : pdfVOs) {

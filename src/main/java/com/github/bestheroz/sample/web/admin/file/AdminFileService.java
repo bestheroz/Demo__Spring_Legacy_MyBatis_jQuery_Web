@@ -32,25 +32,19 @@ public class AdminFileService {
     }
 
     public void insertSampleFileMst(final TableSampleFileMstVO vo, final MultipartFile multipartFile, final LoginVO loginVO) throws CommonException {
-        if (!MyNullUtils.isEmpty(multipartFile)) {
-            try {
-                vo.setFileData(ArrayUtils.toObject(multipartFile.getBytes()));
-                vo.setMimeTyp(MyFileUtils.getMimeType(multipartFile));
-                vo.setFileNmExt(MyFileUtils.getExtension(multipartFile.getOriginalFilename()));
-                if (StringUtils.isEmpty(vo.getFileNm())) {
-                    vo.setFileNm(multipartFile.getOriginalFilename());
-                }
-            } catch (final IOException e) {
-                this.logger.warn(ExceptionUtils.getStackTrace(e));
-                throw new CommonException(e);
-            }
-        }
+        extractMultipartFile(vo, multipartFile);
         vo.setRegMemberId(loginVO.getMemberId());
         vo.setUpdMemberId(loginVO.getMemberId());
         this.tableSampleFileMstDAO.insert(vo);
     }
 
     public void updateSampleFileMst(final TableSampleFileMstVO vo, final MultipartFile multipartFile, final LoginVO loginVO) throws CommonException {
+        extractMultipartFile(vo, multipartFile);
+        vo.setUpdMemberId(loginVO.getMemberId());
+        this.tableSampleFileMstDAO.update(vo, Collections.singleton("fileSeq"), null);
+    }
+
+    private void extractMultipartFile(final TableSampleFileMstVO vo, final MultipartFile multipartFile) {
         if (!MyNullUtils.isEmpty(multipartFile)) {
             try {
                 vo.setFileData(ArrayUtils.toObject(multipartFile.getBytes()));
@@ -64,11 +58,9 @@ public class AdminFileService {
                 throw new CommonException(e);
             }
         }
-        vo.setUpdMemberId(loginVO.getMemberId());
-        this.tableSampleFileMstDAO.update(vo, Collections.singletonList("fileSeq"), null);
     }
 
     public void deleteSampleFileMst(final TableSampleFileMstVO vo) throws CommonException {
-        this.tableSampleFileMstDAO.delete(vo, Collections.singletonList("fileSeq"));
+        this.tableSampleFileMstDAO.delete(vo, Collections.singleton("fileSeq"));
     }
 }

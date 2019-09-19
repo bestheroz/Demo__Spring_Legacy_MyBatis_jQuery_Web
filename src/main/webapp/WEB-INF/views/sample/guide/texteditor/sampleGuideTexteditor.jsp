@@ -50,7 +50,6 @@ MyTextEditor.instance($('#textarea1_2'), {height : '50px'});
                                 <i class="far fa-play-circle"></i>
                                 Demo
                             </button>
-                            </span>
                         </div>
                         <div id="textarea1_2">textarea1_2 textarea1_2 textarea1_2</div>
                     </div>
@@ -100,7 +99,6 @@ MyTextEditor.setCode($('#textarea2'), 'set Value');
                                     <i class="far fa-play-circle"></i>
                                     Demo(disable false)
                                 </button>
-                                </span>
                             </div>
                         </div>
                         <pre class="prettyprint lang-js">
@@ -124,14 +122,16 @@ MyTextEditor.instance($('#textarea4'), {
 </pre>
                         <div id="textarea4" data-texteditor="on" data-texteditor-height="50" data-texteditor-airmode="true">textarea4 textarea4 textarea4</div>
                     </div>
-                    <h3 class="panel-title text-center">5. 기타</h3>
                 </div>
-                <div class="card-body">
+                <div class="card" id="list5">
+                    <h3 class="panel-title text-center">5. 기타</h3>
+                    <div class="card-body">
 				<pre class="prettyprint lang-js">
 MyTextEditor.isEmpty($('#textarea4')) // 빈값 검증 시에 사용
 MyTextEditor.focus($('#textarea4')) // 빈값 검증 시후 fucos 이동 시
 MyTextEditor.reset($('#textarea4')) // 새로고침
 </pre>
+                    </div>
                 </div>
             </div>
         </div>
@@ -139,7 +139,7 @@ MyTextEditor.reset($('#textarea4')) // 새로고침
     <my:footer/>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <script data-for="ready">
-        $(document).ready(function () {
+        jQuery(($) => {
         });
     </script>
     <script>

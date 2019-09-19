@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 @SpringJUnitConfig(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml", "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
@@ -27,7 +26,7 @@ public class TestCreateTableVO {
     private SqlSession sqlSession;
 
     @Test
-    public void test11() throws SQLException {
+    public void test11() {
         try (Statement stmt = this.sqlSession.getConnection().createStatement()) {
 
             final String tableName = "SAMPLE_MENU_MST";
@@ -84,11 +83,7 @@ public class TestCreateTableVO {
     }
 
     private StringBuilder appendNewline(final StringBuilder sb, final String appendStr) {
-        return this.appendNewline(sb, appendStr, 0);
-    }
-
-    private StringBuilder appendNewline(final StringBuilder sb, final String appendStr, final int indent) {
-        for (int i = 0; i < indent; i++) {
+        for (int i = 0; i < 0; i++) {
             sb.append("    ");
         }
         sb.append(appendStr);

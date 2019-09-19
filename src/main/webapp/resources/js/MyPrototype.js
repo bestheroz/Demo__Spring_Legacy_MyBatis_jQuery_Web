@@ -1,3 +1,3 @@
-String.prototype.replaceAll = function (src, dest) {
+String.prototype.replaceAll = (src, dest) => {
     return this.split(src).join(dest);
 };

@@ -203,7 +203,7 @@ MyDatetimePicker.makeDatetimepicker('#resultTry5_2').datetimepicker('disabledDat
     <my:footer/>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <script data-for="ready">
-        $(document).ready(function () {
+        jQuery(($) => {
             MyDatetimePicker.makeDatetimepicker('#resultTry1_1');
             MyDatetimePicker.makeDatetimepicker('#resultTry1_2', 'YYYY-MM');
             MyDatetimePicker.makeDatetimepicker('#resultTry1_3', 'YYYY');
@@ -217,7 +217,7 @@ MyDatetimePicker.makeDatetimepicker('#resultTry5_2').datetimepicker('disabledDat
             MyDatetimePicker.makeDatetimepicker('#resultTry5_1').datetimepicker('disabledDates', [moment().subtract(1, 'days'), moment().add(1, 'days')]);
             MyDatetimePicker.makeDatetimepicker('#resultTry5_2').datetimepicker('disabledDates', ["20190101", "20190301", "20190505", "20190606", "20190815", "20191003", "20191009", "20191225", "20191004", "20191005", "20191006"]);
             MyDatetimePicker.makeDatetimepicker('#resultTry5_3').datetimepicker('daysOfWeekDisabled', [0, 6]);
-            MyDatetimePicker.makeDatetimepicker('#resultTry6_1').datetimepicker('minDate', moment().add(3, 'days'))
+            MyDatetimePicker.makeDatetimepicker('#resultTry6_1').datetimepicker('minDate', moment().add(3, 'days'));
             $('#resultTry6_1').datetimepicker('maxDate', moment().add(7, 'days'));
             MyDatetimePicker.makeDatetimepicker('#resultTry7_1', 'YYYY-MM-DD HH:mm');
             MyDatetimePicker.makeDatetimepicker('#resultTry7_2', 'YYYY-MM-DD HH');

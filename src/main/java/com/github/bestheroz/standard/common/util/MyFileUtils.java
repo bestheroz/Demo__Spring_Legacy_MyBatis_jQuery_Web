@@ -2,6 +2,7 @@ package com.github.bestheroz.standard.common.util;
 
 import com.github.bestheroz.standard.common.exception.CommonException;
 import com.github.bestheroz.standard.common.exception.CommonExceptionCode;
+import com.google.common.collect.Sets;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -42,18 +43,17 @@ public class MyFileUtils {
         return true;
     }
 
-    public static boolean deleteDirectory(final String filePath) throws CommonException {
-        return deleteFile(getFile(filePath));
+    public static void deleteDirectory(final String filePath) throws CommonException {
+        deleteFile(getFile(filePath));
     }
 
-    public static boolean deleteFile(final File file) throws CommonException {
+    public static void deleteFile(final File file) throws CommonException {
         forceDelete(file);
         LOGGER.info("Target for deleting file : {}", file.getAbsolutePath());
-        return true;
     }
 
-    public static boolean deleteFile(final String filePath) throws CommonException {
-        return deleteFile(getFile(filePath));
+    public static void deleteFile(final String filePath) throws CommonException {
+        deleteFile(getFile(filePath));
     }
 
     private static File forceDelete(final File file) throws CommonException {
@@ -86,14 +86,15 @@ public class MyFileUtils {
                     }
                 }
                 encodedFilename = sb.toString();
-            } else if (StringUtils.contains(header, "Opera")) {
-                encodedFilename = "\"" + new String(fileName.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1) + "\"";
-                // } else if (StringUtils.contains(header, "Safari")) {
-                // encodedFilename = "\"" + new String(fileName.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1) + "\"";
-                // encodedFilename = URLDecoder.decode(encodedFilename, StandardCharsets.UTF_8.displayName());
             } else {
                 encodedFilename = "\"" + new String(fileName.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1) + "\"";
-                encodedFilename = URLDecoder.decode(encodedFilename, StandardCharsets.UTF_8.displayName());
+                if (StringUtils.contains(header, "Opera")) {
+                    // } else if (StringUtils.contains(header, "Safari")) {
+                    // encodedFilename = "\"" + new String(fileName.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1) + "\"";
+                    // encodedFilename = URLDecoder.decode(encodedFilename, StandardCharsets.UTF_8.displayName());
+                } else {
+                    encodedFilename = URLDecoder.decode(encodedFilename, StandardCharsets.UTF_8.displayName());
+                }
             }
             return encodedFilename;
         } catch (final UnsupportedEncodingException e) {
@@ -154,30 +155,14 @@ public class MyFileUtils {
             final MultipartFile multipartFile = fileMap.get(fileNames.next());
             validateFile(multipartFile);
 
-            final StringBuilder fileName = new StringBuilder(80);
-            fileName.append(DateTime.now().toString(MyDateUtils.YYYYMMDDHHMMSS)).append(STR_UNDERLINE).append(DigestUtils.md5Hex(multipartFile.getOriginalFilename()));
-            if (StringUtils.isNotEmpty(getExtension(multipartFile))) {
-                fileName.append(STR_DOT).append(getExtension(multipartFile));
-            }
-            final File file = getFile(targetDirPath + "/" + fileName);
-            try {
-                FileCopyUtils.copy(multipartFile.getBytes(), file);
-            } catch (final IOException e) {
-                LOGGER.warn(ExceptionUtils.getStackTrace(e));
-                throw new CommonException(e);
-            }
+            final File file = uploadMultipartFile(targetDirPath, multipartFile);
             savedFiles.add(file);
             LOGGER.info(STR_INFO_MESSAGE, file.getAbsolutePath());
         }
         return savedFiles;
     }
 
-    public static File uploadFile(final MultipartFile multipartFile, final String targetDirPath) throws CommonException {
-        if (MyNullUtils.isEmpty(multipartFile)) {
-            return null;
-        }
-        validateFile(multipartFile);
-        getDirectory(targetDirPath);
+    private static File uploadMultipartFile(final String targetDirPath, final MultipartFile multipartFile) {
         final StringBuilder fileName = new StringBuilder(80);
         fileName.append(DateTime.now().toString(MyDateUtils.YYYYMMDDHHMMSS)).append(STR_UNDERLINE).append(DigestUtils.md5Hex(multipartFile.getOriginalFilename()));
         if (StringUtils.isNotEmpty(getExtension(multipartFile))) {
@@ -190,31 +175,41 @@ public class MyFileUtils {
             LOGGER.warn(ExceptionUtils.getStackTrace(e));
             throw new CommonException(e);
         }
+        return file;
+    }
+
+    public static File uploadFile(final MultipartFile multipartFile, final String targetDirPath) throws CommonException {
+        if (MyNullUtils.isEmpty(multipartFile)) {
+            return null;
+        }
+        validateFile(multipartFile);
+        getDirectory(targetDirPath);
+        final File file = uploadMultipartFile(targetDirPath, multipartFile);
         LOGGER.info(STR_INFO_MESSAGE, file.getAbsolutePath());
         return file;
     }
 
     public enum FileType {
-        IMAGE(Arrays.asList("gif", "jpg", "jpeg", "tif", "tiff", "png", "bmp"), Arrays.asList("image/gif", "image/jpeg", "image/pjpeg", "image/tiff", "image/x-tiff", "image/png", "image/bmp")),
+        IMAGE(Sets.newHashSet("gif", "jpg", "jpeg", "tif", "tiff", "png", "bmp"), Sets.newHashSet("image/gif", "image/jpeg", "image/pjpeg", "image/tiff", "image/x-tiff", "image/png", "image/bmp")),
 
-        EXCEL(Arrays.asList("xlsx", "xls"),
-                Arrays.asList("application/excel", "application/vnd.ms-excel", "application/x-excel", "application/x-msexcel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")),
+        EXCEL(Sets.newHashSet("xlsx", "xls"),
+                Sets.newHashSet("application/excel", "application/vnd.ms-excel", "application/x-excel", "application/x-msexcel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")),
 
-        WORD(Arrays.asList("docx", "doc", "dotx"), Arrays.asList("application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        WORD(Sets.newHashSet("docx", "doc", "dotx"), Sets.newHashSet("application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                 "application/vnd.openxmlformats-officedocument.wordprocessingml.template")),
 
-        PDF(Collections.singletonList("pdf"), Arrays.asList("application/pdf", "application/x-pdf")),
+        PDF(Collections.singleton("pdf"), Sets.newHashSet("application/pdf", "application/x-pdf")),
 
-        ILLEGAL(Arrays.asList("exe", "sh", "csh", "ai"),
-                Arrays.asList("application/octet-stream", "application/x-sh", "application/x-shar", "text/x-script.sh", "application/x-csh", "text/x-script.csh", "application/postscript"));
+        ILLEGAL(Sets.newHashSet("exe", "sh", "csh", "ai"),
+                Sets.newHashSet("application/octet-stream", "application/x-sh", "application/x-shar", "text/x-script.sh", "application/x-csh", "text/x-script.csh", "application/postscript"));
 
-        FileType(final List<String> extList, final List<String> mimeTypeList) {
+        FileType(final Set<String> extList, final Set<String> mimeTypeList) {
             this.extList = extList;
             this.mimeTypeList = mimeTypeList;
         }
 
-        private List<String> extList;
-        private List<String> mimeTypeList;
+        private Set<String> extList;
+        private Set<String> mimeTypeList;
     }
 
     private static final Tika TIKA_INSTANCE = new Tika();

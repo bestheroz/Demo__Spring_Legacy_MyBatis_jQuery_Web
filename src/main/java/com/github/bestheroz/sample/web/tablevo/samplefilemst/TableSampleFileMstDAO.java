@@ -9,14 +9,15 @@ import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.SelectProvider;
 
 import java.util.List;
+import java.util.Set;
 
 @Mapper
 public interface TableSampleFileMstDAO extends SqlForTableDAO {
     @SelectProvider(type = SqlForTableVO.class, method = SqlForTableVO.SELECT)
-    List<TableSampleFileMstVO> getList(final TableSampleFileMstVO vo, final List<String> whereKey, final String orderByColumns) throws CommonException;
+    List<TableSampleFileMstVO> getList(final TableSampleFileMstVO vo, final Set<String> whereKeys, final String orderByColumns) throws CommonException;
 
     @SelectProvider(type = SqlForTableVO.class, method = SqlForTableVO.SELECT_ONE)
-    TableSampleFileMstVO getVO(final TableSampleFileMstVO vo, final List<String> whereKey) throws CommonException;
+    TableSampleFileMstVO getVO(final TableSampleFileMstVO vo, final Set<String> whereKeys) throws CommonException;
 
     @Override
     @InsertProvider(type = SqlForTableVO.class, method = SqlForTableVO.INSERT)

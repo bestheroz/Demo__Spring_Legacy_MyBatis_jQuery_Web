@@ -16,7 +16,7 @@
                 <h4>목차</h4>
                 <div class="list-group list-group-flush">
                     <a href="#list1" class="list-group-item list-group-item-action list-group-item-light"> 1. &lt;button&gt; 페이징 처리 </a>
-                    <a href="#list2" class="list-group-item list-group-item-action list-group-item-light"> 2. &lt;a&gt; 페이징 처리 </a>
+                        <%--                    <a href="#list2" class="list-group-item list-group-item-action list-group-item-light"> 2. &lt;a&gt; 페이징 처리 </a>--%>
                 </div>
             </div>
             <div class="card" id="list1">
@@ -107,7 +107,7 @@
     <my:footer/>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <script data-for="ready">
-        $(document).ready(function () {
+        jQuery(($) => {
         });
     </script>
     <script>
@@ -125,10 +125,9 @@
             selectList();
         }
 
-        let selectList = function () {
-            MyAjax.excute('${CONTEXT_PATH }/sample/guide/paging/sampleGuidePaging.json', {}).done(function (response) {
-                MyPaging.changeValue(MyPaging.getSelectedPageIndex(), response.totalItemCount, response.itemPerPage, response.nextPage);
-            });
+        async function selectList() {
+            const response = await MyAjax.execute('${CONTEXT_PATH }/sample/guide/paging/sampleGuidePaging.json', {});
+            MyPaging.changeValue(MyPaging.getSelectedPageIndex(), response.totalItemCount, response.itemPerPage, response.nextPage);
         }
     </script>
 </my:html>

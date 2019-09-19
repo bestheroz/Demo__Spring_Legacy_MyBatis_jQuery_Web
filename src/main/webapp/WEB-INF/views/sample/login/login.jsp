@@ -5,8 +5,7 @@
     <main role="main" class="flex-shrink-0">
         <div class="container">
             <form class="form-signin">
-                <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-                <h1 class="h3 mb-3 font-weight-normal">Bestheroz's Spring-Maven-Bootstrap Web
+                <h1 class="h3 mt-5 mb-3 font-weight-normal">Bestheroz's Spring-Maven-Bootstrap Web
                     <small>ver.190319</small>
                 </h1>
                 <label for="memberId" class="sr-only">아이디</label>
@@ -35,13 +34,13 @@
     </main>
     <my:footer/>
     <script data-for="ready">
-        $(document).ready(function () {
-            $('#memberPw, #memberId').on('keydown', function (event) {
+        jQuery(($) => {
+            $('#memberPw, #memberId').on('keydown', (event) => {
                 if (event.key === 'Enter') {
                     proc();
                 }
             });
-            let savedLoginId = MyCookie.getCookie("savedLoginId");
+            const savedLoginId = MyCookie.getCookie("savedLoginId");
             if (savedLoginId !== null) {
                 $('#memberId').val(savedLoginId);
                 $('#save_id').removeClass('fa-square').addClass('fa-check-square');
@@ -49,30 +48,29 @@
         });
     </script>
     <script>
-        function proc() {
+        async function proc() {
             if (MyValidator.validate($('form.form-horizontal'), true) !== null) {
                 return;
             }
-            let param = {
+            const param = {
                 memberId: $('#memberId').val(),
                 memberPw: CryptoJS.SHA512($('#memberPw').val()).toString()
             };
-            MyAjax.excute('${CONTEXT_PATH}/sample/login/loginProcess.json', param, {
-                autoResultFunctionTF: false
-            }).done(function (response) {
-                if (!_.startsWith(response.responseCode, 'S')) {
-                    alert(response.responseMessage);
-                    return;
-                }
-                if ($('#save_id').hasClass('fa-check-square')) {
-                    MyCookie.setCookie("savedLoginId", $('#memberId').val(), 30);
-                } else {
-                    MyCookie.removeCookie("savedLoginId");
-                }
-                window.location.reload();
+            const response = await MyAjax.execute('${CONTEXT_PATH}/sample/login/loginProcess.json', param, {
+                autoResultFunctionTF: false,
+                type: "POST"
             });
+            if (!_.startsWith(response.responseCode, 'S')) {
+                alert(response.responseMessage);
+                return;
+            }
+            if ($('#save_id').hasClass('fa-check-square')) {
+                MyCookie.setCookie("savedLoginId", $('#memberId').val(), 30);
+            } else {
+                MyCookie.removeCookie("savedLoginId");
+            }
+            window.location.reload();
         }
-
         function clickSaveId() {
             if ($('#save_id').hasClass('fa-check-square')) {
                 $('#save_id').addClass('fa-square').removeClass('fa-check-square');

@@ -121,21 +121,21 @@
         </div>
     </div>
     <script data-for="ready">
-        $(document).ready(function () {
+        jQuery(($) => {
             $.when(drawTable1(), MyAjax.getSelectOptions($("#menuTyp"), "${CONTEXT_PATH}/common/valuelabel/getValueLabeVOList.json", {
                 grcode: "MENU_TYP"
             }), MyAjax.getSelectOptions($("#useYn"), "${CONTEXT_PATH}/common/valuelabel/getValueLabeVOList.json", {
                 grcode: "USE_YN"
             }), MyAjax.getSelectOptions($("#power"), "${CONTEXT_PATH}/common/valuelabel/getValueLabeVOList.json", {
                 grcode: "MEMBER_TYP"
-            }), MyAjax.getSelectOptions($("#parMenuId"), "${CONTEXT_PATH}/sample/admin/menu/getPMenuValueLableVOList.json")).done(function (response) {
+            }), MyAjax.getSelectOptions($("#parMenuId"), "${CONTEXT_PATH}/sample/admin/menu/getPMenuValueLableVOList.json")).done(() => {
                 selectList();
             });
         });
     </script>
     <script data-for="define-table">
         function drawTable1() {
-            let table = $('#table1').DataTable({
+            $('#table1').DataTable({
                 dom: 'Bfrtip',
                 language: MyDataTables.language,
                 pagingType: "full_numbers",
@@ -149,19 +149,19 @@
                 buttons: [{
                     text: '<i class="fas fa-plus"></i>',
                     titleAttr: '추가',
-                    action: function (e, dt, node, config) {
+                    action: (e, dt, node, config) => {
                         modalAddMenu();
                     }
                 }, {
                     text: '<i class="fas fa-pencil-alt"></i>',
                     titleAttr: '수정',
-                    action: function (e, dt, node, config) {
+                    action: (e, dt, node, config) => {
                         modalModifyMenu();
                     }
                 }, {
                     text: '<i class="fas fa-trash-alt"></i>',
                     titleAttr: '삭제',
-                    action: function (e, dt, node, config) {
+                    action: (e, dt, node, config) => {
                         deleteMenu();
                     }
                 }, {
@@ -179,22 +179,22 @@
                 }, {
                     text: '<i class="fas fa-file-excel"></i> xlsx - java',
                     titleAttr: 'java',
-                    action: function (e, dt, node, config) {
-                        let dataParam = {};
+                    action: (e, dt, node, config) => {
+                        const dataParam = {};
                         MyAjax.downloadFile('${CONTEXT_PATH}/sample/admin/menu/adminMenu.xlsx', dataParam);
                     }
                 }, {
                     text: '<i class="fas fa-file-excel"></i> xlsx - 대용량 java',
                     titleAttr: '대용량 java',
-                    action: function (e, dt, node, config) {
-                        let dataParam = {};
+                    action: (e, dt, node, config) => {
+                        const dataParam = {};
                         MyAjax.downloadFile('${CONTEXT_PATH}/sample/admin/menu/adminMenuHugeExcel.xlsx', dataParam);
                     }
                 }, {
                     text: '<i class="fas fa-file-pdf"></i> pdf - java',
                     titleAttr: 'java',
-                    action: function (e, dt, node, config) {
-                        let dataParam = {};
+                    action: (e, dt, node, config) => {
+                        const dataParam = {};
                         MyAjax.downloadFile('${CONTEXT_PATH}/sample/admin/menu/adminMenu.pdf', dataParam);
                     }
                 }, {
@@ -220,7 +220,7 @@
                     targets: 2,
                     width: 80,
                     className: "text-center",
-                    render: function (data, type, row) {
+                    render: (data, type, row) => {
                         return MyCommon.getLabelFromSelectTag($('#menuTyp'), data);
                     }
                 }, {
@@ -229,21 +229,21 @@
                     className: "text-right"
                 }, {
                     targets: 5,
-                    render: function (data, type, row) {
+                    render: (data, type, row) => {
                         return MyCommon.getLabelFromSelectTag($('#parMenuId'), data);
                     }
                 }, {
                     targets: 6,
                     width: 80,
                     className: "text-center",
-                    render: function (data, type, row) {
+                    render: (data, type, row) => {
                         return MyCommon.getLabelFromSelectTag($('#useYn'), data);
                     }
                 }, {
                     targets: 7,
                     width: 100,
                     className: "text-right",
-                    render: function (data, type, row) {
+                    render: (data, type, row) => {
                         return MyCommon.getLabelFromSelectTag($('#power'), data) + " 이상";
                     }
                 }, {
@@ -253,7 +253,7 @@
                     targets: 9,
                     width: 120,
                     className: "text-center",
-                    render: function (data, type, row) {
+                    render: (data, type, row) => {
                         return moment(data).format("YYYY-MM-DD HH:mm");
                     }
                 }],
@@ -282,26 +282,24 @@
         }
     </script>
     <script>
-        function selectList() {
-            MyAjax.excute('${CONTEXT_PATH}/sample/admin/menu/getSampleMenuMstVOList.json', {}).done(function (response) {
-                $('#table1').DataTable().clear().rows.add(response).draw();
-            });
+        async function selectList() {
+            const response = await MyAjax.execute('${CONTEXT_PATH}/sample/admin/menu/getSampleMenuMstVOList.json', {});
+            $('#table1').DataTable().clear().rows.add(response).draw();
         }
 
         function modalAddMenu() {
             $('form.form-horizontal')[0].reset();
             $('#modalMenu div.modal-footer i.fa-trash-o').parentsUntil('div.btn-group-padding').filter('div.btn-group').hide();
-            MyModal.open($('#modalMenu')).done(function () {
-                let selectedRow = $('#table1').DataTable().rows({
-                    selected: true
-                }).data().toArray()[0];
-                $('#parMenuId').val((selectedRow && selectedRow.parMenuId) || 10003);
-                $('#power').val(300);
-            });
+            MyModal.open($('#modalMenu'));
+            const selectedRow = $('#table1').DataTable().rows({
+                selected: true
+            }).data().toArray()[0];
+            $('#parMenuId').val((selectedRow && selectedRow.parMenuId) || 10003);
+            $('#power').val(300);
         }
 
         function modalModifyMenu() {
-            let selectedRow = $('#table1').DataTable().rows({
+            const selectedRow = $('#table1').DataTable().rows({
                 selected: true
             }).data().toArray()[0];
             if (MyCommon.isEmpty(selectedRow)) {
@@ -309,30 +307,29 @@
                 return;
             }
             $('form.form-horizontal')[0].reset();
-            $('#modalMenu div.modal-footer i.fa-trash-o').parentsUntil('div.btn-group-padding').filter('div.btn-group').show();
-            MyModal.open($('#modalMenu')).done(function () {
-                $('#menuId').val(selectedRow.menuId);
-                $('#menuNm').val(selectedRow.menuNm);
-                $('#menuTyp').val(selectedRow.menuTyp);
-                $('#url').val(selectedRow.url);
-                $('#dispSeq').val(selectedRow.dispSeq);
-                $('#useYn').val(selectedRow.useYn);
-                $('#parMenuId').val(selectedRow.parMenuId);
-                $('#power').val(selectedRow.power);
-            });
+            $('div.modal-footer>div.btn-group>div.btn-group').show();
+            MyModal.open($('#modalMenu'));
+            $('#menuId').val(selectedRow.menuId);
+            $('#menuNm').val(selectedRow.menuNm);
+            $('#menuTyp').val(selectedRow.menuTyp);
+            $('#url').val(selectedRow.url);
+            $('#dispSeq').val(selectedRow.dispSeq);
+            $('#useYn').val(selectedRow.useYn);
+            $('#parMenuId').val(selectedRow.parMenuId);
+            $('#power').val(selectedRow.power);
         }
 
-        function saveMenu() {
+        async function saveMenu() {
             if (MyValidator.validate($('form.form-horizontal'), true) !== null) {
                 return;
             }
             let url;
-            if ($('#modalMenu div.modal-footer i.fa-trash-o').parentsUntil('div.btn-group-padding').filter('div.btn-group').is(':hidden')) {
+            if ($('div.modal-footer>div.btn-group>div.btn-group').is(':hidden')) {
                 url = '${CONTEXT_PATH}/sample/admin/menu/insertSampleMenuMst.json';
             } else {
                 url = '${CONTEXT_PATH}/sample/admin/menu/updateSampleMenuMst.json';
             }
-            MyAjax.excute(url, {
+            const response = await MyAjax.execute(url, {
                 menuId: $('#menuId').val(),
                 menuNm: $('#menuNm').val(),
                 menuTyp: $('#menuTyp > option:selected').val(),
@@ -343,16 +340,15 @@
                 power: $('#power').val()
             }, {
                 autoResultFunctionTF: true
-            }).done(function (response) {
-                if (_.startsWith(response.responseCode, 'S')) {
-                    MyModal.close($('#modalMenu'));
-                    selectList();
-                }
             });
+            if (_.startsWith(response.responseCode, 'S')) {
+                MyModal.close($('#modalMenu'));
+                await selectList();
+            }
         }
 
-        function deleteMenu() {
-            let selectedRow = $('#table1').DataTable().rows({
+        async function deleteMenu() {
+            const selectedRow = $('#table1').DataTable().rows({
                 selected: true
             }).data().toArray()[0];
             if (MyCommon.isEmpty(selectedRow)) {
@@ -360,16 +356,15 @@
                 return;
             }
             if (confirm("정말 삭제하시겠습니까?")) {
-                MyAjax.excute('${CONTEXT_PATH}/sample/admin/menu/deleteSampleMenuMst.json', {
+                const response = await MyAjax.execute('${CONTEXT_PATH}/sample/admin/menu/deleteSampleMenuMst.json', {
                     menuId: selectedRow.menuId
                 }, {
                     autoResultFunctionTF: true
-                }).done(function (response) {
-                    if (_.startsWith(response.responseCode, 'S')) {
-                        MyModal.close($('#modalMenu'));
-                        selectList();
-                    }
                 });
+                if (_.startsWith(response.responseCode, 'S')) {
+                    MyModal.close($('#modalMenu'));
+                    await selectList();
+                }
             }
         }
     </script>

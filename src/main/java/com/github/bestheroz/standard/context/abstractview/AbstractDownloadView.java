@@ -20,7 +20,7 @@ import java.util.Map;
 public class AbstractDownloadView extends AbstractView {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     public static final String DOWNLOAD_FILE = "downloadFile";
-    public static final String DOWNLOAD_ORI_FILE_NAME = "oriDownloadFileName";
+    private static final String DOWNLOAD_ORI_FILE_NAME = "oriDownloadFileName";
     public static final String VIEW_NAME = "downloadView";
 
     @Override

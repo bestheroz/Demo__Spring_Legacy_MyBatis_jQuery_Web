@@ -12,7 +12,7 @@ const MyPaging = {
     positionSelectedClassName: null, // 'parent' 값을 주면 selectedClassName을 부모한테 할당한다.
     selectListFunction: null,
     lastIndex: 1,
-    init: function () {
+    init: () => {
         if (typeof MyPaging.selectListFunction !== "function") {
             console.warn('개발자오류 : 리스트 호출함수를 지정하세요.(selectListFunction)');
             return;
@@ -32,25 +32,25 @@ const MyPaging = {
         MyPaging.bindPageBtn();
         return true;
     },
-    initPagingIndex: function () {
+    initPagingIndex: () => {
         $(MyPaging.selectorFirstBtn).trigger('click');
     },
-    bindPageBtn: function () {
-        $(document).on('click', MyPaging.selectorNumberGroup, function () {
+    bindPageBtn: () => {
+        $(document).on('click', MyPaging.selectorNumberGroup, () => {
             // console.log('event :: selectorNumberGroup');
             if (MyPaging.positionSelectedClassName === 'parent') {
-                $(this).parent().addClass(MyPaging.numberSelectedClassName).siblings().removeClass(MyPaging.numberSelectedClassName).focusout();
+                $(this).parent().addClass(MyPaging.numberSelectedClassName).siblings().removeClass(MyPaging.numberSelectedClassName).trigger('focusout');
             } else {
-                $(this).addClass(MyPaging.numberSelectedClassName).siblings().removeClass(MyPaging.numberSelectedClassName).focusout();
+                $(this).addClass(MyPaging.numberSelectedClassName).siblings().removeClass(MyPaging.numberSelectedClassName).trigger('focusout');
             }
             MyPaging.selectListFunction(MyPaging.getSelectedPageIndex());
         });
-        $(document).on('click', MyPaging.selectorFirstBtn, function () {
+        $(document).on('click', MyPaging.selectorFirstBtn, () => {
             // console.log('event :: selectorFirstBtn');
             MyPaging.setPageBtnNumber(1);
             $(MyPaging.selectorNumberGroup + ":not(:hidden)").first().trigger('click');
         });
-        $(document).on('click', MyPaging.selectorPrevBtn, function () {
+        $(document).on('click', MyPaging.selectorPrevBtn, () => {
             // console.log('event :: selectorPrevBtn');
             if (+$(MyPaging.selectorNumberGroup + ":not(:hidden)").first().text() === 1) {
                 $(MyPaging.selectorFirstBtn).trigger('click');
@@ -59,7 +59,7 @@ const MyPaging = {
             MyPaging.setPageBtnNumber(+$(MyPaging.selectorNumberGroup + ":not(:hidden)").first().text() - MyPaging.numberOfDisplayPages);
             $(MyPaging.selectorNumberGroup + '.' + MyPaging.numberSelectedClassName).trigger('click');
         });
-        $(document).on('click', MyPaging.selectorNextBtn, function () {
+        $(document).on('click', MyPaging.selectorNextBtn, () => {
             // console.log('event :: selectorNextBtn');
             if (+$(MyPaging.selectorNumberGroup + ":not(:hidden)").last().text() === MyPaging.lastPageNumber) {
                 $(MyPaging.selectorLastBtn).trigger('click');
@@ -68,13 +68,13 @@ const MyPaging = {
             MyPaging.setPageBtnNumber(MyPaging.getSelectedPageIndex() + MyPaging.numberOfDisplayPages);
             $(MyPaging.selectorNumberGroup + '.' + MyPaging.numberSelectedClassName).trigger('click');
         });
-        $(document).on('click', MyPaging.selectorLastBtn, function () {
+        $(document).on('click', MyPaging.selectorLastBtn, () => {
             // console.log('event :: selectorLastBtn');
-            MyPaging.setPageBtnNumber(parseInt(MyPaging.lastPageNumber / MyPaging.numberOfDisplayPages) * MyPaging.numberOfDisplayPages + 1);
+            MyPaging.setPageBtnNumber((MyPaging.lastPageNumber / MyPaging.numberOfDisplayPages).toFixed(0) * MyPaging.numberOfDisplayPages + 1);
             $(MyPaging.selectorNumberGroup + ":not(:hidden)").last().trigger('click');
         });
     },
-    setPageBtnNumber: function (pageIndex) {
+    setPageBtnNumber: (pageIndex) => {
         pageIndex = pageIndex || 1;
         if (MyPaging.lastPageNumber) {
             pageIndex = pageIndex > MyPaging.lastPageNumber ? MyPaging.lastPageNumber : pageIndex;
@@ -82,7 +82,7 @@ const MyPaging = {
             MyPaging.lastPageNumber = 1;
             pageIndex = 1;
         }
-        let test = parseInt((pageIndex - 1) / MyPaging.numberOfDisplayPages);
+        let test = ((pageIndex - 1).toFixed(0) / MyPaging.numberOfDisplayPages);
         test = test < 0 ? 0 : test;
         for (let i = 0; i < MyPaging.numberOfDisplayPages; i++) {
             if (MyPaging.lastPageNumber > test * MyPaging.numberOfDisplayPages + i + 1) {
@@ -98,7 +98,7 @@ const MyPaging = {
             }
         }
     },
-    changeValue: function (pageIndex, totalItemCount, itemPerPage, numberOfNextPage) {
+    changeValue: (pageIndex, totalItemCount, itemPerPage, numberOfNextPage) => {
         if (MyCommon.isEmpty(itemPerPage)) {
             itemPerPage = 10;
         }
@@ -108,31 +108,31 @@ const MyPaging = {
 
         MyPaging.numberOfDisplayPages = numberOfNextPage;
         if (totalItemCount % itemPerPage === 0) {
-            MyPaging.lastPageNumber = parseInt(totalItemCount / itemPerPage);
+            MyPaging.lastPageNumber = (totalItemCount / itemPerPage).toFixed(0);
         } else {
-            MyPaging.lastPageNumber = parseInt(totalItemCount / itemPerPage) + 1;
+            MyPaging.lastPageNumber = (totalItemCount / itemPerPage).toFixed(0) + 1;
         }
         MyPaging.setPageBtnNumber(pageIndex);
 
-        $.each($(MyPaging.selectorNumberGroup + ":not(:hidden)"), function (index, value) {
+        $.each($(MyPaging.selectorNumberGroup + ":not(:hidden)"), (index, value) => {
             if (+$(this).text() === pageIndex) {
                 if (MyPaging.positionSelectedClassName === 'parent') {
-                    $(this).parent().addClass(MyPaging.numberSelectedClassName).siblings().removeClass(MyPaging.numberSelectedClassName).focusout();
+                    $(this).parent().addClass(MyPaging.numberSelectedClassName).siblings().removeClass(MyPaging.numberSelectedClassName).trigger('focusout');
                 } else {
-                    $(this).addClass(MyPaging.numberSelectedClassName).siblings().removeClass(MyPaging.numberSelectedClassName).focusout();
+                    $(this).addClass(MyPaging.numberSelectedClassName).siblings().removeClass(MyPaging.numberSelectedClassName).trigger('focusout');
                 }
                 return false;
             }
         });
     },
-    getSelectedPageIndex: function (pageIndex) {
+    getSelectedPageIndex: (pageIndex) => {
         if (MyCommon.isNotEmpty(pageIndex)) {
             return pageIndex;
         } else {
             return +($(MyPaging.selectorNumberGroup + '.' + MyPaging.numberSelectedClassName).text());
         }
     },
-    createHtml: function (obj) {
+    createHtml: (obj) => {
         $(obj).addClass('pagnation').html(
             '<button type="button" class="begin"></button><button type="button" class="prev"></button><span class="pages">'
             + '<button type="button" class="active">1</button><button type="button" style="display: none;">2</button><button type="button" style="display: none;">3</button>'

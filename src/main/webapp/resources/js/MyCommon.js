@@ -1,6 +1,7 @@
 ;
+// noinspection DuplicatedCode
 const MyCommon = {
-    isEmpty: function (obj) {
+    isEmpty: (obj) => {
         if (obj === undefined || obj === null || obj === '' || obj.length === 0) {
             return true;
         }
@@ -9,11 +10,11 @@ const MyCommon = {
         }
         return false;
     },
-    isNotEmpty: function (obj) {
+    isNotEmpty: (obj) => {
         return !MyCommon.isEmpty(obj);
     },
     // 재요청시 XSS가 중복으로 처리되어 &, # 등의 문자가 중복 필터처리 된다. 때문에 값을 원본으로 변환하여 .text(value), .val(value) 로 처리한다.
-    unescapeXss: function (input) {
+    unescapeXss: (input) => {
         return $('<textarea></textarea>').html(input).text();
     },
     defaultLinkOptions: {
@@ -32,7 +33,7 @@ const MyCommon = {
         top: 0,
         width: $(window).outerWidth() * 0.80
     },
-    goLink: function (url, isNewWindow, paramOption) {
+    goLink: (url, isNewWindow, paramOption) => {
         // option은 다음 경로에서 확인 https://github.com/mkdynamic/jquery-popupwindow
         let tempUrl = _.trim(url);
         if (MyCommon.isEmpty(tempUrl) || tempUrl === '#' || tempUrl === 'null') {
@@ -43,7 +44,7 @@ const MyCommon = {
             tempUrl = CONTEXT_PATH + tempUrl;
         }
 
-        let options = MyCommon.getOptions(MyCommon.defaultLinkOptions, paramOption);
+        const options = MyCommon.getOptions(MyCommon.defaultLinkOptions, paramOption);
 
         // url 앞에 http가 있으면 새창으로 띄운다.
         if (isNewWindow === 'L') { // 이동
@@ -68,65 +69,66 @@ const MyCommon = {
             }
         }
     },
-    goWindow: function (url, paramOption) {
+    goWindow: (url, paramOption) => {
         MyCommon.goLink(url, 'W', paramOption);
     },
-    goTab: function (url) {
+    goTab: (url) => {
         MyCommon.goLink(url, 'T');
     },
-    getLabelFromSelectTag: function (selectObj, value) {
+    getLabelFromSelectTag: (selectObj, value) => {
         return $(selectObj).children('option[value="' + value + '"]').text();
     },
-    getLabelFromRadioCheckboxTag: function (radioCheckboxObj, value) {
+    getLabelFromRadioCheckboxTag: (radioCheckboxObj, value) => {
         let result = "";
-        $(radioCheckboxObj).each(function () {
-            if ($(this).val() === value) {
-                result = $(this).data('label');
+        $(radioCheckboxObj).each(() => {
+                if ($(this).val() === value) {
+                    result = $(this).data('label');
+                }
             }
-        });
+        );
         return result;
     },
     // 사용법 <img src="" onerror="MyCommon.setNoImg(this);" />
-    setNoImg: function (obj, paramnoImgPath) {
+    setNoImg: (obj, paramnoImgPath) => {
         let noImgPath = _.trim(paramnoImgPath);
         if (MyCommon.isEmpty(noImgPath)) {
             noImgPath = CONTEXT_PATH + '/resources/images/no-image-available.png';
         }
         $(obj).removeAttr('onerror').attr('data-original-src', $(obj).attr('src')).attr('src', noImgPath).addClass('noImg');
     },
-    getOptions: function (defaultOption, userOptions) {
-        let tempOptions = _.clone(defaultOption);
+    getOptions: (defaultOption, userOptions) => {
+        const tempOptions = _.clone(defaultOption);
         if (userOptions) {
-            for (let key in userOptions) {
+            for (const key in userOptions) {
                 tempOptions[key] = userOptions[key];
             }
         }
         return tempOptions;
     },
-    getFileExtension: function (filename) {
+    getFileExtension: (filename) => {
         return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
     },
-    submitFormGET: function (url, param, target) {
-        let $form = $('<form method="GET"></form>');
+    submitFormGET: (url, param, target) => {
+        const $form = $('<form method="GET"></form>');
         $form.attr('action', url);
         target && $form.attr('target', target);
-        for (let key in param) {
+        for (const key in param) {
             $form.append('<input type="hidden" name="' + key + '" value="' + param[key] + '" >');
         }
         $(document.body).append($form[0]);
         $form[0].submit();
     },
-    submitFormPOST: function (url, param, target) {
-        let $form = $('<form method="POST"></form>');
+    submitFormPOST: (url, param, target) => {
+        const $form = $('<form method="POST"></form>');
         $form.attr('action', url);
         target && $form.attr('target', target);
-        for (let key in param) {
+        for (const key in param) {
             $form.append('<input type="hidden" name="' + key + '" value="' + param[key] + '" >');
         }
         $(document.body).append($form[0]);
         $form[0].submit();
     },
-    isLocalhost: function (url) {
+    isLocalhost: (url) => {
         url = url || document.domain;
         return _.endsWith(url, "localhost");
     }

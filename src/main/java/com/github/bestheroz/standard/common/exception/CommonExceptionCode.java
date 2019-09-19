@@ -75,11 +75,11 @@ public enum CommonExceptionCode {
     ERROR_BAD_SQL_GRAMMER("E999", "(개발자용)SQL 문법 에러!");
 
     private String code;
-    private String messsage;
+    private String message;
 
     CommonExceptionCode(final String code, final String message) {
         this.code = code;
-        this.messsage = message;
+        this.message = message;
     }
 
     public String getCode() {
@@ -87,11 +87,11 @@ public enum CommonExceptionCode {
     }
 
     public String getMessage() {
-        return this.messsage;
+        return this.message;
     }
 
     @Override
     public String toString() {
-        return this.name() + "(\"" + this.code + "\", \"" + this.messsage + "\");";
+        return this.name() + "(\"" + this.code + "\", \"" + this.message + "\");";
     }
 }

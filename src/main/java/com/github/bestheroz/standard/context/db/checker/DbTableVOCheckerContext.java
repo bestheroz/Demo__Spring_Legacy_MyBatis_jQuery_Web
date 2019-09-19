@@ -33,7 +33,7 @@ public class DbTableVOCheckerContext {
     @Autowired(required = false)
     public void validDbTableVO(final SqlSession sqlSession) {
         try (Statement stmt = new SqlSessionFactoryBuilder().build(sqlSession.getConfiguration()).openSession().getConnection().createStatement()) {
-            final List<Class<?>> targetClassList = this.findMyTypes("com.github.bestheroz");
+            final List<Class<?>> targetClassList = this.findMyTypes();
             final List<String> filedList = new ArrayList<>();
             for (final Class<?> class1 : targetClassList) {
                 filedList.clear();
@@ -123,12 +123,12 @@ public class DbTableVOCheckerContext {
         }
     }
 
-    private List<Class<?>> findMyTypes(final String basePackage) throws IOException, ClassNotFoundException {
+    private List<Class<?>> findMyTypes() throws IOException, ClassNotFoundException {
         final ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
         final MetadataReaderFactory metadataReaderFactory = new CachingMetadataReaderFactory(resourcePatternResolver);
 
         final List<Class<?>> candidates = new ArrayList<>();
-        final String packageSearchPath = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX + this.resolveBasePackage(basePackage) + "/" + "**/Table*VO.class";
+        final String packageSearchPath = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX + this.resolveBasePackage("com.github.bestheroz") + "/" + "**/Table*VO.class";
         final Resource[] resources = resourcePatternResolver.getResources(packageSearchPath);
         for (final Resource resource : resources) {
             if (resource.isReadable()) {

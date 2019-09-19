@@ -1,6 +1,6 @@
 ;
 const MyScrollUp = {
-    init: function () {
+    init: () => {
         $.scrollUp({
             scrollName: 'scrollUp', // Element ID
             scrollDistance: 100, // Distance from top/bottom before showing element (px)
@@ -20,6 +20,6 @@ const MyScrollUp = {
         });
     }
 };
-$(document).ready(function () {
+jQuery(($) => {
     MyScrollUp.init();
 });

@@ -10,10 +10,10 @@ const MyTextEditor = {
             ['view', ['undo', 'redo', 'codeview', 'fullscreen', 'help']]],
         useBase64DataUrlImage: true
     },
-    init: function (targetObj) {
+    init: (targetObj) => {
         targetObj = targetObj || $(document);
-        $(targetObj).find('[data-texteditor="on"]').each(function () {
-            let options = {};
+        $(targetObj).find('[data-texteditor="on"]').each(() => {
+            const options = {};
             if (MyCommon.isNotEmpty($(this).attr('data-texteditor-height'))) {
                 options['height'] = $(this).attr('data-texteditor-height') + 'px';
             }
@@ -23,15 +23,15 @@ const MyTextEditor = {
             MyTextEditor.instance(this, options);
         });
     },
-    instance: function (targetObj, paramOptions) {
+    instance: (targetObj, paramOptions) => {
         // 서버 이미지 업로드 지원
         // if (!paramOptions.useBase64DataUrlImage && !MyCommon.isLocalhost()) {
         // paramOptions['callbacks'] = {
         // onImageUpload : function(files) {
-        // let $summernote = $(this);
-        // let formData = new FormData();
+        // const $summernote = $(this);
+        // const formData = new FormData();
         // formData.append("file", files[0]);
-        // MyAjax.excuteWithFile(CONTEXT_PATH + '/common/textEditor/imageUpload.proc', formData).done(function(response) {
+        // MyAjax.executeWithFile(CONTEXT_PATH + '/common/textEditor/imageUpload.proc', formData).done((response) => {
         // // upload image to server and create imgNode...
         // $summernote.summernote('insertImage', url);
         // });
@@ -40,28 +40,28 @@ const MyTextEditor = {
         // }
         $(targetObj).summernote(MyCommon.getOptions(MyTextEditor.defaultOptions, paramOptions));
     },
-    getCode: function (targetObj) {
+    getCode: (targetObj) => {
         return $(targetObj).summernote('code');
     },
-    setCode: function (targetObj, code) {
+    setCode: (targetObj, code) => {
         $(targetObj).summernote('code', code);
     },
-    destroy: function (targetObj) {
+    destroy: (targetObj) => {
         $(targetObj).summernote('destroy');
     },
-    isEmpty: function (targetObj) {
+    isEmpty: (targetObj) => {
         return $(targetObj).summernote('isEmpty');
     },
-    getLength: function (targetObj) {
+    getLength: (targetObj) => {
         return MyTextEditor.getCode(targetObj).length;
     },
-    focus: function (targetObj) {
+    focus: (targetObj) => {
         $(targetObj).summernote('focus');
     },
-    reset: function (targetObj) {
+    reset: (targetObj) => {
         $(targetObj).summernote('reset');
     },
-    disable: function (targetObj, disableTF) {
+    disable: (targetObj, disableTF) => {
         if (disableTF === undefined) {
             disableTF = true;
         }
@@ -72,7 +72,7 @@ const MyTextEditor = {
         }
     }
 };
-$(document).ready(function () {
+jQuery(($) => {
     MyTextEditor.init();
 });
 // 드래그 방지에서 textarea와 충돌하기떄문에 드래그 방지소스는 아래와 같이 처리해줘야한다! 17-12-13 by bestheroz

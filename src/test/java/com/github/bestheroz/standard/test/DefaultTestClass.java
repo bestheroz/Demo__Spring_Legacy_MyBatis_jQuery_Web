@@ -27,20 +27,21 @@ public class DefaultTestClass {
     protected WebApplicationContext wac;
 
     @BeforeEach
-    public void setup() throws Exception {
+    public void setup() {
         MockitoAnnotations.initMocks(this);
         MyTestUtils.setMockMvc(MockMvcBuilders.webAppContextSetup(this.wac).build());
     }
 
     @Test
-    public void login() throws Exception {
+    public void login() {
         final TableSampleMemberMstVO tableSampleMemberMstVO = new TableSampleMemberMstVO();
         tableSampleMemberMstVO.setMemberId("1");
         MyTestUtils
                 .doLogined(MyMapperUtils
-                        .writeObjectAsObject(MyAccessBeanUtils.getBean(TableSampleMemberMstDAO.class).getVO(tableSampleMemberMstVO, Collections.singletonList("memberId")), LoginVO.class));
+                        .writeObjectAsObject(MyAccessBeanUtils.getBean(TableSampleMemberMstDAO.class).getVO(tableSampleMemberMstVO, Collections.singleton("memberId")), LoginVO.class));
     }
 
+    @SuppressWarnings("NonAsciiCharacters")
     @Test
     public void 초기구동확인() throws Exception {
         MyTestUtils.performGet("/").andExpect(MockMvcResultMatchers.status().isOk()).andReturn();

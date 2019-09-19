@@ -70,15 +70,12 @@ public class MyAesUtils {
             cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(Arrays.copyOf(secretKey.getBytes(DEFAULT_CHARSET), 16), ALGORITHM),
                     new IvParameterSpec(Arrays.copyOf(iv.getBytes(DEFAULT_CHARSET), 16)));
             return new String(cipher.doFinal(Base64.decodeBase64(text)), DEFAULT_CHARSET);
-        } catch (IllegalBlockSizeException | BadPaddingException e) {
+        } catch (IllegalBlockSizeException | BadPaddingException | InvalidKeyException | InvalidAlgorithmParameterException | NoSuchAlgorithmException | NoSuchPaddingException e) {
             LOGGER.warn(ExceptionUtils.getStackTrace(e));
             // throw new CommonResponseException(CommonResultCode.ERROR_ILLEGAL_BLOCK_SIZE_AES);
             return "";
-        } catch (InvalidKeyException | InvalidAlgorithmParameterException | NoSuchAlgorithmException | NoSuchPaddingException e) {
-            LOGGER.warn(ExceptionUtils.getStackTrace(e));
-            // throw new CommonResponseException(e);
-            return "";
         }
+
     }
 
     public static String encrypt256(final String text) throws CommonException {

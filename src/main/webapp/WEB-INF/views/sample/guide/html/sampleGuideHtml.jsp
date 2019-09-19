@@ -163,8 +163,8 @@
     <my:footer/>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <script data-for="ready">
-        $(document).ready(function () {
-            $('tbody > tr').each(function (index, value) {
+        jQuery(($) => {
+            $('tbody > tr').each((index, value) => {
                 $(this).children('td').eq(0).text(index + 1).addClass('text-center');
                 $(this).children('td').eq(2).addClass('text-center');
             });

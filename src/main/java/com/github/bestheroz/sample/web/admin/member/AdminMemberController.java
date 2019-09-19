@@ -21,7 +21,7 @@ public class AdminMemberController {
     private HttpSession session;
 
     @RequestMapping(value = "/sample/admin/member/adminMember.view", method = RequestMethod.GET)
-    public String view() throws Exception {
+    public String view() {
         return "/sample/admin/member/AdminMember";
     }
 

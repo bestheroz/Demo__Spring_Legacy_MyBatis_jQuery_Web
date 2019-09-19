@@ -283,7 +283,7 @@ if (MyValidator.validate($('#form_try7_1')) !== null) {
     <my:footer/>
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
     <script data-for="ready">
-        $(document).ready(function () {
+        jQuery(($) => {
         });
     </script>
     <script>

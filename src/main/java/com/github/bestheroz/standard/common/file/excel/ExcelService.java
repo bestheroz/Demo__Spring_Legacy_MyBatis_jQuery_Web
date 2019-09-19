@@ -24,7 +24,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +31,7 @@ public class ExcelService extends AbstractExcelXView {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     public static final String VIEW_NAME = "excelView";
 
+    @SuppressWarnings("DuplicatedCode")
     @Override
     protected void buildExcelDocument(final Map<String, Object> model, final SXSSFWorkbook workbook, final HttpServletRequest request, final HttpServletResponse response) throws Exception {
         @SuppressWarnings("unchecked") final List<ExcelVO> excelVOs = (List<ExcelVO>) model.get(AbstractExcelXView.EXCEL_VOS);
@@ -49,6 +49,7 @@ public class ExcelService extends AbstractExcelXView {
         this.autoSizeColumn(sheet, excelVOs);
     }
 
+    @SuppressWarnings("DuplicatedCode")
     private void createColumnLabel(final SXSSFSheet sheet, final List<ExcelVO> excelVOs) {
         final SXSSFRow row0 = sheet.createRow(0);
         final CellRangeAddress mergedRegion = new CellRangeAddress(0, 0, 0, excelVOs.size() - 1);
@@ -74,7 +75,7 @@ public class ExcelService extends AbstractExcelXView {
         }
     }
 
-    private void addRowData(final SXSSFSheet sheet, final List<ExcelVO> excelVOs, final JsonArray listData) throws SQLException, NoSuchFieldException, SecurityException {
+    private void addRowData(final SXSSFSheet sheet, final List<ExcelVO> excelVOs, final JsonArray listData) {
         for (int i = 0; i < listData.size(); i++) {
             if (i != 0 && i % 100 == 0) {
                 this.logger.debug("[Excel]{} writed {} rows", sheet.getSheetName(), i + 1);
