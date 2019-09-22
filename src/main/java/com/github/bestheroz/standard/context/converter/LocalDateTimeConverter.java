@@ -6,6 +6,8 @@ import org.joda.time.LocalDateTime;
 import org.springframework.core.convert.converter.Converter;
 
 public class LocalDateTimeConverter implements Converter<String, LocalDateTime> {
+//    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Override
     public LocalDateTime convert(final String arg0) {
         if (StringUtils.isNotEmpty(arg0)) {
@@ -18,14 +20,19 @@ public class LocalDateTimeConverter implements Converter<String, LocalDateTime> 
                     return MyDateUtils.getLocalDateTime(arg0, MyDateUtils.YYYY_MM_DD);
                 } catch (final Throwable e2) {
                     try {
-                        // 3. yyyyMMdd
-                        return MyDateUtils.getLocalDateTime(arg0, MyDateUtils.YYYYMMDD);
+                        // 3. yyyy-MM-ddTHH:mm:ss.SSSZ
+                        return MyDateUtils.getLocalDateTime(arg0, MyDateUtils.ISO_8601);
                     } catch (final Throwable e3) {
                         try {
-                            // 4. yyyyMMddHHmmss
-                            return MyDateUtils.getLocalDateTime(arg0, MyDateUtils.YYYYMMDDHHMMSS);
+                            // 4. yyyyMMdd
+                            return MyDateUtils.getLocalDateTime(arg0, MyDateUtils.YYYYMMDD);
                         } catch (final Throwable e4) {
-                            return null;
+                            try {
+                                // 5. yyyyMMddHHmmss
+                                return MyDateUtils.getLocalDateTime(arg0, MyDateUtils.YYYYMMDDHHMMSS);
+                            } catch (final Throwable e5) {
+                                return null;
+                            }
                         }
                     }
                 }

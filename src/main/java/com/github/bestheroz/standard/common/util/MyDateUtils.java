@@ -23,11 +23,11 @@ public class MyDateUtils {
     public static final String HH_MM_SS = "HH:mm:ss";
     public static final String YYYY_MM_DD = "yyyy-MM-dd";
     public static final String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
+    public static final String ISO_8601 = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
 
     public static final String HHMMSS = "HHmmss";
     public static final String YYYYMM = "yyyyMM";
     public static final String YYYYMMDD = "yyyyMMdd";
-    @SuppressWarnings("unused") public static final String YYYYMMDDHHMM = "yyyyMMddHHmm";
     public static final String YYYYMMDDHHMMSS = "yyyyMMddHHmmss";
 
     public static String getStringNow(final String pattern) {

@@ -6,6 +6,7 @@ import org.joda.time.DateTime;
 import org.springframework.core.convert.converter.Converter;
 
 public class DateTimeConverter implements Converter<String, DateTime> {
+    //    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Override
     public DateTime convert(final String arg0) {
         if (StringUtils.isNotEmpty(arg0)) {
@@ -18,14 +19,19 @@ public class DateTimeConverter implements Converter<String, DateTime> {
                     return MyDateUtils.getDateTime(arg0, MyDateUtils.YYYY_MM_DD);
                 } catch (final Throwable e2) {
                     try {
-                        // 3. yyyyMMdd
-                        return MyDateUtils.getDateTime(arg0, MyDateUtils.YYYYMMDD);
+                        // 3. yyyy-MM-ddTHH:mm:ss.SSSZ
+                        return MyDateUtils.getDateTime(arg0, MyDateUtils.ISO_8601);
                     } catch (final Throwable e3) {
                         try {
-                            // 4. yyyyMMddHHmmss
-                            return MyDateUtils.getDateTime(arg0, MyDateUtils.YYYYMMDDHHMMSS);
+                            // 4. yyyyMMdd
+                            return MyDateUtils.getDateTime(arg0, MyDateUtils.YYYYMMDD);
                         } catch (final Throwable e4) {
-                            return null;
+                            try {
+                                // 5. yyyyMMddHHmmss
+                                return MyDateUtils.getDateTime(arg0, MyDateUtils.YYYYMMDDHHMMSS);
+                            } catch (final Throwable e5) {
+                                return null;
+                            }
                         }
                     }
                 }
