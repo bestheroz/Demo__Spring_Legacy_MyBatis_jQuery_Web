@@ -7,21 +7,21 @@ const MyHandlebars = {
         }
         targetObj = targetObj || $(document);
 
-        $(targetObj).find('script[type="text/x-handlebars-template"]').each(() => {
-            if (MyCommon.isNotEmpty($(this).attr('id'))) {
-                if (isAppendMode && MyHandlebars.templates[$(this).attr('id')]) {
-                    console.warn('이미 존재하는 templates 값입니다 ==> ' + $(this).attr('id'));
+        $(targetObj).find('script[type="text/x-handlebars-template"]').each((index, element) => {
+            if (MyCommon.isNotEmpty($(element).attr('id'))) {
+                if (isAppendMode && MyHandlebars.templates[$(element).attr('id')]) {
+                    console.warn('이미 존재하는 templates 값입니다 ==> ' + $(element).attr('id'));
                     return;
                 }
-                MyHandlebars.templates[$(this).attr('id')] = Handlebars.compile($(this).html());
+                MyHandlebars.templates[$(element).attr('id')] = Handlebars.compile($(element).html());
             }
         });
     },
     removeTemplateScript: (targetObj) => {
         targetObj = targetObj || $(document);
-        $(targetObj).find('script[type="text/x-handlebars-template"]').each(() => {
-            if (MyCommon.isNotEmpty($(this).attr('id'))) {
-                delete MyHandlebars.templates[$(this).attr('id')];
+        $(targetObj).find('script[type="text/x-handlebars-template"]').each((index, element) => {
+            if (MyCommon.isNotEmpty($(element).attr('id'))) {
+                delete MyHandlebars.templates[$(element).attr('id')];
             }
         });
     },
@@ -56,73 +56,73 @@ const MyHandlebars = {
     init: () => {
         Handlebars.registerHelper({
             // if 모음
-            if_eq: (v1, v2, options) => {
+            if_eq: function (v1, v2, options) {
                 if (v1 === v2) {
                     return options.fn(this);
                 }
                 return options.inverse(this);
             },
-            if_empty: (value, options) => {
+            if_empty: function (value, options) {
                 if (MyCommon.isEmpty(value)) {
                     return options.fn(this);
                 }
                 return options.inverse(this);
             },
-            if_not_empty: (value, options) => {
+            if_not_empty: function (value, options) {
                 if (MyCommon.isNotEmpty(value)) {
                     return options.fn(this);
                 }
                 return options.inverse(this);
             },
-            if_size: (v1, v2, options) => {
+            if_size: function (v1, v2, options) {
                 if (v1 > v2) {
                     return options.fn(this);
                 }
                 return options.inverse(this);
             },
-            if_lt: (v1, v2, options) => {
+            if_lt: function (v1, v2, options) {
                 if (v1 < v2) {
                     return options.fn(this);
                 }
                 return options.inverse(this);
             },
-            if_gt: (v1, v2, options) => {
+            if_gt: function (v1, v2, options) {
                 if (v1 > v2) {
                     return options.fn(this);
                 }
                 return options.inverse(this);
             },
-            if_lte: (v1, v2, options) => {
+            if_lte: function (v1, v2, options) {
                 if (v1 <= v2) {
                     return options.fn(this);
                 }
                 return options.inverse(this);
             },
-            if_gte: (v1, v2, options) => {
+            if_gte: function (v1, v2, options) {
                 if (v1 >= v2) {
                     return options.fn(this);
                 }
                 return options.inverse(this);
             },
-            if_and: (v1, v2, options) => {
+            if_and: function (v1, v2, options) {
                 if (v1 && v2) {
                     return options.fn(this);
                 }
                 return options.inverse(this);
             },
-            if_or: (v1, v2, options) => {
+            if_or: function (v1, v2, options) {
                 if (v1 || v2) {
                     return options.fn(this);
                 }
                 return options.inverse(this);
             },
-            if_contains: (v1, v2, options) => {
+            if_contains: function (v1, v2, options) {
                 if (!v1 ? false : !!~v1.indexOf(v2)) {
                     return options.fn(this);
                 }
                 return options.inverse(this);
             },
-            if_notContains: (v1, v2, options) => {
+            if_notContains: function (v1, v2, options) {
                 if (!v1 ? false : !!~~v1.indexOf(v2)) {
                     return options.fn(this);
                 }

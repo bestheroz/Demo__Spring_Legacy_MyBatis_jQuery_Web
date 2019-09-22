@@ -36,7 +36,7 @@ const MyPaging = {
         $(MyPaging.selectorFirstBtn).trigger('click');
     },
     bindPageBtn: () => {
-        $(document).on('click', MyPaging.selectorNumberGroup, () => {
+        $(document).on('click', MyPaging.selectorNumberGroup, function () {
             // console.log('event :: selectorNumberGroup');
             if (MyPaging.positionSelectedClassName === 'parent') {
                 $(this).parent().addClass(MyPaging.numberSelectedClassName).siblings().removeClass(MyPaging.numberSelectedClassName).trigger('focusout');
@@ -114,12 +114,12 @@ const MyPaging = {
         }
         MyPaging.setPageBtnNumber(pageIndex);
 
-        $.each($(MyPaging.selectorNumberGroup + ":not(:hidden)"), (index, value) => {
-            if (+$(this).text() === pageIndex) {
+        $.each($(MyPaging.selectorNumberGroup + ":not(:hidden)"), (index, element) => {
+            if (+$(element).text() === pageIndex) {
                 if (MyPaging.positionSelectedClassName === 'parent') {
-                    $(this).parent().addClass(MyPaging.numberSelectedClassName).siblings().removeClass(MyPaging.numberSelectedClassName).trigger('focusout');
+                    $(element).parent().addClass(MyPaging.numberSelectedClassName).siblings().removeClass(MyPaging.numberSelectedClassName).trigger('focusout');
                 } else {
-                    $(this).addClass(MyPaging.numberSelectedClassName).siblings().removeClass(MyPaging.numberSelectedClassName).trigger('focusout');
+                    $(element).addClass(MyPaging.numberSelectedClassName).siblings().removeClass(MyPaging.numberSelectedClassName).trigger('focusout');
                 }
                 return false;
             }

@@ -12,15 +12,15 @@ const MyTextEditor = {
     },
     init: (targetObj) => {
         targetObj = targetObj || $(document);
-        $(targetObj).find('[data-texteditor="on"]').each(() => {
+        $(targetObj).find('[data-texteditor="on"]').each((index, element) => {
             const options = {};
-            if (MyCommon.isNotEmpty($(this).attr('data-texteditor-height'))) {
-                options['height'] = $(this).attr('data-texteditor-height') + 'px';
+            if (MyCommon.isNotEmpty($(element).attr('data-texteditor-height'))) {
+                options['height'] = $(element).attr('data-texteditor-height') + 'px';
             }
             if ($(this).attr('data-texteditor-airmode') === 'true') {
-                options['airMode'] = true;
+                options['airMode'] = element;
             }
-            MyTextEditor.instance(this, options);
+            MyTextEditor.instance(element, options);
         });
     },
     instance: (targetObj, paramOptions) => {

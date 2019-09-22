@@ -80,9 +80,9 @@ const MyCommon = {
     },
     getLabelFromRadioCheckboxTag: (radioCheckboxObj, value) => {
         let result = "";
-        $(radioCheckboxObj).each(() => {
-                if ($(this).val() === value) {
-                    result = $(this).data('label');
+        $(radioCheckboxObj).each((index, element) => {
+            if ($(element).val() === value) {
+                result = $(element).data('label');
                 }
             }
         );

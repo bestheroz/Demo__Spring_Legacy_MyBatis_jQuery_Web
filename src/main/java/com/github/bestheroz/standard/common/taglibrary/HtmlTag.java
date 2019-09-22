@@ -73,7 +73,6 @@ public class HtmlTag extends TagSupport {
         this.makeScriptTag(CommonCode.PATH_JS + "/MyCommon.js");
         this.makeScriptTag(CommonCode.PATH_JS + "/MyKeyup.js");
         this.makeScriptTag(CommonCode.PATH_JS + "/MyAjax.js");
-        this.makeScriptTag(CommonCode.PATH_JS + "/MyPrototype.js");
         // // <!-- 페이지 필수 공통 내용 END -->
 
         // 이놈이 사이즈가 꾀 커서 다른 plugin의 property name을 먹어버린다. 그래서 상단에 선언
