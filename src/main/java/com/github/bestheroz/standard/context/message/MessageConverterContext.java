@@ -14,7 +14,7 @@ import java.util.List;
 
 @Configuration
 public class MessageConverterContext {
-    @Autowired
+    @Autowired(required = false)
     private RequestMappingHandlerAdapter adapter;
 
     @PostConstruct

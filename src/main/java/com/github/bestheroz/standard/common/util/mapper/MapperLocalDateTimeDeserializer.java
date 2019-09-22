@@ -11,6 +11,6 @@ import java.lang.reflect.Type;
 public class MapperLocalDateTimeDeserializer implements JsonDeserializer<LocalDateTime> {
     @Override
     public LocalDateTime deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context) {
-        return MyDateUtils.getDateTime(json.getAsLong()).toLocalDateTime();
+        return MyDateUtils.getLocalDateTimeIgnoreException(json.getAsString());
     }
 }

@@ -10,9 +10,9 @@ import org.springframework.core.convert.converter.Converter;
 import java.util.Set;
 
 @Configuration
-public class ConverterContext {
+public class ConversionServiceContext {
     @Bean(name = "conversionService")
-    @Autowired
+    @Autowired(required = false)
     public ConversionService getConversionService(final Set<Converter<?, ?>> set) {
         final ConversionServiceFactoryBean conversionServiceFactoryBean = new ConversionServiceFactoryBean();
         set.add(new DateTimeConverter());
