@@ -160,26 +160,31 @@ public class MyDateUtils {
     }
 
     public static LocalDateTime getLocalDateTimeIgnoreException(String arg0) {
+        final DateTime dateTimeIgnoreException = getDateTimeIgnoreException(arg0);
+        return dateTimeIgnoreException == null ? null : dateTimeIgnoreException.toLocalDateTime();
+    }
+
+    public static DateTime getDateTimeIgnoreException(String arg0) {
         if (StringUtils.isNotEmpty(arg0)) {
             try {
                 // 1. long값(timestamp)
-                return getLocalDateTime(Long.parseLong(arg0));
+                return getDateTime(Long.parseLong(arg0));
             } catch (final Throwable e) {
                 try {
                     // 2. yyyy-MM-dd
-                    return getLocalDateTime(arg0, MyDateUtils.YYYY_MM_DD);
+                    return getDateTime(arg0, MyDateUtils.YYYY_MM_DD);
                 } catch (final Throwable e2) {
                     try {
                         // 3. yyyy-MM-ddTHH:mm:ss.SSSZ
-                        return getLocalDateTime(arg0, MyDateUtils.ISO_8601);
+                        return getDateTime(arg0, MyDateUtils.ISO_8601);
                     } catch (final Throwable e3) {
                         try {
                             // 4. yyyyMMdd
-                            return getLocalDateTime(arg0, MyDateUtils.YYYYMMDD);
+                            return getDateTime(arg0, MyDateUtils.YYYYMMDD);
                         } catch (final Throwable e4) {
                             try {
                                 // 5. yyyyMMddHHmmss
-                                return getLocalDateTime(arg0, MyDateUtils.YYYYMMDDHHMMSS);
+                                return getDateTime(arg0, MyDateUtils.YYYYMMDDHHMMSS);
                             } catch (final Throwable e5) {
                                 return null;
                             }
@@ -187,15 +192,6 @@ public class MyDateUtils {
                     }
                 }
             }
-        } else {
-            return null;
-        }
-    }
-
-    public static DateTime getDateTimeIgnoreException(String arg0) {
-        final LocalDateTime localDateTimeIgnoreException = getLocalDateTimeIgnoreException(arg0);
-        if (localDateTimeIgnoreException != null) {
-            return getDateTime(localDateTimeIgnoreException.toDate());
         } else {
             return null;
         }
