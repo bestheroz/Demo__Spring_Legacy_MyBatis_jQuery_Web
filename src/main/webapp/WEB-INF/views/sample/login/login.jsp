@@ -5,8 +5,8 @@
     <main role="main" class="flex-shrink-0">
         <div class="container">
             <form class="form-signin">
-                <h1 class="h3 mt-5 mb-3 font-weight-normal">Bestheroz's Spring-Maven-Bootstrap Web
-                    <small>ver.190319</small>
+                <h1 class="h3 mt-5 mb-3 font-weight-normal">Bestheroz's Spring-Mybatis-jQuery Web Project
+                    <small>ver.190922</small>
                 </h1>
                 <label for="memberId" class="sr-only">아이디</label>
                 <input type="email" class="form-control" id="memberId" title="아이디" placeholder="아이디를 입력하세요." maxlength="9" required autofocus>

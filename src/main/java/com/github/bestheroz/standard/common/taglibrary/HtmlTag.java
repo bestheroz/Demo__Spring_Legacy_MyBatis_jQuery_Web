@@ -45,7 +45,7 @@ public class HtmlTag extends TagSupport {
         this.sb.append("<head>");
         this.sb.append("<title>");
         if (StringUtils.isEmpty(this.title)) {
-            this.sb.append("Bestheroz's Spring-Mybatis-jQuery Web ver.190819");
+            this.sb.append("Bestheroz's Spring-Mybatis-jQuery Web Project ver.190922");
         } else {
             this.sb.append(this.title);
         }
