@@ -38,8 +38,8 @@ public class LoginService {
         final LoginVO loginVO = MyMapperUtils.writeObjectAsObject(sampleMemberMstVO, LoginVO.class);
         // 2. LOGIN_FAIL_CNT가 5회 이상 인가
         if (loginVO.getLoginFailCnt().intValue() >= 5) {
-            this.logger.warn(new CommonException(CommonExceptionCode.ERROR_LOGIN_FAIL_CNT, null, "고객센터로 문의하시기 바랍니다.").getJsonObject().toString());
-            throw new CommonException(CommonExceptionCode.ERROR_LOGIN_FAIL_CNT, null, "고객센터로 문의하시기 바랍니다.");
+            this.logger.warn(new CommonException(CommonExceptionCode.FAIL_LOGIN_FAIL_CNT, null, "고객센터로 문의하시기 바랍니다.").getJsonObject().toString());
+            throw new CommonException(CommonExceptionCode.FAIL_LOGIN_FAIL_CNT, null, "고객센터로 문의하시기 바랍니다.");
         }
 
         // 3. 패스워드가 틀리면

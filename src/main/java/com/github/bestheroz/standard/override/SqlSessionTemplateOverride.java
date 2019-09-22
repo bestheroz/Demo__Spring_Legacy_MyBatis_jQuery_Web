@@ -322,26 +322,26 @@ public class SqlSessionTemplateOverride extends SqlSessionTemplate {
         // 아래 정의된 에러는 sql-error-codes.xml 에 정의된 내용입니다. sql-error-codes.xml는 구글에서 검색하세요 ^^
         final String stackTrace = ExceptionUtils.getStackTrace(throwable);
         if (throwable instanceof DuplicateKeyException) {
-            throw new CommonException(CommonExceptionCode.ERROR_UNIQUE_CONSTRAINT_VIOLATED);
+            throw new CommonException(CommonExceptionCode.FAIL_UNIQUE_CONSTRAINT_VIOLATED);
         } else if (throwable instanceof BadSqlGrammarException) {
-            throw new CommonException(CommonExceptionCode.ERROR_BAD_SQL_GRAMMER);
+            throw new CommonException(CommonExceptionCode.FAIL_BAD_SQL_GRAMMER);
         } else if (throwable instanceof TooManyResultsException) {
-            throw new CommonException(CommonExceptionCode.ERROR_TOO_MANY_RESULT);
+            throw new CommonException(CommonExceptionCode.FAIL_TOO_MANY_RESULT);
         } else if (throwable instanceof DataIntegrityViolationException) {
             if (StringUtils.containsIgnoreCase(stackTrace, "child record found")) {
-                throw new CommonException(CommonExceptionCode.ERROR_VIOLATED_CHILD_RECORD_FOUND);
+                throw new CommonException(CommonExceptionCode.FAIL_VIOLATED_CHILD_RECORD_FOUND);
             } else {
-                throw new CommonException(CommonExceptionCode.ERROR_CANNOT_INSERT_NULL);
+                throw new CommonException(CommonExceptionCode.FAIL_CANNOT_INSERT_NULL);
             }
         } else if (StringUtils.containsIgnoreCase(stackTrace, "value too large for column") || StringUtils.containsIgnoreCase(stackTrace, "value too long for column")) {
             final String substring = StringUtils.substringBetween(stackTrace.toLowerCase(), "value too", ")");
-            throw new CommonException(CommonExceptionCode.ERROR_VALUE_TOO_LARGE_FOR_COLUMN, StringUtils.substring(substring, StringUtils.lastIndexOf(substring, "\".\"") + 2));
+            throw new CommonException(CommonExceptionCode.FAIL_VALUE_TOO_LARGE_FOR_COLUMN, StringUtils.substring(substring, StringUtils.lastIndexOf(substring, "\".\"") + 2));
         } else if (StringUtils.containsIgnoreCase(stackTrace, "SelectKey returned no data")) {
-            throw new CommonException(CommonExceptionCode.ERROR_SELECTKEY_RETURN_NO_DATA);
+            throw new CommonException(CommonExceptionCode.FAIL_SELECTKEY_RETURN_NO_DATA);
         } else if (StringUtils.containsIgnoreCase(stackTrace, "Mapped Statements collection does not contain value for")) {
-            throw new CommonException(CommonExceptionCode.ERROR_MAPPED_STATMENTS_COLLECTION_DOES_NOT_CONTAIN);
+            throw new CommonException(CommonExceptionCode.FAIL_MAPPED_STATMENTS_COLLECTION_DOES_NOT_CONTAIN);
         } else if (StringUtils.containsIgnoreCase(stackTrace, "Fail to Decryption data")) {
-            throw new CommonException(CommonExceptionCode.ERROR_FAIL_TO_DECRYPTION_DATA);
+            throw new CommonException(CommonExceptionCode.FAIL__TO_DECRYPTION_DATA);
         } else {
             LOGGER.warn(CommonException.EXCEPTION_ERROR_INVALID_REQUEST.getJsonObject().toString());
             throw CommonException.EXCEPTION_ERROR_INVALID_REQUEST;

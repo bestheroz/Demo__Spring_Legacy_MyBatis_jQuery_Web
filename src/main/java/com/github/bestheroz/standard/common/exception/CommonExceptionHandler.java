@@ -68,7 +68,7 @@ public class CommonExceptionHandler {
         this.isAcceptHtml();
         JsonObject result;
         if (ExceptionUtils.getMessage(e).contains(SizeLimitExceededException.class.getSimpleName())) {
-            result = new CommonException(CommonExceptionCode.ERROR_FAIL_FILE_SIZE).getJsonObject();
+            result = new CommonException(CommonExceptionCode.FAIL__FILE_SIZE).getJsonObject();
         } else {
             result = CommonException.EXCEPTION_ERROR_SYSTEM.getJsonObject();
         }
@@ -77,7 +77,7 @@ public class CommonExceptionHandler {
 
     private void isAcceptHtml() throws Exception {
         if (StringUtils.contains(this.request.getHeader("accept"), "html")) {
-            throw new Exception(CommonExceptionCode.ERROR_SYSTEM_ERROR.getMessage());
+            throw new Exception(CommonExceptionCode.FAIL_SYSTEM_ERROR.getMessage());
         }
     }
 }

@@ -76,13 +76,13 @@ public class SqlForTableVO {
 
     private void validWhereKey(final Set<String> whereKeys, final Map<String, Object> param) {
         if (MyNullUtils.size(whereKeys) < 1) {
-            this.logger.warn(CommonExceptionCode.ERROR_INVALID_PARAMETER.toString());
+            this.logger.warn(CommonExceptionCode.FAIL_INVALID_PARAMETER.toString());
             throw CommonException.EXCEPTION_ERROR_INVALID_PARAMETER;
         }
 
         for (final String key : whereKeys) {
             if (!param.containsKey(key) || param.get(key) == null) {
-                this.logger.warn(CommonExceptionCode.ERROR_INVALID_PARAMETER.toString());
+                this.logger.warn(CommonExceptionCode.FAIL_INVALID_PARAMETER.toString());
                 throw CommonException.EXCEPTION_ERROR_INVALID_PARAMETER;
             }
         }
@@ -252,13 +252,13 @@ public class SqlForTableVO {
 
     public <T extends Object> String deleteTableVO(final T vo, final Set<String> whereKeys) {
         if (MyNullUtils.size(whereKeys) < 1) {
-            this.logger.warn(CommonExceptionCode.ERROR_NO_DATA_SUCCESS.toString());
+            this.logger.warn(CommonExceptionCode.FAIL_NO_DATA_SUCCESS.toString());
             throw CommonException.EXCEPTION_ERROR_NO_DATA_SUCCESS;
         }
         final Map<String, Object> param = MyMapperUtils.writeObjectAsHashMap(vo);
         for (final String key : whereKeys) {
             if (!param.containsKey(key) || param.get(key) == null) {
-                this.logger.warn("{} not in {}\n{}", key, MyMapperUtils.writeObjectAsString(param), CommonExceptionCode.ERROR_INVALID_PARAMETER.toString());
+                this.logger.warn("{} not in {}\n{}", key, MyMapperUtils.writeObjectAsString(param), CommonExceptionCode.FAIL_INVALID_PARAMETER.toString());
                 throw CommonException.EXCEPTION_ERROR_INVALID_PARAMETER;
             }
         }

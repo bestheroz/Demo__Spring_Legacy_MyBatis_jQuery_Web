@@ -49,7 +49,7 @@ public class MyAesUtils {
             return Base64.encodeBase64String(cipher.doFinal(text.getBytes(DEFAULT_CHARSET)));
         } catch (IllegalBlockSizeException | BadPaddingException e) {
             LOGGER.warn(ExceptionUtils.getStackTrace(e));
-            throw new CommonException(CommonExceptionCode.ERROR_ILLEGAL_BLOCK_SIZE_AES);
+            throw new CommonException(CommonExceptionCode.FAIL_ILLEGAL_BLOCK_SIZE_AES);
         } catch (InvalidKeyException | InvalidAlgorithmParameterException | NoSuchAlgorithmException | NoSuchPaddingException e) {
             LOGGER.warn(ExceptionUtils.getStackTrace(e));
             throw new CommonException(e);
@@ -72,7 +72,7 @@ public class MyAesUtils {
             return new String(cipher.doFinal(Base64.decodeBase64(text)), DEFAULT_CHARSET);
         } catch (IllegalBlockSizeException | BadPaddingException | InvalidKeyException | InvalidAlgorithmParameterException | NoSuchAlgorithmException | NoSuchPaddingException e) {
             LOGGER.warn(ExceptionUtils.getStackTrace(e));
-            // throw new CommonResponseException(CommonResultCode.ERROR_ILLEGAL_BLOCK_SIZE_AES);
+            // throw new CommonResponseException(CommonResultCode.FAIL_ILLEGAL_BLOCK_SIZE_AES);
             return "";
         }
 
@@ -94,7 +94,7 @@ public class MyAesUtils {
             return Base64.encodeBase64String(cipher.doFinal(text.getBytes(DEFAULT_CHARSET)));
         } catch (IllegalBlockSizeException | BadPaddingException e) {
             LOGGER.warn(ExceptionUtils.getStackTrace(e));
-            throw new CommonException(CommonExceptionCode.ERROR_ILLEGAL_BLOCK_SIZE_AES);
+            throw new CommonException(CommonExceptionCode.FAIL_ILLEGAL_BLOCK_SIZE_AES);
         } catch (InvalidKeyException | InvalidAlgorithmParameterException | NoSuchAlgorithmException | NoSuchPaddingException e) {
             LOGGER.warn(ExceptionUtils.getStackTrace(e));
             throw new CommonException(e);
@@ -117,7 +117,7 @@ public class MyAesUtils {
             return new String(cipher.doFinal(Base64.decodeBase64(text)), DEFAULT_CHARSET);
         } catch (IllegalBlockSizeException | BadPaddingException | InvalidKeyException | InvalidAlgorithmParameterException | NoSuchAlgorithmException | NoSuchPaddingException e) {
             LOGGER.warn(ExceptionUtils.getStackTrace(e));
-            // throw new CommonResponseException(CommonResultCode.ERROR_ILLEGAL_BLOCK_SIZE_AES);
+            // throw new CommonResponseException(CommonResultCode.FAIL_ILLEGAL_BLOCK_SIZE_AES);
             return "";
         } // throw new CommonResponseException(e);
 

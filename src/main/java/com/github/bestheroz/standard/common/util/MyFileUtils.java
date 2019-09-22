@@ -107,8 +107,8 @@ public class MyFileUtils {
         final String path = RegExUtils.replaceAll(getFileRoot() + filePath, "\\\\", "/").replaceAll("//", "/");
         final File file = FileUtils.getFile(path);
         if (file.isDirectory() && !StringUtils.endsWith(path, "/")) {
-            LOGGER.warn("{} : {}", path, CommonExceptionCode.ERROR_DIR_PATH_MUST_ENDS_WITH_SLASH.toString());
-            throw new CommonException(CommonExceptionCode.ERROR_DIR_PATH_MUST_ENDS_WITH_SLASH);
+            LOGGER.warn("{} : {}", path, CommonExceptionCode.FAIL_DIR_PATH_MUST_ENDS_WITH_SLASH.toString());
+            throw new CommonException(CommonExceptionCode.FAIL_DIR_PATH_MUST_ENDS_WITH_SLASH);
         }
         return file;
     }
@@ -116,8 +116,8 @@ public class MyFileUtils {
     public static File getDirectory(final String dirPath) throws CommonException {
         final String path = RegExUtils.replaceAll(getFileRoot() + dirPath, "\\\\", "/").replaceAll("//", "/");
         if (!StringUtils.endsWith(path, "/")) {
-            LOGGER.warn("{} : {}", path, CommonExceptionCode.ERROR_DIR_PATH_MUST_ENDS_WITH_SLASH.toString());
-            throw new CommonException(CommonExceptionCode.ERROR_DIR_PATH_MUST_ENDS_WITH_SLASH);
+            LOGGER.warn("{} : {}", path, CommonExceptionCode.FAIL_DIR_PATH_MUST_ENDS_WITH_SLASH.toString());
+            throw new CommonException(CommonExceptionCode.FAIL_DIR_PATH_MUST_ENDS_WITH_SLASH);
         }
         final File file = getFile(path);
         if (!MyNullUtils.exists(file)) {
@@ -217,24 +217,24 @@ public class MyFileUtils {
     // 업로드 하려는 파일의 검증(MultipartFile 이용)
     public static void validateFile(final MultipartFile multipartFile) throws CommonException {
         if (FileType.ILLEGAL.extList.contains(getExtension(multipartFile))) {
-            LOGGER.warn("{}{}", CommonExceptionCode.ERROR_FAIL_FILE_EXT.toString(), multipartFile.getOriginalFilename());
-            throw new CommonException(CommonExceptionCode.ERROR_FAIL_FILE_EXT);
+            LOGGER.warn("{}{}", CommonExceptionCode.FAIL__FILE_EXT.toString(), multipartFile.getOriginalFilename());
+            throw new CommonException(CommonExceptionCode.FAIL__FILE_EXT);
         }
         if (FileType.ILLEGAL.mimeTypeList.contains(getMimeType(multipartFile))) {
-            LOGGER.warn("{}{}", CommonExceptionCode.ERROR_FAIL_FILE_MIMETYPE.toString(), multipartFile.getOriginalFilename());
-            throw new CommonException(CommonExceptionCode.ERROR_FAIL_FILE_MIMETYPE);
+            LOGGER.warn("{}{}", CommonExceptionCode.FAIL__FILE_MIMETYPE.toString(), multipartFile.getOriginalFilename());
+            throw new CommonException(CommonExceptionCode.FAIL__FILE_MIMETYPE);
         }
     }
 
     // 업로드된 파일의 검증(File 이용)
     public static void validateFile(final File file) throws CommonException {
         if (FileType.ILLEGAL.extList.contains(getExtension(file))) {
-            LOGGER.warn("{}{}", CommonExceptionCode.ERROR_FAIL_FILE_EXT.toString(), file.getAbsolutePath());
-            throw new CommonException(CommonExceptionCode.ERROR_FAIL_FILE_EXT);
+            LOGGER.warn("{}{}", CommonExceptionCode.FAIL__FILE_EXT.toString(), file.getAbsolutePath());
+            throw new CommonException(CommonExceptionCode.FAIL__FILE_EXT);
         }
         if (FileType.ILLEGAL.mimeTypeList.contains(getMimeType(file))) {
-            LOGGER.warn("{}{}", CommonExceptionCode.ERROR_FAIL_FILE_MIMETYPE.toString(), file.getAbsolutePath());
-            throw new CommonException(CommonExceptionCode.ERROR_FAIL_FILE_MIMETYPE);
+            LOGGER.warn("{}{}", CommonExceptionCode.FAIL__FILE_MIMETYPE.toString(), file.getAbsolutePath());
+            throw new CommonException(CommonExceptionCode.FAIL__FILE_MIMETYPE);
         }
     }
 
@@ -242,12 +242,12 @@ public class MyFileUtils {
     public static void validateFile(final MultipartFile multipartFile, final FileType fileType) throws CommonException {
         try {
             if (!fileType.extList.contains(getExtension(multipartFile))) {
-                LOGGER.warn("{}{}", CommonExceptionCode.ERROR_FAIL_FILE_EXT.toString(), multipartFile.getOriginalFilename());
-                throw new CommonException(CommonExceptionCode.ERROR_FAIL_FILE_EXT);
+                LOGGER.warn("{}{}", CommonExceptionCode.FAIL__FILE_EXT.toString(), multipartFile.getOriginalFilename());
+                throw new CommonException(CommonExceptionCode.FAIL__FILE_EXT);
             }
             if (!fileType.mimeTypeList.contains(getMimeType(multipartFile))) {
-                LOGGER.warn("{}{}", CommonExceptionCode.ERROR_FAIL_FILE_MIMETYPE.toString(), multipartFile.getOriginalFilename());
-                throw new CommonException(CommonExceptionCode.ERROR_FAIL_FILE_MIMETYPE);
+                LOGGER.warn("{}{}", CommonExceptionCode.FAIL__FILE_MIMETYPE.toString(), multipartFile.getOriginalFilename());
+                throw new CommonException(CommonExceptionCode.FAIL__FILE_MIMETYPE);
             }
 
             validateFile(multipartFile);
@@ -260,12 +260,12 @@ public class MyFileUtils {
     public static void validateFile(final File file, final FileType fileType) throws CommonException {
         try {
             if (!fileType.extList.contains(getExtension(file))) {
-                LOGGER.warn("{}{}", CommonExceptionCode.ERROR_FAIL_FILE_EXT.toString(), file.getAbsolutePath());
-                throw new CommonException(CommonExceptionCode.ERROR_FAIL_FILE_EXT);
+                LOGGER.warn("{}{}", CommonExceptionCode.FAIL__FILE_EXT.toString(), file.getAbsolutePath());
+                throw new CommonException(CommonExceptionCode.FAIL__FILE_EXT);
             }
             if (!fileType.mimeTypeList.contains(getMimeType(file))) {
-                LOGGER.warn("{}{}", CommonExceptionCode.ERROR_FAIL_FILE_MIMETYPE.toString(), file.getAbsolutePath());
-                throw new CommonException(CommonExceptionCode.ERROR_FAIL_FILE_MIMETYPE);
+                LOGGER.warn("{}{}", CommonExceptionCode.FAIL__FILE_MIMETYPE.toString(), file.getAbsolutePath());
+                throw new CommonException(CommonExceptionCode.FAIL__FILE_MIMETYPE);
             }
 
             validateFile(file);
@@ -276,28 +276,28 @@ public class MyFileUtils {
 
     private static CommonException setResultCodeByFileType(final CommonException e, final FileType fileType) {
         if (FileType.IMAGE.equals(fileType)) {
-            if (e.isEquals(CommonExceptionCode.ERROR_FAIL_FILE_EXT)) {
-                return new CommonException(CommonExceptionCode.ERROR_FAIL_IMAGE_EXT);
-            } else if (e.isEquals(CommonExceptionCode.ERROR_FAIL_FILE_MIMETYPE)) {
-                return new CommonException(CommonExceptionCode.ERROR_FAIL_IMAGE_MIMETYPE);
+            if (e.isEquals(CommonExceptionCode.FAIL__FILE_EXT)) {
+                return new CommonException(CommonExceptionCode.FAIL__IMAGE_EXT);
+            } else if (e.isEquals(CommonExceptionCode.FAIL__FILE_MIMETYPE)) {
+                return new CommonException(CommonExceptionCode.FAIL__IMAGE_MIMETYPE);
             }
         } else if (FileType.EXCEL.equals(fileType)) {
-            if (e.isEquals(CommonExceptionCode.ERROR_FAIL_FILE_EXT)) {
-                return new CommonException(CommonExceptionCode.ERROR_FAIL_EXCEL_EXT);
-            } else if (e.isEquals(CommonExceptionCode.ERROR_FAIL_FILE_MIMETYPE)) {
-                return new CommonException(CommonExceptionCode.ERROR_FAIL_EXCEL_MIMETYPE);
+            if (e.isEquals(CommonExceptionCode.FAIL__FILE_EXT)) {
+                return new CommonException(CommonExceptionCode.FAIL__EXCEL_EXT);
+            } else if (e.isEquals(CommonExceptionCode.FAIL__FILE_MIMETYPE)) {
+                return new CommonException(CommonExceptionCode.FAIL__EXCEL_MIMETYPE);
             }
         } else if (FileType.WORD.equals(fileType)) {
-            if (e.isEquals(CommonExceptionCode.ERROR_FAIL_FILE_EXT)) {
-                throw new CommonException(CommonExceptionCode.ERROR_FAIL_WORD_EXT);
-            } else if (e.isEquals(CommonExceptionCode.ERROR_FAIL_FILE_MIMETYPE)) {
-                throw new CommonException(CommonExceptionCode.ERROR_FAIL_WORD_MIMETYPE);
+            if (e.isEquals(CommonExceptionCode.FAIL__FILE_EXT)) {
+                throw new CommonException(CommonExceptionCode.FAIL__WORD_EXT);
+            } else if (e.isEquals(CommonExceptionCode.FAIL__FILE_MIMETYPE)) {
+                throw new CommonException(CommonExceptionCode.FAIL__WORD_MIMETYPE);
             }
         } else if (FileType.PDF.equals(fileType)) {
-            if (e.isEquals(CommonExceptionCode.ERROR_FAIL_FILE_EXT)) {
-                throw new CommonException(CommonExceptionCode.ERROR_FAIL_PDF_EXT);
-            } else if (e.isEquals(CommonExceptionCode.ERROR_FAIL_FILE_MIMETYPE)) {
-                throw new CommonException(CommonExceptionCode.ERROR_FAIL_PDF_MIMETYPE);
+            if (e.isEquals(CommonExceptionCode.FAIL__FILE_EXT)) {
+                throw new CommonException(CommonExceptionCode.FAIL__PDF_EXT);
+            } else if (e.isEquals(CommonExceptionCode.FAIL__FILE_MIMETYPE)) {
+                throw new CommonException(CommonExceptionCode.FAIL__PDF_MIMETYPE);
             }
         }
         return e;

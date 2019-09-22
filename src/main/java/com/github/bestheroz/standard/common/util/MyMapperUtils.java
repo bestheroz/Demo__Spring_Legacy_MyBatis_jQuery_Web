@@ -88,8 +88,8 @@ public class MyMapperUtils {
     private static <T> T getCollectionTypeCatchException(final Object content, final Class<T> returnType) {
         final JsonElement jsonElement = writeObjectAsJsonElement(content);
         if (jsonElement.isJsonPrimitive()) {
-            LOGGER.warn(CommonExceptionCode.ERROR_FAIL_TRANSFORM_DATA.toString());
-            throw new CommonException(CommonExceptionCode.ERROR_FAIL_TRANSFORM_DATA, jsonElement);
+            LOGGER.warn(CommonExceptionCode.FAIL__TRANSFORM_DATA.toString());
+            throw new CommonException(CommonExceptionCode.FAIL__TRANSFORM_DATA, jsonElement);
         } else if (jsonElement.isJsonNull()) {
             if (returnType == JsonObject.class) {
                 return (T) new JsonObject();

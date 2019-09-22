@@ -36,8 +36,8 @@ public class MyBlobFileUtils {
         }
         final TableSampleFileMstVO sampleFileMstVO = MyAccessBeanUtils.getBean(TableSampleFileMstDAO.class).getVO(tableSampleFileMstVO, whereKeys);
         if (sampleFileMstVO == null) {
-            LOGGER.warn("fileSeq: {}, fileName: {} :: {}", fileSeq, fileName, CommonExceptionCode.ERROR_FILE_NOT_FOUND.toString());
-            throw new CommonException(CommonExceptionCode.ERROR_FILE_NOT_FOUND);
+            LOGGER.warn("fileSeq: {}, fileName: {} :: {}", fileSeq, fileName, CommonExceptionCode.FAIL_FILE_NOT_FOUND.toString());
+            throw new CommonException(CommonExceptionCode.FAIL_FILE_NOT_FOUND);
         }
 
         try {

@@ -27,7 +27,7 @@ public class AbstractDownloadView extends AbstractView {
     protected void renderMergedOutputModel(final Map<String, Object> model, final HttpServletRequest request, final HttpServletResponse response) throws CommonException {
         final File file = (File) model.get(DOWNLOAD_FILE);
         if (!MyNullUtils.exists(file)) {
-            this.logger.warn("{} {}", CommonExceptionCode.ERROR_FILE_NOT_FOUND.getMessage(), file.getAbsolutePath());
+            this.logger.warn("{} {}", CommonExceptionCode.FAIL_FILE_NOT_FOUND.getMessage(), file.getAbsolutePath());
             response.setContentType("text/html;charset=utf-8");
             try (PrintWriter pw = response.getWriter()) {
                 pw.println("<script>");
