@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration>
 <configuration>
-    <property name="LOG_DIR" value="/Mnsapp/tomcat8/logs"/>
+    <property name="LOG_DIR" value="/tomcat8/logs"/>
 
     <appender name="DEBUG_FILE_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_DIR}/debuglog.log</file>
