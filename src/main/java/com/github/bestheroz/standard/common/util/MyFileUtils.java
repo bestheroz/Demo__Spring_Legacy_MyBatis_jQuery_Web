@@ -32,6 +32,7 @@ public class MyFileUtils {
     private static final String STR_DOT = ".";
     private static final String STR_INFO_MESSAGE = "Target for uploading file : {}";
     private static final String STR_UNDERLINE = "_";
+    private static final Tika TIKA_INSTANCE = new Tika();
 
     protected MyFileUtils() {
         throw new UnsupportedOperationException();
@@ -189,52 +190,27 @@ public class MyFileUtils {
         return file;
     }
 
-    public enum FileType {
-        IMAGE(Sets.newHashSet("gif", "jpg", "jpeg", "tif", "tiff", "png", "bmp"), Sets.newHashSet("image/gif", "image/jpeg", "image/pjpeg", "image/tiff", "image/x-tiff", "image/png", "image/bmp")),
-
-        EXCEL(Sets.newHashSet("xlsx", "xls"),
-                Sets.newHashSet("application/excel", "application/vnd.ms-excel", "application/x-excel", "application/x-msexcel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")),
-
-        WORD(Sets.newHashSet("docx", "doc", "dotx"), Sets.newHashSet("application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                "application/vnd.openxmlformats-officedocument.wordprocessingml.template")),
-
-        PDF(Collections.singleton("pdf"), Sets.newHashSet("application/pdf", "application/x-pdf")),
-
-        ILLEGAL(Sets.newHashSet("exe", "sh", "csh", "ai"),
-                Sets.newHashSet("application/octet-stream", "application/x-sh", "application/x-shar", "text/x-script.sh", "application/x-csh", "text/x-script.csh", "application/postscript"));
-
-        FileType(final Set<String> extList, final Set<String> mimeTypeList) {
-            this.extList = extList;
-            this.mimeTypeList = mimeTypeList;
-        }
-
-        private Set<String> extList;
-        private Set<String> mimeTypeList;
-    }
-
-    private static final Tika TIKA_INSTANCE = new Tika();
-
     // 업로드 하려는 파일의 검증(MultipartFile 이용)
     public static void validateFile(final MultipartFile multipartFile) throws CommonException {
         if (FileType.ILLEGAL.extList.contains(getExtension(multipartFile))) {
-            LOGGER.warn("{}{}", CommonExceptionCode.FAIL__FILE_EXT.toString(), multipartFile.getOriginalFilename());
-            throw new CommonException(CommonExceptionCode.FAIL__FILE_EXT);
+            LOGGER.warn("{}{}", CommonExceptionCode.FAIL_FILE_SIZE.toString(), multipartFile.getOriginalFilename());
+            throw new CommonException(CommonExceptionCode.FAIL_FILE_SIZE);
         }
         if (FileType.ILLEGAL.mimeTypeList.contains(getMimeType(multipartFile))) {
-            LOGGER.warn("{}{}", CommonExceptionCode.FAIL__FILE_MIMETYPE.toString(), multipartFile.getOriginalFilename());
-            throw new CommonException(CommonExceptionCode.FAIL__FILE_MIMETYPE);
+            LOGGER.warn("{}{}", CommonExceptionCode.FAIL_FILE_MIMETYPE.toString(), multipartFile.getOriginalFilename());
+            throw new CommonException(CommonExceptionCode.FAIL_FILE_MIMETYPE);
         }
     }
 
     // 업로드된 파일의 검증(File 이용)
     public static void validateFile(final File file) throws CommonException {
         if (FileType.ILLEGAL.extList.contains(getExtension(file))) {
-            LOGGER.warn("{}{}", CommonExceptionCode.FAIL__FILE_EXT.toString(), file.getAbsolutePath());
-            throw new CommonException(CommonExceptionCode.FAIL__FILE_EXT);
+            LOGGER.warn("{}{}", CommonExceptionCode.FAIL_FILE_SIZE.toString(), file.getAbsolutePath());
+            throw new CommonException(CommonExceptionCode.FAIL_FILE_SIZE);
         }
         if (FileType.ILLEGAL.mimeTypeList.contains(getMimeType(file))) {
-            LOGGER.warn("{}{}", CommonExceptionCode.FAIL__FILE_MIMETYPE.toString(), file.getAbsolutePath());
-            throw new CommonException(CommonExceptionCode.FAIL__FILE_MIMETYPE);
+            LOGGER.warn("{}{}", CommonExceptionCode.FAIL_FILE_MIMETYPE.toString(), file.getAbsolutePath());
+            throw new CommonException(CommonExceptionCode.FAIL_FILE_MIMETYPE);
         }
     }
 
@@ -242,12 +218,12 @@ public class MyFileUtils {
     public static void validateFile(final MultipartFile multipartFile, final FileType fileType) throws CommonException {
         try {
             if (!fileType.extList.contains(getExtension(multipartFile))) {
-                LOGGER.warn("{}{}", CommonExceptionCode.FAIL__FILE_EXT.toString(), multipartFile.getOriginalFilename());
-                throw new CommonException(CommonExceptionCode.FAIL__FILE_EXT);
+                LOGGER.warn("{}{}", CommonExceptionCode.FAIL_FILE_SIZE.toString(), multipartFile.getOriginalFilename());
+                throw new CommonException(CommonExceptionCode.FAIL_FILE_SIZE);
             }
             if (!fileType.mimeTypeList.contains(getMimeType(multipartFile))) {
-                LOGGER.warn("{}{}", CommonExceptionCode.FAIL__FILE_MIMETYPE.toString(), multipartFile.getOriginalFilename());
-                throw new CommonException(CommonExceptionCode.FAIL__FILE_MIMETYPE);
+                LOGGER.warn("{}{}", CommonExceptionCode.FAIL_FILE_MIMETYPE.toString(), multipartFile.getOriginalFilename());
+                throw new CommonException(CommonExceptionCode.FAIL_FILE_MIMETYPE);
             }
 
             validateFile(multipartFile);
@@ -260,12 +236,12 @@ public class MyFileUtils {
     public static void validateFile(final File file, final FileType fileType) throws CommonException {
         try {
             if (!fileType.extList.contains(getExtension(file))) {
-                LOGGER.warn("{}{}", CommonExceptionCode.FAIL__FILE_EXT.toString(), file.getAbsolutePath());
-                throw new CommonException(CommonExceptionCode.FAIL__FILE_EXT);
+                LOGGER.warn("{}{}", CommonExceptionCode.FAIL_FILE_SIZE.toString(), file.getAbsolutePath());
+                throw new CommonException(CommonExceptionCode.FAIL_FILE_SIZE);
             }
             if (!fileType.mimeTypeList.contains(getMimeType(file))) {
-                LOGGER.warn("{}{}", CommonExceptionCode.FAIL__FILE_MIMETYPE.toString(), file.getAbsolutePath());
-                throw new CommonException(CommonExceptionCode.FAIL__FILE_MIMETYPE);
+                LOGGER.warn("{}{}", CommonExceptionCode.FAIL_FILE_MIMETYPE.toString(), file.getAbsolutePath());
+                throw new CommonException(CommonExceptionCode.FAIL_FILE_MIMETYPE);
             }
 
             validateFile(file);
@@ -276,28 +252,28 @@ public class MyFileUtils {
 
     private static CommonException setResultCodeByFileType(final CommonException e, final FileType fileType) {
         if (FileType.IMAGE.equals(fileType)) {
-            if (e.isEquals(CommonExceptionCode.FAIL__FILE_EXT)) {
-                return new CommonException(CommonExceptionCode.FAIL__IMAGE_EXT);
-            } else if (e.isEquals(CommonExceptionCode.FAIL__FILE_MIMETYPE)) {
-                return new CommonException(CommonExceptionCode.FAIL__IMAGE_MIMETYPE);
+            if (e.isEquals(CommonExceptionCode.FAIL_FILE_SIZE)) {
+                return new CommonException(CommonExceptionCode.FAIL_IMAGE_EXT);
+            } else if (e.isEquals(CommonExceptionCode.FAIL_FILE_MIMETYPE)) {
+                return new CommonException(CommonExceptionCode.FAIL_IMAGE_MIMETYPE);
             }
         } else if (FileType.EXCEL.equals(fileType)) {
-            if (e.isEquals(CommonExceptionCode.FAIL__FILE_EXT)) {
-                return new CommonException(CommonExceptionCode.FAIL__EXCEL_EXT);
-            } else if (e.isEquals(CommonExceptionCode.FAIL__FILE_MIMETYPE)) {
-                return new CommonException(CommonExceptionCode.FAIL__EXCEL_MIMETYPE);
+            if (e.isEquals(CommonExceptionCode.FAIL_FILE_SIZE)) {
+                return new CommonException(CommonExceptionCode.FAIL_EXCEL_EXT);
+            } else if (e.isEquals(CommonExceptionCode.FAIL_FILE_MIMETYPE)) {
+                return new CommonException(CommonExceptionCode.FAIL_EXCEL_MIMETYPE);
             }
         } else if (FileType.WORD.equals(fileType)) {
-            if (e.isEquals(CommonExceptionCode.FAIL__FILE_EXT)) {
-                throw new CommonException(CommonExceptionCode.FAIL__WORD_EXT);
-            } else if (e.isEquals(CommonExceptionCode.FAIL__FILE_MIMETYPE)) {
-                throw new CommonException(CommonExceptionCode.FAIL__WORD_MIMETYPE);
+            if (e.isEquals(CommonExceptionCode.FAIL_FILE_SIZE)) {
+                throw new CommonException(CommonExceptionCode.FAIL_WORD_EXT);
+            } else if (e.isEquals(CommonExceptionCode.FAIL_FILE_MIMETYPE)) {
+                throw new CommonException(CommonExceptionCode.FAIL_WORD_MIMETYPE);
             }
         } else if (FileType.PDF.equals(fileType)) {
-            if (e.isEquals(CommonExceptionCode.FAIL__FILE_EXT)) {
-                throw new CommonException(CommonExceptionCode.FAIL__PDF_EXT);
-            } else if (e.isEquals(CommonExceptionCode.FAIL__FILE_MIMETYPE)) {
-                throw new CommonException(CommonExceptionCode.FAIL__PDF_MIMETYPE);
+            if (e.isEquals(CommonExceptionCode.FAIL_FILE_SIZE)) {
+                throw new CommonException(CommonExceptionCode.FAIL_PDF_EXT);
+            } else if (e.isEquals(CommonExceptionCode.FAIL_FILE_MIMETYPE)) {
+                throw new CommonException(CommonExceptionCode.FAIL_PDF_MIMETYPE);
             }
         }
         return e;
@@ -387,5 +363,28 @@ public class MyFileUtils {
 
     public static String getExtension(final String fileName) {
         return FilenameUtils.getExtension(fileName).toLowerCase(Locale.getDefault());
+    }
+
+    public enum FileType {
+        IMAGE(Sets.newHashSet("gif", "jpg", "jpeg", "tif", "tiff", "png", "bmp"), Sets.newHashSet("image/gif", "image/jpeg", "image/pjpeg", "image/tiff", "image/x-tiff", "image/png", "image/bmp")),
+
+        EXCEL(Sets.newHashSet("xlsx", "xls"),
+                Sets.newHashSet("application/excel", "application/vnd.ms-excel", "application/x-excel", "application/x-msexcel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")),
+
+        WORD(Sets.newHashSet("docx", "doc", "dotx"), Sets.newHashSet("application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.template")),
+
+        PDF(Collections.singleton("pdf"), Sets.newHashSet("application/pdf", "application/x-pdf")),
+
+        ILLEGAL(Sets.newHashSet("exe", "sh", "csh", "ai"),
+                Sets.newHashSet("application/octet-stream", "application/x-sh", "application/x-shar", "text/x-script.sh", "application/x-csh", "text/x-script.csh", "application/postscript"));
+
+        private final Set<String> extList;
+        private final Set<String> mimeTypeList;
+
+        FileType(final Set<String> extList, final Set<String> mimeTypeList) {
+            this.extList = extList;
+            this.mimeTypeList = mimeTypeList;
+        }
     }
 }

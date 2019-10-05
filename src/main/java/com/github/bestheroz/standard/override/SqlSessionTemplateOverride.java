@@ -341,7 +341,7 @@ public class SqlSessionTemplateOverride extends SqlSessionTemplate {
         } else if (StringUtils.containsIgnoreCase(stackTrace, "Mapped Statements collection does not contain value for")) {
             throw new CommonException(CommonExceptionCode.FAIL_MAPPED_STATMENTS_COLLECTION_DOES_NOT_CONTAIN);
         } else if (StringUtils.containsIgnoreCase(stackTrace, "Fail to Decryption data")) {
-            throw new CommonException(CommonExceptionCode.FAIL__TO_DECRYPTION_DATA);
+            throw new CommonException(CommonExceptionCode.FAIL_TO_DECRYPTION_DATA);
         } else {
             LOGGER.warn(CommonException.EXCEPTION_ERROR_INVALID_REQUEST.getJsonObject().toString());
             throw CommonException.EXCEPTION_ERROR_INVALID_REQUEST;

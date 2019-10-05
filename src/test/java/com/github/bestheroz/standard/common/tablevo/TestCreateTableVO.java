@@ -27,11 +27,11 @@ public class TestCreateTableVO {
 
     @Test
     public void test11() {
-        try (Statement stmt = this.sqlSession.getConnection().createStatement()) {
+        try (final Statement stmt = this.sqlSession.getConnection().createStatement()) {
 
             final String tableName = "SAMPLE_MENU_MST";
 
-            try (ResultSet rs = stmt.executeQuery("SELECT * FROM " + tableName + " WHERE ROWNUM=0")) {
+            try (final ResultSet rs = stmt.executeQuery("SELECT * FROM " + tableName + " WHERE ROWNUM=0")) {
                 final ResultSetMetaData metaInfo = rs.getMetaData();
 
                 // 1. VO만들기
@@ -41,7 +41,7 @@ public class TestCreateTableVO {
                     final String columnName = metaInfo.getColumnName(i + 1);
                     final String columnTypeName = metaInfo.getColumnTypeName(i + 1);
                     final String camelColumnName = CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, columnName);
-                    String fieldType;
+                    final String fieldType;
                     if (StringUtils.equalsAny(columnTypeName, "VARCHAR", "VARCHAR2", "CHAR", "CLOB")) {
                         fieldType = "String";
                     } else if (StringUtils.equalsAny(columnTypeName, "NUMBER")) {

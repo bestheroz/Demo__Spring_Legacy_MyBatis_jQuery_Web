@@ -10,12 +10,14 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 @Aspect
+@Component
 public class TraceLoggingInAOP {
     private static final Logger LOGGER = LoggerFactory.getLogger(TraceLoggingInAOP.class);
     private static final String STR_CLASS_METHOD = "{0}.{1}({2})";

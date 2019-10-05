@@ -27,7 +27,7 @@ public class TestAdminMenuController extends DefaultTestClass {
     @Test
     public void 메뉴데이터_취득() throws Exception {
         final MvcResult mvcResult = MyTestUtils.performPostLogined("/sample/admin/menu/getSampleMenuMstVOList.json").andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8)).andReturn();
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON)).andReturn();
         Assertions.assertNotNull(MyMapperUtils.writeObjectAsArrayList(mvcResult.getResponse().getContentAsString(), AdminMenuVO.class).get(0).getMenuId());
     }
 
@@ -41,7 +41,7 @@ public class TestAdminMenuController extends DefaultTestClass {
         vo.setParMenuId(1000000000);
         vo.setUseYn("Y");
         final MvcResult mvcResult = MyTestUtils.performPostLogined("/sample/admin/menu/insertSampleMenuMst.json", vo).andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8)).andReturn();
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON)).andReturn();
         Assertions.assertEquals(MyMapperUtils.writeObjectAsJsonObject(mvcResult.getResponse().getContentAsString()), CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject());
         Assertions.assertEquals(MyAccessBeanUtils.getBean(TableSampleMenuMstDAO.class).getVO(vo, Collections.singleton("menuNm")).getMenuNm(), "메뉴데이터_추가");
     }
@@ -52,7 +52,7 @@ public class TestAdminMenuController extends DefaultTestClass {
         vo.setMenuId(1000000000);
         vo.setRemark1("메뉴데이터_수정");
         final MvcResult mvcResult = MyTestUtils.performPostLogined("/sample/admin/menu/updateSampleMenuMst.json", vo).andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8)).andReturn();
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON)).andReturn();
         Assertions.assertEquals(MyMapperUtils.writeObjectAsJsonObject(mvcResult.getResponse().getContentAsString()), CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject());
         Assertions.assertEquals(MyAccessBeanUtils.getBean(TableSampleMenuMstDAO.class).getVO(vo, Collections.singleton("menuId")).getRemark1(), "메뉴데이터_수정");
     }
@@ -62,7 +62,7 @@ public class TestAdminMenuController extends DefaultTestClass {
         final TableSampleMenuMstVO vo = new TableSampleMenuMstVO();
         vo.setMenuId(1000000000);
         final MvcResult mvcResult = MyTestUtils.performPostLogined("/sample/admin/menu/deleteSampleMenuMst.json", vo).andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8)).andReturn();
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON)).andReturn();
         Assertions.assertEquals(MyMapperUtils.writeObjectAsJsonObject(mvcResult.getResponse().getContentAsString()), CommonException.EXCEPTION_SUCCESS_NORMAL.getJsonObject());
         Assertions.assertNull(MyAccessBeanUtils.getBean(TableSampleMenuMstDAO.class).getVO(vo, Collections.singleton("menuId")));
     }
@@ -70,7 +70,7 @@ public class TestAdminMenuController extends DefaultTestClass {
     @Test
     public void 카테고리_select리스트_가져오기() throws Exception {
         final MvcResult mvcResult = MyTestUtils.performPostLogined("/sample/admin/menu/getPMenuValueLableVOList.json").andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8)).andReturn();
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON)).andReturn();
         Assertions.assertTrue(MyMapperUtils.writeObjectAsArrayList(mvcResult.getResponse().getContentAsString(), ValueLabelVO.class).size() > 0);
     }
 
