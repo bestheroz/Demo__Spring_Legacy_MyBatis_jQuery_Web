@@ -113,11 +113,11 @@ public class HtmlTag extends TagSupport {
             this.makeScriptTag("https://cdn.jsdelivr.net/npm/jquery-file-download@1.4.6/src/Scripts/jquery.fileDownload.js");
         }
         if (StringUtils.equals(this.handlebars, CommonCode.YES)) {
-            this.makeScriptTag("https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.2.1/handlebars.min.js");
+            this.makeScriptTag("https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.4.0/handlebars.min.js");
             this.makeScriptTag(CommonCode.PATH_JS + "/MyHandlebars.js");
         }
         if (!StringUtils.equals(this.icon, CommonCode.NO)) {
-            this.makeLinkTag("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css");
+            this.makeLinkTag("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css");
         }
         if (!StringUtils.equals(this.maxLength, CommonCode.NO)) {
             this.makeScriptTag("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-maxlength/1.7.0/bootstrap-maxlength.min.js");
