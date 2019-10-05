@@ -1,7 +1,6 @@
 ;
 const MyDatetimePicker = {
     makeDatetimepicker: (targetObj, format) => {
-        console.info(targetObj);
         if ($(targetObj).length === 0) {
             console.warn('올바르지않은 대상');
         } else {

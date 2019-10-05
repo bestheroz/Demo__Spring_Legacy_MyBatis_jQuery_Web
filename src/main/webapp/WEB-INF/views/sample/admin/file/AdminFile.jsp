@@ -185,6 +185,8 @@
                 }, {
                     "data": "updDt"
                 }]
+            }).on('column-visibility.dt', function (e, indicator) {
+                $('#table1').DataTable().columns.adjust().responsive.recalc();
             });
         }
     </script>
