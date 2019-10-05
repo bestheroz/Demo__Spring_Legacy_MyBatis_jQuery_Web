@@ -3,16 +3,16 @@
         <a class="navbar-brand" href="javascript:void(0);" onclick="MyCommon.goLink('/');">Home</a>
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav mr-auto">
-                <menu-component v-for="item in items" :data="item" :key="item.menuId"></menu-component>
+                <menu-component :data="item" :key="item.menuId" v-for="item in items"></menu-component>
             </ul>
             <ul class="navbar-nav float-right">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="javascript:void(0);" id="navbarDropdownRight" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);" id="navbarDropdownRight" role="button">
                         <i class="far fa-user-circle"></i>
-                        <span id="menu_memberNm"></span>
+                        <span id="menu_memberName"></span>
                         <span class="caret"></span>
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownRight">
+                    <div aria-labelledby="navbarDropdownRight" class="dropdown-menu">
                         <a class="dropdown-item" href="javascript:void(0);" onclick="MyCommon.goLink();"><i class="fas fa-user-cog"></i>
                             내 정보 수정</a>
                         <div class="dropdown-divider"></div>
@@ -32,10 +32,10 @@
         template: `
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{data.menuNm}}
+                {{data.menuName}}
             </a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" v-for="item in data.children" :key="item.menuId" href="javascript:void(0);" :data-onclick="item.url">{{item.menuNm}}</a>
+                <a class="dropdown-item" v-for="item in data.children" :key="item.menuId" href="javascript:void(0);" :data-onclick="item.url">{{item.menuName}}</a>
             </div>
         </li>
         `,
@@ -53,6 +53,7 @@
             items: menuData
         },
         mounted() {
+            console.info(menuData);
             $('a[data-onclick]').each((index, value) => {
                 $(value).on('click', () => {
                     MyCommon.goLink($(value).data('onclick'));
@@ -61,6 +62,6 @@
         }
     });
     jQuery(($) => {
-        $('#menu_memberNm').text(menuMemberNm);
+        $('#menu_memberName').text(menuMemberName);
     });
 </script>

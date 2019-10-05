@@ -27,20 +27,20 @@ public class AdminFileService {
     private TableSampleFileMstDAO tableSampleFileMstDAO;
 
     public List<AdminFileVO> getSampleFileMstVOList(final AdminFileVO vo) throws CommonException {
-        return MyMapperUtils.writeObjectAsArrayList(this.tableSampleFileMstDAO.getList(MyMapperUtils.writeObjectAsObject(vo, TableSampleFileMstVO.class), null, "UPD_DT DESC"),
+        return MyMapperUtils.writeObjectAsArrayList(this.tableSampleFileMstDAO.getList(MyMapperUtils.writeObjectAsObject(vo, TableSampleFileMstVO.class), null, "UPDATED DESC"),
                 AdminFileVO.class);
     }
 
     public void insertSampleFileMst(final TableSampleFileMstVO vo, final MultipartFile multipartFile, final LoginVO loginVO) throws CommonException {
-        extractMultipartFile(vo, multipartFile);
-        vo.setRegMemberId(loginVO.getMemberId());
-        vo.setUpdMemberId(loginVO.getMemberId());
+        this.extractMultipartFile(vo, multipartFile);
+        vo.setCreatedBy(loginVO.getMemberId());
+        vo.setUpdatedBy(loginVO.getMemberId());
         this.tableSampleFileMstDAO.insert(vo);
     }
 
     public void updateSampleFileMst(final TableSampleFileMstVO vo, final MultipartFile multipartFile, final LoginVO loginVO) throws CommonException {
-        extractMultipartFile(vo, multipartFile);
-        vo.setUpdMemberId(loginVO.getMemberId());
+        this.extractMultipartFile(vo, multipartFile);
+        vo.setUpdatedBy(loginVO.getMemberId());
         this.tableSampleFileMstDAO.update(vo, Collections.singleton("fileSeq"), null);
     }
 
@@ -48,10 +48,10 @@ public class AdminFileService {
         if (!MyNullUtils.isEmpty(multipartFile)) {
             try {
                 vo.setFileData(ArrayUtils.toObject(multipartFile.getBytes()));
-                vo.setMimeTyp(MyFileUtils.getMimeType(multipartFile));
-                vo.setFileNmExt(MyFileUtils.getExtension(multipartFile.getOriginalFilename()));
-                if (StringUtils.isEmpty(vo.getFileNm())) {
-                    vo.setFileNm(multipartFile.getOriginalFilename());
+                vo.setMimeType(MyFileUtils.getMimeType(multipartFile));
+                vo.setFileNameExt(MyFileUtils.getExtension(multipartFile.getOriginalFilename()));
+                if (StringUtils.isEmpty(vo.getFileName())) {
+                    vo.setFileName(multipartFile.getOriginalFilename());
                 }
             } catch (final IOException e) {
                 this.logger.warn(ExceptionUtils.getStackTrace(e));

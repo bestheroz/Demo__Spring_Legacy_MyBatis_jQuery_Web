@@ -20,7 +20,7 @@ public class ValueLabelController {
 
     @RequestMapping(value = "/common/valuelabel/getValueLabeVOList.json", method = RequestMethod.POST)
     @ResponseBody
-    public List<ValueLabelVO> getValueLabeVOList(@RequestParam("grcode") final String grcode) throws CommonException {
-        return this.valueLabelService.getValueLabeVOList(grcode);
+    public List<ValueLabelVO> getValueLabeVOList(@RequestParam("groupCode") final String groupCode) throws CommonException {
+        return this.valueLabelService.getValueLabeVOList(groupCode);
     }
 }

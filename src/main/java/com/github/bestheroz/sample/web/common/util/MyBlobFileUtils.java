@@ -28,11 +28,11 @@ public class MyBlobFileUtils {
     public static File getFileFromSampleFileMstObject(final Integer fileSeq, final String fileName) throws CommonException {
         final TableSampleFileMstVO tableSampleFileMstVO = new TableSampleFileMstVO();
         tableSampleFileMstVO.setFileSeq(fileSeq);
-        tableSampleFileMstVO.setFileNm(fileName);
+        tableSampleFileMstVO.setFileName(fileName);
         final Set<String> whereKeys = new HashSet<>();
         whereKeys.add("fileSeq");
-        if (StringUtils.isNotEmpty(tableSampleFileMstVO.getFileNm())) {
-            whereKeys.add("fileNm");
+        if (StringUtils.isNotEmpty(tableSampleFileMstVO.getFileName())) {
+            whereKeys.add("fileName");
         }
         final TableSampleFileMstVO sampleFileMstVO = MyAccessBeanUtils.getBean(TableSampleFileMstDAO.class).getVO(tableSampleFileMstVO, whereKeys);
         if (sampleFileMstVO == null) {
@@ -41,7 +41,7 @@ public class MyBlobFileUtils {
         }
 
         try {
-            final File file = new File(sampleFileMstVO.getFileNm());
+            final File file = new File(sampleFileMstVO.getFileName());
             FileUtils.writeByteArrayToFile(file, ArrayUtils.toPrimitive(sampleFileMstVO.getFileData()));
             return file;
         } catch (final Throwable e) {
@@ -55,12 +55,12 @@ public class MyBlobFileUtils {
         final TableSampleFileMstVO tableSampleFileMstVO = new TableSampleFileMstVO();
         if (!MyNullUtils.isEmpty(multipartFile)) {
             try {
-                tableSampleFileMstVO.setRegMemberId(loginVO.getMemberId());
-                tableSampleFileMstVO.setUpdMemberId(loginVO.getMemberId());
+                tableSampleFileMstVO.setCreatedBy(loginVO.getMemberId());
+                tableSampleFileMstVO.setUpdatedBy(loginVO.getMemberId());
                 tableSampleFileMstVO.setFileData(ArrayUtils.toObject(multipartFile.getBytes()));
-                tableSampleFileMstVO.setMimeTyp(MyFileUtils.getMimeType(multipartFile));
-                tableSampleFileMstVO.setFileNm(multipartFile.getOriginalFilename());
-                tableSampleFileMstVO.setFileNmExt(MyFileUtils.getExtension(multipartFile));
+                tableSampleFileMstVO.setMimeType(MyFileUtils.getMimeType(multipartFile));
+                tableSampleFileMstVO.setFileName(multipartFile.getOriginalFilename());
+                tableSampleFileMstVO.setFileNameExt(MyFileUtils.getExtension(multipartFile));
                 MyAccessBeanUtils.getBean(TableSampleFileMstDAO.class).insert(tableSampleFileMstVO);
             } catch (final IOException e) {
                 LOGGER.warn(ExceptionUtils.getStackTrace(e));
@@ -77,12 +77,12 @@ public class MyBlobFileUtils {
             if (!MyNullUtils.isEmpty(multipartFile)) {
                 try {
                     tableSampleFileMstVO.setFileSeq(fileSeq);
-                    tableSampleFileMstVO.setRegMemberId(loginVO.getMemberId());
-                    tableSampleFileMstVO.setUpdMemberId(loginVO.getMemberId());
+                    tableSampleFileMstVO.setCreatedBy(loginVO.getMemberId());
+                    tableSampleFileMstVO.setUpdatedBy(loginVO.getMemberId());
                     tableSampleFileMstVO.setFileData(ArrayUtils.toObject(multipartFile.getBytes()));
-                    tableSampleFileMstVO.setMimeTyp(MyFileUtils.getMimeType(multipartFile));
-                    tableSampleFileMstVO.setFileNm(multipartFile.getOriginalFilename());
-                    tableSampleFileMstVO.setFileNmExt(MyFileUtils.getExtension(multipartFile));
+                    tableSampleFileMstVO.setMimeType(MyFileUtils.getMimeType(multipartFile));
+                    tableSampleFileMstVO.setFileName(multipartFile.getOriginalFilename());
+                    tableSampleFileMstVO.setFileNameExt(MyFileUtils.getExtension(multipartFile));
                     MyAccessBeanUtils.getBean(TableSampleFileMstDAO.class).update(tableSampleFileMstVO, Collections.singleton("fileSeq"), null);
                 } catch (final IOException e) {
                     LOGGER.warn(ExceptionUtils.getStackTrace(e));

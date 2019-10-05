@@ -18,19 +18,19 @@ public class MenuService {
     @Autowired
     private MenuDAO menuDAO;
 
-    public JsonArray getMenuVOObject(final JsonObject param, boolean isNotLogined) throws CommonException {
+    public JsonArray getMenuVOObject(final JsonObject param, final boolean isNotLogined) throws CommonException {
         if (isNotLogined) {
             this.logger.warn(CommonException.EXCEPTION_ERROR_NOT_ALLOWED_MEMBER.getJsonObject().toString());
             throw CommonException.EXCEPTION_ERROR_NOT_ALLOWED_MEMBER;
         }
 
-        JsonObject temp = new JsonObject();
-        for (MenuVO menuVO : this.menuDAO.getMenuVOList(param)) {
+        final JsonObject temp = new JsonObject();
+        for (final MenuVO menuVO : this.menuDAO.getMenuVOList(param)) {
             if (menuVO.getLvl() == 2) {
                 temp.add(menuVO.getMenuId().toString(), MyMapperUtils.writeObjectAsJsonElement(menuVO));
             } else if (menuVO.getLvl() == 3) {
-                JsonObject tempJsonObject = temp.get(menuVO.getParMenuId().toString()).getAsJsonObject();
-                JsonArray children;
+                final JsonObject tempJsonObject = temp.get(menuVO.getParMenuId().toString()).getAsJsonObject();
+                final JsonArray children;
                 if (tempJsonObject.has("children")) {
                     children = tempJsonObject.get("children").getAsJsonArray();
                 } else {
@@ -40,8 +40,8 @@ public class MenuService {
                 tempJsonObject.add("children", children);
             }
         }
-        JsonArray result = new JsonArray();
-        for(Map.Entry<String, JsonElement> entry : temp.entrySet()){
+        final JsonArray result = new JsonArray();
+        for (final Map.Entry<String, JsonElement> entry : temp.entrySet()) {
             result.add(entry.getValue());
         }
         return result;

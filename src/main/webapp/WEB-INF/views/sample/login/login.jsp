@@ -21,7 +21,7 @@
                 <button class="btn btn-lg btn-primary btn-block" type="button" onclick="proc();"><i class="fas fa-sign-in-alt"></i>
                     로그인
                 </button>
-                <div class="col-sm-offset-2" style="margin-top: 10px;">
+                <div class="col-offset-2" style="margin-top: 10px;">
                     <p class="text-muted text-center" style="font-size: 16px;">
                         테스트 [ ID / Password ] => [
                         <strong>1 / 1</strong>
@@ -71,6 +71,7 @@
             }
             window.location.reload();
         }
+
         function clickSaveId() {
             if ($('#save_id').hasClass('fa-check-square')) {
                 $('#save_id').addClass('fa-square').removeClass('fa-check-square');

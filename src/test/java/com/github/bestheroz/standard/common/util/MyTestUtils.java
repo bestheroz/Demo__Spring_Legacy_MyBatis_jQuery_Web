@@ -19,13 +19,12 @@ import java.util.Map.Entry;
 
 public class MyTestUtils {
     private static final Logger LOGGER = LoggerFactory.getLogger(MyTestUtils.class);
+    private static LoginVO loginedVO = null;
+    private static MockMvc mockMvc = null;
 
     protected MyTestUtils() {
         throw new UnsupportedOperationException();
     }
-
-    private static LoginVO loginedVO = null;
-    private static MockMvc mockMvc = null;
 
     public static void setMockMvc(final MockMvc mockMvc) {
         MyTestUtils.mockMvc = mockMvc;
@@ -103,8 +102,8 @@ public class MyTestUtils {
         if (loginedVO != null) {
             mockHttpServletRequestBuilder.sessionAttr(MySessionUtils.SESSION_VALUE_OF_LOGIN_VO, loginedVO);
             mockHttpServletRequestBuilder.sessionAttr("memberId", loginedVO.getMemberId());
-            mockHttpServletRequestBuilder.sessionAttr("memberNm", loginedVO.getMemberNm());
-            mockHttpServletRequestBuilder.sessionAttr("memberTyp", loginedVO.getMemberTyp());
+            mockHttpServletRequestBuilder.sessionAttr("memberName", loginedVO.getMemberName());
+            mockHttpServletRequestBuilder.sessionAttr("memberType", loginedVO.getMemberType());
         }
     }
 

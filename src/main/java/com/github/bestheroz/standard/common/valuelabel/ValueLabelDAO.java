@@ -11,11 +11,11 @@ import java.util.Map;
 
 @Mapper
 public interface ValueLabelDAO {
-    @Select(value = "SELECT SCD.CODE, SCD.CODE_NM FROM SAMPLE_CODE_DET SCD WHERE SCD.GRCODE = #{grcode, jdbcType=VARCHAR} ORDER BY SCD.DISP_SEQ ASC")
-    @Results(value = {@Result(column = "CODE", property = "value"), @Result(column = "CODE_NM", property = "label")})
-    List<ValueLabelVO> getValueLabeVOList(final String grcode) throws CommonException;
+    @Select(value = "SELECT SCD.CODE, SCD.CODE_NAME FROM SAMPLE_CODE_DET SCD WHERE SCD.GROUP_CODE = #{groupCode, jdbcType=VARCHAR} ORDER BY SCD.DISPLAY_ORDER ASC")
+    @Results(value = {@Result(column = "CODE", property = "value"), @Result(column = "CODE_NAME", property = "label")})
+    List<ValueLabelVO> getValueLabeVOList(final String groupCode) throws CommonException;
 
-    @Select(value = "SELECT SCD.CODE_NM FROM SAMPLE_CODE_DET SCD WHERE SCD.GRCODE = #{grcode, jdbcType=VARCHAR} AND SCD.CODE = #{code, jdbcType=VARCHAR}  ORDER BY SCD.DISP_SEQ ASC")
-    @Results(value = {@Result(column = "CODE_NM", property = "label")})
+    @Select(value = "SELECT SCD.CODE_NAME FROM SAMPLE_CODE_DET SCD WHERE SCD.GROUP_CODE = #{groupCode, jdbcType=VARCHAR} AND SCD.CODE = #{code, jdbcType=VARCHAR}  ORDER BY SCD.DISPLAY_ORDER ASC")
+    @Results(value = {@Result(column = "CODE_NAME", property = "label")})
     String getLabelByValue(final Map<String, Object> params) throws CommonException;
 }

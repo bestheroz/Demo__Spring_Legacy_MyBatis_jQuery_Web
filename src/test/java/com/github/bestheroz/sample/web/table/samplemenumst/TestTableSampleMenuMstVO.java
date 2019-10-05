@@ -7,18 +7,18 @@ import java.io.Serializable;
 @SuppressWarnings("ALL")
 public class TestTableSampleMenuMstVO implements Serializable {
     private Integer menuId;
-    private String menuNm;
-    private String menuTyp;
+    private String menuName;
+    private String menuType;
     private Integer parMenuId;
-    private String useYn;
+    private Boolean useTf;
     private Integer power;
-    private Integer dispSeq;
+    private Integer displayOrder;
     private String url;
     private String remark1;
-    private String regMemberId;
-    private LocalDateTime regDt;
-    private String updMemberId;
-    private LocalDateTime updDt;
+    private String createdBy;
+    private LocalDateTime created;
+    private String updatedBy;
+    private LocalDateTime updated;
 
     public Integer getMenuId() {
         return this.menuId;
@@ -28,20 +28,20 @@ public class TestTableSampleMenuMstVO implements Serializable {
         this.menuId = menuId;
     }
 
-    public String getMenuNm() {
-        return this.menuNm;
+    public String getMenuName() {
+        return this.menuName;
     }
 
-    public void setMenuNm(final String menuNm) {
-        this.menuNm = menuNm;
+    public void setMenuName(final String menuName) {
+        this.menuName = menuName;
     }
 
-    public String getMenuTyp() {
-        return this.menuTyp;
+    public String getMenuType() {
+        return this.menuType;
     }
 
-    public void setMenuTyp(final String menuTyp) {
-        this.menuTyp = menuTyp;
+    public void setMenuType(final String menuType) {
+        this.menuType = menuType;
     }
 
     public Integer getParMenuId() {
@@ -53,12 +53,12 @@ public class TestTableSampleMenuMstVO implements Serializable {
         this.parMenuId = parMenuId;
     }
 
-    public String getUseYn() {
-        return this.useYn;
+    public Boolean getUseTf() {
+        return this.useTf;
     }
 
-    public void setUseYn(final String useYn) {
-        this.useYn = useYn;
+    public void setUseTf(final Boolean useTf) {
+        this.useTf = useTf;
     }
 
     public Integer getPower() {
@@ -69,12 +69,12 @@ public class TestTableSampleMenuMstVO implements Serializable {
         this.power = power;
     }
 
-    public Integer getDispSeq() {
-        return this.dispSeq;
+    public Integer getDisplayOrder() {
+        return this.displayOrder;
     }
 
-    public void setDispSeq(final Integer dispSeq) {
-        this.dispSeq = dispSeq;
+    public void setDisplayOrder(final Integer displayOrder) {
+        this.displayOrder = displayOrder;
     }
 
     public String getUrl() {
@@ -93,38 +93,38 @@ public class TestTableSampleMenuMstVO implements Serializable {
         this.remark1 = remark1;
     }
 
-    public String getRegMemberId() {
-        return this.regMemberId;
+    public String getCreatedBy() {
+        return this.createdBy;
     }
 
-    public void setRegMemberId(final String regMemberId) {
-        this.regMemberId = regMemberId;
+    public void setCreatedBy(final String createdBy) {
+        this.createdBy = createdBy;
     }
 
-    public LocalDateTime getRegDt() {
-        return this.regDt;
+    public LocalDateTime getCreated() {
+        return this.created;
     }
 
-    public void setRegDt(final LocalDateTime regDt) {
-        this.regDt = regDt;
-    }
-
-    @SuppressWarnings("unused")
-    public String getUpdMemberId() {
-        return this.updMemberId;
-    }
-
-    public void setUpdMemberId(final String updMemberId) {
-        this.updMemberId = updMemberId;
-    }
-
-    public LocalDateTime getUpdDt() {
-        return this.updDt;
+    public void setCreated(final LocalDateTime created) {
+        this.created = created;
     }
 
     @SuppressWarnings("unused")
-    public void setUpdDt(final LocalDateTime updDt) {
-        this.updDt = updDt;
+    public String getUpdatedBy() {
+        return this.updatedBy;
+    }
+
+    public void setUpdatedBy(final String updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+    public LocalDateTime getUpdated() {
+        return this.updated;
+    }
+
+    @SuppressWarnings("unused")
+    public void setUpdated(final LocalDateTime updated) {
+        this.updated = updated;
     }
 
 }

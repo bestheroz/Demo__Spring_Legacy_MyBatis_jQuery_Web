@@ -13,7 +13,7 @@ dateObject는 Date형을 처리하기 위함
 {"date":28,"day":1,"hours":20,"minutes":27,"month":10,"seconds":41,"time":1480332461000,"timezoneOffset":-540,"year":116}
 
 페이지에서는 아래와 같이 처리
-<jsp:setProperty name="dateObject" property="time" value="${item4.updDt.time}" />
+<jsp:setProperty name="dateObject" property="time" value="${item4.updated.time}" />
 <fmt:formatDate value="${dateObject}" pattern="yyyy-MM-dd" />
 
 --%>

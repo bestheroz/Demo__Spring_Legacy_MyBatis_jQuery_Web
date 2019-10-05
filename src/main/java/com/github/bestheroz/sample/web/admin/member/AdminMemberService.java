@@ -24,18 +24,18 @@ public class AdminMemberService {
         if (StringUtils.isNotEmpty(vo.getMemberId())) {
             whereKeys.add("memberId");
         }
-        return MyMapperUtils.writeObjectAsArrayList(this.tableMemberMstDAO.getList(MyMapperUtils.writeObjectAsObject(vo, TableSampleMemberMstVO.class), whereKeys, "UPD_DT DESC"),
+        return MyMapperUtils.writeObjectAsArrayList(this.tableMemberMstDAO.getList(MyMapperUtils.writeObjectAsObject(vo, TableSampleMemberMstVO.class), whereKeys, "UPDATED DESC"),
                 AdminMemberVO.class);
     }
 
     void insertSampleMemberMst(final TableSampleMemberMstVO vo, final LoginVO loginVO) throws CommonException {
-        vo.setRegMemberId(loginVO.getMemberId());
-        vo.setUpdMemberId(loginVO.getMemberId());
+        vo.setCreatedBy(loginVO.getMemberId());
+        vo.setUpdatedBy(loginVO.getMemberId());
         this.tableMemberMstDAO.insert(vo);
     }
 
     void updateSampleMemberMst(final TableSampleMemberMstVO vo, final LoginVO loginVO) throws CommonException {
-        vo.setUpdMemberId(loginVO.getMemberId());
+        vo.setUpdatedBy(loginVO.getMemberId());
         this.tableMemberMstDAO.update(vo, Collections.singleton("memberId"), null);
     }
 

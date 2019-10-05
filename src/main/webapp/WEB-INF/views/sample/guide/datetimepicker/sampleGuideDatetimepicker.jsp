@@ -26,7 +26,7 @@
                 <div class="card-body">
                     <h4>YYYY-MM-DD(기본형)</h4>
                     <div class="row">
-					<span class="col-sm-2">
+					<span class="col-2">
 						<input type="text" class="form-control" id="resultTry1_1" placeholder="result..." readonly/>
 					</span>
                     </div>
@@ -36,14 +36,14 @@ MyDatetimePicker.makeDatetimepicker('#resultTry1_1', 'YYYY-MM-DD');
 </pre>
                     <h4>YYYY-MM</h4>
                     <div class="row">
-					<span class="col-sm-2">
+					<span class="col-2">
 						<input type="text" class="form-control" id="resultTry1_2" placeholder="result..." readonly/>
 					</span>
                     </div>
                     <pre class="prettyprint lang-js">MyDatetimePicker.makeDatetimepicker('#resultTry1_2', 'YYYY-MM');</pre>
                     <h4>YYYY</h4>
                     <div class="row">
-					<span class="col-sm-2">
+					<span class="col-2">
 						<input type="text" class="form-control" id="resultTry1_3" placeholder="result..." readonly/>
 					</span>
                     </div>
@@ -56,30 +56,30 @@ MyDatetimePicker.makeDatetimepicker('#resultTry1_1', 'YYYY-MM-DD');
                 <div class="card-body">
                     <h4>YYYY-MM-DD(기본형)</h4>
                     <div class="row">
-					<span class="col-sm-2">
+					<span class="col-2">
 						<input type="text" class="form-control" id="resultTry2_1_1" placeholder="result..." readonly/>
 					</span>
-                        <span class="col-sm-2">
+                        <span class="col-2">
 						<input type="text" class="form-control" id="resultTry2_1_2" placeholder="result..." readonly/>
 					</span>
                     </div>
                     <pre class="prettyprint lang-js">MyDatetimePicker.setFromTo($('#from'), $('#to'), 'YYYY-MM-DD');</pre>
                     <h4>YYYY-MM</h4>
                     <div class="row">
-					<span class="col-sm-2">
+					<span class="col-2">
 						<input type="text" class="form-control" id="resultTry2_2_1" placeholder="result..." readonly/>
 					</span>
-                        <span class="col-sm-2">
+                        <span class="col-2">
 						<input type="text" class="form-control" id="resultTry2_2_2" placeholder="result..." readonly/>
 					</span>
                     </div>
                     <pre class="prettyprint lang-js">MyDatetimePicker.setFromTo($('#from'), $('#to'), 'YYYY-MM');</pre>
                     <h4>YYYY</h4>
                     <div class="row">
-					<span class="col-sm-2">
+					<span class="col-2">
 						<input type="text" class="form-control" id="resultTry2_3_1" placeholder="result..." readonly/>
 					</span>
-                        <span class="col-sm-2">
+                        <span class="col-2">
 						<input type="text" class="form-control" id="resultTry2_3_2" placeholder="result..." readonly/>
 					</span>
                     </div>
@@ -92,21 +92,21 @@ MyDatetimePicker.makeDatetimepicker('#resultTry1_1', 'YYYY-MM-DD');
                 <div class="card-body">
                     <h4>HH:mm(기본형)</h4>
                     <div class="row">
-					<span class="col-sm-2">
+					<span class="col-2">
 						<input type="text" class="form-control" id="resultTry3_1" placeholder="result..." readonly/>
 					</span>
                     </div>
                     <pre class="prettyprint lang-js">MyDatetimePicker.makeDatetimepicker('#resultTry3_1', 'HH:mm');</pre>
                     <h4>HH</h4>
                     <div class="row">
-					<span class="col-sm-2">
+					<span class="col-2">
 						<input type="text" class="form-control" id="resultTry3_2" placeholder="result..." readonly/>
 					</span>
                     </div>
                     <pre class="prettyprint lang-js">MyDatetimePicker.makeDatetimepicker('#resultTry3_2', 'HH');</pre>
                     <h4>HH:mm:ss</h4>
                     <div class="row">
-					<span class="col-sm-2">
+					<span class="col-2">
 						<input type="text" class="form-control" id="resultTry3_3" placeholder="result..." readonly/>
 					</span>
                     </div>
@@ -119,10 +119,10 @@ MyDatetimePicker.makeDatetimepicker('#resultTry1_1', 'YYYY-MM-DD');
                 <div class="card-body">
                     <h4>hh:mm(기본형)</h4>
                     <div class="row">
-					<span class="col-sm-2">
+					<span class="col-2">
 						<input type="text" class="form-control" id="resultTry4_1_1" placeholder="result..." readonly/>
 					</span>
-                        <span class="col-sm-2">
+                        <span class="col-2">
 						<input type="text" class="form-control" id="resultTry4_1_2" placeholder="result..." readonly/>
 					</span>
                     </div>
@@ -135,14 +135,14 @@ MyDatetimePicker.makeDatetimepicker('#resultTry1_1', 'YYYY-MM-DD');
                 <div class="card-body">
                     <h4>특정일 제외</h4>
                     <div class="row">
-					<span class="col-sm-2">
+					<span class="col-2">
 						<input type="text" class="form-control" id="resultTry5_1" placeholder="result..." readonly/>
 					</span>
                     </div>
                     <pre class="prettyprint lang-js">MyDatetimePicker.makeDatetimepicker('#resultTry5_1').datetimepicker('disabledDates', [moment().subtract(1, 'days'), moment().add(1, 'days')]);</pre>
                     <h4>공휴일 제외</h4>
                     <div class="row">
-					<span class="col-sm-2">
+					<span class="col-2">
 						<input type="text" class="form-control" id="resultTry5_2" placeholder="result..." readonly/>
 					</span>
                     </div>
@@ -150,7 +150,7 @@ MyDatetimePicker.makeDatetimepicker('#resultTry1_1', 'YYYY-MM-DD');
 MyDatetimePicker.makeDatetimepicker('#resultTry5_2').datetimepicker('disabledDates', ["20190101", "20190301", "20190505", "20190606", "20190815", "20191003", "20191009", "20191225", "20191004", "20191005", "20191006"]);</pre>
                     <h4>토, 일요일 제외</h4>
                     <div class="row">
-					<span class="col-sm-2">
+					<span class="col-2">
 						<input type="text" class="form-control" id="resultTry5_3" placeholder="result..." readonly/>
 					</span>
                     </div>
@@ -163,7 +163,7 @@ MyDatetimePicker.makeDatetimepicker('#resultTry5_2').datetimepicker('disabledDat
                 <div class="card-body">
                     <h4>범위 지정</h4>
                     <div class="row">
-					<span class="col-sm-2">
+					<span class="col-2">
 						<input type="text" class="form-control" id="resultTry6_1" placeholder="result..." readonly/>
 					</span>
                     </div>
@@ -176,21 +176,21 @@ MyDatetimePicker.makeDatetimepicker('#resultTry5_2').datetimepicker('disabledDat
                 <div class="card-body">
                     <h4>YYYY-MM-DD HH:mm(기본형)</h4>
                     <div class="row">
-					<span class="col-sm-3">
+					<span class="col-3">
 						<input type="text" class="form-control" id="resultTry7_1" placeholder="result..." readonly/>
 					</span>
                     </div>
                     <pre class="prettyprint lang-js">MyDatetimePicker.makeDatetimepicker('#resultTry7_1', 'YYYY-MM-DD HH:mm');</pre>
                     <h4>YYYY-MM-DD HH</h4>
                     <div class="row">
-					<span class="col-sm-3">
+					<span class="col-3">
 						<input type="text" class="form-control" id="resultTry7_2" placeholder="result..." readonly/>
 					</span>
                     </div>
                     <pre class="prettyprint lang-js">MyDatetimePicker.makeDatetimepicker('#resultTry7_2', 'YYYY-MM-DD HH');</pre>
                     <h4>YYYY-MM-DD HH:mm:ss</h4>
                     <div class="row">
-					<span class="col-sm-3">
+					<span class="col-3">
 						<input type="text" class="form-control" id="resultTry7_3" placeholder="result..." readonly/>
 					</span>
                     </div>
