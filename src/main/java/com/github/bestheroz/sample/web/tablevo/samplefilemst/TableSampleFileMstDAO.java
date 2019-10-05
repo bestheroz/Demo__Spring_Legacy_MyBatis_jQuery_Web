@@ -5,7 +5,6 @@ import com.github.bestheroz.standard.common.tablevo.SqlForTableDAO;
 import com.github.bestheroz.standard.common.tablevo.SqlForTableVO;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.SelectProvider;
 
 import java.util.List;
@@ -21,6 +20,5 @@ public interface TableSampleFileMstDAO extends SqlForTableDAO {
 
     @Override
     @InsertProvider(type = SqlForTableVO.class, method = SqlForTableVO.INSERT)
-    @SelectKey(statement = "SELECT SEQ_SAMPLE_FILE_MST.NEXTVAL FROM DUAL", keyProperty = "fileSeq", before = true, resultType = Integer.class)
     <T> void insert(final T vo) throws CommonException;
 }
