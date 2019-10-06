@@ -46,7 +46,7 @@ public class TestDbTableVOCheckerContext {
                     filedList.add(field.getName());
                 }
                 final String tableName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, StringUtils.substringBetween(class1.getSimpleName(), "Table", "VO"));
-                try (final ResultSet rs = stmt.executeQuery("SELECT * FROM " + tableName + " WHERE ROWNUM=0")) {
+                try (final ResultSet rs = stmt.executeQuery("SELECT * FROM " + tableName + " LIMIT 0")) {
                     final ResultSetMetaData metaInfo = rs.getMetaData();
                     final String className = class1.getSimpleName();
 

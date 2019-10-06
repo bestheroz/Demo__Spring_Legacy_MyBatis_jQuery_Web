@@ -32,7 +32,7 @@ import java.util.Set;
 public class DbTableVOCheckerContext {
     public static final String DEFAULT_DATE_TYPE = "LocalDateTime";
     public static final Set<String> STRING_JDBC_TYPE_SET = Sets.newHashSet("VARCHAR", "VARCHAR2", "CHAR", "CLOB");
-    public static final Set<String> NUMBER_JDBC_TYPE_SET = Sets.newHashSet("INTEGER", "INT", "INT UNSIGNED", "NUMBER");
+    public static final Set<String> NUMBER_JDBC_TYPE_SET = Sets.newHashSet("INTEGER", "TINYINT", "INT", "INT UNSIGNED", "NUMBER");
     public static final Set<String> DATETIME_JDBC_TYPE_SET = Sets.newHashSet("TIMESTAMP", "DATE", "DATETIME");
     public static final Set<String> BOOLEAN_JDBC_TYPE_SET = Sets.newHashSet("BOOLEAN");
     public static final Set<String> BYTE_JDBC_TYPE_SET = Sets.newHashSet("BLOB");
@@ -49,7 +49,7 @@ public class DbTableVOCheckerContext {
                     filedList.add(field.getName());
                 }
                 final String tableName = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, StringUtils.substringBetween(class1.getSimpleName(), "Table", "VO"));
-                try (final ResultSet rs = stmt.executeQuery("SELECT * FROM " + tableName + " WHERE ROWNUM=0")) {
+                try (final ResultSet rs = stmt.executeQuery("SELECT * FROM " + tableName + " LIMIT 0")) {
                     final ResultSetMetaData metaInfo = rs.getMetaData();
                     final String className = class1.getSimpleName();
 
