@@ -6,7 +6,7 @@ CREATE TABLE SAMPLE_MEMBER_MST
     MEMBER_TYPE    VARCHAR(100)             NOT NULL,
     LOGIN_FAIL_CNT INT(1) DEFAULT 0         NOT NULL,
     CLOSE_TF       BOOLEAN                  NOT NULL,
-    TOKEN          VARCHAR(102)             NULL,
+    TOKEN          VARCHAR(200)             NULL,
     EXPIRED        DATETIME                 NOT NULL,
     CREATED_BY     VARCHAR(100)             NOT NULL,
     CREATED        DATETIME                 NOT NULL,
