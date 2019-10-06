@@ -12,6 +12,7 @@ public class TableSampleMemberMstVO implements Serializable {
     private String memberType;
     private Integer loginFailCnt;
     private Boolean closeTf;
+    private String token;
     private LocalDateTime expired;
     private String createdBy;
     private LocalDateTime created;
@@ -66,6 +67,14 @@ public class TableSampleMemberMstVO implements Serializable {
         this.closeTf = closeTf;
     }
 
+    public String getToken() {
+        return this.token;
+    }
+
+    public void setToken(final String token) {
+        this.token = token;
+    }
+
     public LocalDateTime getExpired() {
         return this.expired;
     }
@@ -105,5 +114,4 @@ public class TableSampleMemberMstVO implements Serializable {
     public void setUpdated(final LocalDateTime updated) {
         this.updated = updated;
     }
-
 }
