@@ -40,7 +40,7 @@
         </div>
         <!-- Modal -->
         <div id="modalMember" class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">회원 입력</h5>
@@ -50,52 +50,52 @@
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal">
-                            <div class="form-group">
-                                <label for="memberId" class="col-sm-3 control-label">회원ID</label>
-                                <div class="col-sm-9">
+                            <div class="form-group row">
+                                <label for="memberId" class="col-3 col-form-label">회원ID</label>
+                                <div class="col-9">
                                     <input type="text" id="memberId" class="form-control" title="회원" maxlength="20"/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="memberNm" class="col-sm-3 control-label">회원명</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="memberNm" class="form-control" title="회원명" maxlength="30"/>
+                            <div class="form-group row">
+                                <label for="memberName" class="col-3 col-form-label">회원명</label>
+                                <div class="col-9">
+                                    <input type="text" id="memberName" class="form-control" title="회원명" maxlength="30"/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="memberPw" class="col-sm-3 control-label">비밀번호</label>
-                                <div class="col-sm-9">
+                            <div class="form-group row">
+                                <label for="memberPw" class="col-3 col-form-label">비밀번호</label>
+                                <div class="col-9">
                                     <input type="password" id="memberPw" class="form-control" title="비밀번호" data-parsley-minlength="5" maxlength="20"/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="memberPw2" class="col-sm-3 control-label">비밀번호(확인용)</label>
-                                <div class="col-sm-9">
+                            <div class="form-group row">
+                                <label for="memberPw2" class="col-3 col-form-label">비밀번호(확인용)</label>
+                                <div class="col-9">
                                     <input type="password" id="memberPw2" class="form-control" title="비밀번호(확인용)" data-parsley-minlength="5" maxlength="20"/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="memberTyp" class="col-sm-3 control-label">회원종류</label>
-                                <div class="col-sm-9">
-                                    <select id="memberTyp" class="form-control" title="회원종류" style="width: 70%" required></select>
+                            <div class="form-group row">
+                                <label for="memberType" class="col-3 col-form-label">회원종류</label>
+                                <div class="col-9">
+                                    <select id="memberType" class="form-control" title="회원종류" style="width: 70%" required></select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="loginFailCnt" class="col-sm-3 control-label">로그인 실패 횟수</label>
-                                <div class="col-sm-9">
+                            <div class="form-group row">
+                                <label for="loginFailCnt" class="col-3 col-form-label">로그인 실패 횟수</label>
+                                <div class="col-9">
                                     <input type="number" id="loginFailCnt" class="form-control" title="비밀번호(확인용)" data-parsley-minlength="1" maxlength="10"/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="closeYn" class="col-sm-3 control-label">계정잠금여부</label>
-                                <div class="col-sm-9">
-                                    <select id="closeYn" class="form-control" title="계정잠금여부" style="width: 30%" required></select>
+                            <div class="form-group row">
+                                <label for="closeTf" class="col-3 col-form-label">계정잠금여부</label>
+                                <div class="col-9">
+                                    <input type="checkbox" class="form-control" id="closeTf">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="expireDt" class="col-sm-3 control-label">계정사용 만기일</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="expireDt" class="form-control" title="계정사용 만기일"/>
+                            <div class="form-group row">
+                                <label for="expired" class="col-3 col-form-label">계정사용 만기일</label>
+                                <div class="col-9">
+                                    <input type="text" id="expired" class="form-control" title="계정사용 만기일"/>
                                 </div>
                             </div>
                         </form>
@@ -129,14 +129,12 @@
     <my:footer/>
     <script data-for="ready">
         jQuery(($) => {
-            $.when(drawTable1(), MyAjax.getSelectOptions($("#memberTyp"), "${CONTEXT_PATH}/common/valuelabel/getValueLabeVOList.json", {
-                grcode: "MEMBER_TYP"
-            }), MyAjax.getSelectOptions($("#closeYn"), "${CONTEXT_PATH}/common/valuelabel/getValueLabeVOList.json", {
-                grcode: "USE_YN_REVERSE"
+            $.when(drawTable1(), MyAjax.getSelectOptions($("#memberType"), "${CONTEXT_PATH}/common/valuelabel/getValueLabeVOList.json", {
+                groupCode: "MEMBER_TYPE"
             })).done(() => {
                 selectList();
             });
-            MyDatetimePicker.makeDatetimepicker('#expireDt', 'YYYY-MM-DD HH:mm');
+            MyDatetimePicker.makeDatetimepicker('#expired', 'YYYY-MM-DD HH:mm');
         });
     </script>
     <script data-for="define-table">
@@ -203,7 +201,7 @@
                     width: 100,
                     className: "text-center",
                     render: (data, type, row) => {
-                        return MyCommon.getLabelFromSelectTag($('#memberTyp'), data);
+                        return MyCommon.getLabelFromSelectTag($('#memberType'), data);
                     }
                 }, {
                     targets: 3,
@@ -214,7 +212,8 @@
                     width: 100,
                     className: "text-center",
                     render: (data, type, row) => {
-                        return MyCommon.getLabelFromSelectTag($('#closeYn'), data);
+                        return data ? '<input type="checkbox" checked disabled />' :
+                            '<input type="checkbox" disabled />'
                     }
                 }, {
                     targets: 5,
@@ -237,20 +236,22 @@
                 columns: [{
                     "data": "memberId"
                 }, {
-                    "data": "memberNm"
+                    "data": "memberName"
                 }, {
-                    "data": "memberTyp"
+                    "data": "memberType"
                 }, {
                     "data": "loginFailCnt"
                 }, {
-                    "data": "closeYn"
+                    "data": "closeTf"
                 }, {
-                    "data": "expireDt"
+                    "data": "expired"
                 }, {
-                    "data": "updMemberId"
+                    "data": "updatedBy"
                 }, {
-                    "data": "updDt"
+                    "data": "updated"
                 }]
+            }).on('column-visibility.dt', function (e, indicator) {
+                $('#table1').DataTable().columns.adjust().responsive.recalc();
             });
         }
     </script>
@@ -275,19 +276,19 @@
                 memberPw = CryptoJS.SHA512($('#memberPw').val()).toString();
             }
             let url;
-            if ($('div.modal-footer>div.btn-group>div.btn-group').is(':hidden')) {
+            if ($('div.modal-footer:visible>div.btn-group>div.btn-group').is(':hidden')) {
                 url = '${CONTEXT_PATH}/sample/admin/member/insertSampleMemberMst.json';
             } else {
                 url = '${CONTEXT_PATH}/sample/admin/member/updateSampleMemberMst.json';
             }
             const response = await MyAjax.execute(url, {
                 memberId: $('#memberId').val(),
-                memberNm: $('#memberNm').val(),
+                memberName: $('#memberName').val(),
                 memberPw: memberPw,
-                memberTyp: $('#memberTyp option:selected').val(),
+                memberType: $('#memberType option:selected').val(),
                 loginFailCnt: $('#loginFailCnt').val(),
-                closeYn: $('#closeYn option:selected').val(),
-                expireDt: $('#expireDt').datetimepicker('viewDate').valueOf()
+                closeTf: $('#closeTf').prop('checked'),
+                expired: $('#expired').datetimepicker('viewDate').valueOf()
             }, {
                 autoResultFunctionTF: true
             });
@@ -324,7 +325,7 @@
             MyModal.open($('#modalMember'));
             $('#memberId').prop('disabled', false);
             $('#loginFailCnt').val(0);
-            $('#expireDt').val(moment().add(1, 'years').format('YYYY-MM-DD 23:59:59')).trigger('change.datetimepicker');
+            $('#expired').val(moment().add(1, 'years').format('YYYY-MM-DD 23:59:59')).trigger('change.datetimepicker');
         }
 
         function modalModifyMember() {
@@ -339,11 +340,11 @@
             $('div.modal-footer>div.btn-group>div.btn-group').show();
             MyModal.open($('#modalMember'));
             $('#memberId').val(selectedRow.memberId).prop('disabled', true);
-            $('#memberNm').val(selectedRow.memberNm);
-            $('#memberTyp').val(selectedRow.memberTyp);
+            $('#memberName').val(selectedRow.memberName);
+            $('#memberType').val(selectedRow.memberType);
             $('#loginFailCnt').val(selectedRow.loginFailCnt);
-            $('#closeYn').val(selectedRow.closeYn);
-            $('#expireDt').val(moment(selectedRow.expireDt).format('YYYY-MM-DD HH:mm')).trigger('change.datetimepicker');
+            $('#closeTf').prop('checked', selectedRow.closeTf);
+            $('#expired').val(moment(selectedRow.expired).format('YYYY-MM-DD HH:mm')).trigger('change.datetimepicker');
         }
     </script>
 

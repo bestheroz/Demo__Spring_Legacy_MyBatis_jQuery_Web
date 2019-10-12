@@ -6,24 +6,24 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class AdminValueLabelVO implements Serializable {
-    private String grcode;
+    private String groupCode;
     private String code;
-    private String codeNm;
+    private String codeName;
     private String codenmE;
-    private String grcodeNm;
-    private String grcodenmE;
-    private String useYn;
-    private Integer dispSeq;
+    private String groupCodeName;
+    private String groupCodenmE;
+    private Boolean useTf;
+    private Integer displayOrder;
     private String remark1;
-    private String updMemberId;
-    private LocalDateTime updDt;
+    private String updatedBy;
+    private LocalDateTime updated;
 
-    public String getGrcode() {
-        return this.grcode;
+    public String getGroupCode() {
+        return this.groupCode;
     }
 
-    public void setGrcode(final String grcode) {
-        this.grcode = grcode;
+    public void setGroupCode(final String groupCode) {
+        this.groupCode = groupCode;
     }
 
     public String getCode() {
@@ -35,11 +35,11 @@ public class AdminValueLabelVO implements Serializable {
     }
 
     public String getCodenmK() {
-        return this.codeNm;
+        return this.codeName;
     }
 
-    public void setCodenmK(final String codeNm) {
-        this.codeNm = codeNm;
+    public void setCodenmK(final String codeName) {
+        this.codeName = codeName;
     }
 
     public String getCodenmE() {
@@ -50,36 +50,36 @@ public class AdminValueLabelVO implements Serializable {
         this.codenmE = codenmE;
     }
 
-    public String getGrcodeNm() {
-        return this.grcodeNm;
+    public String getGroupCodeName() {
+        return this.groupCodeName;
     }
 
-    public void setGrcodeNm(final String grcodeNm) {
-        this.grcodeNm = grcodeNm;
+    public void setGroupCodeName(final String groupCodeName) {
+        this.groupCodeName = groupCodeName;
     }
 
-    public String getGrcodenmE() {
-        return this.grcodenmE;
+    public String getGroupCodenmE() {
+        return this.groupCodenmE;
     }
 
-    public void setGrcodenmE(final String grcodenmE) {
-        this.grcodenmE = grcodenmE;
+    public void setGroupCodenmE(final String groupCodenmE) {
+        this.groupCodenmE = groupCodenmE;
     }
 
-    public String getUseYn() {
-        return this.useYn;
+    public Boolean getUseTf() {
+        return this.useTf;
     }
 
-    public void setUseYn(final String useYn) {
-        this.useYn = useYn;
+    public void setUseTf(final Boolean useTf) {
+        this.useTf = useTf;
     }
 
-    public Integer getDispSeq() {
-        return this.dispSeq;
+    public Integer getDisplayOrder() {
+        return this.displayOrder;
     }
 
-    public void setDispSeq(final Integer dispSeq) {
-        this.dispSeq = dispSeq;
+    public void setDisplayOrder(final Integer displayOrder) {
+        this.displayOrder = displayOrder;
     }
 
     public String getRemark1() {
@@ -90,20 +90,20 @@ public class AdminValueLabelVO implements Serializable {
         this.remark1 = remark1;
     }
 
-    public String getUpdMemberId() {
-        return this.updMemberId;
+    public String getUpdatedBy() {
+        return this.updatedBy;
     }
 
-    public void setUpdMemberId(final String updMemberId) {
-        this.updMemberId = updMemberId;
+    public void setUpdatedBy(final String updatedBy) {
+        this.updatedBy = updatedBy;
     }
 
-    public LocalDateTime getUpdDt() {
-        return this.updDt;
+    public LocalDateTime getUpdated() {
+        return this.updated;
     }
 
-    public void setUpdDt(final LocalDateTime updDt) {
-        this.updDt = updDt;
+    public void setUpdated(final LocalDateTime updated) {
+        this.updated = updated;
     }
 
 }

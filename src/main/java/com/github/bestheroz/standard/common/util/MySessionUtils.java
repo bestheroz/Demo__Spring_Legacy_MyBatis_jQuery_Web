@@ -10,8 +10,8 @@ import javax.servlet.http.HttpSession;
 import java.util.Enumeration;
 
 public class MySessionUtils {
-    private static final Logger LOGGER = LoggerFactory.getLogger(MySessionUtils.class);
     public static final String SESSION_VALUE_OF_LOGIN_VO = "loginVO";
+    private static final Logger LOGGER = LoggerFactory.getLogger(MySessionUtils.class);
 
     protected MySessionUtils() {
         throw new UnsupportedOperationException();
@@ -20,6 +20,7 @@ public class MySessionUtils {
     public static boolean isLogined(final HttpSession session) {
         return session.getAttribute(SESSION_VALUE_OF_LOGIN_VO) != null;
     }
+
     public static boolean isNotLogined(final HttpSession session) {
         return !isLogined(session);
     }
@@ -36,8 +37,8 @@ public class MySessionUtils {
     public static void setLoginVO(final HttpSession session, final LoginVO loginVO) {
         session.setAttribute(SESSION_VALUE_OF_LOGIN_VO, loginVO);
         session.setAttribute("memberId", loginVO.getMemberId());
-        session.setAttribute("memberNm", loginVO.getMemberNm());
-        session.setAttribute("memberTyp", loginVO.getMemberTyp());
+        session.setAttribute("memberName", loginVO.getMemberName());
+        session.setAttribute("memberType", loginVO.getMemberType());
     }
 
     public static void logout(final HttpSession session) {

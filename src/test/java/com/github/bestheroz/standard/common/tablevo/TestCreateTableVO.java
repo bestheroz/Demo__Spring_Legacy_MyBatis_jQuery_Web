@@ -27,24 +27,24 @@ public class TestCreateTableVO {
 
     @Test
     public void test11() {
-        try (Statement stmt = this.sqlSession.getConnection().createStatement()) {
+        try (final Statement stmt = this.sqlSession.getConnection().createStatement()) {
 
-            final String tableName = "SAMPLE_MENU_MST";
+            final String tableName = "sample_member_mst";
 
-            try (ResultSet rs = stmt.executeQuery("SELECT * FROM " + tableName + " WHERE ROWNUM=0")) {
+            try (final ResultSet rs = stmt.executeQuery("SELECT * FROM " + tableName + " LIMIT 0")) {
                 final ResultSetMetaData metaInfo = rs.getMetaData();
 
                 // 1. VO만들기
                 final StringBuilder voSb = new StringBuilder();
 
                 for (int i = 0; i < metaInfo.getColumnCount(); i++) {
-                    final String columnName = metaInfo.getColumnName(i + 1);
+                    final String fieldType;
                     final String columnTypeName = metaInfo.getColumnTypeName(i + 1);
+                    final String columnName = metaInfo.getColumnName(i + 1);
                     final String camelColumnName = CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, columnName);
-                    String fieldType;
-                    if (StringUtils.equalsAny(columnTypeName, "VARCHAR", "VARCHAR2", "CHAR", "CLOB")) {
+                    if (DbTableVOCheckerContext.STRING_JDBC_TYPE_SET.contains(columnTypeName)) {
                         fieldType = "String";
-                    } else if (StringUtils.equalsAny(columnTypeName, "NUMBER")) {
+                    } else if (StringUtils.equals(columnTypeName, "NUMBER")) {
                         if (metaInfo.getScale(i + 1) > 0) { // 소수점이 있으면
                             fieldType = "Double";
                         } else {
@@ -54,25 +54,26 @@ public class TestCreateTableVO {
                             } else if (columnDisplaySize <= 10) { // 10자리 보장못함, 9자리 보장
                                 fieldType = "Integer"; // –2,147,483,648 ~ 2,147,483,647
                                 // } else if (columnDisplaySize < 19) { // 19자리 보장못함, 18자리 보장, 하지만 (오라클) NUMBER형 기본형이 39다.. Long 으로 처리가자.
-                                // fieldType = "Long";
+                                // fieldType = "Long"; // -9223372036854775808 ~ 9223372036854775807
                             } else { // 19자리 보장못함, 18자리 보장, 하지만 (오라클) NUMBER형 기본형이 39다.. Long 으로 처리가자.
-                                fieldType = "Long"; // -9223372036854775808 ~ 9223372036854775807
+                                fieldType = "Long";
                                 // fieldType = "Double";
                             }
                         }
-                    } else if (StringUtils.equalsAny(columnTypeName, "INTEGER")) {
+                    } else if (DbTableVOCheckerContext.NUMBER_JDBC_TYPE_SET.contains(columnTypeName)) {
                         fieldType = "Integer";
-                    } else if (StringUtils.equalsAny(columnTypeName, "TIMESTAMP", "DATE")) {
+                    } else if (DbTableVOCheckerContext.DATETIME_JDBC_TYPE_SET.contains(columnTypeName)) {
                         fieldType = DbTableVOCheckerContext.DEFAULT_DATE_TYPE;
-                    } else if (StringUtils.equalsAny(columnTypeName, "BLOB")) {
-                        fieldType = "Byte[]";
+                    } else if (DbTableVOCheckerContext.BOOLEAN_JDBC_TYPE_SET.contains(columnTypeName)) {
+                        fieldType = "Boolean";
+                    } else if (DbTableVOCheckerContext.BYTE_JDBC_TYPE_SET.contains(columnTypeName)) {
+                        fieldType = "Byte[];";
                         this.logger.debug("private Byte[] {}{}", camelColumnName, "; // XXX: spotbugs 피하기 : Arrays.copyOf(value, value.length)");
                     } else {
                         fieldType = "Unknown";
                         this.logger.warn("케이스 빠짐 {} : {}", columnName, columnTypeName);
                     }
-                    this.appendNewline(voSb, "private " + fieldType + " " + camelColumnName + ";");
-
+                    voSb.append("private ").append(fieldType).append(" ").append(camelColumnName).append(";\n");
                 }
                 System.out.println(voSb);
             }
@@ -81,13 +82,4 @@ public class TestCreateTableVO {
             this.logger.warn(ExceptionUtils.getStackTrace(e));
         }
     }
-
-    private StringBuilder appendNewline(final StringBuilder sb, final String appendStr) {
-        for (int i = 0; i < 0; i++) {
-            sb.append("    ");
-        }
-        sb.append(appendStr);
-        return sb.append("\n");
-    }
-
 }

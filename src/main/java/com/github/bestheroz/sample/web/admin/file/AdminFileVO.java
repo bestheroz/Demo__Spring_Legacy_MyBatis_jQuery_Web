@@ -7,11 +7,11 @@ import java.io.Serializable;
 @SuppressWarnings("ALL")
 public class AdminFileVO implements Serializable {
     private Integer fileSeq;
-    private String fileNm;
-    private String fileNmExt;
-    private String mimeTyp;
-    private String updMemberId;
-    private LocalDateTime updDt;
+    private String fileName;
+    private String fileNameExt;
+    private String mimeType;
+    private String updatedBy;
+    private LocalDateTime updated;
 
     @SuppressWarnings("unused")
     public Integer getFileSeq() {
@@ -22,44 +22,44 @@ public class AdminFileVO implements Serializable {
         this.fileSeq = fileSeq;
     }
 
-    public String getFileNm() {
-        return this.fileNm;
+    public String getFileName() {
+        return this.fileName;
     }
 
-    public void setFileNm(final String fileNm) {
-        this.fileNm = fileNm;
+    public void setFileName(final String fileName) {
+        this.fileName = fileName;
     }
 
-    public String getFileNmExt() {
-        return this.fileNmExt;
+    public String getFileNameExt() {
+        return this.fileNameExt;
     }
 
-    public void setFileNmExt(final String fileNmExt) {
-        this.fileNmExt = fileNmExt;
+    public void setFileNameExt(final String fileNameExt) {
+        this.fileNameExt = fileNameExt;
     }
 
-    public String getMimeTyp() {
-        return this.mimeTyp;
+    public String getMimeType() {
+        return this.mimeType;
     }
 
-    public void setMimeTyp(final String mimeTyp) {
-        this.mimeTyp = mimeTyp;
+    public void setMimeType(final String mimeType) {
+        this.mimeType = mimeType;
     }
 
-    public String getUpdMemberId() {
-        return this.updMemberId;
+    public String getUpdatedBy() {
+        return this.updatedBy;
     }
 
-    public void setUpdMemberId(final String updMemberId) {
-        this.updMemberId = updMemberId;
+    public void setUpdatedBy(final String updatedBy) {
+        this.updatedBy = updatedBy;
     }
 
-    public LocalDateTime getUpdDt() {
-        return this.updDt;
+    public LocalDateTime getUpdated() {
+        return this.updated;
     }
 
-    public void setUpdDt(final LocalDateTime updDt) {
-        this.updDt = updDt;
+    public void setUpdated(final LocalDateTime updated) {
+        this.updated = updated;
     }
 
 }

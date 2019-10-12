@@ -25,7 +25,7 @@
     <main role="main" class="flex-shrink-0">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-12">
                     <div class="error-template">
                         <h1>Oops!</h1>
                         <h2>500 Internal Server Error</h2>

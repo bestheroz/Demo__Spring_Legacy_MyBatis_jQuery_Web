@@ -40,7 +40,7 @@
     <my:footer/>
     <!-- Modal -->
     <div id="modalMenu" class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">메뉴 입력</h5>
@@ -51,45 +51,45 @@
                 <div class="modal-body">
                     <form class="form-horizontal">
                         <input type="hidden" id="menuId"/>
-                        <div class="form-group">
-                            <label for="menuNm" class="col-sm-3 control-label">메뉴명</label>
-                            <div class="col-sm-9">
-                                <input type="text" id="menuNm" class="form-control" title="메뉴명" maxlength="30"/>
+                        <div class="form-group row">
+                            <label for="menuName" class="col-3 col-form-label">메뉴명</label>
+                            <div class="col-9">
+                                <input type="text" id="menuName" class="form-control" title="메뉴명" maxlength="30"/>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="menuTyp" class="col-sm-3 control-label">메뉴종류</label>
-                            <div class="col-sm-9">
-                                <select id="menuTyp" class="form-control" title="메뉴종류" style="width: 70%" required></select>
+                        <div class="form-group row">
+                            <label for="menuType" class="col-3 col-form-label">메뉴종류</label>
+                            <div class="col-9">
+                                <select id="menuType" class="form-control" title="메뉴종류" style="width: 70%" required></select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="dispSeq" class="col-sm-3 control-label">출력순서</label>
-                            <div class="col-sm-9">
-                                <input type="text" id="dispSeq" class="form-control" title="출력순서" maxlength="10" data-parsley-type="digits"/>
+                        <div class="form-group row">
+                            <label for="displayOrder" class="col-3 col-form-label">출력순서</label>
+                            <div class="col-9">
+                                <input type="text" id="displayOrder" class="form-control" title="출력순서" maxlength="10" data-parsley-type="digits"/>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="parMenuId" class="col-sm-3 control-label">상위메뉴</label>
-                            <div class="col-sm-9">
+                        <div class="form-group row">
+                            <label for="parMenuId" class="col-3 col-form-label">상위메뉴</label>
+                            <div class="col-9">
                                 <select id="parMenuId" class="form-control" title="상위메뉴" style="width: 70%" required></select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="url" class="col-sm-3 control-label">URL</label>
-                            <div class="col-sm-9">
+                        <div class="form-group row">
+                            <label for="url" class="col-3 col-form-label">URL</label>
+                            <div class="col-9">
                                 <input type="text" id="url" class="form-control" title="URL" maxlength="1000"/>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="useYn" class="col-sm-3 control-label">사용여부</label>
-                            <div class="col-sm-9">
-                                <select id="useYn" class="form-control" title="사용여부" style="width: 30%" required></select>
+                        <div class="form-group row">
+                            <label for="useTf" class="col-3 col-form-label">사용여부</label>
+                            <div class="col-9">
+                                <input type="checkbox" class="form-control" id="useTf">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="power" class="col-sm-3 control-label">권한</label>
-                            <div class="col-sm-9">
+                        <div class="form-group row">
+                            <label for="power" class="col-3 col-form-label">권한</label>
+                            <div class="col-9">
                                 <select id="power" class="form-control" title="권한" style="width: 30%" required></select>
                             </div>
                         </div>
@@ -122,12 +122,10 @@
     </div>
     <script data-for="ready">
         jQuery(($) => {
-            $.when(drawTable1(), MyAjax.getSelectOptions($("#menuTyp"), "${CONTEXT_PATH}/common/valuelabel/getValueLabeVOList.json", {
-                grcode: "MENU_TYP"
-            }), MyAjax.getSelectOptions($("#useYn"), "${CONTEXT_PATH}/common/valuelabel/getValueLabeVOList.json", {
-                grcode: "USE_YN"
+            $.when(drawTable1(), MyAjax.getSelectOptions($("#menuType"), "${CONTEXT_PATH}/common/valuelabel/getValueLabeVOList.json", {
+                groupCode: "MENU_TYPE"
             }), MyAjax.getSelectOptions($("#power"), "${CONTEXT_PATH}/common/valuelabel/getValueLabeVOList.json", {
-                grcode: "MEMBER_TYP"
+                groupCode: "MEMBER_TYPE"
             }), MyAjax.getSelectOptions($("#parMenuId"), "${CONTEXT_PATH}/sample/admin/menu/getPMenuValueLableVOList.json")).done(() => {
                 selectList();
             });
@@ -144,7 +142,7 @@
                 scrollY: '400px',
                 fixedColumns: {
                     leftColumns: 2
-                    // 	            ,rightColumns: 1
+                    // ,rightColumns: 1
                 },
                 buttons: [{
                     text: '<i class="fas fa-plus"></i>',
@@ -221,7 +219,7 @@
                     width: 80,
                     className: "text-center",
                     render: (data, type, row) => {
-                        return MyCommon.getLabelFromSelectTag($('#menuTyp'), data);
+                        return MyCommon.getLabelFromSelectTag($('#menuType'), data);
                     }
                 }, {
                     targets: 4,
@@ -237,7 +235,8 @@
                     width: 80,
                     className: "text-center",
                     render: (data, type, row) => {
-                        return MyCommon.getLabelFromSelectTag($('#useYn'), data);
+                        return data ? '<input type="checkbox" checked disabled />' :
+                            '<input type="checkbox" disabled />'
                     }
                 }, {
                     targets: 7,
@@ -260,24 +259,26 @@
                 columns: [{
                     "data": "menuId"
                 }, {
-                    "data": "menuNm"
+                    "data": "menuName"
                 }, {
-                    "data": "menuTyp"
+                    "data": "menuType"
                 }, {
                     "data": "url"
                 }, {
-                    "data": "dispSeq"
+                    "data": "displayOrder"
                 }, {
                     "data": "parMenuId"
                 }, {
-                    "data": "useYn"
+                    "data": "useTf"
                 }, {
                     "data": "power"
                 }, {
-                    "data": "updMemberId"
+                    "data": "updatedBy"
                 }, {
-                    "data": "updDt"
+                    "data": "updated"
                 }]
+            }).on('column-visibility.dt', function (e, indicator) {
+                $('#table1').DataTable().columns.adjust().responsive.recalc();
             });
         }
     </script>
@@ -310,11 +311,11 @@
             $('div.modal-footer>div.btn-group>div.btn-group').show();
             MyModal.open($('#modalMenu'));
             $('#menuId').val(selectedRow.menuId);
-            $('#menuNm').val(selectedRow.menuNm);
-            $('#menuTyp').val(selectedRow.menuTyp);
+            $('#menuName').val(selectedRow.menuName);
+            $('#menuType').val(selectedRow.menuType);
             $('#url').val(selectedRow.url);
-            $('#dispSeq').val(selectedRow.dispSeq);
-            $('#useYn').val(selectedRow.useYn);
+            $('#displayOrder').val(selectedRow.displayOrder);
+            $('#useTf').prop('checked', selectedRow.useTf);
             $('#parMenuId').val(selectedRow.parMenuId);
             $('#power').val(selectedRow.power);
         }
@@ -324,19 +325,19 @@
                 return;
             }
             let url;
-            if ($('div.modal-footer>div.btn-group>div.btn-group').is(':hidden')) {
+            if ($('div.modal-footer:visible>div.btn-group>div.btn-group').is(':hidden')) {
                 url = '${CONTEXT_PATH}/sample/admin/menu/insertSampleMenuMst.json';
             } else {
                 url = '${CONTEXT_PATH}/sample/admin/menu/updateSampleMenuMst.json';
             }
             const response = await MyAjax.execute(url, {
                 menuId: $('#menuId').val(),
-                menuNm: $('#menuNm').val(),
-                menuTyp: $('#menuTyp > option:selected').val(),
+                menuName: $('#menuName').val(),
+                menuType: $('#menuType > option:selected').val(),
                 url: $('#url').val(),
-                dispSeq: $('#dispSeq').val(),
+                displayOrder: $('#displayOrder').val(),
                 parMenuId: $('#parMenuId').val(),
-                useYn: $('#useYn > option:selected').val(),
+                useTf: $('#useTf').prop('checked'),
                 power: $('#power').val()
             }, {
                 autoResultFunctionTF: true

@@ -66,9 +66,9 @@ public class CommonExceptionHandler {
     public JsonObject handleMultipartException(final MultipartException e) throws Exception {
         LOGGER.warn(ExceptionUtils.getStackTrace(e));
         this.isAcceptHtml();
-        JsonObject result;
+        final JsonObject result;
         if (ExceptionUtils.getMessage(e).contains(SizeLimitExceededException.class.getSimpleName())) {
-            result = new CommonException(CommonExceptionCode.FAIL__FILE_SIZE).getJsonObject();
+            result = new CommonException(CommonExceptionCode.FAIL_FILE_SIZE).getJsonObject();
         } else {
             result = CommonException.EXCEPTION_ERROR_SYSTEM.getJsonObject();
         }

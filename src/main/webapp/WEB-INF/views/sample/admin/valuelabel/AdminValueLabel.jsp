@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-6">
                             <div class="table-responsive">
                                 <table id="table1" class="table table-bordered table-hover table-sm" data-order='[[ 3, "desc" ]]' data-page-length="10">
                                     <thead class="thead-dark">
@@ -30,7 +30,7 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-6">
                             <div class="table-responsive">
                                 <table id="table2" class="table table-bordered table-hover table-sm" data-order='[[ 5, "desc" ]]' data-page-length="10">
                                     <thead class="thead-dark">
@@ -55,7 +55,7 @@
         </div>
         <!-- Modal -->
         <div id="modalValueLabel" class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">그룹코드 입력</h5>
@@ -65,21 +65,21 @@
                     </div>
                     <div class="modal-body">
                         <form id="form1" class="form-horizontal">
-                            <div class="form-group">
-                                <label for="grcode" class="col-sm-3 control-label">그룹코드</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="grcode" class="form-control" title="그룹코드" maxlength="100"/>
+                            <div class="form-group row">
+                                <label for="groupCode" class="col-3 col-form-label">그룹코드</label>
+                                <div class="col-9">
+                                    <input type="text" id="groupCode" class="form-control" title="그룹코드" maxlength="100"/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="grcodeNm" class="col-sm-3 control-label">그룹코드명</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="grcodeNm" class="form-control" title="그룹코드명" maxlength="300"/>
+                            <div class="form-group row">
+                                <label for="groupCodeName" class="col-3 col-form-label">그룹코드명</label>
+                                <div class="col-9">
+                                    <input type="text" id="groupCodeName" class="form-control" title="그룹코드명" maxlength="300"/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="remark1" class="col-sm-3 control-label">비고</label>
-                                <div class="col-sm-9">
+                            <div class="form-group row">
+                                <label for="remark1" class="col-3 col-form-label">비고</label>
+                                <div class="col-9">
                                     <input type="text" id="remark1" class="form-control" title="비고" maxlength="1000"/>
                                 </div>
                             </div>
@@ -112,7 +112,7 @@
         </div>
         <!-- Modal -->
         <div id="modalValueLabelDet" class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">그룹코드-코드 입력</h5>
@@ -122,39 +122,39 @@
                     </div>
                     <div class="modal-body">
                         <form id="form2" class="form-horizontal">
-                            <div class="form-group">
-                                <label for="grcodeDet" class="col-sm-3 control-label">그룹코드</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="grcodeDet" class="form-control" title="그룹코드" maxlength="100" readonly/>
+                            <div class="form-group row">
+                                <label for="groupCodeDet" class="col-3 col-form-label">그룹코드</label>
+                                <div class="col-9">
+                                    <input type="text" id="groupCodeDet" class="form-control" title="그룹코드" maxlength="100" readonly/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="code" class="col-sm-3 control-label">코드</label>
-                                <div class="col-sm-9">
+                            <div class="form-group row">
+                                <label for="code" class="col-3 col-form-label">코드</label>
+                                <div class="col-9">
                                     <input type="text" id="code" class="form-control" title="코드" maxlength="100"/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="codeNm" class="col-sm-3 control-label">코드명</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="codeNm" class="form-control" title="코드명" maxlength="300"/>
+                            <div class="form-group row">
+                                <label for="codeName" class="col-3 col-form-label">코드명</label>
+                                <div class="col-9">
+                                    <input type="text" id="codeName" class="form-control" title="코드명" maxlength="300"/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="useYn" class="col-sm-3 control-label">사용여부</label>
-                                <div class="col-sm-9">
-                                    <select id="useYn" class="form-control" title="사용여부" style="width: 70%" required></select>
+                            <div class="form-group row">
+                                <label for="useTf" class="col-3 col-form-label">사용여부</label>
+                                <div class="col-9">
+                                    <input type="checkbox" class="form-control" id="useTf">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="dispSeq" class="col-sm-3 control-label">출력순서</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="dispSeq" class="form-control" title="출력순서" maxlength="10" data-parsley-type="digits"/>
+                            <div class="form-group row">
+                                <label for="displayOrder" class="col-3 col-form-label">출력순서</label>
+                                <div class="col-9">
+                                    <input type="text" id="displayOrder" class="form-control" title="출력순서" maxlength="10" data-parsley-type="digits"/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="remark1Det" class="col-sm-3 control-label">비고</label>
-                                <div class="col-sm-9">
+                            <div class="form-group row">
+                                <label for="remark1Det" class="col-3 col-form-label">비고</label>
+                                <div class="col-9">
                                     <input type="text" id="remark1Det" class="form-control" title="비고" maxlength="1000"/>
                                 </div>
                             </div>
@@ -190,8 +190,8 @@
     <my:footer/>
     <script data-for="ready">
         jQuery(($) => {
-            $.when(drawTable1(), drawTable2(), MyAjax.getSelectOptions($("#useYn"), "${CONTEXT_PATH}/common/valuelabel/getValueLabeVOList.json", {
-                grcode: "USE_YN"
+            $.when(drawTable1(), drawTable2(), MyAjax.getSelectOptions($("#useTf"), "${CONTEXT_PATH}/common/valuelabel/getValueLabeVOList.json", {
+                groupCode: "USE_TF"
             })).done(() => {
                 selectList();
             });
@@ -199,7 +199,7 @@
             $('#table1').DataTable().on('select', (e, dt, type, indexes) => {
                 const rowData = $('#table1').DataTable().rows(indexes).data().toArray()[0];
                 $('#table2_wrapper > div.dt-buttons > a').removeClass('disabled');
-                selectListDet(rowData.grcode);
+                selectListDet(rowData.groupCode);
             });
             $('#table1').DataTable().on('deselect', (e, dt, type, indexes) => {
                 $('#table2_wrapper > div.dt-buttons > a').addClass('disabled');
@@ -286,14 +286,16 @@
                     }
                 }],
                 columns: [{
-                    "data": "grcode"
+                    "data": "groupCode"
                 }, {
-                    "data": "grcodeNm"
+                    "data": "groupCodeName"
                 }, {
-                    "data": "updMemberId"
+                    "data": "updatedBy"
                 }, {
-                    "data": "updDt"
+                    "data": "updated"
                 }]
+            }).on('column-visibility.dt', function (e, indicator) {
+                $('#table1').DataTable().columns.adjust().responsive.recalc();
             });
         }
 
@@ -368,7 +370,8 @@
                     width: 80,
                     className: "text-center",
                     render: (data, type, row) => {
-                        return MyCommon.getLabelFromSelectTag($('#useYn'), data);
+                        return data ? '<input type="checkbox" checked disabled />' :
+                            '<input type="checkbox" disabled />'
                     }
                 }, {
                     targets: 3,
@@ -388,16 +391,18 @@
                 columns: [{
                     "data": "code"
                 }, {
-                    "data": "codeNm"
+                    "data": "codeName"
                 }, {
-                    "data": "useYn"
+                    "data": "useTf"
                 }, {
-                    "data": "dispSeq"
+                    "data": "displayOrder"
                 }, {
-                    "data": "updMemberId"
+                    "data": "updatedBy"
                 }, {
-                    "data": "updDt"
+                    "data": "updated"
                 }]
+            }).on('column-visibility.dt', function (e, indicator) {
+                $('#table2').DataTable().columns.adjust().responsive.recalc();
             });
         }
     </script>
@@ -407,9 +412,9 @@
             $('#table1').DataTable().clear().rows.add(response).draw();
         }
 
-        async function selectListDet(grcode) {
+        async function selectListDet(groupCode) {
             const response = await MyAjax.execute('${CONTEXT_PATH}/sample/admin/valuelabel/getSampleCodeDetVOList.json', {
-                grcode: grcode
+                groupCode: groupCode
             });
             $('#table2').DataTable().clear().rows.add(response).draw();
         }
@@ -418,7 +423,7 @@
             $('#form1')[0].reset();
             $('div.modal-footer>div.btn-group>div.btn-group').hide();
             MyModal.open($('#modalValueLabel'));
-            $('#grcode').prop('readonly', false);
+            $('#groupCode').prop('readonly', false);
         }
 
         function modalModifyValueLabel() {
@@ -432,8 +437,8 @@
             $('#form1')[0].reset();
             $('div.modal-footer>div.btn-group>div.btn-group').show();
             MyModal.open($('#modalValueLabel'));
-            $('#grcode').val(selectedRow.grcode).prop('readonly', true);
-            $('#grcodeNm').val(selectedRow.grcodeNm);
+            $('#groupCode').val(selectedRow.groupCode).prop('readonly', true);
+            $('#groupCodeName').val(selectedRow.groupCodeName);
             $('#remark1').val(selectedRow.remark1);
         }
 
@@ -442,14 +447,14 @@
                 return;
             }
             let url;
-            if ($('div.modal-footer>div.btn-group>div.btn-group').is(':hidden')) {
+            if ($('div.modal-footer:visible>div.btn-group>div.btn-group').is(':hidden')) {
                 url = '${CONTEXT_PATH}/sample/admin/valuelabel/insertSampleCodeMst.json';
             } else {
                 url = '${CONTEXT_PATH}/sample/admin/valuelabel/updateSampleCodeMst.json';
             }
             const response = await MyAjax.execute(url, {
-                grcode: $('#grcode').val(),
-                grcodeNm: $('#grcodeNm').val(),
+                groupCode: $('#groupCode').val(),
+                groupCodeName: $('#groupCodeName').val(),
                 remark1: $('#remark1').val()
             }, {
                 autoResultFunctionTF: true
@@ -471,7 +476,7 @@
             }
             if (confirm("정말 삭제하시겠습니까?")) {
                 const response = await MyAjax.execute('${CONTEXT_PATH}/sample/admin/valuelabel/deleteCOMM_CODE.json', {
-                    grcode: selectedRow.grcode
+                    groupCode: selectedRow.groupCode
                 }, {
                     autoResultFunctionTF: true
                 });
@@ -495,7 +500,7 @@
             $('div.modal-footer>div.btn-group>div.btn-group').hide();
             MyModal.open($('#modalValueLabelDet'));
             $('#code').prop('readonly', false);
-            $('#grcodeDet').val(selectedRow.grcode);
+            $('#groupCodeDet').val(selectedRow.groupCode);
         }
 
         function modalModifyValueLabelDet() {
@@ -517,11 +522,11 @@
             $('div.modal-footer>div.btn-group>div.btn-group').show();
             MyModal.open($('#modalValueLabelDet'));
             $('#code').prop('readonly', true);
-            $('#grcodeDet').val(selectedRow1.grcode);
+            $('#groupCodeDet').val(selectedRow1.groupCode);
             $('#code').val(selectedRow.code);
-            $('#codeNm').val(selectedRow.codeNm);
-            $('#useYn').val(selectedRow.useYn);
-            $('#dispSeq').val(selectedRow.dispSeq);
+            $('#codeName').val(selectedRow.codeName);
+            $('#useTf').prop('checked', selectedRow.useTf);
+            $('#displayOrder').val(selectedRow.displayOrder);
             $('#remark1Det').val(selectedRow.remark1);
         }
 
@@ -530,24 +535,24 @@
                 return;
             }
             let url;
-            if ($('div.modal-footer>div.btn-group>div.btn-group').is(':hidden')) {
+            if ($('div.modal-footer:visible>div.btn-group>div.btn-group').is(':hidden')) {
                 url = '${CONTEXT_PATH}/sample/admin/valuelabel/insertSampleCodeDet.json';
             } else {
                 url = '${CONTEXT_PATH}/sample/admin/valuelabel/updateSampleCodeDet.json';
             }
             const response = await MyAjax.execute(url, {
-                grcode: $('#grcodeDet').val(),
+                groupCode: $('#groupCodeDet').val(),
                 code: $('#code').val(),
-                codeNm: $('#codeNm').val(),
-                useYn: $('#useYn > option:selected').val(),
-                dispSeq: $('#dispSeq').val(),
+                codeName: $('#codeName').val(),
+                useTf: $('#useTf').prop('checked'),
+                displayOrder: $('#displayOrder').val(),
                 remark1: $('#remark1Det').val()
             }, {
                 autoResultFunctionTF: true
             });
             if (_.startsWith(response.responseCode, 'S')) {
                 MyModal.close($('#modalValueLabelDet'));
-                await selectListDet($('#grcodeDet').val());
+                await selectListDet($('#groupCodeDet').val());
             }
         }
 
@@ -562,14 +567,14 @@
 
             if (confirm("정말 삭제하시겠습니까?")) {
                 const response = await MyAjax.execute('${CONTEXT_PATH}/sample/admin/valuelabel/deleteSampleCodeDet.json', {
-                    grcode: selectedRow.grcode,
+                    groupCode: selectedRow.groupCode,
                     code: selectedRow.code
                 }, {
                     autoResultFunctionTF: true
                 });
                 if (_.startsWith(response.responseCode, 'S')) {
                     MyModal.close($('#modalValueLabelDet'));
-                    await selectListDet(selectedRow.grcode);
+                    await selectListDet(selectedRow.groupCode);
                 }
             }
         }

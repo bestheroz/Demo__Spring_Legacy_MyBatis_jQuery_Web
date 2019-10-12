@@ -8,15 +8,15 @@ import java.io.Serializable;
 public class TestTableSampleMemberMstVO implements Serializable {
     private String memberId;
     private String memberPw;
-    private String memberNm;
-    private String memberTyp;
+    private String memberName;
+    private String memberType;
     private Integer loginFailCnt;
-    private String closeYn;
-    private LocalDateTime expireDt;
-    private String regMemberId;
-    private LocalDateTime regDt;
-    private String updMemberId;
-    private LocalDateTime updDt;
+    private Boolean closeTf;
+    private LocalDateTime expired;
+    private String createdBy;
+    private LocalDateTime created;
+    private String updatedBy;
+    private LocalDateTime updated;
 
     public String getMemberId() {
         return this.memberId;
@@ -35,20 +35,20 @@ public class TestTableSampleMemberMstVO implements Serializable {
     }
 
     @SuppressWarnings("unused")
-    public String getMemberNm() {
-        return this.memberNm;
+    public String getMemberName() {
+        return this.memberName;
     }
 
-    public void setMemberNm(final String memberNm) {
-        this.memberNm = memberNm;
+    public void setMemberName(final String memberName) {
+        this.memberName = memberName;
     }
 
-    public String getMemberTyp() {
-        return this.memberTyp;
+    public String getMemberType() {
+        return this.memberType;
     }
 
-    public void setMemberTyp(final String memberTyp) {
-        this.memberTyp = memberTyp;
+    public void setMemberType(final String memberType) {
+        this.memberType = memberType;
     }
 
     public Integer getLoginFailCnt() {
@@ -59,53 +59,53 @@ public class TestTableSampleMemberMstVO implements Serializable {
         this.loginFailCnt = loginFailCnt;
     }
 
-    public String getCloseYn() {
-        return this.closeYn;
+    public Boolean getCloseTf() {
+        return this.closeTf;
     }
 
-    public void setCloseYn(final String closeYn) {
-        this.closeYn = closeYn;
+    public void setCloseTf(final Boolean closeTf) {
+        this.closeTf = closeTf;
     }
 
     @SuppressWarnings("unused")
-    public LocalDateTime getExpireDt() {
-        return this.expireDt;
+    public LocalDateTime getExpired() {
+        return this.expired;
     }
 
-    public void setExpireDt(final LocalDateTime expireDt) {
-        this.expireDt = expireDt;
+    public void setExpired(final LocalDateTime expired) {
+        this.expired = expired;
     }
 
-    public String getRegMemberId() {
-        return this.regMemberId;
+    public String getCreatedBy() {
+        return this.createdBy;
     }
 
-    public void setRegMemberId(final String regMemberId) {
-        this.regMemberId = regMemberId;
+    public void setCreatedBy(final String createdBy) {
+        this.createdBy = createdBy;
     }
 
-    public LocalDateTime getRegDt() {
-        return this.regDt;
+    public LocalDateTime getCreated() {
+        return this.created;
     }
 
-    public void setRegDt(final LocalDateTime regDt) {
-        this.regDt = regDt;
+    public void setCreated(final LocalDateTime created) {
+        this.created = created;
     }
 
-    public String getUpdMemberId() {
-        return this.updMemberId;
+    public String getUpdatedBy() {
+        return this.updatedBy;
     }
 
-    public void setUpdMemberId(final String updMemberId) {
-        this.updMemberId = updMemberId;
+    public void setUpdatedBy(final String updatedBy) {
+        this.updatedBy = updatedBy;
     }
 
-    public LocalDateTime getUpdDt() {
-        return this.updDt;
+    public LocalDateTime getUpdated() {
+        return this.updated;
     }
 
-    public void setUpdDt(final LocalDateTime updDt) {
-        this.updDt = updDt;
+    public void setUpdated(final LocalDateTime updated) {
+        this.updated = updated;
     }
 
 }

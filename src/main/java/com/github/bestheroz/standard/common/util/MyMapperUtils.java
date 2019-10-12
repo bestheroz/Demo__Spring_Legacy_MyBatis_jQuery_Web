@@ -16,16 +16,15 @@ import java.util.*;
 
 public class MyMapperUtils {
     private static final Logger LOGGER = LoggerFactory.getLogger(MyMapperUtils.class);
-
-    protected MyMapperUtils() {
-        throw new UnsupportedOperationException();
-    }
-
     private static final Gson GSON_INSTANCE = new GsonBuilder().registerTypeAdapter(Date.class, new MapperDateDeserializer()).registerTypeAdapter(Date.class, new MapperDateSerializer())
             .registerTypeAdapter(DateTime.class, new MapperDateTimeDeserializer()).registerTypeAdapter(DateTime.class, new MapperDateTimeSerializer())
             .registerTypeAdapter(LocalDateTime.class, new MapperLocalDateTimeDeserializer()).registerTypeAdapter(LocalDateTime.class, new MapperLocalDateTimeSerializer())
             .registerTypeAdapter(Map.class, new MapperMapDeserializer()).registerTypeAdapter(HashMap.class, new MapperMapDeserializer())
             .registerTypeAdapter(LinkedTreeMap.class, new MapperMapDeserializer()).disableHtmlEscaping().create();
+
+    protected MyMapperUtils() {
+        throw new UnsupportedOperationException();
+    }
 
     public static <T> T writeObjectAsObject(final Object content, final Class<T> returnType) throws CommonException {
         return GSON_INSTANCE.fromJson(writeObjectAsJsonElement(content), returnType);
@@ -88,8 +87,8 @@ public class MyMapperUtils {
     private static <T> T getCollectionTypeCatchException(final Object content, final Class<T> returnType) {
         final JsonElement jsonElement = writeObjectAsJsonElement(content);
         if (jsonElement.isJsonPrimitive()) {
-            LOGGER.warn(CommonExceptionCode.FAIL__TRANSFORM_DATA.toString());
-            throw new CommonException(CommonExceptionCode.FAIL__TRANSFORM_DATA, jsonElement);
+            LOGGER.warn(CommonExceptionCode.FAIL_TRANSFORM_DATA.toString());
+            throw new CommonException(CommonExceptionCode.FAIL_TRANSFORM_DATA, jsonElement);
         } else if (jsonElement.isJsonNull()) {
             if (returnType == JsonObject.class) {
                 return (T) new JsonObject();

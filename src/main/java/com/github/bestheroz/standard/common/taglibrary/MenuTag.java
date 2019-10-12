@@ -19,9 +19,9 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 
 public class MenuTag extends TagSupport {
+    public static final String MENU_TAG = "MENU_TAG";
     private static final long serialVersionUID = -8260051129668642050L;
     private static final Logger LOGGER = LoggerFactory.getLogger(MenuTag.class);
-    public static final String MENU_TAG = "MENU_TAG";
 
     @Override
     public int doStartTag() {
@@ -33,13 +33,13 @@ public class MenuTag extends TagSupport {
                 final LoginVO loginVO = MySessionUtils.getLoginVO(session);
                 if (loginVO != null) {
                     final JsonObject param = new JsonObject();
-                    final Integer memberTyp = Integer.parseInt(loginVO.getMemberTyp());
-                    if (memberTyp != null && memberTyp.intValue() >= 800) {
-                        param.addProperty("power", memberTyp);
+                    final Integer memberType = Integer.parseInt(loginVO.getMemberType());
+                    if (memberType != null && memberType.intValue() >= 800) {
+                        param.addProperty("power", memberType);
                         bodyHtml.append("<script> const menuData = ")
                                 .append(MyMapperUtils.writeObjectAsString(MyAccessBeanUtils.getBean(MenuService.class).getMenuVOObject(param, MySessionUtils.isNotLogined(session))))
                                 .append("</script>");
-                        bodyHtml.append("<script> const menuMemberNm = ").append(loginVO.getMemberNm()).append("</script>");
+                        bodyHtml.append("<script> const menuMemberName = ").append(loginVO.getMemberName()).append("</script>");
                     }
                     bodyHtml.append(IOUtils.toString(new File(session.getServletContext().getRealPath("/WEB-INF/views/common/menu.html")).toURI(), StandardCharsets.UTF_8));
                 }

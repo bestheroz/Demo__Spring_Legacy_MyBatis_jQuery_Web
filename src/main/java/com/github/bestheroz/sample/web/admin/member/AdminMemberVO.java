@@ -7,14 +7,14 @@ import java.io.Serializable;
 @SuppressWarnings("ALL")
 public class AdminMemberVO implements Serializable {
     private String memberId;
-    private String memberNm;
+    private String memberName;
     private String memberPw;
-    private String memberTyp;
+    private String memberType;
     private Integer loginFailCnt;
-    private String closeYn;
-    private LocalDateTime expireDt;
-    private String updMemberId;
-    private LocalDateTime updDt;
+    private Boolean closeTf;
+    private LocalDateTime expired;
+    private String updatedBy;
+    private LocalDateTime updated;
 
     public String getMemberId() {
         return this.memberId;
@@ -24,12 +24,12 @@ public class AdminMemberVO implements Serializable {
         this.memberId = memberId;
     }
 
-    public String getMemberNm() {
-        return this.memberNm;
+    public String getMemberName() {
+        return this.memberName;
     }
 
-    public void setMemberNm(final String memberNm) {
-        this.memberNm = memberNm;
+    public void setMemberName(final String memberName) {
+        this.memberName = memberName;
     }
 
     public String getMemberPw() {
@@ -41,11 +41,11 @@ public class AdminMemberVO implements Serializable {
     }
 
     public String getMemberType() {
-        return this.memberTyp;
+        return this.memberType;
     }
 
-    public void setMemberType(final String memberTyp) {
-        this.memberTyp = memberTyp;
+    public void setMemberType(final String memberType) {
+        this.memberType = memberType;
     }
 
     public Integer getLoginFailCnt() {
@@ -56,37 +56,37 @@ public class AdminMemberVO implements Serializable {
         this.loginFailCnt = loginFailCnt;
     }
 
-    public String getCloseYn() {
-        return this.closeYn;
+    public Boolean getCloseTf() {
+        return this.closeTf;
     }
 
-    public void setCloseYn(final String closeYn) {
-        this.closeYn = closeYn;
+    public void setCloseTf(final Boolean closeTf) {
+        this.closeTf = closeTf;
     }
 
-    public LocalDateTime getExpireDt() {
-        return this.expireDt;
+    public LocalDateTime getExpired() {
+        return this.expired;
     }
 
-    public void setExpireDt(final LocalDateTime expireDt) {
-        this.expireDt = expireDt;
+    public void setExpired(final LocalDateTime expired) {
+        this.expired = expired;
     }
 
-    public String getUpdMemberId() {
-        return this.updMemberId;
+    public String getUpdatedBy() {
+        return this.updatedBy;
     }
 
-    public void setUpdMemberId(final String updMemberId) {
-        this.updMemberId = updMemberId;
+    public void setUpdatedBy(final String updatedBy) {
+        this.updatedBy = updatedBy;
     }
 
     @SuppressWarnings("unused")
-    public LocalDateTime getUpdDt() {
-        return this.updDt;
+    public LocalDateTime getUpdated() {
+        return this.updated;
     }
 
-    public void setUpdDt(final LocalDateTime updDt) {
-        this.updDt = updDt;
+    public void setUpdated(final LocalDateTime updated) {
+        this.updated = updated;
     }
 
 }

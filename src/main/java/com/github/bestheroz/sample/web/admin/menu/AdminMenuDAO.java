@@ -14,7 +14,7 @@ import java.util.List;
 public interface AdminMenuDAO {
     List<AdminMenuVO> getSampleMenuMstVOList(final AdminMenuVO vo) throws CommonException;
 
-    @Select("SELECT SMM.MENU_ID, SMM.MENU_NM FROM SAMPLE_MENU_MST SMM WHERE SMM.MENU_TYP = 'G' ORDER BY SMM.MENU_ID ASC")
-    @Results(value = {@Result(column = "MENU_ID", property = "value"), @Result(column = "MENU_NM", property = "label")})
+    @Select("SELECT SMM.MENU_ID, SMM.MENU_NAME FROM SAMPLE_MENU_MST SMM WHERE SMM.MENU_TYPE = 'G' ORDER BY SMM.MENU_ID ASC")
+    @Results(value = {@Result(column = "MENU_ID", property = "value"), @Result(column = "MENU_NAME", property = "label")})
     List<ValueLabelVO> getPMenuValueLableVOList(final JsonObject param) throws CommonException;
 }

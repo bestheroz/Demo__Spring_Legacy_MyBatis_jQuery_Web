@@ -4,25 +4,25 @@
 <mapper namespace="com.github.bestheroz.sample.web.admin.menu.AdminMenuDAO">
     <select id="getSampleMenuMstVOList" resultType="AdminMenuVO" parameterType="AdminMenuVO">
         SELECT SMM.MENU_ID
-        , SMM.MENU_NM
-        , SMM.MENU_TYP
+        , SMM.MENU_NAME
+        , SMM.MENU_TYPE
         , SMM.PAR_MENU_ID
-        , SMM.USE_YN
+        , SMM.USE_TF
         , SMM.POWER
-        , SMM.DISP_SEQ
+        , SMM.DISPLAY_ORDER
         , SMM.URL
         , SMM.REMARK1
-        , SMM.UPD_DT
-        , SMM.UPD_MEMBER_ID
+        , SMM.UPDATED
+        , SMM.UPDATED_BY
         FROM SAMPLE_MENU_MST SMM
         <where>
             <if test="menuId != null">
                 AND SMM.MENU_ID = #{menuId, jdbcType=INTEGER}
             </if>
-            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty( menuNm )">
-                AND SMM.MENU_NM = #{menuNm, jdbcType=VARCHAR}
+            <if test="@org.apache.commons.lang3.StringUtils@isNotEmpty( menuName )">
+                AND SMM.MENU_NAME = #{menuName, jdbcType=VARCHAR}
             </if>
         </where>
-        ORDER BY SMM.UPD_DT DESC
+        ORDER BY SMM.UPDATED DESC
     </select>
 </mapper>

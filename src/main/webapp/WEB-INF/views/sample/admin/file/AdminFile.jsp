@@ -45,28 +45,28 @@
                     <div class="modal-body">
                         <form class="form-horizontal">
                             <input type="hidden" id="fileSeq"/>
-                            <div class="form-group">
-                                <label for="file" class="col-sm-3 control-label">파일선택</label>
-                                <div class="col-sm-9">
+                            <div class="form-group row">
+                                <label for="file" class="col-3 col-form-label">파일선택</label>
+                                <div class="col-9">
                                     <input type="file" id="file" class="form-control" title="파일선택" readonly/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="fileNm" class="col-sm-3 control-label">기존 파일명</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="fileNm" class="form-control" title="파일명" readonly/>
+                            <div class="form-group row">
+                                <label for="fileName" class="col-3 col-form-label">기존 파일명</label>
+                                <div class="col-9">
+                                    <input type="text" id="fileName" class="form-control" title="파일명" readonly/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="fileNmExt" class="col-sm-3 control-label">기존 파일확장자</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="fileNmExt" class="form-control" title="파일확장자" readonly/>
+                            <div class="form-group row">
+                                <label for="fileNameExt" class="col-3 col-form-label">기존 파일확장자</label>
+                                <div class="col-9">
+                                    <input type="text" id="fileNameExt" class="form-control" title="파일확장자" readonly/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="mimeTyp" class="col-sm-3 control-label">기존 MIME_TYP</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="mimeTyp" class="form-control" title="MIME_TYP" readonly/>
+                            <div class="form-group row">
+                                <label for="mimeType" class="col-3 col-form-label">기존 MIME_TYP</label>
+                                <div class="col-9">
+                                    <input type="text" id="mimeType" class="form-control" title="MIME_TYPE" readonly/>
                                 </div>
                             </div>
                         </form>
@@ -175,16 +175,18 @@
                 columns: [{
                     "data": "fileSeq"
                 }, {
-                    "data": "fileNm"
+                    "data": "fileName"
                 }, {
-                    "data": "fileNmExt"
+                    "data": "fileNameExt"
                 }, {
-                    "data": "mimeTyp"
+                    "data": "mimeType"
                 }, {
-                    "data": "updMemberId"
+                    "data": "updatedBy"
                 }, {
-                    "data": "updDt"
+                    "data": "updated"
                 }]
+            }).on('column-visibility.dt', function (e, indicator) {
+                $('#table1').DataTable().columns.adjust().responsive.recalc();
             });
         }
     </script>
@@ -219,9 +221,9 @@
             $('#file').parentsUntil('form.form-horizontal').siblings('div').show();
             MyModal.open($('#modalFile'));
             $('#fileSeq').val(selectedRow.fileSeq);
-            $('#fileNm').val(selectedRow.fileNm);
-            $('#fileNmExt').val(selectedRow.fileNmExt);
-            $('#mimeTyp').val(selectedRow.mimeTyp);
+            $('#fileName').val(selectedRow.fileName);
+            $('#fileNameExt').val(selectedRow.fileNameExt);
+            $('#mimeType').val(selectedRow.mimeType);
         }
 
         async function saveFile() {
@@ -233,7 +235,7 @@
                 return;
             }
             let url;
-            if ($('div.modal-footer>div.btn-group>div.btn-group').is(':hidden')) {
+            if ($('div.modal-footer:visible>div.btn-group>div.btn-group').is(':hidden')) {
                 url = '${CONTEXT_PATH}/sample/admin/file/insertSampleFileMst.json';
             } else {
                 url = '${CONTEXT_PATH}/sample/admin/file/updateSampleFileMst.json';
@@ -281,7 +283,7 @@
             }
             MyAjax.downloadFile('${CONTEXT_PATH}/common/file/download/fileDownload.proc', {
                 fileSeq: selectedRow.fileSeq,
-                fileNm: selectedRow.fileNm
+                fileName: selectedRow.fileName
             });
         }
     </script>

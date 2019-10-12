@@ -78,15 +78,15 @@ MyModal.close($('#try2_1-a'));
                             </div>
                             <div class="modal-body">
                                 <form class="form-horizontal">
-                                    <div class="form-group">
-                                        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-                                        <div class="col-sm-10">
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-2 col-form-label">Email</label>
+                                        <div class="col-10">
                                             <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-                                        <div class="col-sm-10">
+                                    <div class="form-group row">
+                                        <label for="inputPassword3" class="col-2 col-form-label">Password</label>
+                                        <div class="col-10">
                                             <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
                                         </div>
                                     </div>
@@ -173,6 +173,7 @@ MyModal.close($('#try2_1-a'));
         function try1_1() {
             MyModal.open($('#try1_modalContent'));
         }
+
         function try2_1() {
             MyModal.open($('#try2_1-a'));
         }

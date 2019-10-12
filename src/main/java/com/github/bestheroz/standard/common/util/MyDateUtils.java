@@ -6,29 +6,27 @@ import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 
 @SuppressWarnings("ALL")
 public class MyDateUtils {
-    protected MyDateUtils() {
-        throw new UnsupportedOperationException();
-    }
-
     public static final DateTimeZone TIME_ZONE_ASIA_SEOUL = DateTimeZone.forID("Asia/Seoul");
     public static final Locale LOCALE_KOREAN = Locale.KOREAN;
-
     public static final String HH_MM_SS = "HH:mm:ss";
     public static final String YYYY_MM_DD = "yyyy-MM-dd";
     public static final String YYYY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
     public static final String ISO_8601 = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
-
     public static final String HHMMSS = "HHmmss";
     public static final String YYYYMM = "yyyyMM";
     public static final String YYYYMMDD = "yyyyMMdd";
     public static final String YYYYMMDDHHMMSS = "yyyyMMddHHmmss";
+
+    protected MyDateUtils() {
+        throw new UnsupportedOperationException();
+    }
 
     public static String getStringNow(final String pattern) {
         return new DateTime().toString(pattern);
@@ -92,7 +90,7 @@ public class MyDateUtils {
         return new LocalDateTime(date);
     }
 
-    public static List<LocalDateTime> getBeetwenAllLocolDate(final String from, final String to, final String pattern) {
+    public static Set<LocalDateTime> getBeetwenAllLocolDate(final String from, final String to, final String pattern) {
         LocalDateTime fromDt = MyDateUtils.getLocalDateTime(from, pattern);
         final LocalDateTime toDt = MyDateUtils.getLocalDateTime(to, pattern);
 
@@ -100,7 +98,7 @@ public class MyDateUtils {
             return null;
         }
 
-        final List<LocalDateTime> res = new ArrayList<>();
+        final Set<LocalDateTime> res = new HashSet<>();
         while (fromDt.compareTo(toDt) != 1) {
             res.add(fromDt);
             if (YYYYMMDD.equals(pattern)) {
@@ -138,7 +136,7 @@ public class MyDateUtils {
         return new DateTime(date, DateTimeZone.getDefault());
     }
 
-    public static List<DateTime> getBeetwenAllDate(final String from, final String to, final String pattern) {
+    public static Set<DateTime> getBeetwenAllDate(final String from, final String to, final String pattern) {
         DateTime fromDt = MyDateUtils.getDateTime(from, pattern);
         final DateTime toDt = MyDateUtils.getDateTime(to, pattern);
 
@@ -146,7 +144,7 @@ public class MyDateUtils {
             return null;
         }
 
-        final List<DateTime> res = new ArrayList<>();
+        final Set<DateTime> res = new HashSet<>();
         while (fromDt.compareTo(toDt) != 1) {
             res.add(fromDt);
             if (YYYYMMDD.equals(pattern)) {

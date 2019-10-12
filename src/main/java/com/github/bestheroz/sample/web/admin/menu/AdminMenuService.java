@@ -28,14 +28,14 @@ public class AdminMenuService {
     }
 
     public void insertSampleMenuMst(final TableSampleMenuMstVO vo, final LoginVO loginVO) throws CommonException {
-        vo.setRegMemberId(loginVO.getMemberId());
-        vo.setUpdMemberId(loginVO.getMemberId());
+        vo.setCreatedBy(loginVO.getMemberId());
+        vo.setUpdatedBy(loginVO.getMemberId());
         this.session.removeAttribute(MenuTag.MENU_TAG);
         this.tableSampleMenuMstDAO.insert(vo);
     }
 
     public void updateSampleMenuMst(final TableSampleMenuMstVO vo, final LoginVO loginVO) throws CommonException {
-        vo.setUpdMemberId(loginVO.getMemberId());
+        vo.setUpdatedBy(loginVO.getMemberId());
         this.session.removeAttribute(MenuTag.MENU_TAG);
         this.tableSampleMenuMstDAO.update(vo, Collections.singleton("menuId"), null);
     }

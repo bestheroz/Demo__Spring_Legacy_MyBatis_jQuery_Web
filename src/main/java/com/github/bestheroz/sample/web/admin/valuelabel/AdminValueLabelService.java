@@ -40,23 +40,23 @@ public class AdminValueLabelService {
     public List<AdminValueLabelVO> getSampleCodeMstVOList(final AdminValueLabelVO vo) throws CommonException {
         final TableSampleCodeMstVO tableSampleCodeMstVO = MyMapperUtils.writeObjectAsObject(vo, TableSampleCodeMstVO.class);
         final Set<String> whereKeys = new HashSet<>();
-        if (StringUtils.isNotEmpty(vo.getGrcode())) {
-            whereKeys.add("grcode");
+        if (StringUtils.isNotEmpty(vo.getGroupCode())) {
+            whereKeys.add("groupCode");
         }
-        return MyMapperUtils.writeObjectAsArrayList(this.tableSampleCodeMstDAO.getList(tableSampleCodeMstVO, whereKeys, "UPD_DT DESC"), AdminValueLabelVO.class);
+        return MyMapperUtils.writeObjectAsArrayList(this.tableSampleCodeMstDAO.getList(tableSampleCodeMstVO, whereKeys, "UPDATED DESC"), AdminValueLabelVO.class);
     }
 
     public void insertSampleCodeMst(final TableSampleCodeMstVO vo, final LoginVO loginVO) throws CommonException {
-        vo.setRegMemberId(loginVO.getMemberId());
-        vo.setUpdMemberId(loginVO.getMemberId());
+        vo.setCreatedBy(loginVO.getMemberId());
+        vo.setUpdatedBy(loginVO.getMemberId());
         this.tableSampleCodeMstDAO.insert(vo);
-        this.session.removeAttribute("ValueLabel." + vo.getGrcode());
+        this.session.removeAttribute("ValueLabel." + vo.getGroupCode());
     }
 
     public void updateSampleCodeMst(final TableSampleCodeMstVO vo, final LoginVO loginVO) throws CommonException {
-        vo.setUpdMemberId(loginVO.getMemberId());
-        this.tableSampleCodeMstDAO.update(vo, Collections.singleton("grcode"), null);
-        this.session.removeAttribute("ValueLabel." + vo.getGrcode());
+        vo.setUpdatedBy(loginVO.getMemberId());
+        this.tableSampleCodeMstDAO.update(vo, Collections.singleton("groupCode"), null);
+        this.session.removeAttribute("ValueLabel." + vo.getGroupCode());
     }
 
     // @Transactional
@@ -74,7 +74,7 @@ public class AdminValueLabelService {
         try {
             final TableSampleCodeDetVO tableSampleCodeDetVO = MyMapperUtils.writeObjectAsObject(vo, TableSampleCodeDetVO.class);
             try {
-                this.tableSampleCodeDetDAO.delete(tableSampleCodeDetVO, Collections.singleton("grcode"));
+                this.tableSampleCodeDetDAO.delete(tableSampleCodeDetVO, Collections.singleton("groupCode"));
             } catch (final CommonException e) {
                 if (!e.isExceptionNoDataSuccesss()) {
                     this.logger.warn(ExceptionUtils.getStackTrace(e));
@@ -82,8 +82,8 @@ public class AdminValueLabelService {
                 }
             }
             final TableSampleCodeMstVO tableSampleCodeMstVO = MyMapperUtils.writeObjectAsObject(vo, TableSampleCodeMstVO.class);
-            this.tableSampleCodeMstDAO.delete(tableSampleCodeMstVO, Collections.singleton("grcode"));
-            this.session.removeAttribute("ValueLabel." + tableSampleCodeMstVO.getGrcode());
+            this.tableSampleCodeMstDAO.delete(tableSampleCodeMstVO, Collections.singleton("groupCode"));
+            this.session.removeAttribute("ValueLabel." + tableSampleCodeMstVO.getGroupCode());
             this.platformTransactionManager.commit(status);
         } catch (final CommonException e) {
             if (!status.isCompleted()) {
@@ -97,30 +97,30 @@ public class AdminValueLabelService {
     // DETAIL PART
     public List<AdminValueLabelVO> getSampleCodeDetVOList(final AdminValueLabelVO vo) throws CommonException {
         final Set<String> whereKeys = new HashSet<>();
-        whereKeys.add("grcode");
+        whereKeys.add("groupCode");
         if (StringUtils.isNotEmpty(vo.getCode())) {
             whereKeys.add("code");
         }
-        return MyMapperUtils.writeObjectAsArrayList(this.tableSampleCodeDetDAO.getList(MyMapperUtils.writeObjectAsObject(vo, TableSampleCodeDetVO.class), whereKeys, "UPD_DT DESC"),
+        return MyMapperUtils.writeObjectAsArrayList(this.tableSampleCodeDetDAO.getList(MyMapperUtils.writeObjectAsObject(vo, TableSampleCodeDetVO.class), whereKeys, "UPDATED DESC"),
                 AdminValueLabelVO.class);
     }
 
     public void insertSampleCodeDet(final TableSampleCodeDetVO vo, final LoginVO loginVO) throws CommonException {
-        vo.setRegMemberId(loginVO.getMemberId());
-        vo.setUpdMemberId(loginVO.getMemberId());
+        vo.setCreatedBy(loginVO.getMemberId());
+        vo.setUpdatedBy(loginVO.getMemberId());
         this.tableSampleCodeDetDAO.insert(vo);
-        this.session.removeAttribute("ValueLabel." + vo.getGrcode());
+        this.session.removeAttribute("ValueLabel." + vo.getGroupCode());
     }
 
     public void updateSampleCodeDet(final TableSampleCodeDetVO vo, final LoginVO loginVO) throws CommonException {
-        vo.setUpdMemberId(loginVO.getMemberId());
-        this.tableSampleCodeDetDAO.update(vo, Sets.newHashSet("grcode", "code"), null);
-        this.session.removeAttribute("ValueLabel." + vo.getGrcode());
+        vo.setUpdatedBy(loginVO.getMemberId());
+        this.tableSampleCodeDetDAO.update(vo, Sets.newHashSet("groupCode", "code"), null);
+        this.session.removeAttribute("ValueLabel." + vo.getGroupCode());
     }
 
     public void deleteSampleCodeDet(final TableSampleCodeDetVO vo) throws CommonException {
-        this.tableSampleCodeDetDAO.delete(vo, Sets.newHashSet("grcode", "code"));
-        this.session.removeAttribute("ValueLabel." + vo.getGrcode());
+        this.tableSampleCodeDetDAO.delete(vo, Sets.newHashSet("groupCode", "code"));
+        this.session.removeAttribute("ValueLabel." + vo.getGroupCode());
     }
 
 }
