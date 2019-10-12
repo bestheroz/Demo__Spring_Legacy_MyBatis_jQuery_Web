@@ -32,7 +32,7 @@
             <exclude-mapping path="/sample/login/**"/>
             <exclude-mapping path="/resources/**"/>
             <exclude-mapping path="/common/valuelabel/getValueLabeVOList.json"/>
-            <exclude-mapping path="/favicon.ico"/>
+            <exclude-mapping path="/favicon.*"/>
             <exclude-mapping path="/common/exception/**"/>
             <beans:bean class="com.github.bestheroz.standard.common.interceptor.Interceptor"/>
         </interceptor>
