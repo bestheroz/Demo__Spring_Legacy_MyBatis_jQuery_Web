@@ -54,7 +54,7 @@ public class MyMapperUtils {
     public static JsonElement writeObjectAsJsonElement(final Object content) throws CommonException {
         if (content instanceof String) {
             try {
-                return new JsonParser().parse((String) content);
+                return JsonParser.parseString((String) content);
             } catch (final Throwable e) {
                 // ignored
                 return GSON_INSTANCE.toJsonTree(content);
