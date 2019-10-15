@@ -29,7 +29,7 @@ public class TraceLoggingInAOP {
         final Class<? extends Object> targetClass = pjp.getTarget().getClass();
         final String formatClassMethod = MessageFormat.format(STR_CLASS_METHOD,
                 StringUtils.startsWith(targetClass.getSimpleName(), "$Proxy") ? targetClass.getInterfaces()[0].getSimpleName() : targetClass.getSimpleName(), pjp.getSignature().getName(),
-                this.getAgumentNames(pjp.getArgs()));
+                this.getArgumentNames(pjp.getArgs()));
         try {
             final StopWatch stopWatch = new StopWatch();
             stopWatch.start();
@@ -47,7 +47,7 @@ public class TraceLoggingInAOP {
         }
     }
 
-    private String getAgumentNames(final Object[] obj) {
+    private String getArgumentNames(final Object[] obj) {
         final List<String> list = new ArrayList<>();
         for (final Object element : obj) {
             if (element != null) {
