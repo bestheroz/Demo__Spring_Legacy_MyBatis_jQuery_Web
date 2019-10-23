@@ -19,8 +19,8 @@
         <gson-version>2.8.6</gson-version>
         <joda-time-version>2.10.4</joda-time-version>
         <lang3-version>3.9</lang3-version>
-        <mybatis-version>3.5.2</mybatis-version>
-        <mybatis-spring-version>2.0.2</mybatis-spring-version>
+        <mybatis-version>3.5.3</mybatis-version>
+        <mybatis-spring-version>2.0.3</mybatis-spring-version>
         <HikariCP-version>3.4.1</HikariCP-version>
         <common-io-version>2.6</common-io-version>
         <tika-version>1.22</tika-version>
@@ -31,7 +31,7 @@
         <jstl-version>1.2</jstl-version>
         <ziplet-version>2.4.1</ziplet-version>
         <lucy-version>1.6.3</lucy-version>
-        <poi-version>4.1.0</poi-version>
+        <poi-version>4.1.1</poi-version>
         <pdfbox-version>2.0.17</pdfbox-version>
         <boxable-version>1.5</boxable-version>
         <mockito-version>2.28.2</mockito-version>

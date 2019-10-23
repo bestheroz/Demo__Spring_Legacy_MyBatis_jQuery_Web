@@ -113,7 +113,7 @@ public class HtmlTag extends TagSupport {
             this.makeScriptTag("https://cdn.jsdelivr.net/npm/jquery-file-download@1.4.6/src/Scripts/jquery.fileDownload.js");
         }
         if (StringUtils.equals(this.handlebars, CommonCode.YES)) {
-            this.makeScriptTag("https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.4.0/handlebars.min.js");
+            this.makeScriptTag("https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.4.2/handlebars.min.js");
             this.makeScriptTag(CommonCode.PATH_JS + "/MyHandlebars.js");
         }
         if (!StringUtils.equals(this.icon, CommonCode.NO)) {
