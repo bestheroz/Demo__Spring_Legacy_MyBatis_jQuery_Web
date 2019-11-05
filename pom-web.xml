@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.bestheroz</groupId>
     <artifactId>web</artifactId>
-    <name>My_Spring_MyBatis_jQuery_Web_Project</name>
+    <name>My_Spring_Legacy_MyBatis_jQuery_Web_Project</name>
     <version>1.0.0-BUILD-SNAPSHOT</version>
 
     <properties>
