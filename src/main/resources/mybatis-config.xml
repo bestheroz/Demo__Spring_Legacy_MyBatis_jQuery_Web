@@ -11,6 +11,7 @@
     <typeAliases>
         <typeAlias alias="JsonObject" type="com.google.gson.JsonObject"/>
         <typeAlias alias="DateTime" type="org.joda.time.DateTime"/>
+        <typeAlias alias="LocalDateTime" type="org.joda.time.LocalDateTime"></typeAlias>
     </typeAliases>
 
     <typeHandlers>

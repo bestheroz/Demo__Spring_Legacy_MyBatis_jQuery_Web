@@ -171,14 +171,6 @@
             <artifactId>HikariCP</artifactId>
             <version>${HikariCP-version}</version>
         </dependency>
-        <!-- jdbc -->
-        <dependency>
-            <groupId>oracle.jdbc</groupId>
-            <artifactId>jdbc</artifactId>
-            <version>12.2.0.1</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/ojdbc8.jar</systemPath>
-        </dependency>
 
         <!-- 파일 검증(확장자, MimeType) -->
         <dependency>

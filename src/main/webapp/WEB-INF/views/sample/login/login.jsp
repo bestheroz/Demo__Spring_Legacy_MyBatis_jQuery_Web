@@ -5,7 +5,7 @@
     <main role="main" class="flex-shrink-0">
         <div class="container">
             <form class="form-signin">
-                <h1 class="h3 mt-5 mb-3 font-weight-normal">Bestheroz's Spring-Mybatis-jQuery Web Project
+                <h1 class="h3 mt-5 mb-3 font-weight-normal">Bestheroz's Spring-Legacy-Mybatis-jQuery Web Project
                     <small>ver.190922</small>
                 </h1>
                 <label for="memberId" class="sr-only">아이디</label>
