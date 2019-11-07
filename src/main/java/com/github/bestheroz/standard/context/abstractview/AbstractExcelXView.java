@@ -115,7 +115,7 @@ public abstract class AbstractExcelXView extends AbstractView {
     protected final void renderMergedOutputModel(final Map<String, Object> model, final HttpServletRequest request, final HttpServletResponse response) {
         // java.lang.OutOfMemoryError: Java heap space 발생시...
         // -XX:PermSize=64M -XX:MaxPermSize=1000M
-        try (ByteArrayOutputStream baos = this.createTemporaryOutputStream(); SXSSFWorkbook workbook = new SXSSFWorkbook(100)) {
+        try (final ByteArrayOutputStream baos = this.createTemporaryOutputStream(); final SXSSFWorkbook workbook = new SXSSFWorkbook(100)) {
             workbook.setCompressTempFiles(true);
 
             this.stringRightStyle = (XSSFCellStyle) workbook.createCellStyle();
@@ -157,7 +157,7 @@ public abstract class AbstractExcelXView extends AbstractView {
         } catch (final Throwable e) {
             this.logger.warn(ExceptionUtils.getStackTrace(e));
             response.setContentType("text/html;charset=utf-8");
-            try (PrintWriter pw = response.getWriter()) {
+            try (final PrintWriter pw = response.getWriter()) {
                 pw.println("<script>");
                 pw.println("alert('파일이 없습니다.');");
                 pw.println("history.back();");
@@ -173,7 +173,7 @@ public abstract class AbstractExcelXView extends AbstractView {
         final ApplicationContext applicationContext = this.getApplicationContext();
         if (applicationContext == null) {
             this.logger.warn("applicationContext is null");
-            throw CommonException.EXCEPTION_ERROR_SYSTEM;
+            throw CommonException.EXCEPTION_FAIL_SYSTEM;
         }
         final LocalizedResourceHelper helper = new LocalizedResourceHelper(applicationContext);
         final Locale userLocale = RequestContextUtils.getLocale(request);

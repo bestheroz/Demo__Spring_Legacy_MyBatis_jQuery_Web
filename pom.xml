@@ -287,6 +287,12 @@
             <artifactId>h2</artifactId>
             <version>${h2database-version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
 
         <!-- 여기까지 표준프레임워크에서 정의한 library -->
         <!-- 여기까지 표준프레임워크에서 정의한 library -->

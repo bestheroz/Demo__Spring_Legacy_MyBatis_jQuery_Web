@@ -5,20 +5,24 @@ import com.github.bestheroz.standard.context.db.checker.DbTableVOCheckerContext;
 import com.google.common.base.CaseFormat;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.core.type.classreading.CachingMetadataReaderFactory;
 import org.springframework.core.type.classreading.MetadataReader;
 import org.springframework.core.type.classreading.MetadataReaderFactory;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.SystemPropertyUtils;
 
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.sql.ResultSet;
@@ -27,20 +31,22 @@ import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 
-//@SpringJUnitConfig(locations = { "file:src/main/webapp/WEB-INF/spring/root-context.xml", "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" })
-//@WebAppConfiguration
-//@Transactional
+@SpringJUnitConfig(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml", "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
+@WebAppConfiguration
+@Transactional
 @SuppressWarnings("ALL")
 public class TestDbTableVOCheckerContext {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    @Autowired
-    private SqlSession sqlSession;
+    @Qualifier("dataSource") @Autowired(required = false)
+    private DataSource dataSource;
 
+    @Test
     public void validDbTableVO() {
-        try (final Statement stmt = new SqlSessionFactoryBuilder().build(this.sqlSession.getConfiguration()).openSession().getConnection().createStatement()) {
+        try (final Statement stmt = this.dataSource.getConnection().createStatement()) {
             final Set<Class<?>> targetClassList = this.findMyTypes();
             final Set<String> filedList = new HashSet<>();
             for (final Class<?> class1 : targetClassList) {
+                this.logger.debug("check {}", class1.getSimpleName());
                 filedList.clear();
                 for (final Field field : class1.getDeclaredFields()) {
                     filedList.add(field.getName());
@@ -88,7 +94,7 @@ public class TestDbTableVOCheckerContext {
                             final String camelColumnName = CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, columnName);
                             if (DbTableVOCheckerContext.STRING_JDBC_TYPE_SET.contains(columnTypeName)) {
                                 fieldType = "String";
-                            } else if (StringUtils.equals(columnTypeName, "NUMBER")) {
+                            } else if (StringUtils.equalsAny(columnTypeName, "NUMBER", "DECIMAL")) {
                                 if (metaInfo.getScale(i + 1) > 0) { // 소수점이 있으면
                                     fieldType = "Double";
                                 } else {

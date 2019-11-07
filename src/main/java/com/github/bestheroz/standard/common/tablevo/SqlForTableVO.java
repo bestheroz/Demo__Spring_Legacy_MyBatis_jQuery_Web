@@ -8,9 +8,11 @@ import com.google.common.base.CaseFormat;
 import com.google.common.collect.Sets;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.jdbc.SQL;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 
 import java.lang.reflect.Field;
 import java.text.MessageFormat;
@@ -19,7 +21,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-@SuppressWarnings("ALL")
 public class SqlForTableVO {
     public static final String COUNT = "countTableVO";
     public static final String SELECT = "selectTableVO";
@@ -31,7 +32,8 @@ public class SqlForTableVO {
     public static final Set<String> SHORT_JAVA_TYPE_SET = Sets.newHashSet("Short");
     public static final Set<String> INTEGER_JAVA_TYPE_SET = Sets.newHashSet("Integer");
     public static final Set<String> BIGINT_JAVA_TYPE_SET = Sets.newHashSet("Long");
-    public static final Set<String> NUMBER_JAVA_TYPE_SET = Sets.newHashSet("Short", "Integer", "Long");
+    public static final Set<String> NUMBER_JAVA_TYPE_SET = Sets.newHashSet("Short", "Integer", "Long", "Double");
+    public static final Set<String> DOUBLE_JAVA_TYPE_SET = Sets.newHashSet("Double");
     public static final Set<String> TIMESTAMP_JAVA_TYPE_SET = Sets.newHashSet("DateTime", "LocalDateTime");
     public static final Set<String> BLOB_JAVA_TYPE_SET = Sets.newHashSet("Byte[]");
     public static final Set<String> BOOLEAN_JAVA_TYPE_SET = Sets.newHashSet("Boolean");
@@ -41,7 +43,7 @@ public class SqlForTableVO {
     private static final String VARIABLE_NAME_CREATED_BY = "createdBy";
     private static final String VARIABLE_NAME_CREATED = "created";
     private static final String VARIABLE_NAME_UPDATED = "updated";
-    private static final String SYSDATE = "SYSDATE";
+    private static final String SYSDATE = "NOW()";
     private static final String ENCRYPTED_FIELD_SET = "ENCRYPTED_COLUMN_LIST";
     private static final Set<String> EXCLUDE_FIELD_SET = Sets.newHashSet("SERIAL_VERSION_U_I_D", "serialVersionUID", "E_N_C_R_Y_P_T_E_D__C_O_L_U_M_N__L_I_S_T");
     // 참고용: 각VO에 암호화 컬럼 정의 방법
@@ -57,10 +59,10 @@ public class SqlForTableVO {
 
     public <T extends Object> String countTableVO(@NonNull final T vo, final Set<String> whereKeys) {
         final SQL sql = new SQL();
-        final String tableName = getTableName(vo);
+        final String tableName = this.getTableName(vo);
         sql.SELECT("COUNT(1) AS CNT").FROM(tableName);
         if (MyNullUtils.isNotEmpty(whereKeys)) {
-            getWhereSql(vo, whereKeys, sql, tableName);
+            this.getWhereSql(vo, whereKeys, sql, tableName);
         }
 
         this.logger.debug(sql.toString());
@@ -85,13 +87,13 @@ public class SqlForTableVO {
     private void validWhereKey(final Set<String> whereKeys, final Map<String, Object> param) {
         if (MyNullUtils.size(whereKeys) < 1) {
             this.logger.warn(CommonExceptionCode.FAIL_INVALID_PARAMETER.toString());
-            throw CommonException.EXCEPTION_ERROR_INVALID_PARAMETER;
+            throw CommonException.EXCEPTION_FAIL_INVALID_PARAMETER;
         }
 
         for (final String key : whereKeys) {
             if (!param.containsKey(key) || param.get(key) == null) {
                 this.logger.warn(CommonExceptionCode.FAIL_INVALID_PARAMETER.toString());
-                throw CommonException.EXCEPTION_ERROR_INVALID_PARAMETER;
+                throw CommonException.EXCEPTION_FAIL_INVALID_PARAMETER;
             }
         }
     }
@@ -99,8 +101,8 @@ public class SqlForTableVO {
     private <T extends Object> void getWhereSql(@NonNull final T vo, final Set<String> whereKeys, final SQL sql, final String tableName) {
         final Map<String, Object> param = MyMapperUtils.writeObjectAsHashMap(vo);
         try {
-            validWhereKey(whereKeys, param);
-        } catch (Exception e) {
+            this.validWhereKey(whereKeys, param);
+        } catch (final Exception e) {
             // pass
         }
         final Set<String> encryptedColumnList = this.getEncryptedColumnList(vo);
@@ -122,7 +124,7 @@ public class SqlForTableVO {
     private <T extends Object> Set<String> getEncryptedColumnList(@NonNull final T vo) {
         try {
             return (Set<String>) vo.getClass().getField(ENCRYPTED_FIELD_SET).get(new HashSet<>());
-        } catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
+        } catch (final IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
             return new HashSet<>();
         }
     }
@@ -130,13 +132,13 @@ public class SqlForTableVO {
     @SuppressWarnings("unused")
     public <T extends Object> String selectTableVO(@NonNull final T vo, final Set<String> whereKeys, final String orderByColumns) {
         final SQL sql = new SQL();
-        final String tableName = getTableName(vo);
+        final String tableName = this.getTableName(vo);
         final Field[] fields = vo.getClass().getDeclaredFields();
-        getSelectSql(vo, sql, tableName, fields);
+        this.getSelectSql(vo, sql, tableName, fields);
         sql.FROM(tableName);
 
         if (MyNullUtils.isNotEmpty(whereKeys)) {
-            getWhereSql(vo, whereKeys, sql, tableName);
+            this.getWhereSql(vo, whereKeys, sql, tableName);
         }
         if (StringUtils.isNotEmpty(orderByColumns)) {
             sql.ORDER_BY(orderByColumns);
@@ -151,14 +153,14 @@ public class SqlForTableVO {
     }
 
     public <T extends Object> String selectOneTableVO(@NonNull final T vo, @NonNull final Set<String> whereKeys) {
-        validWhereKey(whereKeys, MyMapperUtils.writeObjectAsHashMap(vo));
+        this.validWhereKey(whereKeys, MyMapperUtils.writeObjectAsHashMap(vo));
 
         final SQL sql = new SQL();
-        final String tableName = getTableName(vo);
+        final String tableName = this.getTableName(vo);
         final Field[] fields = vo.getClass().getDeclaredFields();
-        getSelectSql(vo, sql, tableName, fields);
+        this.getSelectSql(vo, sql, tableName, fields);
         sql.FROM(tableName);
-        getWhereSql(vo, whereKeys, sql, tableName);
+        this.getWhereSql(vo, whereKeys, sql, tableName);
         this.logger.debug(sql.toString());
         return sql.toString();
     }
@@ -166,7 +168,7 @@ public class SqlForTableVO {
     public <T extends Object> String insertTableVO(@NonNull final T vo) {
         final Map<String, Object> param = MyMapperUtils.writeObjectAsHashMap(vo);
         final SQL sql = new SQL();
-        final String tableName = getTableName(vo);
+        final String tableName = this.getTableName(vo);
         sql.INSERT_INTO(tableName);
         final Set<String> encryptedColumnList = this.getEncryptedColumnList(vo);
         for (final Entry<String, Object> entry : param.entrySet()) {
@@ -200,12 +202,12 @@ public class SqlForTableVO {
         return sql.toString();
     }
 
-    public <T extends Object> String updateTableVO(@NonNull final T vo, final Set<String> whereKeys, final Set<String> forcedUpdateKey) {
+    public <T extends Object> String updateTableVO(@NonNull final T vo, @NotNull final Set<String> whereKeys, @Nullable final Set<String> forcedUpdateKeys) {
         final Map<String, Object> param = MyMapperUtils.writeObjectAsHashMap(vo);
-        validWhereKey(whereKeys, param);
+        this.validWhereKey(whereKeys, param);
 
         final SQL sql = new SQL();
-        final String tableName = getTableName(vo);
+        final String tableName = this.getTableName(vo);
         sql.UPDATE(tableName);
         final Field[] fields = vo.getClass().getDeclaredFields();
         final Set<String> encryptedColumnList = this.getEncryptedColumnList(vo);
@@ -218,7 +220,7 @@ public class SqlForTableVO {
                 continue;
             }
             final String columnTypeName = field.getType().getSimpleName();
-            if (forcedUpdateKey != null && !whereKeys.contains(camelFieldName) && (forcedUpdateKey.contains("**") || forcedUpdateKey.contains(camelFieldName))
+            if (forcedUpdateKeys != null && !whereKeys.contains(camelFieldName) && (forcedUpdateKeys.contains("**") || forcedUpdateKeys.contains(camelFieldName))
                     && !StringUtils.equalsAny(camelFieldName, TABLE_COLUMN_NAME_CREATED_BY, TABLE_COLUMN_NAME_CREATED)) {
                 if (encryptedColumnList.contains(camelFieldName)) {
                     sql.SET(MessageFormat.format(SET_BIND_ENCRYPTED_STRING, fieldName, camelFieldName, this.getJdbcType(columnTypeName), tableName));
@@ -261,26 +263,26 @@ public class SqlForTableVO {
     public <T extends Object> String deleteTableVO(@NonNull final T vo, final Set<String> whereKeys) {
         if (MyNullUtils.size(whereKeys) < 1) {
             this.logger.warn(CommonExceptionCode.FAIL_NO_DATA_SUCCESS.toString());
-            throw CommonException.EXCEPTION_ERROR_NO_DATA_SUCCESS;
+            throw CommonException.EXCEPTION_FAIL_NO_DATA_SUCCESS;
         }
         final Map<String, Object> param = MyMapperUtils.writeObjectAsHashMap(vo);
         for (final String key : whereKeys) {
             if (!param.containsKey(key) || param.get(key) == null) {
                 this.logger.warn("{} not in {}\n{}", key, MyMapperUtils.writeObjectAsString(param), CommonExceptionCode.FAIL_INVALID_PARAMETER.toString());
-                throw CommonException.EXCEPTION_ERROR_INVALID_PARAMETER;
+                throw CommonException.EXCEPTION_FAIL_INVALID_PARAMETER;
             }
         }
         final SQL sql = new SQL();
-        final String tableName = getTableName(vo);
+        final String tableName = this.getTableName(vo);
         sql.DELETE_FROM(tableName);
-        getWhereSql(vo, whereKeys, sql, tableName);
+        this.getWhereSql(vo, whereKeys, sql, tableName);
 
         this.logger.debug(sql.toString());
         return sql.toString();
     }
 
     private String getJdbcType(@NonNull final String columnTypeName) {
-        String jdbcType;
+        final String jdbcType;
         if (VARCHAR_JAVA_TYPE_SET.contains(columnTypeName)) {
             jdbcType = ", jdbcType=VARCHAR";
         } else if (SHORT_JAVA_TYPE_SET.contains(columnTypeName)) {
@@ -289,6 +291,8 @@ public class SqlForTableVO {
             jdbcType = ", jdbcType=INTEGER";
         } else if (BIGINT_JAVA_TYPE_SET.contains(columnTypeName)) {
             jdbcType = ", jdbcType=BIGINT";
+        } else if (DOUBLE_JAVA_TYPE_SET.contains(columnTypeName)) {
+            jdbcType = ", jdbcType=DOUBLE";
         } else if (TIMESTAMP_JAVA_TYPE_SET.contains(columnTypeName)) {
             jdbcType = ", jdbcType=TIMESTAMP";
         } else if (BOOLEAN_JAVA_TYPE_SET.contains(columnTypeName)) {

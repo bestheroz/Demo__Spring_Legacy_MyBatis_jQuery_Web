@@ -34,7 +34,7 @@ public class CommonExceptionHandler {
     public JsonObject exception(final Throwable e) throws Exception {
         LOGGER.warn(ExceptionUtils.getStackTrace(e));
         this.isAcceptHtml();
-        return CommonException.EXCEPTION_ERROR_SYSTEM.getJsonObject();
+        return CommonException.EXCEPTION_FAIL_SYSTEM.getJsonObject();
     }
 
     @ExceptionHandler({CommonException.class})
@@ -50,7 +50,7 @@ public class CommonExceptionHandler {
     public JsonObject bindException(final Throwable e) throws Exception {
         LOGGER.warn(ExceptionUtils.getStackTrace(e));
         this.isAcceptHtml();
-        return CommonException.EXCEPTION_ERROR_INVALID_PARAMETER.getJsonObject();
+        return CommonException.EXCEPTION_FAIL_INVALID_PARAMETER.getJsonObject();
     }
 
     @ExceptionHandler({HttpMediaTypeNotAcceptableException.class, HttpMediaTypeNotSupportedException.class, HttpRequestMethodNotSupportedException.class, HttpClientErrorException.class})
@@ -58,7 +58,7 @@ public class CommonExceptionHandler {
     public JsonObject httpMediaTypeNotAcceptableException(final Throwable e) throws Exception {
         LOGGER.warn(ExceptionUtils.getStackTrace(e));
         this.isAcceptHtml();
-        return CommonException.EXCEPTION_ERROR_INVALID_REQUEST.getJsonObject();
+        return CommonException.EXCEPTION_FAIL_INVALID_REQUEST.getJsonObject();
     }
 
     @ExceptionHandler({MultipartException.class})
@@ -70,7 +70,7 @@ public class CommonExceptionHandler {
         if (ExceptionUtils.getMessage(e).contains(SizeLimitExceededException.class.getSimpleName())) {
             result = new CommonException(CommonExceptionCode.FAIL_FILE_SIZE).getJsonObject();
         } else {
-            result = CommonException.EXCEPTION_ERROR_SYSTEM.getJsonObject();
+            result = CommonException.EXCEPTION_FAIL_SYSTEM.getJsonObject();
         }
         return result;
     }

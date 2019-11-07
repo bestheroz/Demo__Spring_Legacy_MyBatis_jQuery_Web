@@ -14,24 +14,18 @@ import java.util.List;
 
 @SuppressWarnings("serial")
 public class CommonException extends RuntimeException {
-    private static final Logger LOGGER = LoggerFactory.getLogger(CommonException.class);
     public static final CommonException EXCEPTION_SUCCESS_NORMAL = new CommonException(CommonExceptionCode.SUCCESS_NORMAL);
-    public static final CommonException EXCEPTION_ERROR_SYSTEM = new CommonException(CommonExceptionCode.FAIL_SYSTEM_ERROR);
-    public static final CommonException EXCEPTION_ERROR_INVALID_REQUEST = new CommonException(CommonExceptionCode.FAIL_INVALID_REQUEST);
-    public static final CommonException EXCEPTION_ERROR_INVALID_PARAMETER = new CommonException(CommonExceptionCode.FAIL_INVALID_PARAMETER);
-    public static final CommonException EXCEPTION_ERROR_NO_DATA_SUCCESS = new CommonException(CommonExceptionCode.FAIL_NO_DATA_SUCCESS);
-    public static final CommonException EXCEPTION_ERROR_NOT_ALLOWED_MEMBER = new CommonException(CommonExceptionCode.FAIL_NOT_ALLOWED_MEMBER);
-    public static final CommonException EXCEPTION_ERROR_TRY_LOGIN_FIRST = new CommonException(CommonExceptionCode.FAIL_TRY_LOGIN_FIRST);
-
+    public static final CommonException EXCEPTION_FAIL_SYSTEM = new CommonException(CommonExceptionCode.FAIL_SYSTEM_ERROR);
+    public static final CommonException EXCEPTION_FAIL_INVALID_REQUEST = new CommonException(CommonExceptionCode.FAIL_INVALID_REQUEST);
+    public static final CommonException EXCEPTION_FAIL_INVALID_PARAMETER = new CommonException(CommonExceptionCode.FAIL_INVALID_PARAMETER);
+    public static final CommonException EXCEPTION_FAIL_NO_DATA_SUCCESS = new CommonException(CommonExceptionCode.FAIL_NO_DATA_SUCCESS);
+    public static final CommonException EXCEPTION_FAIL_NOT_ALLOWED_MEMBER = new CommonException(CommonExceptionCode.FAIL_NOT_ALLOWED_MEMBER);
+    public static final CommonException EXCEPTION_FAIL_TRY_LOGIN_FIRST = new CommonException(CommonExceptionCode.FAIL_TRY_LOGIN_FIRST);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CommonException.class);
     private String responseCode;
     private String responseMessage;
     private JsonElement responseData;
     private String additionalMessage;
-
-    @Override
-    public synchronized Throwable fillInStackTrace() {
-        return this;
-    }
 
     public CommonException(final Exception exception) {
         LOGGER.warn("Received error message: {}", ExceptionUtils.getStackTrace(exception));
@@ -75,6 +69,11 @@ public class CommonException extends RuntimeException {
         this.setReturnValue(commonExceptionCode, additionalMessage, data);
     }
 
+    @Override
+    public synchronized Throwable fillInStackTrace() {
+        return this;
+    }
+
     public JsonObject getJsonObject() {
         if (StringUtils.isNotEmpty(this.responseCode)) {
             final JsonObject result = new JsonObject();
@@ -88,7 +87,7 @@ public class CommonException extends RuntimeException {
             }
             return result;
         } else {
-            return EXCEPTION_ERROR_SYSTEM.getJsonObject();
+            return EXCEPTION_FAIL_SYSTEM.getJsonObject();
         }
     }
 
