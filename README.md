@@ -337,7 +337,7 @@
                     <ftp.path>/data1/services/project/docbase</ftp.path>
                     <ftp.id>username</ftp.id>
                     <ftp.passwd>password</ftp.passwd>
-                    <tomcat.home>/Mnsapp/tomcat8</tomcat.home>
+                    <tomcat.home>/tomcat8</tomcat.home>
                     <tomcat.id>wasadmin</tomcat.id>
                     <tomcat.passwd>TLSEKD!tpsxjwas</tomcat.passwd>
                 </properties>
